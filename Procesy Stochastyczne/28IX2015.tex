@@ -1,0 +1,117 @@
+\chapter{28 września 2015}
+Procesy stochastyczne - teoria służąca do opisu analizy (wnioskowań) zjawisk losowych ewoluujących w czasie. Wywodzą się z rachunku prawdopodobieństwa. Modelowanie rzeczywistości obarczonej niepewnością (losowością). Przeciwieństwo równań różniczkowych.
+\begin{gather*}
+y'=f(y,t)\\
+y(t)=g(t,y_0)
+\end{gather*}
+Równania różniczkowe dostarczają modeli deterministycznych. Idealizuje, możliwe w warunkach laboratoryjnych. Bardzo dużo praktycznych zagadnień nie ma charakteru deterministycznego (a jak już ma to będzie to determinizm chaotyczny). Chaos to nie to samo, co losowość. Losowość tkwi w głębi natury. Dla przykładu mechanika kwantowa.
+
+Podstawowe elementy (pojęcia) procesów stochastycznych:\\
+Przestrzeń probabilistyczna $(\Omega,\mathcal F,P)$\\
+$ \left .
+\begin{array}{l}
+ \Omega \text{ - zbiór zdarzeń elementarnych}\\
+ \omega\in\Omega \text{ - zdarzenie elementarne}\\
+\end{array}
+\right \} $ pojęcia pierwotne\\
+$ \mathcal F $ - $ \sigma $-ciało podzbioru $ \Omega $
+
+\newpage
+\begin{defi}[$ \sigma$-ciało]
+Mówimy, że rodzina $ \mathcal F  $ podzbiorów $ \Omega $ jest $ \sigma $-ciałem, jeśli spełnia:
+\begin{enumerate}
+\item
+\begin{gather*}
+\emptyset\in \mathcal F ,\quad\Omega\in \mathcal F,
+\end{gather*}
+\item
+\begin{gather*}
+\forall_{A\in\Omega}\left[A\in \mathcal F \Rightarrow A^\mathrm c=\Omega\backslash A\in \mathcal F \right],
+\end{gather*}
+\item 
+\begin{gather*}
+\forall_{ A_1,A_2,\dots\in\Omega}\left[\forall_n A_n\in \mathcal F \Rightarrow\bigcup_{n=1}^\infty A_n\in \mathcal F \right],
+\end{gather*}
+\end{enumerate}
+\end{defi}
+\begin{defi}
+Mówimy, że funkcja zbioru $ P $ określona na $ (\Omega,\mathcal F ) $ jest $ \sigma $-addytywnym prawdopodobieństwem (miarą probabilistyczną $ \sigma $-addytywną), jeżeli spełnia:\begin{enumerate}
+\item 
+\begin{gather*}
+P:\mathcal F \rightarrow[0,1],
+\end{gather*}
+\item 
+\begin{gather*}
+P(\emptyset)=0,
+\end{gather*}
+\item 
+\begin{gather*}
+P(\Omega)=1,
+\end{gather*}
+\item warunek $ \sigma $-addytywności
+\begin{gather*}
+\forall_{A_1,A_2,\ldots\in \mathcal F }
+\left[\forall_{i\neq j}A_i\cap A_j=\emptyset\Rightarrow P\left(\bigcup_{n=1}^\infty A_n\right)=\sum_{n=1}^{\infty }P(A_n)\right]
+\end{gather*}
+\end{enumerate}
+\end{defi}
+\begin{defi}[Proces stochastyczny]
+Procesem stochastycznym na przestrzeni probabilistycznej $(\Omega,\mathcal F,P)$ nazywamy rodzinę zmiennych losowych $ \{X_t\}_{t\in T} $ określonych na $(\Omega,\mathcal F,P)$.\\
+$ T $ - zbiór indeksów (czasowych, gdy $ T $ interpretujemy jako czas)
+\end{defi}
+\begin{defi}[Zmienna losowa]
+Zmienna losowa $ X_t $.
+\begin{gather*}
+\forall_{t\in T}\forall_{B\in \mathfrak B_\mathbb R}\,
+X_t^{-1}(B)\in \mathcal F 
+\end{gather*}
+$ X_t $ jest $ \mathcal F  $ mierzalne; $ X_t $ jest $ \sigma (\mathcal F ,\mathfrak B_\mathbb R) mierzalna $
+\begin{itemize}
+\item $ \mathfrak B_\mathbb R $ - $ \sigma $-ciało zbiorów borelowskich w $ \mathbb R  $
+\item $ \mathfrak B_\mathbb R=\sigma\left(\left\{\left(\alpha,\beta\right):\alpha<\beta\right\}\right) $
+\end{itemize}
+\end{defi}
+\textbf{Uwaga!}\\
+\begin{gather*}
+\text{card}(\mathfrak B_\mathbb R)=\mathfrak c<2^\mathfrak c=\text{card}\left(\mathcal L_\mathbb R \right)
+\end{gather*}
+\begin{defi}
+Niech $ \Omega $ będzie ustalonym zbiorem. Mówimy, że rodzina $ \mathcal C $ podzbiorów $ \Omega $ tworzy ciało, jeżeli spełnia:
+\begin{enumerate}
+\item 
+\begin{gather*}
+\emptyset,\,\Omega\in\mathcal C
+\end{gather*}
+\item 
+\begin{gather*}
+\forall_{A\subseteq\Omega}
+\left[A\in\mathcal C\Rightarrow A^\mathrm c\in\mathcal C\right]
+\end{gather*}
+\item 
+\begin{gather*}
+\forall_{A,B\in\Omega}
+\left[A<B\in\mathcal C\Rightarrow A\cup B\in\mathcal C\right]
+\equiv\\
+\equiv
+\left[A_1,A_2,\dots,A_n\in\mathcal C,\quad n\in \mathbb{N}\Rightarrow \bigcup_{j=1}^n A_j\in \mathcal C\right]
+\end{gather*}
+\end{enumerate}
+\end{defi}
+\begin{defi}
+Mówimy, że funkcja zbioru $ \mu $ określona na $ (\Omega,\mathcal C ) $ jest miarą probabilistyczną $ \sigma
+$-addytywną, jeśli spełnia:
+\begin{enumerate}
+\item 
+\begin{gather*}
+\mu(\emptyset)=0\\
+\mu(\Omega)=1\\
+\forall_{A\in \mathcal C }\,
+0\le\mu(A)\le1
+\end{gather*}
+\item 
+\begin{gather*}
+\forall_{A_1,A_2,\ldots\in \mathcal C }
+\left[\forall_{i\neq j}A_i\cap A_j=\emptyset\wedge \bigcup_{n=1}^\infty A_n \in \mathcal C  \Rightarrow \mu\left(\bigcup_{n=1}^\infty A_n\right)=\sum_{n=1}^{\infty }\mu\left(A_n\right)\right]
+\end{gather*}
+\end{enumerate}
+\end{defi}

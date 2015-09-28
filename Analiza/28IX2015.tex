@@ -1,0 +1,110 @@
+\chapter{28 września 2015}
+\begin{defi}
+Mówimy, że ciąg $ \left(f_n\right) $ jest zbieżny punktowo do funkcji $ g:P\rightarrow \mathbb R $ wtedy i tylko wtedy, gdy:
+\begin{gather*}
+\forall_{x\in P}\forall_{\varepsilon>0}\exists_{n_o\in \mathbb{N}}\forall_{n>n_o}
+\left|f_n(x)-g(x)\right|<\varepsilon
+\end{gather*}
+\end{defi}
+\begin{prz}\textbf{ }
+\begin{enumerate}[a)]
+\item 
+\begin{gather*}
+P=\mathbb R \\
+f_n(x)=\frac{x}{n}\\
+f_n(x_0)=\frac{x_0}{n}\to0\Rightarrow g(x)=0
+\end{gather*}
+\item 
+\begin{gather*}
+P=\mathbb R \\
+f_n(x)=xe^{-nx}\\
+\forall_x \lim\limits_{n\to\infty } f_n(x)=0
+\end{gather*}
+\item 
+\begin{gather*}
+P=[0,1]\\
+f_n(x)=x^n\\
+g(x)=\left \{
+\begin{array}{ll}
+0, & x\in[0,1)\\
+1, &x=1
+\end{array}
+\right .
+\end{gather*}
+\end{enumerate}
+\end{prz}
+\begin{defi}
+Ciąg $ \left(f_n\right) $ jest zbieżny jednostajnie na zbiorze $ P $ do funkcji $ g:P\rightarrow \mathbb R  $ wtedy i tylko wtedy, gdy:
+\begin{gather*}
+\forall_{\varepsilon>0}
+\exists_{n_o\in \mathbb{N}}
+\forall_{n>n_o}
+\forall_{x\in P}
+\left|f_n(x)-g(x)\right|<\varepsilon
+\end{gather*}
+\end{defi}
+\begin{twr}
+Założenia:
+\begin{itemize}
+\item $ \left(f_n\right) $ funkcje ciągłe
+\item $ f_n\to f $ jednostajnie zbieżny na $ P $
+\end{itemize}
+Teza:\\
+\begin{gather*}
+f:P\rightarrow \mathbb R  \text{ jest ciągła}
+\end{gather*}
+\end{twr}
+\begin{gather*}
+\mathcal C \left(\left[a,b\right],\mathbb R \right)=
+\left\{f:\left[a,b\right]\to \mathbb R ;\text{ ciągła}\right\}
+\end{gather*}
+\begin{itemize}
+\item przestrzeń liniowa ($ f+g;\alpha\cdot f $)
+\item przestrzeń unormowana $ \left\|f\right\|_0=\sup_{x\in\left[a,b\right]}\left|f(x)\right| $
+\end{itemize}
+\begin{twr}
+Ciąg $ \left(f_n\right)\in \mathcal C \left(\left[a,b\right],\mathbb R \right) $ jest zbieżny do $ f\in \mathcal C  $ wtedy i tylko wtedy, gdy:
+\begin{gather*}
+\lim\limits_{n\to\infty }\left\|f_n-f\right\|_0=0
+\end{gather*}
+\end{twr}
+\begin{proof}
+Mamy pokazać, że $ f $ jest ciągła w $ x_0 $.
+\begin{gather*}
+\forall_{\varepsilon>0}
+\exists_{\delta>0}
+\forall_{x\in P}
+\left|x-x_0\right|<\delta
+\Rightarrow
+\left|f(x)-f(x_0)\right|<\varepsilon
+\end{gather*}
+$ \varepsilon>0 $ ustalone:
+\begin{align*}
+&\exists_\delta
+\forall_x
+\left|x-x_0\right|<\delta\Rightarrow \left|f_n(x)-f_n(x_0)\right|<\tfrac{\varepsilon}{3}\\
+&\exists_{n_o}
+\forall_{n>n_0}
+\forall_x
+\left|f_n(x)-f(x)\right|<\tfrac{\varepsilon}{3}
+\end{align*}
+\begin{gather*}
+\left|f(x)-f(x_0)\right|
+\le
+\left|f(x)-f_n(x)\right|
++
+\left|f_n(x)-f_n(x_0)\right|
++
+\left|f_n(x_0)-f(x_0)\right|<\varepsilon
+\end{gather*}
+\end{proof}
+\begin{twr}[Kryterium Diniego]
+Załóżmy, że $ f_n:\left[a,b\right] \to \mathbb R $ jest monotoniczny i zbieżny punktowo do funkcji $ f:\left[a,b\right] \to \mathbb R $. Jeśli $ f_n $ i $ f $ są ciągłe to zbieżność jest jednostajna.
+\end{twr}
+\begin{prz}
+Brak ciągłości funkcji granicznej\qquad$ f_n(x)=x^n $ na $ \left[0,1\right] $\\
+Brak monotoniczności\qquad
+$ nxe^{-nx^2} $ na $ \left[0,2\right] $\\
+Brak ciągłości funkcji\qquad$ \chi_{\left(0,\frac{1}{n}\right)} :[0,1]\to \mathbb R $\\
+Brak zwartości dziedziny\qquad $ f_n(x)=x^n $ na $ [0,1) $
+\end{prz}
