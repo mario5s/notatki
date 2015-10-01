@@ -1,0 +1,235 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[MeX]{polski}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{amsmath}
+\title{}
+\author{Mariusz Motyl}
+\newtheoremstyle{break}
+	{\topsep}{\topsep}
+	{\itshape}{}
+	{\bfseries}{}
+	{\newline}{}
+\newtheoremstyle{defi}
+	{\topsep}{\topsep}
+	{\normalfont}{}
+	{\bfseries}{}
+	{\newline}{}
+\theoremstyle{break}
+\newtheorem{twr}{Twierdzenie}
+\theoremstyle{definition}
+\theoremstyle{defi}
+\newtheorem{defi}{Definicja}
+\theoremstyle{break}
+\newtheorem{lem}{Lemat}
+\theoremstyle{defi}
+\newtheorem{prz}{Przykład}
+\begin{document}
+{\Large Rozkład jednostajny dyskretny, $ c,n\in \mathbb Z;n>0 $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ P(X=0) =\frac{1}{n},\\
+k=c,c+1,\dots,c+n-1 $
+\item dla $ n=1 $ to rozkład jednopunktowy
+\item $ \varphi(t)=\frac{e^{ict}\left(1-e^{int}\right)}{n(1-e^{it})} $
+\item $ \mathbb{E}X=c+\frac{n-1}{2} $
+\item $ D^2X=\frac{n^2-1}{12} $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład zero-jedynkowy}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ P(X=0)=q\\
+P\left(X=1\right)=p\\
+q=1-p $
+\item $ \varphi(t)=q+pe^n $
+\item $ \mathbb{E}X=p $
+\item $ D^2X=pq $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład dwumianowy, $ p\in\left(0,1\right) $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ P(X=k)={n\choose k}p^kq^{n-k}\\
+q=1-p\\
+k=0,1,\dots,n$
+\item $ X $ - liczba sukcesów w $ n $ próbach Bernoulliego (patrz przybliżenie Poissona)
+\columnbreak
+\item $ \varphi(t)=\left(q+p^{it}\right)^n $
+\item $ \mathbb{E}=np $
+\item $ D^2X=npq $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład geometryczny, $ p\in\left(0,1\right) $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ P(X=k)=pq^k\\
+q=1-p\\
+k=0,1,\dots $
+\item $ X $ - liczba prób Bernoulliego poprzedzających pierwszy sukces\\
+\item $ \varphi(t)=\frac{p}{1-qe^{it}} $\\
+\item $ \mathbb{E}X=\frac{q}{p} $\\
+\item $ D^2X=\frac{q}{p^2} $
+\end{itemize}
+\end{multicols}
+
+\newpage
+{\Large Rozkład Poissona, $ \lambda>0 $}
+\begin{itemize}
+\item $ P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda} $
+\item Dla $ \lambda>9 $ rozkład można przybliżać rozkładem $ \mathcal N\left(\lambda,\sqrt{\lambda}\right) $, zachodzi wtedy\\
+$ P(X=k)\approx
+\Phi\left(\frac{k+\frac{1}{2}-\lambda}{\sqrt{\lambda}}\right) $,
+gdzie $ \Phi $ - dystrybuanta rozkładu $ \mathcal N(0,1) $
+\item Przybliżenie Poissona ($ n $ - duże, $ p $ - małe)\\
+$ {n\choose k }p^kq^{n-k}\approx\frac{\lambda}{k!}e^{-\lambda},\lambda=np$
+\item $ \mathbb{E}X=\lambda $
+\item $ D^2X=\lambda $
+\end{itemize}
+{\Large Rozkład jednostajny ciągły, $ a,b\in \mathbb R ,a<b $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(x)=\left \{
+\begin{array}{ll}
+\frac{1}{b-a}&,x\in(a,b)\\
+0&,x\notin(a,b)
+\end{array}
+\right . $
+\item $ \varphi(t)=\frac{e^{ibt}-e^{iat}}{i(b-a)t} $
+\item $ \mathbb{E}X=\frac{a+b}{2} $
+\item $ D^2X=\frac{\left(b-a\right)^2}{12} $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład normalny, $ m\in \mathbb R ,\sigma\in \left(0,+\infty \right) $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{x-m}{2\sigma^2}} ,x\in \mathbb R $
+\item $ X\sim\mathcal N(m,\sigma)\Rightarrow Y=\frac{X-m}{\sigma}\sim \mathcal N(0,1) $
+\item $ \varphi(t)=e^{imt-\frac{\sigma^2t^2}{2}} $
+\item $ \mathbb{E}X=m $
+\item $ D^2X=\sigma^2 $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład wykładniczy, $ a\in\left(0,+\infty \right) $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(x)=
+\left \{
+\begin{array}{ll}
+ae^{-ax}&,x>0\\
+0&,x\le0
+\end{array}
+\right . $
+\item Szczególny przypadek rozkładu gamma
+\item $ \varphi(t)\frac{a}{a-it} $
+\item $ \mathbb{E}X=\frac{1}{a} $
+\item $ D^2X=\frac{1}{a} $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład gamma, $ p,k\in\left(0,+\infty \right) $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(x)=
+\left \{
+\begin{array}{ll}
+\frac{x^{p-1}e^{-\frac{x}{\lambda}}}{\lambda^p\Gamma(p)}&,\lambda>0\\
+0&,\lambda\le0
+\end{array}
+\right . $
+\item Dla $ p=1 $ jest to rozkład wykładniczy o parametrze $ a=\frac{1}{\lambda} $
+\item $ \varphi(t)=\left(\frac{1}{1-i+\lambda}\right)^p $
+\item $ \mathbb{E}X=\lambda p $
+\item $ D^2X=p\lambda^2 $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład Pareto, $ \alpha,x_0\in (0,+\infty ) $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(x)=
+\left \{
+\begin{array}{ll}
+\frac{\alpha}{x_0}\left(\frac{x_0}{x}\right)^{\alpha+1}&,x>x_0\\
+0&,x\le x_0
+\end{array}
+\right . $
+\item $ \mathbb{E}X=\frac{\alpha}{\alpha-1}x_0 $ dla $ \alpha>1 $
+\item $ D^2X=\frac{\alpha-x_0^2}{(\alpha-1)^2(\alpha-2)} $ dla $ \alpha=2 $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład Erlanga, $ a\in (0,+\infty ),m\in \mathbb{N} $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(x)=
+\left \{
+\begin{array}{ll}
+\frac{a^m}{\left(m-1\right)!}x^{m-1}e^{-ax}&,x>0\\
+0&,x\le0
+\end{array}
+\right . $
+\item Szczególny przypadek rozkładu gamma
+\item Dla $ m=1 $ jest to rozkład wykładniczy
+\columnbreak
+\item Suma $ m $ niezależnych zmiennych losowych o rozkładzie wykładniczym z parametrem $ a $ ma rozkład Erlanga
+\item $ \varphi(t)=\left(\frac{a}{a-it}\right)^m $
+\item $ \mathbb E X=\frac{m}{a} $
+\item $ D^2X=\frac{m}{a^2} $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład $ \chi^2 ,n\in \mathbb N $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(y)=
+\left \{
+\begin{array}{ll}
+\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2}}\Gamma\left(\frac{n}{2}\right)}&,y>0\\
+0&,y\le0
+\end{array}
+\right . $
+\item $ Y_n=X_1^2+\dots+X_n^2 $\\
+$ X_1,\dots,X_n$ - niezależne zmienne losowe o rozkładzie $ \mathcal N(0,1) $ 
+\item $ P(Y_n\ge k)=\alpha $
+\item Dla $ n>30,\\
+ \sqrt{2Y_n}\sim\mathcal N(\sqrt{2n-1},1) $
+ \item $ \varphi(t)=\left(\frac{1}{1-2it}\right)^{\frac{n}{2}} $
+ \item $ \mathbb E X=m $
+ \item $ D^2X=2n $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład Studenta, $ n\in \mathbb N  $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f(t)=
+\frac{\Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n}{2}\right)\sqrt n\left(1+\frac{t^2}{n}\right)^{\frac{n+1}{2}}},\\
+t\in \mathbb R ,\alpha>1 $
+\item $ T_n=\frac{X}{\sqrt Y}\sqrt n\\
+X,Y_n $ - niezależne\\
+$ X\sim\mathcal N(0,1),Y_n\sim \chi^2_n $
+\item $ \mathbb E X=0 $ dla $ n>1 $
+\item $ D^2X=\frac{n}{n-2} $ dla $ n>2 $\\
+Uwaga:
+\begin{gather*}
+T_n\xrightarrow{n\to\infty }\mathcal N(0,1)
+\end{gather*}
+\end{itemize}
+\end{multicols}
+{\Large Rozkład F-Snedecore'a, $ n\in \mathbb N  $}
+\begin{itemize}
+\item $ f(x)=
+\left \{
+\begin{array}{ll}
+\frac{\Gamma\left(\frac{n_1+n_2}{2}\right)\left(\frac{n_1}{n_2}\right)^{\frac{n_1}{2}}x^{\frac{n_1-2}{2}}\left(1+\frac{n_1}{n_2}x\right)^{-\frac{n_1+n_2}{2}}}{\Gamma\left(\frac{n_1}{2}\right)\Gamma\left(\frac{n_2}{2}\right)}&,x>0\\
+0&,x\le0
+\end{array}
+\right . $
+\item $ F_{n_1,n_2}=\frac{\frac{1}{n_1}Y_{n_1}}{\frac{1}{n_2}Y_{n_2}} $\\
+$ Y_{n_1},Y_{n_2} $ - niezależne zmienne losowe o jednakowym rozkładzie $ \chi^2 $
+\item $ \dfrac{F_{n_1,n_2}-\frac{n_1-n_2}{2n_1n_2}}{\frac{n_1+n_2}{2n_1n_2}}\sim\mathcal N(0,1) $ dla $ n_1,n_2>30 $
+\end{itemize}
+\end{document}
