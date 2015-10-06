@@ -1,0 +1,300 @@
+\chapter{5 Października 2015}
+\begin{twr}
+Niech $ \mathcal C $ będzie ciałem podzbiorów $ \Omega $ oraz $ \mu:\mathcal C\to\left[0,1\right] $ będzie miarą skończenie addytywną na $ \left(\Omega,\mathcal C\right) $ nieujemną i unormowaną, czyli 
+\begin{gather*}
+\mu(\Omega)=1,\forall_{a\in\mathcal C}\; 0\le\mu(A)\le 1.
+\end{gather*} Wówczas następujące warunki są równoważne:
+\begin{enumerate}[(A)]
+\item $ \mu $ jest $\sigma$-addytywna na $ \left(a\Omega,\mathcal C\right) $
+\item Ciągłość od dołu
+\begin{gather*}
+\forall_{B_j\in\mathcal C}\forall_{B_1\subseteq B_2\subseteq \dots} \bigcup_{j=1}^\infty B_j\in\mathcal C 
+\Rightarrow
+\mu \left(\bigcup_{j=1}^\infty B_j\right)=\lim\limits_{n\to\infty} \mu \left(B_j\right)
+\end{gather*}
+\item Ciągłość od góry
+\begin{gather*}
+\forall_{C_j\in\mathcal C}\forall_{C_1\supseteq C_2\supseteq \dots}
+\bigcap_{j=1}^\infty C_j=\emptyset
+\Rightarrow
+\lim\limits_{n\to\infty} \mu \left(C_j\right)=0
+\end{gather*}
+\end{enumerate}
+\end{twr}
+\begin{proof}
+(A) $ \Rightarrow $ (B)\\
+$ A_1=B_1\\
+A_2=B_2\backslash B_1\\
+\vdots\\
+A_n=B_n\backslash B_{n-1}\\
+\vdots $\\
+\begin{gather*}
+\bigcup_{j=1}^\infty B_j=\bigcup_{j=1}^\infty A_j
+\end{gather*}
+\begin{align*}
+&\mu \left(\bigcup_{j=1}^\infty B_j\right)
+=
+\mu \left(\bigcup_{j=1}^\infty A_j\right)
+=\\=&
+\sum_{j=1}^\infty \mu \left(A_j\right)
+=
+\lim\limits_{n\to\infty} \sum_{j=1}^n \mu \left(A_j\right)
+=\\=&
+\lim\limits_{n\to\infty} \mu \left(\bigcup_{j=1}^n A_j\right)
+=\\=&
+\lim\limits_{n\to\infty} \mu \left(B_n\right)
+\end{align*}
+(B) $ \Rightarrow $ (C)\\
+$ C_1\supseteq C_2\supseteq\dots $\\
+$ \bigcap_{n=1}^\infty C_n=\emptyset \\
+B_n=C_n^\mathrm c=\Omega\backslash C_n\\
+\bigcup_{n=1}^\infty B_n=\left(\bigcap_{n=1}^\infty C_n\right)^\mathrm c=\emptyset^\mathrm c=\Omega$
+\begin{align*}
+&1=\mu \left(\Omega\right)
+=\\=&
+\mu \left(\bigcup_{n=1}^\infty B_n\right)
+=\\=&
+\lim\limits_{n\to\infty} \mu \left(B_n\right)
+=\\=&
+\lim\limits_{n\to\infty} \left(\Omega\backslash C_n\right)
+=\\=&
+\lim\limits_{n\to\infty} \bigl(\mu\left(\Omega\right)-\mu\left( C_n\right)\bigr)
+=\\=&
+\mu\left(\Omega\right)-\lim\limits_{n\to\infty} \mu\left( C_n\right)
+\Rightarrow
+\lim\limits_{n\to\infty} \mu \left(C_n\right)=0
+\end{align*}
+(C) $ \Rightarrow $ (A)\\
+$ \bigcup_{j=1}^\infty A_j \in\mathcal C\\
+\bigcup_{j=1}^{n-1} A_j \in\mathcal C$
+\begin{gather*}
+C_n
+=
+\bigcup_{j=n}^\infty A_j
+=
+\bigcup_{j=1}^\infty A_j\backslash\bigcup_{j=1}^{n-1} A_j\in\mathcal C
+\end{gather*}
+$ C_1\supseteq C_2\supseteq\dots \\
+\bigcap_{j=1}^\infty C_n = \emptyset$.\\
+Z (C) $ \lim\limits_{n\to\infty} \mu \left(C_n\right)=0 $
+\begin{align*}
+&\mu\left(C_n\right)
+=\\=&
+\mu \left(\bigcup_{j=n}^\infty A_j\right)
+=\\=&
+\mu\left(\bigcup_{j=1}^\infty A_j\backslash\bigcup_{j=1}^{n-1} A_j\right)
+=\\=&
+\mu\left(\bigcup_{j=1}^\infty A_j\right)-\mu\left(\bigcup_{j=1}^{n-1} A_j\right)
+=\\=&
+\mu\left(\bigcup_{j=1}^\infty A_j\right)-\sum_{j=1}^{n-1} \mu\left(A_j\right)\to0
+\end{align*}
+\begin{gather*}
+\lim\limits_{n\to\infty} \mu\left(\bigcup_{j=1}^{n-1} A_j\right)=\mu\left(\bigcup_{j=1}^{\infty } A_j\right)\\
+\lim\limits_{n\to\infty} \sum_{j=1}^{n-1} \mu\left(A_j\right)=\mu\left(\bigcup_{j=1}^{\infty } A_j\right)
+\end{gather*}
+Ostatecznie
+\begin{gather*}
+\mu\left(\bigcup_{j=1}^{\infty } A_j\right)=
+\sum_{j=1}^{\infty } \mu\left(A_j\right)
+\end{gather*}
+\end{proof}
+\textbf{Uwaga!}\\
+Warunek (C) jest bardzo wygodny do sprawdzenia.
+\begin{twr}
+Jeżeli $ \mu $ jest prawdopodobieństwem $\sigma$-addytywnym na ciele $ \mathcal C $ podzbiorów $ \Omega $, to istnieje dokładnie jedno rozszerzenie $ \mu  $ do miary probabilistycznej $ \tilde{\mu} $ na $ \sigma\left(\mathcal C\right) \left\{\tilde{\mu}|_\mathcal C=\mu\right\}$
+\begin{gather*}
+\left(\Omega,\mathcal C,\mu\right)
+\rightsquigarrow
+\left(\Omega,\sigma\left(\mathcal C\right),\tilde{\mu}\right)
+\end{gather*}
+Tradycyjnie $ \tilde{\mu} $ piszemy $ \mu $.
+\end{twr}
+\textbf{Dygresja}\\
+$ \Omega=\mathbb N ,A\subseteq \mathbb N ,\nu \left(A\right) =\lim\limits_{n\to\infty} \dfrac{\mu \left(A\cap\left\{1,2,\dots,n\right\}\right)}{n}$ gęstość zbioru $ A $.
+Dobra miara "grubości" podzbiorów $ \mathbb N  $. Nie wszystkie podzbiory mają gęstość. Z całą pewnością $ \nu$ nie jest $\sigma$-addytywna, bo $ \nu(k)=0,\,\text{card}(k)<\infty $\\
+\begin{gather*}
+1=\nu\left(\mathbb N \right) \neq \lim\limits_{n\to\infty} \nu \left(\left\{1,2,\dots,n\right\}\right)=0
+\end{gather*}
+\begin{prz}
+$ \Omega=(0,1]\\
+\mathcal{C_{\text{przed.}}}=\left\{\bigcup_{j=1}^\infty (\alpha_j,\beta_j]:n=0,1,\dots;0<\alpha_1<\beta_1<\alpha_2<\beta_2<\dots<\alpha_n<\beta_n\right\}\\
+F:[0,1]\to\mathbb R,F $ niemalejące, prawostronnie ciągłe.
+\begin{gather*}
+\mu_F \left(\bigcup_{j=1}^\infty (\alpha_j,\beta_j]\right)\stackrel{df}{=}
+\sum_{j=1}^{n}\bigl(F\left(B_j\right)-F\left(\alpha_j\right)\bigr)\ge0
+\end{gather*}
+$ \mu_F $ jest skończenie addytywna na $ \left((0,1],\mathcal{_{\text{przed.}}}\right) $, co widać z konstrukcji. Nieco trudniej dowodzi się, że $ \mu_F $ jest $\sigma$-addytywna na ciele $ \mathcal C_{\text{przed.}} $. Zatem każda funkcja niemalejąca, prawostronnie ciągła $ F:\left[0,1\right] $ definiuje miarę $\sigma$-addytywną na $ \left((0,1],\sigma\left(\mathcal C_{\text{przed.}}\right)\right) $
+\end{prz}
+\begin{center}
+{\LARGE \textsc{Funkcje tworzące}}\\
+(p.g.f. probability geometry function)
+\end{center}
+Niech $ X:(\Omega,\mathcal F,P)\to \mathbb N _0=\left\{0,1,2,\dots\right\} $ będzie zmienną losową ($ ychX^{-1}(B)\in\ \mathcal F,\subseteq \mathbb N $ - dowolny podzbiór) . Nową charakterystyką takich zmiennych losowych jest funkcja charakterystyczna.
+\begin{defi}[Funkcja tworząca]Funkcją tworzącą zmiennej losowej $ X $ o wartościach w $ \mathbb N _0 $ nazywamy
+\begin{gather*}
+\Upsilon_X(s)=\mathbb E s^X\left(=\sum_{j=0}^{\infty }s^jP(X=j)=\sum_{j=0}^{\infty }s^jp_j\right)
+\end{gather*}
+\end{defi}
+Pytanie: Dom$ (r_X) $=?\\
+$ r_X $ określona szeregiem potęgowym; pewnie analityczna. $ r_X(z),z\in K(0,R) $
+\begin{twr}
+Niech $ X.\tau,X^{(1)},X^{(2)},\dots $ będą zmiennymi losowymi losowymi o wartościach w $ \mathbb N _0 $ i oznaczmy $ P\left(X=k\right)=p_k $ , $ P\left(X^(n)=k\right)=p_k^{(n)} ,\,k=0,1,2,\dots$. Wówczas:
+\begin{enumerate}
+\item dom$ \left(\Upsilon_X\right) \supseteq[-1,1]$
+(W przypadku dziedziny zespolonej $ \overline K(0,1) $)\\
+$ \Upsilon_X $ jest niemalejąca i wypukła na $ [0,1] $oraz klasy $ C^\infty  $ na $ (-1,1) $
+\item $ \Upsilon_X(1)=1 $
+\item \begin{align*}
+\Upsilon_X'&(0)= P\left(X=1\right)=p_1        \\
+\Upsilon_X''&(0)=2\cdot P\left(X=2\right)=2p_2\\
+&\vdots                                       \\
+\Upsilon_X^{(k)}&(0)=k!\cdot P\left(X=k\right)=k!p_k
+\end{align*}
+\item Dla $ X $
+\begin{gather*}
+\mathbb E X^n<\infty 
+\Leftrightarrow
+\lim\limits_{n\to1^-} \Upsilon_X^{(n)}(s)
+=
+\Upsilon_X^{(n)}(1^-)<\infty 
+\end{gather*}
+Co więcej
+\begin{gather*}
+\Upsilon_X^{(n)}(1^-)
+=
+\mathbb E X(X-1)\cdots(X-n+1)\\
+\text{  n-ty moment faktorialny}
+\end{gather*}
+W szczególności
+\begin{gather*}
+\mathbb E X
+=
+\Upsilon_X'(1^-)\\
+\mathbb E X^2
+=
+\mathbb E X(X-1)+\mathbb E X
+=
+\Upsilon_X''(1^-)+\Upsilon_X'(1^-)
+\end{gather*}
+\item Jeżeli $ x $ i $ Y $ są niezależne o wartościach w $ \mathbb N _0 $, to $ \Upsilon_{X+Y}(s)=\Upsilon_X(s)\Upsilon_Y(s) $
+\item Jeżeli $ X^{(1)},X^{(2)},\dots $ są niezależnymi zmiennymi losowymi o tym samym rozkładzie i o wartościach w $ \mathbb N _0 $ i podobnie $ \tau $ i dodatkowo ciąg $ X^{(1)},X^{(2)},\dots $ i $ \tau $ są niezależne, to dla 
+\begin{gather*}
+U=\sum_{j=1}^{\tau}X^{(j)}
+\end{gather*}
+mamy
+\begin{gather*}
+\Upsilon_U(s)=\Upsilon_\tau \bigl(\Upsilon_{X^{(1)}}(s)\bigr)
+\end{gather*}
+\item Dla dowolnego ciągu zmiennych losowych (niekoniecznie niezależnych) $ X^{(1)},X^{(2)},\dots $ i zmiennej losowej $ X $ o wartościach w $ \mathbb N _0 $ następujące warunki są równoważne:
+\begin{enumerate}
+\item $ \forall_{k\in \mathbb N _0}\lim\limits_{n\to\infty} P\left(X^{(n)}=k\right)=P\left(X=k\right) $
+\item $ X_n\overset{\mathcal D}{\Rightarrow}X $ (zbieżność słaba)
+\item $ \forall_{s\in[0,1]}\lim\limits_{n\to\infty} \Upsilon_{X^{(n)}}(s)=\Upsilon_X(s) $
+\end{enumerate}
+\end{enumerate}
+\end{twr}
+\begin{proof}\text{ }
+\begin{itemize}
+\item[2.] $ \Upsilon_X(1)=\mathbb E 1^X=\mathbb E 1=1 $
+\item [1.]
+\begin{gather*}
+\Upsilon_X(s)
+=
+\sum_{k=0}^{\infty }s^Xp_k
+=
+\sum_{k=0}^{\infty }p_ks^k
+\end{gather*}
+ten szereg potęgowy jest zbieżny dla $ s=1 $ nawet bezwzględnie.
+\begin{align*}
+&\left(\sum_{k=0}^{\infty }\left|p_k\right|\left|s\right|^k \right) _{s=1}\\
+&\sum_{k=0}^{\infty }\left|a_k\right|\left|z^k\right|<\infty 
+\end{align*}
+$ \Upsilon_X(z) $ jest dobrze określone na $ \left|z\right| \le1$.\\
+$ \Upsilon_X $ jest funkcją analityczną (co najmniej) na $ \left\{z:\left|z\right|<1\right\} $, a stąd wynika, że $ \Upsilon_X $ jest ciągła na $ [-1,1] $ i ma ciągłe pochodne na $ (-1,1) $.\\
+$ \Upsilon_X(s)=\sum_{k=0}^{\infty }p_k s^k\ge0$ na $ [0,1] $\\
+$ \Upsilon'_X(s)=\sum_{k=0}^{\infty }k\cdot p_k s^{k-1}\ge0$ - niemalejąca na $ [0,1] $\\
+$ \Upsilon''_X(s)=\sum_{k=0}^{\infty }k(k-1) p_k s^{k-1}\ge0 $ dla $ s\in[0,1] $\\
+Reasumując $ \Upsilon_X $ jest nieujemna, niemalejąca, wypukła na $ [0,1] $.\\
+\begin{align*}
+&P\left(\left\{X+0\right\}\cup\left\{X=1\right\}\right)=1
+&&\Upsilon_X(s)=p_0+p_1\cdot s\\
+&P\left(X\ge2 \right)>0
+&&\Upsilon_X \text{ ściśle wypukła}
+\end{align*}
+\item [3.]
+\begin{gather*}
+\Upsilon_X^{(k)}(s)=\frac{d^k}{ds^k}\left(\sum_{j=0}^{\infty }p_js^j\right)
+=\\=
+\sum_{j=0}^{\infty }j(j-1)\cdots(j-k+1)p_js^{j-k}
+=
+\sum_{j=k}^{\infty }j(j-1)\cdots(j-k+1)p_js^{j-k}
+\end{gather*}
+\begin{gather*}
+\Upsilon_X^{(k)}(0)=k(k-1)\cdots(k-k+1)p_k=k!p_k\Rightarrow p_k=P\left(X=k\right)=\frac{\Upsilon_X}{k!}
+\end{gather*}
+\item [4.]
+\begin{align*}
+&\mathbb E X
+=\\=&
+\sum_{k=0}^{\infty }k\cdot P\left(X=k\right)
+=\\=&
+\sum_{k=0}^{\infty }k\cdot p_k\cdot 1^k
+=\\=&
+\left(\sum_{k=0}^{\infty }k\cdot p_k\cdot s^k\right)_{s=1}
+=\\=&
+\lim\limits_{n\to1^-} \left(\sum_{k=0}^{\infty }k\cdot p_k\cdot s^k\right)
+=\\=&
+  \lim\limits_{n\to1^-} \Upsilon_X'(s)
+\end{align*}
+Analogicznie
+\begin{align*}
+&\mathbb E X(X+1)\cdots(X-n+1)
+=\\=&
+\sum_{k=n}^{\infty }k(k-1)\cdots(k-n+1)p_k\cdot 1^{k-n+1}
+=\\=&
+\lim\limits_{n\to1^-} \Upsilon_X^{(n)}(s)
+\end{align*}
+\textbf{Uwaga!}\\
+\begin{gather*}
+\mathbb E X^n<\infty \Leftrightarrow\mathbb E (X(X-1)\cdots(X-n+1)<\infty 
+\end{gather*}
+\item [5.]
+$ X,Y $ niezależne zmienne losowe o wartościach w $ \mathbb N _0 $
+\begin{gather*}
+\Upsilon_{X+Y}(s)
+=
+\mathbb E s^{X+Y}
+=
+\mathbb E s^X\cdot s^Y
+=
+\mathbb E s^X\cdot \mathbb E s^Y
+=
+\Upsilon_X^{(s)}\Upsilon_Y^{(s)}
+\end{gather*}
+\item [6.] $ V=\sum_{j=1}^{\tau}X^{(j)} $, ustalmy $ \sum_{j=1}^{0}\dots=0 $
+\begin{align*}
+&\Upsilon_V(s)=\mathbb E s^V
+=
+\int\limits_{\Omega}s^V\,dP
+=\\=&
+\sum_{n=0}^{\infty }\int\limits_{\left\{\tau=n\right\}}s^{\sum_{j=1}^{\tau}x^{(j)}}\,dP
+=\\=&
+\int\limits_{\left\{\tau=0\right\}}s^{\sum_{j=1}^{0}x^{(j)}}\,dP+
+\sum_{n=1}^{\infty }\int\limits_{\left\{\tau=n\right\}}s^{\sum_{j=1}^{\tau}x^{(j)}}\,dP
+=\\=&
+1\cdot P\left(\tau=0\right)+
+\sum_{n=1}^{\infty }
+\int\limits_{\Omega}\mathbbm1_{\left\{\tau=n\right\}}\,dP\int\limits_{\Omega}s^{\sum_{j=1}^{\tau}x^{(j)}}\,dP
+=\\=&
+1^0\cdot P\left(\tau=0\right)+\sum_{n=1}^{\infty }P\left(\tau=n\right)\Upsilon_{\sum_{j=1}^{\tau}x^{(j)}}(s)
+=\\=&
+P\left(\tau=0\right)\cdot s^0+\sum_{n=1}^{\infty }P\left(\tau=n\right)\left[\Upsilon_{X^{(1)}}(s)\right]^n
+=\\=&
+P\left(\tau=0\right)\cdot \left(\Upsilon_X^{(1)}(s)\right)^0+\sum_{n=1}^{\infty }P\left(\tau=n\right)\left[\Upsilon_{X^{(1)}}(s)\right]^n
+=\\=&
+\Upsilon_\tau \bigl(\Upsilon_{X^{(1)}}(s)\bigr)
+=
+\Upsilon_\tau \circ \Upsilon_{X^{(1)}}(s)
+\end{align*}
+\end{itemize}
+\end{proof}
