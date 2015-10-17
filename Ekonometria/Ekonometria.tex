@@ -1,18 +1,21 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{article}
 \usepackage[MeX]{polski}
 \usepackage{amsfonts}
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
+\usepackage{enumerate}
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsthm}
-\usepackage{enumerate}
-\usepackage{marginnote}
-\usepackage[marginparwidth=3cm, marginparsep=.5cm]{geometry}
-\usepackage{multicol}
-\usepackage{bbm}
 \usepackage{amsmath}
+\usepackage{titlesec}
+\titleformat{\subsection}
+{\normalfont\bfseries\scshape\large}
+{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\normalfont\scshape}
+{\thesubsubsection}{.5em}{}
 \title{}
 \author{Mariusz Motyl}
 \newtheoremstyle{break}
@@ -35,7 +38,5 @@
 \theoremstyle{defi}
 \newtheorem{prz}{Przykład}
 \begin{document}
-\input{28IX2015}
-\input{5X2015}
-\input{12X2015}
+		\input{tresc}
 \end{document}

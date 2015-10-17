@@ -1,0 +1,342 @@
+\chapter{12 października 2015}
+\begin{proof}
+7. (a)$ \Rightarrow $ (b)
+\begin{gather*}
+P\left(X^{(n)}\le t\right)\xrightarrow[n\to \infty ]{}P\left(X\le t\right)
+\end{gather*}
+w każdym punkcie $ t $, w którym $ F_X $ jest ciągła; dla $ t<0 $ jasne, bo \\$ 0\xrightarrow[n\to \infty ]{}0 $
+\begin{align*}
+&P\left(X^{(n)}\le t\right)
+=\\=&
+P\left(X^{(n)}\le \lfloor t\rfloor\right)
+=\\=&
+\sum_{k=0}^{\lfloor t\rfloor}P\left(X^{(n)}=k\right)
+\xrightarrow[n\to \infty ]{}
+\sum_{k=0}^{\lfloor t\rfloor}P\left(X\le\lfloor t\rfloor\right)
+=\\=&
+P\left(X\le t\right)
+\end{align*}
+(b) $ \Rightarrow $ (c)\\
+$ \Upsilon_{X^{(n)}}(s)=\mathbb E s^{x^{(n)}} $
+\begin{gather*}
+g_s(t)=\left \{
+\begin{array}{lll}
+	1   & \text{dla } t\le0 &  \\
+	s^t & \text{dla } t>0   &
+\end{array}
+\right .
+\text{ dla } 1\ge s>0\\
+g_0(t)=1-2t
+\end{gather*}
+$ \forall_{s\in[0,1]} g_s$ jest funkcją ciągłą i ograniczoną\\
+\begin{gather*}
+X\overset{\mathcal D}{\Rightarrow}X\Leftrightarrow\forall_{g:\mathbb R \to \mathbb R }\mathbb E g\left(X^{(n)}\right) \xrightarrow[n\to\infty ]{}\mathbb E g(X)
+\end{gather*}
+Dla każdego $ s\in[0,1] \; g$ jest funkcją ciągłą i ograniczoną.
+\begin{align*}
+&\mathbb E g_s\left(X^{(n)}\right)
+=\mathbb E s^{X^{(n)}}
+=\Upsilon_{X^{(n)}}(s)\\
+&\mathbb E g_s\left(X\right)
+=\Upsilon_{X}(s)\\
+&\mathbb E g_0\left(X^{(n)}\right)
+=
+1\cdot P\left(X^{(n)}=0\right)+\sum_{k=1}^{\infty }0\cdot P\left(X^{(n)}=k\right)
+=\\=&
+\Upsilon_{X^{(n)}}(0)\xrightarrow[n\to\infty ]{}\mathbb E g_0(X)=\dots=\Upsilon_X(0)
+\end{align*}
+(c) $ \Rightarrow $ (a)\\
+Mamy $ \Upsilon_{X^{(n)}}(s)\to\Upsilon_X(s) $ dla $ s\in[0,1] $\\
+Podstawmy $ s=0 $
+\begin{gather*}
+\left.\sum_{k=0}^{\infty }s^k\cdot P\left(X^{(n)}=k\right)\right|_{s=0}=P\left(X^{(n)}=n\right)\xrightarrow[n\to \infty ]{c)}\Upsilon_X(0)\\
+P_0^{(n)}\to P_0
+\end{gather*}
+Szkic
+\begin{align*}
+&p_1^{(n)}=P\left(X^{(n)}=1\right)\xrightarrow[n\to \infty ]{}P\left(X=0\right)?\\
+&\Upsilon_{X^{(n)}}(s)=P\left(X^{(n)}=0\right)+P\left(X^{(n)}=1\right)s+P\left(X^{(n)}=2\right)s^2+\dots\\
+&\Upsilon_{X}(s)=P\left(X=0\right)+P\left(X=1\right)s+P\left(X=2\right)s^2+\dots\\
+&\forall_{s\in[0,1]}\sum_{k=1}^{\infty }P\left(X^{(n)}=k\right)s^k\xrightarrow[n\to \infty ]{}\sum_{k=1}^{\infty }P\left(X=k\right)s^k\\
+&\forall_{s\in[0,1]}s\sum_{k=1}^{\infty }P\left(X^{(n)}=k\right)s^{k-1}\xrightarrow[n\to \infty ]{}s\sum_{k=1}^{\infty }P\left(X=k\right)s^{k-1}
+\end{align*}
+o, ile $ 0\le s\le1 $, to uprośćmy
+\begin{align*}
+&\forall_{s\in[0,1]}\sum_{k=1}^{\infty }P\left(X^{(n)}=k\right)s^{k-1}
+=\\=&
+P\left(X^{(n)}=1\right)+P\left(X^{(n)}=2\right)s+\dots+P\left(X^{(n)}=k\right)s^{k-1}+\dots 
+\xrightarrow[n\to \infty ]{}\\
+\xrightarrow[n\to \infty ]{}&
+P\left(X=1\right)+P\left(X=2\right)s+\dots+P\left(X=k\right)s^{k-1}+\dots 
+\end{align*}
+mogą być dowolnie małe biorąc małe $ s\in (0,1] $. W takim razie, gdy $ n\to \infty  $ mamy
+\begin{gather*}
+P\left(X^{(n)}=0\right)\xrightarrow[n\to \infty ]{}P\left(X=0\right)\\
+P\left(X^{(n)}=1\right)\xrightarrow[n\to \infty ]{}P\left(X=1\right)
+\end{gather*}
+dalej indukcyjnie
+\begin{gather*}
+\forall_{k\in \mathbb N _0}P\left(X^{(n)}=k\right)\xrightarrow[n\to \infty ]{}P\left(X=k\right)
+\end{gather*}
+\end{proof}
+\begin{center}
+\textsc{Funkcja generujaca momenty}\\
+(Moment generating function)
+\end{center}
+\begin{defi}
+Niech $ X $ będzie zmienną losową określoną na przestrzeni probabilistycznej $(\Omega,\mathcal F,P)$. Funkcją generującą momenty nazywamy funkcję
+\begin{gather*}
+M_X(s)=\mathbb E e^{sX}=\int\limits_{-\infty }^{+\infty }e^{sx}\,dF_X(x)
+\end{gather*} 
+\begin{center}
+	{\small \textbf{Wtrącenie}\\
+	$ \int\limits_{-\infty }^{+\infty }e^{sx}f_X(x)\,dx $, gdy $ X $ ma gęstość $ f_X$ \\
+	$\sum_{k=1}^{\infty }e^{sx_k}P\left(X=x_k\right) $, gdy $ X $ jest typu dyskretnego
+	}
+\end{center}
+\end{defi}
+Wadą jest fakt, że Dom$ \left(M_x\right) $ może być mała lub trudna do określenia. Np. może się zdarzyć, że Dom$ \left(M_X\right)=\left\{0\right\} $, ale zawsze $ 0\in\text{Dom}\left(M_X\right) $
+
+\textbf{Fakt}\\
+\begin{gather*}
+M_X(0)=\mathbb E e^{0\cdot X}=\mathbb E e^0=\mathbb E 1=1
+\end{gather*}
+Chcielibyśmy, aby $ (-\varepsilon,\varepsilon)\subseteq\text{Dom}\left(M_X\right) $
+\begin{twr}
+Niech zmienna losowa $ X:\left(\Omega,\mathcal F ,P\right) \to \mathbb R $  ma własność Dom$ \left(M_X\right)\supseteq \left(-\varepsilon,\varepsilon\right) $ dla $ \varepsilon>0$. Wówczas
+\begin{gather*}
+M_X'(0)=\mathbb E X\\
+M''_X(0)=\mathbb E X^2
+itd.
+\end{gather*}
+\end{twr}
+\begin{proof}
+\begin{align*}
+&M_X'(x)
+=\\=&
+\lim\limits_{n\to0}\frac{M_X(x+h)-M_X(x)}{h}
+=\\=&
+\lim\limits_{n\to0}\frac{\mathbb E e^{(x+h)X}-\mathbb E e^{xX}}{h}
+=\\=&
+\lim\limits_{n\to0}\mathbb E \frac{e^{(x+h)X}-e^{xX}}{h}
+=\\=&
+\mathbb E \lim\limits_{n\to0}\frac{e^{(x+h)X}-e^{xX}}{h}
+=\\=&
+\mathbb E Xe^{xX}
+\end{align*}
+\begin{gather*}
+M_X'(0)=\bigl(M_X'(x)\bigr)_{x=0}=\mathbb E Xe^{0X}=\mathbb E X
+\end{gather*}
+Indukcyjnie dla wyższych momentów.
+\end{proof}
+\begin{twr}
+Jeżeli zmienne losowe $ X,Y $ są niezależne to
+\begin{gather*}
+M_{X+Y}(x)=M_X(x)\cdot M_Y(x)
+\end{gather*}
+\begin{proof}
+\begin{align*}
+&M_{X+Y}(x)=\\=&
+\mathbb E e^{x(X+Y)}
+=\\=&
+\mathbb E e^{xX+xY}
+=\\=&
+\mathbb E \underset{\text{niezależne}}{\underbrace{e^{xX}e^{xY}}}
+=\\=&
+\mathbb E e^{xX}\cdot \mathbb E e^{xY}
+=\\=&
+M_X(x)M_Y(x)
+\end{align*}
+\end{proof}
+\end{twr}
+
+\textbf{Wniosek}\\
+Jeżeli $ X_1,\dots,X_k $ to niezależne zmienne losowe o tym samym rozkładzie, to
+\begin{gather*}
+M_{\sum_{j=1}^{k}X_j}(x)=\left[M_{X_1}(x)\right]^k
+\end{gather*} 
+
+\textbf{Uwaga!}\\
+Jeżeli $ X $ i $ Y $  mają ten sam rozkłąd, to oczywiście
+\begin{gather*}
+M_X=M_Y
+\end{gather*}
+\begin{prz}
+Wyznacz $ M_X $, gdy $ X \sim\text{Poiss}(\lambda)$
+\begin{align*}
+&M_X(x)
+=\\=&
+\mathbb E e^{xX}
+=\\=&
+\sum_{k=0}^{\infty }e^{xk}\frac{\lambda^k}{k!}e^{-\lambda}
+=\\=&
+\sum_{k=0}^{\infty }\frac{\left(e^{x}\lambda\right)^k}{k!}e^{-\lambda}
+=\\=&
+e^{e^{x}\lambda}\cdot e^{-\lambda}
+=\\=&
+e^{\lambda\left(e^{x}-1\right)}
+\end{align*}
+Dom$ \left(M_\text{Poiss}\right)=\mathbb R\\
+\mathbb E =M_X'(0) $
+\begin{align*}
+&M_X'(x)=
+\left(e^{\lambda\left(e^{x}-1\right)}\right)'
+=
+e^{\lambda\left(e^{x}-1\right)}\cdot \left(\lambda\cdot e^x\right)\\
+&M_X''(x)=\left(e^{\lambda\left(e^{x}-1\right)}\cdot \left(\lambda\cdot e^x\right)\right)'
+=
+\lambda\left(e^{\lambda\left(e^{x}-1\right)}\cdot \lambda e^x\cdot e^x+e^{\lambda\left(e^{x}-1\right)}\cdot e^x\right)\\
+&M_X''(0)
+=
+\lambda(\lambda+1)=\lambda^2+\lambda=\mathbb E X^2\\
+&\text{Var}(X)=\mathbb E X^2-\left(\mathbb E X\right)^2
+=
+\lambda^2+\lambda-\lambda^2=\lambda
+\end{align*}
+\end{prz}
+\begin{prz}
+$ X\sim \text{Exp}(\alpha) $
+\begin{gather*}
+M_X(x)=\mathbb E e^{xX}=
+\int\limits_{0}^{+\infty }e^{xt}\alpha e^{-\alpha t}\,dt
+=
+\alpha\int\limits_{0}^{\infty }e^{(x-\alpha)t}\,dt
+=\\=
+\left.\frac{\alpha}{x-\alpha}e^{(x-\alpha)t}\right|_0^\infty 
+=
+\frac{-\alpha}{x-\alpha}
+=
+\frac{\alpha}{\alpha-x}
+\end{gather*}
+Dom$ M_{\text{Exp}(\alpha)}=(-\infty ,\alpha) $
+\begin{align*}
+M_X'(x)=\frac{\alpha}{(x-\alpha)^2}&&&M_X'(0)=\mathbb E X=\frac{\alpha}{\alpha^2}=\frac{1}{\alpha}\\
+M_X''(x)=\frac{2\alpha}{(\alpha-x)^3}&&&M_X''(0)=\mathbb E X^2=\frac{2\alpha}{\alpha^3}=\frac{2}{\alpha^2}\\
+&&itd.
+\end{align*}
+\end{prz}
+\begin{center}
+\textsc{Uwagi o teorii niezawodności.}
+\end{center}
+Niech czas pracy bezawaryjnej urządzenia opisany będzie zmienną losową $ X:(\Omega,\mathcal F ,P)\to[0,\infty ) $
+\begin{defi}[Funkcja niezawodności]Funkcją niezawodności urządzenia nazywamy
+\begin{gather*}
+R_X(t)=\overline{F}(t)=P\left(X>t\right)\text{ dla }t\in[0,\infty ]
+\end{gather*}
+\end{defi}
+
+\textbf{Uwaga!}\\
+$ P\left(X=0\right) =0$ to nasze upraszczające założenie.
+\begin{defi}
+Niech $ X $ będzie nieujemną zmienną losową. Mówimy, że $ X $  ma własność braku pamięci, jeżeli
+\begin{gather*}
+\forall_{s,t\ge0}\;P\left(X>s+t|X>t\right)=P\left(X>s\right)
+\end{gather*}
+\end{defi}
+\begin{twr}
+Nieujemna zmienna losowa $ X $  ma własność braku pamięci wtedy i tylko wtedy, gdy ma rozkład wykładniczy.
+\begin{proof}
+$ \Leftarrow $\\
+Zakładamy, że $ X\sim\text{Exp},\,P\left(X>t\right) =e^{-\alpha t}$
+\begin{align*}
+P\left(X>t+s|X>t\right)
+=&
+\frac{P\left(X>t+s\wedge X>t\right)}{P\left(X>t\right)}
+=\\=&
+\frac{P\left(X>t+s\right)}{P\left(X>t\right)}
+=\\=&
+\frac{e^{-\alpha(t+s)}}{e^{-\alpha}}
+=\\=&
+e^{-\alpha s}
+=\\=&
+P\left(X>s\right)
+\end{align*}
+$ \Rightarrow $\\
+Zakładamy, że $ X $ ma własność braku pamięci
+\begin{align*}
+P\left(X>t+s|X>t\right)=&P\left(X>s\right)\\
+\frac{P\left(X>t+s\wedge X>t\right)}{P\left(X>t\right)}
+=&P\left(X>s\right)\\
+P\left(X>s+t\right)=&P\left(X>s\right)P\left(X>t\right)\\
+\overline{F}_X(s+t)=&\overline{F}_X(s)\overline{F}_X(t)\text{ dla }s,t\ge0
+\end{align*}
+Mamy równanie funkcyjne dla $ g:[0,\infty )\to \mathbb R $
+\begin{gather*}
+\forall_{s,t\ge0}\;g(t+s)=g(t)g(s)
+\end{gather*}
+$ g(t)=\overline{F}(t) $ ograniczona, prawostronnie ciągła oraz $ \overline{F}(0)=1 $ i \\
+$ \lim\limits_{x\to\infty} \overline{F}(x)=0 $\\
+Odrzucamy trywialne rozwiązania równania $ g\equiv0,\;g\equiv1 $
+\begin{align*}
+g(2s)&=g(s+s)=g(s)\cdot g(s)=g(s)^2\ge0\\
+g(1)&=\underset{m\text{ razy}}{\underbrace{\left(\tfrac{1}{m}+\tfrac{1}{m}+\dots+\tfrac{1}{m}\right)}}
+=
+g\left(\tfrac{1}{m}\right)g\left(\tfrac{1}{m}\right)\cdots g\left(\tfrac{1}{m}\right)
+=
+\left[g\left(\tfrac{1}{m}\right)\right]^m\\
+g\left(\tfrac{1}{m}\right)&=g(1)^{\frac{1}{m}}\\
+g\left(\tfrac{k}{m}\right)
+&=
+\underset{k\text{ składników}}{\underbrace{\left(\tfrac{1}{m}+\tfrac{1}{m}+\dots+\tfrac{1}{m}\right)}}
+=
+g\left(\tfrac{1}{m}\right)g\left(\tfrac{1}{m}\right)\cdots g\left(\tfrac{1}{m}\right)
+=\\&=
+g\left(\tfrac{1}{m}\right)^k
+=
+\left[g\left(1\right)\right]^k
+=
+g\left(1\right)^\frac{k}{m}
+\end{align*}
+Gdyby $ g(1)=0\Rightarrow g\left(\frac{1}{m}\right)=0\Rightarrow\lim\limits_{m\to\infty}g\left(\frac{1}{m}\right) =0 $, ale $ g(0)=1 $\\
+Zatem $ g(1)>0 $.\\
+Gdyby $ g(1)>1 \Rightarrow g(k)=g(1)^k\xrightarrow[k\to\infty]{} 0$, ale $ \lim\limits_{x\to\infty} g(x)=0 $\\
+Zatem $ 0<g(1) <1$. Przyjmijmy, że $ g(1)=e^{-\alpha} $ dla pewnego $ \alpha>0 $. Wtedy $ g\left(\frac{k}{m}\right) =\left(e^{-\alpha}\right)^\frac{k}{m}=e^{-\alpha\frac{k}{m}}$\\
+Dla dowolnego $ x\ge0,\lim\limits_{n\to\infty}\frac{k^{(n)}}{m^{(n)}}  $  $ \left(\overline{\mathbb Q}=\mathbb R \right) $
+\begin{gather*}
+g(x)=\lim\limits_{n\to\infty }g\left(\frac{k^{(n)}}{m^{(n)}} \right) 
+=
+\lim\limits_{n\to \infty } e^{-\alpha\frac{k^{(n)}}{m^{(n)}}}
+\end{gather*}
+$ \forall_{x\ge 0}\; 1-F(x)=\overline{F}(x)=e^{-\alpha x};X\sim \text{Exp} $
+\end{proof}
+\end{twr}
+
+\textbf{Uwaga!}\\
+W dziedzinie $ \mathbb N _0=\left\{0,1,2,\dots \right\} $ jedynym rozkładem o własności braku pamięci jest rozkład geometryczny.
+\begin{defi}
+Niech $ X $ będzie zmienną losową opisującą czas pracy bezawaryjnej. Intensywnością awarii nazywamy funkcję $ \lambda_X:[0,\infty )\to [0,\infty )$
+\begin{gather*}
+\marginnote{
+{\tiny $ R_X'=\left(1-F_X\right)'=$  $=-F_X'=-f_X $
+}}
+\lambda_X(t)
+=
+\frac{f_X(t)}{\overline{F}_X(t)}
+=
+\frac{f_X(t)}{R_X(t)}
+=
+-\frac{R_X'(t)}{R_X(t)}
+\end{gather*}
+\end{defi}
+
+\textbf{Uwaga!}\\
+$ \lambda_X $ jest określona tylko dla zmiennych losowych absolutnie ciągłych.
+
+W medycynie mówimy o intensywności śmierci albo ogólniej o funkcji hazardu. Rozkład (gęstość) wyznacza jednoznacznie funkcję intensywności awarii.
+\begin{gather*}
+\lambda_X(t)=\frac{f_X(t)}{P\left(x>t\right)}
+=
+\frac{f_X(t)}{\int\limits_{t}^{\infty }f_X(u)\,du}
+\end{gather*}
+Interpretacja funkcji intensywności awarii.
+\begin{align*}
+&\lim\limits_{\Delta\to0^+}\frac{P\left(t<X\le t+\Delta T|X>t\right)}{\Delta t}
+=\\=&
+\lim\limits_{\Delta\to0^+}\frac{\frac{P\left(X_t\in(t,t+\Delta t]\wedge X_t>t\right)}{R_X(t)}}{\Delta t}
+=\\=&
+\lim\limits_{\Delta\to0^+}\frac{\frac{P\left(X_t\in(t,t+\Delta t]\right)}{\Delta t}}{R_X(t)}
+=\\=&
+\lim\limits_{\Delta\to0^+}\frac{\frac{1}{\Delta t}\int\limits_{t}^{t+\Delta t}f_X(u)\,du}{R_X(t)}
+=\\=&
+\frac{f_X(t)}{R_X(t)}
+\end{align*}

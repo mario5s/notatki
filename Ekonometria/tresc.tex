@@ -1,0 +1,486 @@
+\section{Wielowskaźnikowe modele regresji liniowej}
+$ G $-równaniowy ekonometryczny model regresji wielorakiej - postać uogólniona.
+
+\subsection{$ G $-równaniowy model regresji wielorakiej (bez restrykcji zerowych):}
+\begin{align*}
+&t_{t1}=\gamma_{12}t_{t2}+\dots+\gamma_{1G}y_{tG}+\beta_{10}+\beta_{11}x_{t1}+\beta_{12}x_{t2}+\dots+\beta_{1k}x_{tk}+\varepsilon_{t1}\\
+&t_{t1}=\gamma_{21}t_{t1}+\gamma_{23}t_{t3}+\dots+\gamma_{2G}y_{tG}+\beta_{20}+\beta_{21}x_{t1}+\beta_{22}x_{t2}+\dots+\beta_{2k}x_{tk}+\varepsilon_{t2}\\
+\vdots\\
+&t_{tG}=\gamma_{G1}t_{t1}+\gamma_{G2}t_{t2}+\dots+\beta_{G0}+\beta_{G1}x_{t1}+\beta_{G2}x_{t2}+\dots+\beta_{Gk}x_{tk}+\varepsilon_{tG}
+\end{align*}
+
+\subsubsection{Syntetyczny zapis macierzowy modelu}
+\begin{gather*}
+y_t\cdot\Gamma+x_t\cdot B=\varepsilon_t
+\end{gather*}
+gdzie:\\
+$ y_t=\begin{bmatrix}
+y_{t1} &y_{t2}& \dots& y_{tG}
+\end{bmatrix} $ - wektor zmiennych endogenicznych modelu\\
+$ \Gamma=\begin{bmatrix}
+\gamma_{G\times G}
+\end{bmatrix} $ - macierz parametrów strukturalnych zmiennych endogenicznych\\
+$ x_t=\begin{bmatrix}
+1& x_{t1} &x_{t2} &\dots& x_{tk}
+\end{bmatrix} $ - wektor zmiennych egzogenicznych modelu\\
+$ B=\begin{bmatrix}
+\beta_{(k+1)\times G}
+\end{bmatrix} $ - macierz parametrów strukturalnych zmiennych egzogenicznych\\
+$ \varepsilon_t=\begin{bmatrix}
+\varepsilon_{t1}& \varepsilon_{t2}& \dots& \varepsilon_{tG}
+\end{bmatrix} $ - wektor składników zakłócających modelu
+\begin{gather*}
+Y\cdot\Gamma+X\cdot B=E
+\end{gather*}
+$ Y=\begin{bmatrix}
+	y_{11} & y_{12} & \dots  & y_{1G} \\
+	y_{21} & y_{22} & \dots  & y_{2G} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	y_{n1} & y_{n2} & \dots  & y_{nG}
+\end{bmatrix} 
+=Y_{n\times G}$
+\begin{minipage}[t]{.5\textwidth}
+- macierz obserwacji endogenicznych modelu
+\end{minipage}\\
+$ X=\begin{bmatrix}
+	1 & x_{11} & x_{12} & \dots  & x_{1k} \\
+	1 & x_{21} & x_{22} & \dots  & x_{2k} \\
+	1 & \vdots & \vdots & \ddots & \vdots \\
+	1 & x_{n1} & x_{n2} & \dots  & x_{nk}
+\end{bmatrix} 
+=X_{n\times(k+1)} $
+\begin{minipage}[t]{.45\textwidth}
+- macierz obserwacji zmiennych egzogenicznych modelu\\
+\end{minipage}
+$ E=\begin{bmatrix}
+	\varepsilon_{11} & \varepsilon_{12} & \dots  & \varepsilon_{1G} \\
+	\varepsilon_{21} & \varepsilon_{22} & \dots  & \varepsilon_{2G} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\varepsilon_{n1} & \varepsilon_{n2} & \dots  & \varepsilon_{nG}
+\end{bmatrix} 
+=E_{n\times G}$
+\begin{minipage}[t]{.5\textwidth}
+- macierz składników zakłócających $ G $-równaniowego modelu
+\end{minipage}
+
+\subsection{Wstępne założenia dotyczące struktury stochastycznej modelu wielorównaniowego.}
+\begin{align*}
+\mathbb E \varepsilon_{tj}=0&&t=1,2,\dots,n&&j=1,2,\dots,G\\
+\mathbb E \varepsilon=0
+\end{align*}
+co oznacza, że składnik zakłócający jest zmienną losową o wartości oczekiwanej równe 0, w każdym okresie $ t $ i w każdym równaniu $ j $-tym.
+\begin{gather*}
+\mathbb E \varepsilon^2_{tj}=\sigma^2_{\varepsilon j}=\text{const.}\qquad j=1,2,\dots,G
+\end{gather*}
+co oznacza, że w każdym równaniu $ j $-tym wariancja składnika losowego jest stała i niezależna od okresu obserwacji.
+\begin{gather*}
+\mathbb E \varepsilon_{tj}\varepsilon_{(t-s)j}=0\qquad,(s\neq0)
+\end{gather*}
+co oznacza, że kowariancja między składnikami losowymi w poszczególnych równaniach dla różnych okresów jest równa 0.
+{Klasyfikacja modeli z punktu widzenia powiązań pomiędzy zmiennymi endogenicznymi.}
+\subsubsection{Model prosty}
+
+Model prosty jest to model, w którym nieopóźnione zmienne endogeniczne nie oddziałują na siebie. Z uwagi na brak powiązań pomiędzy nieopóźnionymi zmiennymi endogenicznymi macierz $ \Gamma $ jest macierz diagonalną, będąc macierzą jednostkową.\\
+Przykład trójrównaniowego modelu prostego:
+\begin{align*}
+&y_{t1}=\beta_{10}+\beta_{11}x_{t1}+\beta_{12}x_{t2}-\varepsilon_{t1}\\
+&y_{t2}=\beta_{20}+\beta_{21}x_{t2}+\beta_{23}x_{t3}-\varepsilon_{t2}\\
+&y_{t3}=\beta_{30}+\beta_{32}x_{t1}+\beta_{33}x_{t3}-\varepsilon_{t3}
+\end{align*}
+Zapis w postaci macierzowej
+\begin{gather*}
+Y\cdot
+\begin{bmatrix}
+ 1 & 0 & 0 \\
+ 0 & 1 & 0 \\
+ 0 & 0 & 1 \\
+\end{bmatrix}
++
+X\cdot
+\begin{bmatrix}
+	-\beta _{10} & -\beta _{20} & -\beta _{30} \\
+	-\beta _{11} & -\beta _{21} & 0            \\
+	-\beta _{12} & 0            & -\beta _{32} \\
+	0            & -\beta _{23} & -\beta _{33}
+\end{bmatrix}
+=E
+\end{gather*}
+
+Wstępne założenia stochastyczne dla modelu prostego:\\
+Zakładając nielosowość zmiennych z góry ustalonych (egzogenicznych) musimy uznać, ze zmienne egzogeniczne są niezależne od składników losowych, tzn.
+\begin{gather*}
+\mathbb E \left(X'_j\cdot \varepsilon_j\right)=\left(\mathbb E X'_j\right)\cdot \left(\mathbb E \varepsilon_j\right)=X'_j\cdot 0=0
+\end{gather*}
+
+\subsubsection{Model rekurencyjny}
+Model rekurencyjny jest to model, w którym występują jednokierunkowe powiązania pomiędzy zmiennymi endogenicznymi nieopóźnionymi w czasie. Oznacza to, że macierz $ \Gamma $ - parametrów występujących przy zmiennych endogenicznych - jest macierzą trójkątną.\\
+Przykład trójrównaniowego modelu rekurencyjnego:
+\begin{gather*}
+Y\cdot
+\begin{bmatrix}
+	1       & 0       & 0 \\
+	-y_{12} & 1       & 0 \\
+	-y_{13} & -y_{23} & 1
+\end{bmatrix}
++
+X\cdot
+\begin{bmatrix}
+	-\beta _{10} & -\beta _{20} & -\beta _{30} \\
+	-\beta _{11} & -\beta _{21} & 0            \\
+	-\beta _{12} & 0            & -\beta _{32} \\
+	0            & -\beta _{23} & -\beta _{33}
+\end{bmatrix}
+=E
+\end{gather*}
+\textbf{Wniosek}\\
+W modelach rekurencyjnych istnieje zawsze takie równanie, w którym występują jedynie zmienne z góry ustalone (egzogeniczne).
+
+W przypadku pozostałych równań musimy uznać, że w zbiorze zmiennych objaśniających występują zmienne losowe, którymi są zmienne endogeniczne występujące w charakterze zmiennych objaśniających. Zmienne endogeniczne występujące w charakterze zmiennych objaśniających mogą być uznanne za:
+\begin{itemize}
+\item nieskorelowane ze składnikiem zakłócającym danego równania, jeśli konstrukcja modelu nie wymusza odrzucenia takiego założenia
+\item skorelowane ze składnikiem zakłócającym danego równania, jeśli wynika to z założeń tkwiących u podstaw konstrukcji modelu.
+\end{itemize}
+
+\subsection{Model o równaniach współzależnych}
+Model o równaniach współzależnych jest ot model, w którym występują nieopóźnione w czasie sprzężenia zwrotne pomiędzy zmiennymi endogenicznymi. Oznacza to, ze macierz $ \Gamma $ nie jest macierzą ani diagonalną, ani trójkątną.\\
+Przykład trójrównaniowego modelu regresji wielorakiej:
+\begin{align*}
+&y_{t1}=\gamma_{12}y_{t2}+\gamma_{13}y_{t3}+\beta_{10}+\beta_{11}x_{t1}+\beta_{12}x_{t2}+\varepsilon_{t1}\\
+&t_{t2}=\gamma_{23}y_{t3}+\beta_{20}+\beta_{21}x_{t1}+\beta_{23}x_{t3}+\varepsilon_{t2}\\
+&y_{t3}=\gamma_{31}y_{t1}+\beta_{30}+\beta_{33}x_{t3}+\varepsilon_{t3}
+\end{align*}
+\begin{gather*}
+Y\cdot
+\begin{bmatrix}
+	   1    &    0    & 0 \\
+	-y_{12} &    1    & 0 \\
+	-y_{13} & -y_{23} & 1
+\end{bmatrix}
++X\cdot
+\begin{bmatrix}
+	-\beta _{10} & -\beta _{20} & -\beta _{30} \\
+	-\beta _{11} & -\beta _{21} & 0            \\
+	-\beta _{12} & 0            & -\beta _{32} \\
+	0            & -\beta _{23} & -\beta _{33}
+\end{bmatrix}
+=E
+\end{gather*}
+Uporządkowany całościowy zapis modelu z restrykcjami zerowymi
+\begin{gather*}
+y_{t1}-\gamma_{12}
+\end{gather*}
+\begin{gather*}
+\begin{bmatrix}
+	y_1 & y_2 & y_3
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+	   1    &    0    & -\gamma_{31} \\
+	-y_{12} &    1    & 0 \\
+	-y_{13} & -y_{23} & 1
+\end{bmatrix}
++\\+
+\begin{bmatrix}
+	1 & x_1 & x_2 & x_3
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+	-\beta _{10} & -\beta _{20} & -\beta _{30} \\
+	-\beta _{11} & -\beta _{21} & 0            \\
+	-\beta _{12} & 0            & 0            \\
+	0            & -\beta _{23} & -\beta _{33}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\varepsilon_1&\varepsilon_2&\varepsilon_3
+\end{bmatrix}
+\end{gather*}
+
+Z uwagi na to, że macierz $ \Gamma $ nie jest ani diagonalna, ani trójkątna, model uznajemy za model o równaniach współzależnych. Oznacza to, ze między zmiennymi endogenicznymi nieopóźnionymi w czasie występują sprzężenia zwrotne.\\
+Zauważmy, że zmienne endogeniczne, będąc między innymi funkcjami zmiennych losowych ($ \varepsilon $), jednocześnie nawzajem się wyjaśniają. Tym samym musimy uznać, że zmienne te - występując w poszczególnych równaniach w charakterze zmiennych objaśniających - są skorelowane ze składnikami losowymi tychże równań.
+
+\subsubsection{Redukcja modeli o równaniach współzależnych}
+Procedura sprowadzania modelu o równaniach współzależnych do wielorównaniowego modelu prostego nazywamy \underline{redukcją}. Przykładowa procedura redukcji naszego modelu
+\begin{gather*}
+y_t\cdot\Gamma+x_t\cdot \beta=\varepsilon_t
+\end{gather*}
+Przekształcona postać modelu
+\begin{gather*}
+y_t\cdot\Gamma=x_t\cdot (-\beta)+\varepsilon_t
+\end{gather*}
+Zapis macierz w postaci zredukowanej
+\begin{gather*}
+y_t=x_t\cdot \pi+v_t
+\end{gather*}
+gdzie \begin{gather*}
+\pi=-B\Gamma=
+\begin{bmatrix}
+\pi _{10} & \pi _{20} & \pi _{30} \\
+\pi _{11} & \pi _{21} & \pi _{31} \\
+\pi _{12} & \pi _{22} & \pi _{32} \\
+\pi _{13} & \pi _{23} & \pi _{33} \\
+\end{bmatrix}
+\end{gather*}
+$ \pi  $- macierz parametrów strukturalnych postaci zredukowanej o wymiarach $(k+1)\times G $ (gdzie $ k+1=4,\;G=3 $)\\
+Wektor składników zakłócających postaci zredukowanej o wymiarach $ G\times G,\;G=3 $
+\begin{gather*}
+v_t=\varepsilon_t\Gamma^{-1}=
+\end{gather*}
+Tym samym model w postaci macierzowej zapiszemy następująco
+\begin{gather*}
+\begin{bmatrix}
+v_{t1}&v_{t2}&v_{t3}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1&x_{t1}&x_{t2}&x_{t3}
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\pi _{10} & \pi _{20} & \pi _{30} \\
+\pi _{11} & \pi _{21} & \pi _{31} \\
+\pi _{12} & \pi _{22} & \pi _{32} \\
+\pi _{13} & \pi _{23} & \pi _{33} \\
+\end{bmatrix}
++
+\begin{bmatrix}
+v_{t1}&v_{t2}&v_{t3}
+\end{bmatrix}
+\end{gather*}
+Co po rozpisaniu przybierze następującą postać
+\begin{gather*}
+y_{t1}=\pi _{10}+x_{t1} \pi _{11}+x_{t2} \pi _{12}+x_{t3} \pi _{13} + v_{t1}\\
+y_{t2}=\pi _{20}+x_{t1} \pi _{21}+x_{t2} \pi _{22}+x_{t3} \pi _{23} + v_{t2}\\
+y_{t3}=\pi _{30}+x_{t1} \pi _{31}+x_{t2} \pi _{32}+x_{t3} \pi _{33} + v_{t3}
+\end{gather*}
+Rozpisany zapis macierzowy modelu dla $ n $ obserwacji przedstawia się następująco
+\begin{gather*}
+Y=X\Pi+V
+\end{gather*}
+Zauważmy, że w każdym z równań postaci zredukowanej występują jedynie zmienne z góry ustalone (egzogeniczne) modelu. Jeśli uznamy, że są one nielosowe, mamy prawo wykluczyć ich ewentualną zależność ze składnikami losowymi poszczególnych równań. Wynika z tego, że każde z równań możemy oszacować stosując metodę najmniejszych kwadratów.
+
+\subsubsection{Identyfikacja}
+Identyfikacja jest ot proces rozpoznawania (identyfikowania) parametrów strukturalnych modelu (elementów macierzy $ \Gamma $ i $ B $)  na podstawie parametrów postaci zredukowanej, a więc na podstawie elementów macierzy $ \Pi $. Ze zdefiniowania macierzy $ \Pi $ wynikają następujące konsekwencje
+\begin{gather*}
+\Pi=-B\Gamma^{-1}\Leftrightarrow\Pi\Gamma=-B
+\end{gather*}WYkorzystując badany model oraz jego postać zredukowaną i odpowiednio zdefiniowane dla tych modeli macierze $ \pi,\Gamma $ oraz $ B $ drugi człon powyższego wyrażenia zapiszemy następująco\\
+<dużo rozpisanych macierzy
+
+Powiemy, że $ j $-ty układ równań:
+\begin{enumerate}
+	\item Zawiera więcej parametrów $ \gamma $ i $ \beta $ aniżeli równań, to równanie Mj-te postaci strukturalnej uznajemy za \textbf{nieidentyfikowalne}.
+	\item Zawiera taką samą ilość parametrów $ \gamma $ i $ \beta $ aniżeli równań, to równanie Mj-te postaci strukturalnej uznajemy za \textbf{jednoznacznie identyfikowalne}.
+	\item Zawiera mniej parametrów $ \gamma $ i $ \beta $ aniżeli równań, to równanie Mj-te postaci strukturalnej uznajemy za \textbf{niejednoznacznie identyfikowalne}.
+\end{enumerate}
+
+W rozpatrywanym przypadku otrzymujemy następujące trzy układy równań. Pierwszy układ równań $ (a) $ dla $ j=1 $ równania postaci strukturalnej modelu
+\begin{align*}
+	 & \pi _{10}-\pi _{20} \gamma _{12}-\pi _{30} \gamma _{13} =\beta_{10} \\
+	 & \pi _{11}-\pi _{21} \gamma _{12}-\pi _{31} \gamma _{13} =\beta_{11} \\
+	 & \pi _{12}-\pi _{22} \gamma _{12}-\pi _{32} \gamma _{13} =\beta_{12} \\
+	 & \pi _{13}-\pi _{23} \gamma _{12}-\pi _{33} \gamma _{13} =0
+\end{align*}
+Z uwagi na fakt, iż liczba poszukiwanych parametrów $ \gamma $ i $ \beta $ wynosi 5 (2 parametry $ \gamma $ oraz 3 parametry $ \beta $) jest większa od liczby równań, powyższy układ nie ma rozwiązania. Tym samym powiemy, że równanie pierwsze postaci strukturalnej jest nieidentyfikowalne.
+
+Drugi układ równań $ (b) $ dla $ j=2 $ równania postaci strukturalnej modelu
+\begin{align*}
+	 & \pi _{20}-\pi _{30} \gamma _{23} = \beta _{20} \\
+	 & \pi _{21}-\pi _{31} \gamma _{23} = \beta _{21} \\
+	 & \pi _{22}-\pi _{32} \gamma _{23} = 0           \\
+	 & \pi _{23}-\pi _{33} \gamma _{23} = \beta _{23}
+\end{align*}
+Z uwagi na fakt, iż liczba poszukiwanych parametrów $ \gamma $ i $ \beta $ wynosi 4 (1 parametr $ \gamma $ i 3 parametry $ \beta $) jest równa liczbie równań, powyższy układ ma jednoznaczne rozwiązanie. Tym samym powiemy ,że równanie drugie postaci strukturalnej jest jednoznacznie identyfikowalne. Zauważmy, że z równania trzeciego tego układu równań wynika, że
+\begin{gather*}
+\pi_{22}-\gamma_{23}\pi_{32}=0\Rightarrow\gamma_{23}=\left(\frac{\pi_{21}}{\pi_{32}}\right)
+\end{gather*}
+
+Trzeci ukłąd równań $ (c) $ dla $ j=3 $ równania postaci strukturalnej modelu
+\begin{align*}
+& \pi _{30}-\pi _{10} \gamma _{31} = \beta _{30} \\
+& \pi _{31}-\pi _{11} \gamma _{31} = 0 \\
+& \pi _{32}-\pi _{12} \gamma _{31} = 0 \\
+& \pi _{33}-\pi _{13} \gamma _{31} = \beta _{33} \\
+\end{align*}
+Z uwagi na fakt ,iż liczba poszukiwanych parametrów $ \gamma $ i $ \beta $ wynosi 3 (1 parametr $ \gamma $ i 2 parametry $ \beta $) jest mniejsza od liczby równań, powyższy układ nie ma jednoznacznego rozwiązania. Tym samym powiemy ,że równanie trzecie postaci strukturalnej jest niejednoznacznie identyfikowalne. 
+
+Aby sformułować użyteczne twierdzenia dotyczące identyfikacji modelu o rówaniach współzależnych przyjmujemy następujący system oznaczeń:
+\begin{itemize}
+	\item $ k_j $ - liczba zmiennych z góry ustalonych występujących w $ j $-tym równaniu modelu łącznie z wyrazem wolnym
+	\item $ K $ - liczba zmiennych z góry ustalonych występujących w całym modelu łącznie z wyrazem wolnym
+	\item $ G_j $ - liczba zmiennych łącznie współzależnych (endogenicznych) występujących w $ j $-tym równaniu
+	\item $ G_{j-1} $ - liczba zmiennych łącznie współzależnych (endogenicznych) występujących w $ j $-tym równaniu w charakterze zmiennych objaśniających (bez zmiennej objaśnianej w tym równaniu)
+	\item $ G $ - liczba zmiennych łącznie współzależnych zależnych (endogenicznych) występujących w całym modelu (równa liczbie równań modelu)
+\end{itemize}
+\begin{gather*}
+K_j^*=K-k_j\\
+G_j^*=G-G_j
+\end{gather*}
+\begin{twr}
+	Warunkiem koniecznym na to, aby równanie $ j $-te było identyfikowalne, jest aby liczba zmiennych z góry ustalonych oraz łącznie współzależnych występujących w równaniu $ j $-tym w charakterze zmiennych objaśniających była mniejsza od liczby zmiennych z góry ustalonych występujących w całym modelu
+	\begin{gather*}
+	K\ge K_j+G_j-1
+	\end{gather*}
+\end{twr}
+Równanie możemy przekształcić w następujący sposób
+\begin{gather*}
+K-k_j\ge G_j-1
+\end{gather*}
+Wprowadzając do siebie wyrażenia otrzymujemy
+\begin{gather*}
+K-k_j\ge G-G_j^*-1
+\end{gather*}
+a stąd ostatecznie otrzymujemy
+\begin{gather*}
+K_j^*+G_j^*\ge G-1
+\end{gather*}
+Wykorzystując powyższe wyrażenie formułujemy następujące twierdzenia
+\begin{twr}
+	Warunkiem koniecznym na to, aby równanie $ j $-te postaci strukturalnej modelu było \textbf{identyfikowalne}, jest by liczba zmiennych nie występujących w $ j $-tym równaniu była nie mniejsza od liczby równań modelu pomniejszonej o jeden.
+\end{twr}
+\begin{twr}
+	Warunkiem koniecznym na to, aby równanie $ j $-te postaci strukturalnej modelu było \textbf{jednoznacznie identyfikowalne}, jest by liczba zmiennych nie występujących w $ j $-tym równaniu była równa liczbie równań modelu pomniejszonej o jeden.
+\end{twr}
+\begin{twr}
+	Warunkiem koniecznym na to, aby równanie $ j $-te postaci strukturalnej modelu było \textbf{niejednoznacznie identyfikowalne}, jest by liczba zmiennych nie występujących w $ j $-tym równaniu była większa od liczby równań modelu pomniejszonej o jeden.
+\end{twr}
+\begin{twr}
+	Warunkiem dostatecznym na to, aby równanie $ j $-te postaci strukturalnej modelu było \textbf{nieidentyfikowalne}, jest by liczba zmiennych nie występujących w $ j $-tym równaniu była mniejsza od liczby równań modelu pomniejszonej o jeden.
+\end{twr}
+
+Zadanie\\
+Rozpatrz następujący model o równaniach współzależnych
+\begin{align*}
+&Y_t=q_0+q_1L_t+a_2k_t+a_3H_t+a_4ER_t+e_{t1}\\
+&L_t=b_0+b_1Y_t+b_2K_t+b_3W_te_{t2}\\
+&K_t=c_0+c_1Y_t+c_2R_t+e_{t3}
+\end{align*}
+
+\subsubsection{Metoda Zmiennych Instrumentalnych}
+W dotychczas przedstawianych modelach przyjmowaliśmy założenie o braku korelacji między zmiennymi uwzględnionymi w specyfikacji modelu a składnikiem losowym Jednak w wielu ważnych z punktu widzenia teorii ekonomicznej zastosowaniach takie założenie nie jest spełnione. W takim przypadku nie można udowodnić zgodności estymatora MNK.
+
+W modelu $ Y=X\beta+\varepsilon $
+\begin{itemize}
+	\item zmiennymi egzogenicznymi nazywamy zmienne, które nie są skorelowane ze składnikami losowymi
+	\item zmiennymi endogenicznymi nazywamy zmienne, które są skorelowane ze składnikami losowymi
+\end{itemize}
+
+\section{Równoczesność}
+
+O problemie równoczesności mówimy, gdy występuje niezerowa korelacja pomiędzy zmienną objaśniającą $ x_i $ a równoczesnym błędem losowym $ \varepsilon_j $. Gdy $ \mathbb E \left(\varepsilon|X\right) \neq0$ to
+\begin{align*}
+&\mathbb E (b)=\mathbb E \left(\left(X'X\right)^{-1}X'y|X\right)\\
+&\mathbb E (b)=\beta+\left(X'X\right)^{-1}X'\mathbb E \left(\varepsilon|X\right)\neq\beta
+\end{align*}
+Więc estymator wektora parametrów jest obciążony.
+
+\subsection{Przykłady}
+Model Keynesowski gospodarki zakłada, że\begin{gather*}
+\text{PKB=konsumpacja+inwestycje+export netto}
+\end{gather*}
+Z drugiej strony Keynesowska funkcja konsumpcji zakłada, że $ C_t=f(Y_t) $. Szacując jej parametry
+\begin{gather*}
+C_t=\beta_0+\beta_1Y_t+\varepsilon_t
+\end{gather*}
+nie są spełnione założenia modelu, gdyż $ \text{cov}\left(X_t,\varepsilon_t\right) \neq0$\\
+Szacujemy model autoregresji postaci
+\begin{gather*}
+y_t=f\left(y_{t-1},y_{t-2},\dots\right)+\varepsilon_t
+\end{gather*}
+ale
+\begin{gather*}
+y_{t+1}=f\left(y_{t-2},y_{t-3},\dots\right)+\varepsilon_{t+1}
+\end{gather*}
+zatem $ \text{cov}\left(y_{t-1},\varepsilon_{t-1}\right) \neq0$. Wobec tego w modelu $ (1) $ zmienne objaśniające są skorelowane z błędem losowym. Zazwyczaj w zbiorach danych mikroekonomicznych brakuje informacji o zdolnościach respondentów. Mimo wszystko szacuje się równanie płacy typu Mincera
+\begin{gather*}
+\ln\left(placa\right)=\beta_0+\beta_1plec+\beta_2\text{wiek}+\beta_3\text{wiek2}+\beta_4\text{wykszt}+u
+\end{gather*}
+Ponieważ w modeelu pominięto zmienną niezależną zdolności to skłądnik losowy ma postać
+\begin{gather*}
+u=\gamma_0+\gamma_1zdolnosci+\phi
+\end{gather*}
+Z drugiej strony poziom wykształcenia jest determinowany przez zdolności respondenta. Zatem
+\begin{gather*}
+\text{cov}(u,wykszt)=\text{cov}(zdolnosci+\phi,wykszt)=\\=
+\text{cov}(zdolnosci,wykszt)+\text{cov}(\phi,wykszt)\neq0
+\end{gather*}
+Ponieważ zmienna pominięta jest dodatnio skorelowana z uzyskanym wykształceniem i wpływa dodatnio na zmienną zależną to parametr przy zmiennej będzie dodatnio obciążony.\\
+Metoda zmiennych instrumentalnych pozwala na uzyskanie zgodnych estymatorów w przypadku występowania korelacji między zmiennymi objaśniającymi a składnikiem losowym. Pozwala również uzyskać zgodne oszacowania parametrów w przypadku występowania problemu równoczesności. Polega ona na zastępowaniu oryginalnych zmiennych instrumentami. Instrumenty powinny być skorelowane ze zmiennymi objaśniającymi, ale nie powinny być skorelowane z błędem losowym. Znalezienie właściwych instrumentów jest najciekawszym, ale również najtrudniejszym etapem badania.
+
+Oznaczmy przez $ Z $ macierz zmiennych instrumentalnych 9instrumentów). Estymator MZI jest zgodny, gdy spełnione są następujące warunki
+\begin{gather*}
+plim\left(\tfrac{1}{n}Z'\varepsilon\right)=plim\left(\tfrac{1}{n}\sum_iz_i'\varepsilon_i\right)=\mathbb E \left(z_i'\varepsilon_i\right)=0\\
+plim\left(\tfrac{1}{n}Z'X\right)=plim\left(\tfrac{1}{n}\sum_iz_i'x_i\right)=\mathbb E \left(z_i'x_i\right)\neq0
+\end{gather*}
+Dodatkowo $ r\left(\mathbb E \left(z_i'x_i\right)\right) =k$
+\begin{gather*}
+plim\left(\tfrac{1}{n}Z'Z\right)=plim\left(\tfrac{1}{n}\sum_iz_i'z_i\right)=\mathbb E \left(z_i'z_i\right)\neq0
+\end{gather*}
+Metoda polega na zastępowaniu oryginalnych wartości zmiennych objaśniających wartościami dopasowanymi uzyskanymi z regresji pomocniczej wykorzystującej zmienne instrumentalne.
+\begin{itemize}
+	\item macierz instrumentów $ Z $ musi zawierać co najmniej tyle zmiennych, ile oryginalna macierz $ X $
+	\item Ale nie w każdym przypadku konieczne jest posiadanie $ k $ nowych zmiennych
+	\item Zmienne z macierzy $ X $, które są nieskorelowane ze składnikiem losowym mogą same dla siebie stanowić instrumenty
+	\item W rezultacie potrzeba co najmniej tylu dodatkowych zmiennych instrumentalnych ile jest zmiennych skorelowanych ze składnikiem losowym.
+\end{itemize}
+Macierz instrumentów uzyskujemy poprzez rzutowanie wektora $ X $ na przestrzeń rozpiętą przez kolumny macierzy instrumentów $ Z $
+\begin{gather*}
+\hat{X}=Z\underset{\beta}{\underbrace{\left(Z'Z\right)^{-1}Z'X}}=Z\hat{\beta=P_ZX}
+\end{gather*}
+Dysponując macierzą instrumentów $ \hat X $ budujemy estymator
+\begin{gather*}
+\beta_{MZI}=\left(\hat X'X\right)^{-1}\hat X'y=\left(X'P_ZX\right)^{-1}X'P_Zy=\\=
+\left(X'Z\left(Z'Z\right)^{-1}Z'\right)^{-1}X'Z\left(Z'Z\right)^{-1}Z'y
+\end{gather*}
+jeżeli $ r(2)=r(X)$, czyli tyle nowych zmiennych, ile zmiennych w macierzy $ X $ skorelowanych ze składnikiem.
+
+Estymator MZI jest również nazywany estymatorem dwustopniowej metody najmniejszych kwadratów.
+\begin{itemize}
+	\item W pierwszym kroku przeprowadzana jest regresja zmiennych endogenicznych na zmienne instrumentalne
+	\item W drugim, oryginalne wartości zmiennych są zastępowane prze zwartości dopasowane z pierwszego kroku i oblicze są oszacowania poszczególnych parametrów
+	\item W kolejnym kroku pokażemy, że przy warunkach zdefiniowanych wcześniej estymator MZI jest zgodny
+\end{itemize}
+Estymator MZI jest dany wzorem
+\begin{gather*}
+\beta_{MZI}
+=
+\left(X'Z\left(Z'Z\right)^{-1}Z'\right)^{-1}X'Z\left(Z'Z\right)^{-1}Z'y
+\end{gather*}
+więc
+\begin{gather*}
+plim\beta_{MZI}
+=
+plim\left(X'Z\left(Z'Z\right)^{-1}Z'\right)^{-1}X'Z\left(Z'Z\right)^{-1}Z'y
+\end{gather*}
+\textbf{Wnioski}\\
+\begin{itemize}
+	\item Estymator MZI jest zgodny nawet, gdy w modelu występują zmienne endogeniczne
+	\item Ale, gdy nie ma takich zmiennych, a spełnione są założenia MNK to estymator MZI nie jest efektywny
+	\item MZI można traktować jako uogólnienie MNK
+	\item Wobec tego wszystkie testy stosowane przy MNK mogą być stosowane przy MZI
+	\item Testy specyficzne dla MZI weryfikują założenie o egzogeniczności zmiennych oraz poprawności wykorzystanych instrumentów.
+\end{itemize}
+
+\subsection{Test Hausmana}
+Przy estymacji MZI test Hausmana jest testem na egzogeniczność zmiennych. Estymator MZI jest estymatorem zawsze zgodnym.\\
+Przy prawdziwej $ H_0 $ o egzogeniczności zmiennych $ X $ oba estymatory są zgodne, ale estymator MZI ma większą wariancję niż estymator MNK.\\
+Przy fałszywej $ H_0 $ estymator MZI jest zgodny i efektywny, a estymator MNK nie jest zgodny.\\
+Statystyka testowa jest dana przez formę kwadratową
+\begin{gather*}
+\left(\beta_{MZI}-\beta_{MNK}\right)'\Sigma_{\beta_{MZI}-\beta_{MNK}}^{-1}\left(\beta_{MZI}-\beta_{MNK}\right)\xrightarrow{D}\chi^2\left(r(\Sigma)\right)
+\end{gather*}
+Gdy różnica jest duża sugeruje to wykorzystanie MNK.
+
+\subsection{Test Surgana}
+\begin{itemize}
+	\item Test Surgana weryfikuje poprawność instrumentów
+	\item Zauważmy, że reszty modelu są równe
+	\begin{gather*}
+	e=\left(I-X\left(X'P_ZX\right)^{-1}X'P_Z\right)\varepsilon
+	\end{gather*}
+	\item Oczywiście $ M_Z $ jest macierzą idempotentną, rzędu $ p-k $
+	\item Przy prawdziwości $ H_0 $ jest brak korelacji instrumentów z błędami losowymi
+	\begin{gather*}
+	\frac{eP_Ze}{\sigma^2}\sim \chi^2_{p-k}
+\end{gather*}
+\item Niestety przeprowadzenie testu jest wyłącznie możliwe, gdy liczba instrumentów przekracza liczbę zmiennych objaśniających
+\end{itemize}
