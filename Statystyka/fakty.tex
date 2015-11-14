@@ -129,12 +129,12 @@ ae^{-ax}&,x>0\\
 \end{array}
 \right . $
 \item Szczególny przypadek rozkładu gamma
-\item $ \varphi(t)\frac{a}{a-it} $
+\item $ \varphi(t)=\frac{a}{a-it} $
 \item $ \mathbb{E}X=\frac{1}{a} $
 \item $ D^2X=\frac{1}{a} $
 \end{itemize}
-\end{multicols}
-{\Large Rozkład gamma, $ p,k\in\left(0,+\infty \right) $}
+\end{multicols}\newpage
+{\Large Rozkład gamma, $ p,\lambda\in\left(0,+\infty \right) $}
 \begin{multicols}{2}
 \begin{itemize}
 \item $ f(x)=
@@ -145,7 +145,7 @@ ae^{-ax}&,x>0\\
 \end{array}
 \right . $
 \item Dla $ p=1 $ jest to rozkład wykładniczy o parametrze $ a=\frac{1}{\lambda} $
-\item $ \varphi(t)=\left(\frac{1}{1-i+\lambda}\right)^p $
+\item $ \varphi(t)=\left(\frac{1}{1-it\lambda}\right)^p $
 \item $ \mathbb{E}X=\lambda p $
 \item $ D^2X=p\lambda^2 $
 \end{itemize}
@@ -203,6 +203,7 @@ $ X_1,\dots,X_n$ - niezależne zmienne losowe o rozkładzie $ \mathcal N(0,1) $
  \item $ D^2X=2n $
 \end{itemize}
 \end{multicols}
+\newpage
 {\Large Rozkład Studenta, $ n\in \mathbb N  $}
 \begin{multicols}{2}
 \begin{itemize}
@@ -233,4 +234,20 @@ T_n\xrightarrow{n\to\infty }\mathcal N(0,1)
 $ Y_{n_1},Y_{n_2} $ - niezależne zmienne losowe o jednakowym rozkładzie $ \chi^2 $
 \item $ \dfrac{F_{n_1,n_2}-\frac{n_1-n_2}{2n_1n_2}}{\frac{n_1+n_2}{2n_1n_2}}\sim\mathcal N(0,1) $ dla $ n_1,n_2>30 $
 \end{itemize}
+
+{\Large Rozkład hipergeometryczny, $ N,m,n\in \mathbb N  $}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ P\left(X=k\right)={{\binom{m}{k} {\binom{N-m}{n-k}}}\over \binom{N}{n}} $
+\item $ \mathbb E X=\frac{nm}{N} $
+\item $ D^2X=n\left(\frac{m}{N}\right)\left(\frac{1-m}{N}\right)\left(\frac{N-n}{N-1}\right) $
+\end{itemize}
+\end{multicols}
+{\Large Rozkład Cauchy'ego, $ x_0\in \mathbb R ,\gamma>0$}
+\begin{multicols}{2}
+\begin{itemize}
+\item $ f_X(x)=\frac{1}{\pi\gamma\,\left[1 + \left(\frac{x-x_0}{\gamma}\right)^2\right]} \! $
+\item $ \varphi(t)=e^{x_0\,i\,t-\gamma\,|t|}\! $
+\end{itemize}
+\end{multicols}
 \end{document}

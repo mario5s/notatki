@@ -1,0 +1,477 @@
+\chapter*{Lista 2}
+\addcontentsline{toc}{chapter}{Lista 2}
+
+
+\subsection*{Zadanie 13}
+\addcontentsline{toc}{section}{Zadanie 13}
+Niech $ N,X_1,X_2,\dots$ będzie ciągiem niezależnych zmiennych losowych. Zmienna losowa $ N $ ma rozkład Poissona z parametrem $ \lambda $, a zmienne losowe $ X_i $, dla $ i=1,2,\dots$ mają rozkład dwupunktowy tj.
+\begin{gather*}
+P\left\{X_i=1\right\}=\frac{2}{3},\qquad P\left\{X_i=2\right\}=\frac{1}{3}
+\end{gather*}
+Niech $ S_N=\sum_{i=1}^{N}X_i $. Obliczyć $ \mathbb E \left(N|S_N=3\right) $.
+
+Rozwiązanie:
+\begin{align*}
+\mathbb E \left(N|S_N=3\right)=&
+\sum_{k=0}^{\infty }k\cdot P\left(N=k|S_N=3\right)
+=\\=&
+2\cdot P\left(N=2|S_N=3\right)+3\cdot P\left(N=3|S_N=3\right)
+=\\=&
+2\cdot \frac{P\left(N=2,S_2=3\right)}{P\left(S_N=3\right)}
++
+3\cdot \frac{P\left(N=3,S_3=3\right)}{P\left(S_N=3\right)}
+=\\=&
+2\cdot \frac{P\left(N=2\right) P\left(S_2=3\right)}{P\left(S_N=3\right)}
++
+3\cdot \frac{P\left(N=3\right) P\left(S_3=3\right)}{P\left(S_N=3\right)}
+=\\=&
+2\cdot \frac{\lambda^2}{2!}e^{-\lambda}\cdot \frac{ P\left(S_2=3\right)}{P\left(S_N=3\right)}
++
+3\cdot \frac{\lambda^3}{3!}e^{-\lambda}\cdot\frac{P\left(S_3=3\right)}{P\left(S_N=3\right)}
+=\\=&
+\frac{1}{P\left(S_N=3\right)}\cdot\left( \lambda^2e^{-\lambda}\cdot  P\left(S_2=3\right)
++
+\frac{\lambda^3}{2}e^{-\lambda}\cdot P\left(S_3=3\right)\right)
+\end{align*}
+\begin{align*}
+P\left(S_2=3\right)=&
+P\left(X_1=1\right)P\left(X_2=2\right)
++
+P\left(X_1=2\right)P\left(X_2=1\right)
+=\\=&
+\frac{2}{3}\cdot \frac{1}{3}
++
+\frac{1}{3}\cdot \frac{2}{3}=\frac{4}{9}
+\end{align*}
+\begin{align*}
+P\left(S_3=3\right)=&
+P\left(X_1=1\right)P\left(X_2=1\right)P\left(X_3=1\right)
+=\\=&
+\left(\frac{1}{3}\right)^3=\frac{1}{27}
+\end{align*}
+\begin{align*}
+P\left(S_N=3\right)=&
+\sum_{n=0}^{\infty }P\left(S_N=3|N=n\right)P\left(N=n\right)
+=\\=&
+\sum_{n=0}^{\infty }P\left(S_n=3\right)P\left(N=n\right)
+=\\=&
+P\left(S_2=3\right)P\left(N=2\right)+P\left(S_3=3\right)P\left(N=3\right)
+=\\=&
+\frac{4}{9}\cdot \frac{\lambda^2}{2!}e^{-\lambda}
++
+\frac{1}{27}\cdot \frac{\lambda^3}{3!}e^{-\lambda}
+=\\=&
+\frac{1}{162} \lambda ^3 e^{-\lambda }+\frac{2}{9} \lambda ^2 e^{-\lambda }
+\end{align*}
+\begin{align*}
+\mathbb E \left(N|S_N=3\right)=&
+\frac{1}{P\left(S_N=3\right)}\cdot\left( \lambda^2e^{-\lambda}\cdot  P\left(S_2=3\right)
++
+\frac{\lambda^3}{2}e^{-\lambda}\cdot P\left(S_3=3\right)\right)
+=\\=&
+\frac{1}{\frac{1}{162} \lambda ^3 e^{-\lambda }+\frac{2}{9} \lambda ^2 e^{-\lambda }}\cdot
+\left( \lambda^2e^{-\lambda}\cdot  \frac{4}{9}
++
+\frac{\lambda^3}{2}e^{-\lambda}\cdot \frac{1}{27}\right)
+=\\=&
+\frac{\frac{1}{54} \lambda ^2 (\lambda +24) e^{-\lambda }}{\frac{1}{162} \lambda ^2 (\lambda +36) e^{-\lambda }}
+=\\=&
+\frac{3 (\lambda +24)}{\lambda +36}
+\end{align*}
+
+
+\subsection*{Zadanie 14}
+\addcontentsline{toc}{section}{Zadanie 14}
+Zmienna losowa $ X $ ma rozkład Poissona z parametrem $ \lambda $. Rozkład warunkowy zmiennej losowej $ Y $ przy warunku $ X=k $ jest rozkładem dwumianowym z parametrami $ (k,p) $. Wykazać, że zmienna losowa $ Y $ ma Rozkład Poissona z parametrem $ \lambda p $. Następnie wykazać niezależność zmiennych losowych $ Y $ i $ X-Y $ oraz wyznaczyć rozkład warunkowy $ X $ przy warunku $ Y=y $.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ X\sim Poisson(\lambda) $
+\item $ (Y|X=k)\sim Ber(k,p) $
+\end{itemize}
+\begin{gather*}
+P\left(Y=t|X=n\right)=
+\frac{P\left(Y=t,X=n\right)}{P\left(X=n\right)}=
+\binom{k}{t}p^t(1-p)^{k-t}
+\end{gather*}
+\begin{align*}
+\frac{P\left(Y=t,X=k\right)}{P\left(X=k\right)}=&
+\binom{k}{t}p^t(1-p)^{k-t}\\
+P\left(Y=t,X=k\right)=&
+\binom{k}{t}p^t(1-p)^{k-t}P\left(X=k\right)\\
+P\left(Y=t,X=k\right)=&
+\frac{k!}{t!(k-t)!}p^t(1-p)^{k-t}\frac{\lambda^k}{k!}e^{-\lambda}\\
+P\left(Y=t,X=k\right)=&
+\frac{e^{-\lambda } \lambda ^k p^t (1-p)^{k-t}}{t! (k-t)!}
+\end{align*}
+\begin{gather*}
+P\left(Y=t\right)=\sum_{k=0}^{\infty }P\left(Y=t,X=k\right)
+\end{gather*}\begin{align*}
+P\left(Y=t\right)=&\sum_{k=0}^{\infty }P\left(Y=t,X=k\right)
+=\\=&
+\sum_{k=t}^{\infty }\frac{e^{-\lambda } \lambda ^k p^t (1-p)^{k-t}}{t! (k-t)!}
+=\\=&
+\frac{ p^t\lambda^t}{t!}e^{-\lambda}\cdot
+\sum_{k=t}^{\infty }\frac{ \lambda ^{k-t} (1-p)^{k-t}}{ (k-t)!}
+=\\=&
+\frac{ p^t\lambda^t}{t!}e^{-\lambda}\cdot
+\sum_{k=0}^{\infty }\frac{ \bigl(\lambda (1-p)\bigr)^{k}}{k!}
+=\\=&
+\frac{ p^t\lambda^t}{t!}e^{-\lambda}\cdot
+e^{\lambda (1-p)}
+=\\=&
+\frac{ p^t\lambda^t}{t!}e^{-\lambda}\cdot
+e^{\lambda (1-p)}
+=\\=&
+\frac{ (p\lambda)^t}{t!}e^{-p\lambda}
+\end{align*}
+\begin{align*}
+P\left(X-Y=n\right)=&
+\sum_{k=n}^{\infty }P\left(X-Y=n|X=k\right)P\left(X=k\right)
+=\\=&
+\sum_{k=n}^{\infty }P\left(Y=k-n|X=k\right)P\left(X=k\right)
+=\\=&
+\sum_{k=n}^{\infty }P\left(Y=k-n,X=k\right)
+=\\=&
+\sum_{k=n}^{\infty }\frac{e^{-\lambda } \lambda ^k p^{k-n} (1-p)^{n}}{(k-n)! n!}
+=\\=&
+\frac{e^{-\lambda } (1-p)^{n}}{n!}\cdot
+\sum_{k=n}^{\infty }\frac{\lambda ^k p^{k-n} }{(k-n)! }
+=\\=&
+\frac{e^{-\lambda } (1-p)^{n}}{n!}\cdot \lambda^n\cdot
+\sum_{k=0}^{\infty }\frac{(\lambda p)^{k} }{k!}
+=\\=&
+\frac{e^{-\lambda } (1-p)^{n}}{n!}\cdot \lambda^n
+e^{\lambda p}
+=\\=&
+\frac{e^{-\lambda } \lambda ^n (1-p)^n e^{p\lambda}}{n!}
+\end{align*}
+\begin{align*}
+P\left(X-Y=n\right)P\left(Y=t\right)=&
+\frac{e^{-\lambda } \lambda ^n (1-p)^n e^{p\lambda}}{n!}
+\cdot \frac{ (p\lambda)^t}{t!}e^{-p\lambda}
+=\\=&
+\frac{\lambda ^n (1-p)^n e^{-\lambda} (\lambda  p)^t}{n! t!}
+\end{align*}
+\begin{align*}
+P\left(X-Y=n,Y=t\right)=&
+P\left(X=n+t,Y=t\right)
+=\\=&
+\frac{e^{-\lambda } p^t (1-p)^n \lambda ^{t+n}}{t! n!}
+\end{align*}
+\begin{gather*}
+P\left(X-Y=n,Y=t\right)=P\left(X-Y=n\right)P\left(Y=t\right)
+\end{gather*}
+\begin{align*}
+P\left(X=k|Y=t\right)=&
+\frac{P\left(X=k,Y=t\right)}{P\left(Y=t\right)}
+=\\=&
+\frac{e^{-\lambda } \lambda ^k p^t (1-p)^{k-t}}{t! (k-t)!}
+\cdot \frac{t!}{ (p\lambda)^t}e^{p\lambda}
+=\\=&
+\frac{\lambda ^{k-t} e^{\lambda  (p-1)} (1-p)^{k-t} }{(k-t)!}
+\end{align*}
+
+
+\subsection*{Zadanie 15}
+\addcontentsline{toc}{section}{Zadanie 15}
+Niech będzie dane $ \sigma $-ciało $ \mathcal B $ generowane przez skończone lub przeliczalne nieskończone rozbicie $ \left\{A_i\right\}_{i\in I} $ zbioru $ \Omega $. Wykazać
+\begin{gather*}
+P\left(B|\mathcal B\right)=\sum_{i\in I,P\left(A_i\right)>0}P\left(B|A_i\right)I_{A_i},\qquad B\in \mathcal F 
+\end{gather*}
+oraz dla całkowalnej zmiennej losowej $ X $ $ \left(\mathbb E \left|X\right|<\infty \right) $
+\begin{gather*}
+\mathbb E \left(X|\mathcal B\right)=\sum_{i\in I,P\left(A_i\right)>0}\frac{1}{P\left(A_i\right)}\int\limits_{A_i}X(\omega)\,dP(\omega)I_{A_i}
+\end{gather*}
+Rozwiązanie:
+\begin{align*}
+&\mathbb E \left(\mathbbm1_{B}|\mathcal B\right)
+\stackrel{df}{=}\\=&
+\sum_{i\in I}\mathbb E \left(\mathbbm1_{B}|A_i\right)\cdot\mathbbm1_{A_i}
+=\\=&
+\sum_{i\in I,P\left(A_i\right)>0}
+\frac{1}{P\left(A_i\right)}\int\limits_{A_i}\mathbbm1_{B}\,dP\cdot\mathbbm1_{A_i}
+=\\=&
+\sum_{i\in I,P\left(A_i\right)>0}
+\frac{P\left(A_i\cap B\right)}{P\left(A_i\right)}
+=\\=&
+\sum_{i\in I,P\left(A_i\right)>0}
+P\left(B|A_i\right)\cdot\mathbbm1_{A_i}
+\end{align*}
+Komentarz chyba wymaga, żeby podkreślić, iż zmienna losowa $ Y(\omega)=\mathbbm1_{B}(\omega) $ dla $ B\in\mathcal B $ jest całkowalna, a jest, bo niezależnie od $ B $ mamy $ \mathbb E \left(\mathbbm1_{B}\right)=P\left(B\right)\le1<\infty  $, czyli wszystko gra.\\
+Druga część analogicznie, ale wiemy, że $ E\left(|X|\right)<\infty  $
+\begin{align*}
+&\mathbb E \left(X|\mathcal B\right)
+\stackrel{df}{=}\\=&
+\sum_{i\in I}\mathbb E \left(X|A_i\right)\cdot\mathbbm1_{A_i}
+=\\=&
+\sum_{i\in I,P\left(A_i\right)>0}
+\frac{1}{P\left(A_i\right)}\int\limits_{A_i}X(\omega)\,dP\cdot\mathbbm1_{A_i}
+\end{align*}
+
+\subsection*{Zadanie 16 - poprawione}
+\addcontentsline{toc}{section}{Zadanie 16 - poprawione}
+Niech $ \Omega=[0,1] $, a $ P $ będzie miarą Lebegue'a na zbiorach borelowskich $ \Omega $. Niech $ \mathcal B $ będzie $ \sigma $-algebrą generowaną przez rodzinę zbiorów\\ $ \left\{\left[0,\frac{1}{3}\right) ,\left\{\frac{1}{3}\right\},\left(\frac{1}{3},\frac{1}{2}\right]\right\} $. Wyznaczyć dwie różne wersje $ \mathbb E \left(X|\mathcal B\right) $, jeśli:
+\begin{enumerate}[(a)]
+\item $ X(\omega)=\omega $
+\item $ X(\omega)=\sin\pi\omega $
+\item $ X(\omega)=\omega^2 $
+\item $ X(\omega)=1-\omega $
+\item 
+\begin{gather*}
+X(\omega)=\left \{
+\begin{array}{ll}
+	1, & \omega\in\left[0,\frac{1}{3}\right] \\
+	2, & \omega\in\left (\frac{1}{3},1\right ]
+\end{array}
+\right .
+\qquad\omega\in\Omega
+\end{gather*}
+\end{enumerate}
+
+Rozwiązanie:
+\begin{gather*}
+\mathbb{E}(X|\mathcal F_0)(\omega)=\sum_{j=1}\mathbb{E}(X|A_j)\mathbbm{1}_{A_j}(\omega)
+\end{gather*}
+\begin{enumerate}[(a)]
+\item 
+\begin{align*}
+&\mathbb E \left(X(\omega)|\mathcal B\right)
+=\\=&
+\mathbb E \left(\omega|\mathcal B\right)
+=\\=&
+\mathbb E \left(\omega|\left[0,\tfrac{1}{3}\right)\right)
+\mathbbm1_{\left[0,\frac{1}{3}\right)}(\omega)
++
+\mathbb E \left(\omega|\left\{\tfrac{1}{3}\right\}\right)
+\mathbbm1_{\left\{\frac{1}{3}\right\}}(\omega)
++\\+&
+\mathbb E \left(\omega|\left(\tfrac{1}{3},\tfrac{1}{2}\right]\right)
+\mathbbm1_{\left(\frac{1}{3},\frac{1}{2}\right]}(\omega)
++
+\mathbb E \left(\omega|\left(\tfrac{1}{2},1\right]\right)
+\mathbbm1_{\left(\frac{1}{2},1\right]}(\omega)
+=\\=&
+\int\limits_{0}^{\frac{1}{3}}\omega\,d\lambda(\omega)
+\mathbbm1_{\left[0,\frac{1}{3}\right)}(\omega)
++
+\mathbbm1_{\left\{\frac{1}{3}\right\}}(\omega)
++
+\int\limits_{\frac{1}{3}}^{\frac{1}{2}}\omega\,d\lambda(\omega)
+\mathbbm1_{\left(\frac{1}{3},\frac{1}{2}\right]}(\omega)
++
+\int\limits_{\frac{1}{2}}^{1}\omega\,d\lambda(\omega)
+\mathbbm1_{\left(\frac{1}{2},1\right]}(\omega)
+=\\=&
+\frac{1}{18}
+\mathbbm1_{\left[0,\frac{1}{3}\right)}(\omega)
++
+\mathbbm1_{\left\{\frac{1}{3}\right\}}(\omega)
++
+\frac{5}{72}
+\mathbbm1_{\left(\frac{1}{3},\frac{1}{2}\right]}(\omega)
++
+\frac{3}{8}
+\mathbbm1_{\left(\frac{1}{2},1\right]}(\omega)
+\end{align*}
+Drugie
+\begin{align*}
+&\mathbb E \left(X(\omega)|\mathcal B\right)
+=\\=&
+\mathbb E \left(\omega|\mathcal B\right)
+=\\=&
+\mathbb E \left(\omega|\left[0,\tfrac{1}{3}\right]\right)
+\mathbbm1_{\left[0,\frac{1}{3}\right]}(\omega)
++
+\mathbb E \left(\omega|\left(\tfrac{1}{3},\tfrac{1}{2}\right]\right)
+\mathbbm1_{\left(\frac{1}{2},1\right]}(\omega)
+=\\=&
+\int\limits_{0}^{\frac{1}{3}}\omega\,d\lambda(\omega)
+\mathbbm1_{\left[0,\frac{1}{3}\right]}(\omega)
++
+\int\limits_{\frac{1}{3}}^{\frac{1}{2}}\omega\,d\lambda(\omega)
+\mathbbm1_{\left(\frac{1}{3},\frac{1}{2}\right]}(\omega)
++
+\int\limits_{\frac{1}{2}}^{1}\omega\,d\lambda(\omega)
+\mathbbm1_{\left(\frac{1}{2},1\right]}(\omega)
+=\\=&
+\frac{1}{18}
+\mathbbm1_{\left[0,\frac{1}{3}\right]}(\omega)
++
+\frac{5}{72}
+\mathbbm1_{\left(\frac{1}{3},\frac{1}{2}\right]}(\omega)
++
+\frac{3}{8}
+\mathbbm1_{\left(\frac{1}{2},1\right]}(\omega)
+\end{align*}
+\end{enumerate}
+
+
+\subsection*{Zadanie 17}
+\addcontentsline{toc}{section}{Zadanie 17}
+Niech $ \Omega=[0,1] $, a $ P $ będzie miarą Lebegue'a na zbiorach borelowskich $ \Omega $. Niech $ \mathcal B $ będzie $ \sigma $-algebrą generowaną przez rodzinę zbiorów $ \left\{\left[0,\frac{1}{4}\right),\left[\frac{1}{4},\frac{3}{4}\right),\left[\frac{3}{4},1\right]\right\} $. Wyznaczyć $ P\left(\cdot|\mathcal B\right) $ oraz $ \mathbb E \left(X|\mathcal B\right) $, gdzie $ X(\omega)=\omega^2,\omega\in\Omega $.
+
+Rozwiązanie:
+\begin{itemize}
+\item Odwołując się do zadania 15
+\begin{gather*}
+P\left(B|\mathcal B\right)=\sum_{i\in I,P\left(A_i\right)>0}P\left(B|A_i\right)I_{A_i},\qquad B\in \mathcal F 
+\end{gather*}
+\item Podobnie
+\begin{gather*}
+\mathbb E \left(X|\mathcal B\right)=\sum_{i\in I,P\left(A_i\right)>0}\frac{1}{P\left(A_i\right)}\int\limits_{A_i}X(\omega)\,dP(\omega)I_{A_i}
+\end{gather*}
+\end{itemize}
+Na start
+\begin{align*}
+&P\left(\left[0,\tfrac{1}{4}\right)\right)=\frac{1}{4}\\
+&P\left(\left[\tfrac{1}{4},\tfrac{3}{4}\right)\right)=\frac{1}{2}\\
+&P\left(\left[\tfrac{3}{4},1\right]\right)=\frac{1}{4}
+\end{align*}
+\begin{align*}
+&P\left(Y|\mathcal B\right)
+=\\=&
+P\left(Y|\left[0,\tfrac{1}{4}\right)\right)
+\mathbbm1_{\left[0,\tfrac{1}{4}\right)}+
+P\left(Y|\left[\tfrac{1}{4},\tfrac{3}{4}\right)\right)
+\mathbbm1_{\left[\tfrac{1}{4},\tfrac{3}{4}\right)}+
+P\left(Y|\left[\tfrac{3}{4},1\right]\right)
+\mathbbm1_{\left[\tfrac{3}{4},1\right]}
+=\\=&
+\frac{P\left(Y\cap \left[0,\tfrac{1}{4}\right)\right)}{P\left(\left[0,\tfrac{1}{4}\right)\right)}
+\mathbbm1_{\left[0,\frac{1}{4}\right)}+
+\frac{P\left(Y\cap \left[\tfrac{1}{4},\tfrac{3}{4}\right)\right)}{P\left(\left[\tfrac{1}{4},\tfrac{3}{4}\right)\right)}
+\mathbbm1_{\left[\frac{1}{4},\frac{3}{4}\right)}+
+\frac{P\left(Y\cap \left[\tfrac{3}{4},1\right]\right)}{P\left(\left[\tfrac{3}{4},1\right]\right)}
+\mathbbm1_{\left[\frac{3}{4},1\right]}
+=\\=&
+4\cdot P\left(Y\cap \left[0,\tfrac{1}{4}\right)\right)
+\mathbbm1_{\left[0,\frac{1}{4}\right)}+
+2\cdot P\left(Y\cap \left[\frac{1}{4},\frac{3}{4}\right)\right)
+\mathbbm1_{\left[\frac{1}{4},\frac{3}{4}\right)}+
+4\cdot P\left(Y\cap \left[\frac{3}{4},1\right]\right)
+\mathbbm1_{\left[\frac{3}{4},1\right]}
+\end{align*}
+Wartość oczekiwana
+\begin{align*}
+&\mathbb E \left(X|\mathcal B\right)
+=\\=&
+\mathbbm1_{\left[0,\frac{1}{4}\right)}
+\mathbb E \left(X|\left[0,\tfrac{1}{4}\right)\right)+
+\mathbbm1_{\left[\frac{1}{4},\frac{3}{4}\right)}
+\mathbb E \left(X|\left[\tfrac{1}{4},\tfrac{3}{4}\right)\right)+
+\mathbbm1_{\left[\frac{3}{4},1\right]}
+\mathbb E \left(X|\left[\tfrac{3}{4},1\right]\right)
+=\\=&
+4\cdot\mathbbm1_{\left[0,\frac{1}{4}\right)}
+\int\limits_{0}^{\frac{1}{4}}\omega^2\,dP+
+2\cdot\mathbbm1_{\left[\frac{1}{4},\frac{3}{4}\right)}
+\int\limits_{\frac{1}{4}}^{\frac{3}{4}}\omega^2\,dP+
+4\cdot\mathbbm1_{\left[\frac{3}{4},1\right]}
+\int\limits_{\frac{3}{4}}^1\omega^2\,dP
+=\\=&
+\frac{1}{48}\mathbbm1_{\left[0,\frac{1}{4}\right)}+
+\frac{13}{48}\mathbbm1_{\left[\frac{1}{4},\frac{3}{4}\right)}+
+\frac{37}{48}\mathbbm1_{\left[\frac{3}{4},1\right]}
+\end{align*}
+
+
+\subsection*{Zadanie 20}
+\addcontentsline{toc}{section}{Zadanie 20}
+Niech $ X $ będzie nieujemną zmienną losową i niech $ \mathcal B\subset \mathcal F  $ będzie $ \sigma $-algebrą. Wykazać, że $ \mathbb E \left(X|\mathcal B\right)<\infty  $ ($ P $ - p.w.) wtedy i tylko wtedy, gdy miara $ Q $ określona wzorem
+\begin{gather*}
+Q(A)=\int\limits_{A}X(\omega)\,dP(\omega),\qquad
+A\in B
+\end{gather*}
+jest $ \sigma $-skończona.
+
+Rozwiązanie:
+\begin{itemize}
+\item Miara jest $ \sigma $-skończona, gdy przestrzeń, w której występuje może być przedstawiona jako suma przeliczalnie wielu zbiorów miary skończonej.
+\end{itemize}
+Gdy $ \left\{A_i\right\} \subset\mathcal B $ jest rozbiciem $ \Omega $
+\begin{gather*}
+\mathbb E \left(X|\mathcal B\right)=\sum_i \mathbb E \left(X|A_i\right)\mathbbm1_{A_i}<\infty 
+\end{gather*}
+Czyli
+\begin{align*}
+&\forall_i \mathbb E \left(X|A_i\right)<\infty \\
+&\forall_i \frac{1}{P\left(A_i\right)}\int\limits_{A_i}X(\omega)\,P(\omega)<\infty \\
+&\forall_i \int\limits_{A_i}X(\omega)\,P(\omega)<\infty
+\end{align*}
+$ Q(A) $ jest $ \sigma $-skończona.
+
+"$ \Leftarrow $" Gdy $ Q(A) $ jest $ \sigma $-skończona to dla $ A_i $ takich, że $ \bigcup_i A_i=\Omega $ oraz $ A_i\cap A_j=\emptyset $ dla $ i\neq j $
+\begin{align*}
+&Q(A_i)<\infty
+\end{align*}
+Dla $ A_i $ takich, że $ P(A_i)>0 $
+\begin{gather*}
+\frac{Q(A_i)}{P(A_i)}<\infty 
+\end{gather*}
+Pamiętając, że
+\begin{gather*}
+\mathbb E \left(X|\mathcal B\right)=
+\sum_{i\in I,P\left(A_i\right)>0}\frac{1}{P\left(A_i\right)}\int\limits_{A_i}X(\omega)\,dP(\omega)I_{A_i}
+=\\=
+\sum_{i\in I,P\left(A_i\right)>0}\frac{Q(A_i)}{P\left(A_i\right)}I_{A_i}<\infty 
+\end{gather*}
+Ostatnia nierówność jest oczywista ze względu na funkcję charakterystyczną.
+
+
+\subsection*{Zadanie 22}
+\addcontentsline{toc}{section}{Zadanie 22}
+Niech $ X,Y\in L^1\left(\Omega,\mathcal F, P\right) $ będą niezależnymi zmiennymi losowymi o takim samym rozkładzie. Wykazać, że
+\begin{gather*}
+\mathbb E \left(X|X+Y\right)=\mathbb E \left(Y|X+Y\right)=\frac{X+Y}{2},\qquad P\,\text{prawie wszędzie}
+\end{gather*}
+
+Rozwiązanie:
+\begin{itemize}
+\item 
+\begin{gather*}
+\mathbb E \left(X|X\right)
+=
+X
+\end{gather*}
+\end{itemize}
+\begin{align*}
+&\mathbb E \left(X|X+Y\right)
++
+\mathbb E \left(Y|X+Y\right)
+=
+\mathbb E \left(X+Y|X+Y\right)
+=
+X+Y\\
+&\mathbb E \left(X|X+Y\right)
+=
+\mathbb E \left(Y|X+Y\right)=\frac{X+Y}{2}
+\end{align*}
+
+
+\subsection*{Zadanie 24}
+\addcontentsline{toc}{section}{Zadanie 24}
+Zmienne losowe $ X $ i $ Y $ są niezależne o skończonej wariancji. Wykazać, że
+\begin{gather*}
+\Var\left(XY\right) = \mathbb E \bigl(\Var\left(XY|X\right)\bigr)+\Var\bigl(\mathbb E \left(XY|X\right)\bigr)
+\end{gather*}
+
+Rozwiązanie:
+\begin{align*}
+\Var\left(XY\right)=&\mathbb E \left(XY\right)^2-\bigl(\mathbb E \left(XY\right)\bigr)^2
+\end{align*}
+\begin{align*}
+&\mathbb E \bigl(\Var\left(XY|X\right)\bigr)+\Var\bigl(\mathbb E \left(XY|X\right)\bigr)
+=\\=&
+\mathbb E \left(\mathbb E \left((XY)^2|X\right)-\bigl(\mathbb E \left((XY)^2|X\right)\bigr)\right)
++
+\mathbb E \bigl(\mathbb E \left((XY)^2|X\right)\bigr)-\Bigl(\mathbb E \bigl(\mathbb E \left(XY|X\right)\bigr)\Bigr)^2
+=\\=&
+\mathbb E (XY)^2-\cancel{\mathbb E \bigl(\mathbb E \left((XY)^2|X\right)\bigr)}
++
+\cancel{\mathbb E \bigl(\mathbb E \left((XY)^2|X\right)\bigr)}-\Bigl(\mathbb E \bigl(\mathbb E \left(XY|X\right)\bigr)\Bigr)^2
+=\\=&
+\mathbb E (XY)^2-\bigl(\mathbb E \left(XY\right)\bigr)^2
+=\\=&
+\Var\left(XY\right)
+\end{align*}

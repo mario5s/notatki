@@ -406,7 +406,7 @@ Z drugiej strony poziom wykształcenia jest determinowany przez zdolności respo
 Ponieważ zmienna pominięta jest dodatnio skorelowana z uzyskanym wykształceniem i wpływa dodatnio na zmienną zależną to parametr przy zmiennej będzie dodatnio obciążony.\\
 Metoda zmiennych instrumentalnych pozwala na uzyskanie zgodnych estymatorów w przypadku występowania korelacji między zmiennymi objaśniającymi a składnikiem losowym. Pozwala również uzyskać zgodne oszacowania parametrów w przypadku występowania problemu równoczesności. Polega ona na zastępowaniu oryginalnych zmiennych instrumentami. Instrumenty powinny być skorelowane ze zmiennymi objaśniającymi, ale nie powinny być skorelowane z błędem losowym. Znalezienie właściwych instrumentów jest najciekawszym, ale również najtrudniejszym etapem badania.
 
-Oznaczmy przez $ Z $ macierz zmiennych instrumentalnych 9instrumentów). Estymator MZI jest zgodny, gdy spełnione są następujące warunki
+Oznaczmy przez $ Z $ macierz zmiennych instrumentalnych (instrumentów). Estymator MZI jest zgodny, gdy spełnione są następujące warunki
 \begin{gather*}
 plim\left(\tfrac{1}{n}Z'\varepsilon\right)=plim\left(\tfrac{1}{n}\sum_iz_i'\varepsilon_i\right)=\mathbb E \left(z_i'\varepsilon_i\right)=0\\
 plim\left(\tfrac{1}{n}Z'X\right)=plim\left(\tfrac{1}{n}\sum_iz_i'x_i\right)=\mathbb E \left(z_i'x_i\right)\neq0
@@ -484,3 +484,853 @@ Gdy różnica jest duża sugeruje to wykorzystanie MNK.
 \end{gather*}
 \item Niestety przeprowadzenie testu jest wyłącznie możliwe, gdy liczba instrumentów przekracza liczbę zmiennych objaśniających
 \end{itemize}
+\section{Uogólniona metoda zminnych instrumentalnych}
+Zakładamy, że mamy więcej instrumentów niż zminnych objaśniających
+\begin{center}
+wymiar macierzy $ X \neq $ wymiar macierzy $ Z $
+\end{center}
+Założyliśmy, że $ \mathbb E \left(Z'\varepsilon\right) =0$, zatem $ \mathbb E \left(Z'\left(y-X\beta\right)\right) =0$\\
+Skoro średnia z próby jest oceną wartości oczekiwanej, to
+\begin{gather*}
+\tfrac{1}{n}\bigl(Z'\left(y-X\beta\right)\bigr)=0
+\end{gather*}
+\subsection{Estymator uogólnionej MZI (UMZI,GIV)}
+Przy powyższym założeniu, UMZI polega na minimalizacji następującego wyrażenia
+\begin{gather*}
+Q_n(\beta)=
+\left[\frac{1}{n}Z'\left(y-X\beta\right)\right]'
+W_n
+\left[\frac{1}{n}Z'\left(y-X\beta\right)\right]
+\end{gather*}
+gdzie $ W_n $ jest symetryczną, kwadratową macierzą wag, o wymiarze równym liczbie instrumentów w macierzy $ Z $. Macierz ta wskazuje jakie wagi należy przypisać poszczególnym równaniom w układzie równań $ \tfrac{1}{n}\bigl(Z'\left(y-X\beta\right)\bigr)=0 $, czyli określa które instrumenty są bardziej, a które mniej ważne.\\
+Minimalizując $ Q_n $ pierwszą pochodną po $ \beta  $ przyrównujemy do zera
+\begin{gather*}
+-ZX'ZW_nZ'y+ZX'ZW_nZ'X\hat \beta =0
+\end{gather*}
+co oznacza, że
+\begin{gather*}
+X'ZW_nZ'y=X'ZW_nZ'X\hat \beta
+\end{gather*}
+Zakładając, że
+\begin{gather*}
+\det \left(X'ZW_nZ'X\right)\neq 0
+\end{gather*}
+uzyskujemy estymator UMZI
+\begin{gather*}
+\hat \beta_{GIV}=\left(X'ZW_nZ'X\right)^{-1}X'ZW_nZ'y
+\end{gather*}
+W jaki sposób dobieramy macierz wag $ W_n $?\\
+Różne macierze wag prowadzą do estymatorów różnej postaci, ale przy spełnieniu wymaganych założeń wszystkie uzyskane estymatory są nieobciążone i zgodne. Optymalna macierz $ W_n $ jest proporcjonalna do odwrotności macierzy wariancji i kowariancji parametrów. W szczególnym przyadku, jeśli przyjmiemy, że składnik losowy jest sferyczny, uzyskujemy optymalną postać $ W_n $
+\begin{gather*}
+W_n^{opt}=\left(\tfrac{1}{n}Z'Z\right)^{-1}
+\end{gather*}
+Podstawiając optymalną macierz wag do estymatora, uzyskujemy estymator
+\begin{gather*}
+\hat \beta_{GIV}=\left(X'Z\left(\tfrac{1}{n}Z'Z\right)^{-1}Z'X\right)^{-1}X'Z\left(\tfrac{1}{n}Z'Z\right)^{-1}Z'y
+\end{gather*}
+Estymator ten, przyjmuje różną postać, w zależności od wybranej macierzy wag.
+\section{Estymator potrójnej metody najmniejszy kwadratów (3MNK)}
+\begin{itemize}
+\item Estymacja parametrów równania za pomocą KMNK abstrahuje od endogeniczności niektórych zmiennych objaśniających
+\item 2MNK uwzględnia endogeniczność, lecz za jej pomocą estymujemy parametry każdego równania osobno
+\item Korelacje między składnikami losowymi poszczególnych równań nie zostają uwzględnione w procesie estymacji
+\item Wady te w modelu nie będzie, gdy przeprowadzimy łączną estymację parametrów wszystkich równań, uwzględniając korelacje składników losowych poszczególnych równań
+\end{itemize}
+Potraktujemy model wielorównaniowy jako macierzowy model jednorównaniowy. Zapisujemy nasz $ n $-wymiarowy model jako
+\begin{align*}
+y&_1=\tilde{Z}_1\cdot\tilde{F}_1+\varepsilon_1\\
+y&_2=\tilde{Z}_2\cdot\tilde{F}_2+\varepsilon_2\\
+&\vdots\\
+y&_m=\tilde{Z}_m\cdot\tilde{F}_m+\varepsilon_m
+\end{align*}
+gdzie $ \tilde{Z}_i=\begin{bmatrix}
+\tilde{Y}_i&\tilde{Z}_i
+\end{bmatrix} $ - wektor zmiennych objaśniających (endo- i egzogenicznych) w $ n $-tym równaniu modelu.\\
+Niech $ \tilde{F}_j^{2MNK} $ - wektor oszacowań parametrów $ j $-tego równania za pomocą 2MNK.\\
+Znając go, możemy oszacować macierz wariancji-kowariancji wektora składników losowych modelu
+\begin{gather*}
+\text{Var}(\varepsilon_t)=\mathbb E \left(\varepsilon_t\varepsilon_t^T\right)\\
+\hat \Sigma=
+\begin{bmatrix}
+\tilde{\sigma_{ij}}
+\end{bmatrix}\\
+\tilde{\sigma_{ij}}=\left(y_i-Z_i\tilde{F}_i^{2MNK}\right)\left(y_i-Z_i\tilde{F}_i^{2MNK}\right)^T/T
+\end{gather*}
+gdzie $ T $ - liczba obserwacji.\\
+Alternatywnie zamiast $ T $, można podzielić sumę iloczynów w liczniku przez średnią geometryczną liczbę stopni swobody obu równań $ i $ oraz $ j $
+\begin{gather*}
+\sqrt{\left(T-\tilde{M}_i-\tilde{K}_i\right)\left(T-\tilde{M}_j-\tilde{K}_j\right)}
+\end{gather*}
+Zapisujemy cały model w jednym równaniu macierzowym
+\begin{gather*}
+\underset{y}{\underbrace{\begin{bmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_m
+\end{bmatrix}}}
+=
+\underset{Z}{
+\underbrace{\begin{bmatrix}
+	\tilde Z_1 & 0          & \dots  & 0          \\
+	0          & \tilde Z_2 & \dots  & 0          \\
+	\vdots     & \vdots     & \ddots & \vdots     \\
+	0          & 0          & \dots  & \tilde Z_m
+\end{bmatrix}}}
+\underset{F}{\underbrace{\begin{bmatrix}
+\tilde F_1\\
+\tilde F_2\\
+\vdots\\
+\tilde F_m
+\end{bmatrix}}}
++
+\underset{\varepsilon}{\underbrace{\begin{bmatrix}
+\varepsilon_1\\
+\varepsilon_2\\
+\vdots\\
+\varepsilon_m
+\end{bmatrix}}}
+\end{gather*}
+Przy czym $ \varepsilon-1,\varepsilon-2,\dots$ są wektorami pionowymi o wymiarach $ T\times 1$
+\subsection{Kolejne kroki w estymacji 3MNK}
+Krok 1. Estymacja w postaci zredukowanej $ (MNK) $ i obliczenie wartości teoretycznych dla równania $ j $
+\begin{gather*}
+\hat{ \tilde Z}_j=X\Pi_j=X\left(X^TX\right)^{-1}X^T\tilde Z_j
+\end{gather*}
+Macierzowo dla całego systemu
+\begin{gather*}
+\begin{bmatrix}
+	X\left(X^TX\right)^{-1}X^T\tilde Z_1 & 0                                    & \dots  & 0                                    \\
+	0                                    & X\left(X^TX\right)^{-1}X^T\tilde Z_2 & \dots  & 0                                    \\
+	\vdots                               & \vdots                               & \ddots & \vdots                               \\
+	0                                    & 0                                    & \dots  & X\left(X^TX\right)^{-1}X^T\tilde Z_m
+\end{bmatrix}
+\end{gather*}
+lub inaczej
+\begin{gather*}
+\left\{I_m\otimes\left[X\left(X^TX\right)^{-1}X^T\right]\right\}Z
+\end{gather*}
+Krok 2. Estymacja w postaci strukturalnej parametrów pojedynczych równań (2MNK). Wartości z próby w KMNK zamienione na wartości teoretyczne
+\begin{gather*}
+\hat F^{2MNK}=\left(\hat Z^T\hat Z\right)\hat Z^Ty
+\end{gather*}
+Krok 3. Uwzględnienie jednoczesnych korelacji składników losowych w procesie estymacji. Jeżeli poszczególne składniki losowe są sferyczne, to każdy taki wektor ma macierz wariancji-kowariancji postaci
+\begin{gather*}
+\begin{bmatrix}
+	\sigma _{jj}^2 & 0            & \dots & 0            \\
+	0            & \sigma _{jj}^2 & \dots & 0            \\
+	\vdots       & \vdots       & \ddots & \vdots       \\
+	0            & 0            & \dots & \sigma _{jj}^2
+\end{bmatrix}
+\end{gather*}
+\begin{gather*}
+\left(
+\begin{matrix}
+\begin{matrix}
+	\sigma ^2 _{11} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{11} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{11} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{11}
+\end{matrix}
+&
+\begin{matrix}
+	\sigma ^2 _{12} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{12} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{12} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{12}
+\end{matrix}
+& \dots &
+\begin{matrix}
+	\sigma ^2 _{1m} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{1m} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{1m} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{1m}
+\end{matrix}
+\\
+\begin{matrix}
+	\sigma ^2 _{21} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{21} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{21} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{21}
+\end{matrix}
+&
+\begin{matrix}
+	\sigma ^2 _{22} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{22} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{22} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{22}
+\end{matrix}
+& \dots &
+\begin{matrix}
+	\sigma ^2 _{2m} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{2m} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{2m} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{2m}
+\end{matrix}
+\\
+ \vdots & \vdots & \ddots & \vdots \\
+\begin{matrix}
+	\sigma ^2 _{m1} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{m1} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{m1} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{m1}
+\end{matrix}
+&
+\begin{matrix}
+	\sigma ^2 _{m2} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{m2} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{m2} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{m2}
+\end{matrix}
+& \dots &
+\begin{matrix}
+	\sigma ^2 _{mm} & 0               & \dots           & 0               \\
+	0               & \sigma ^2 _{mm} & \dots           & 0               \\
+	\vdots          & \vdots          & \sigma ^2 _{mm} & \vdots          \\
+	0               & 0               & \dots           & \sigma ^2 _{mm}
+\end{matrix}
+\\
+\end{matrix}
+\right)
+\end{gather*}
+Wykorzystanie iloczynu Kroneckera w 3MNK
+\begin{gather*}
+\begin{bmatrix}
+	a_{11} & a_{12} \\
+	a_{21} & a_{22}
+\end{bmatrix}
+\otimes B=
+\begin{bmatrix}
+	a_{11}B & a_{12}B \\
+	a_{21}B & a_{22}B
+\end{bmatrix}
+\end{gather*}
+Macierz wariancji-kowariancji składników reszt z 2MNK
+\begin{gather*}
+\begin{bmatrix}
+	\sigma ^2 _{11} & \sigma ^2 _{12} & \dots  & \sigma ^2 _{1m} \\
+	\sigma ^2 _{21} & \sigma ^2 _{22} & \dots  & \sigma ^2 _{2m} \\
+	\vdots          & \vdots          & \ddots & \vdots          \\
+	\sigma ^2 _{m1} & \sigma ^2 _{m2} & \dots  & \sigma ^2 _{mm}
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+	1      & 0      & \dots  & 0      \\
+	0      & 1      & \dots  & 0      \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0      & 0      & \dots  & 1
+\end{bmatrix}_{T\times T}=\Sigma \otimes I_T
+\end{gather*}
+W praktyce korzystamy z 2MNK i otrzymujemy wektor wartości teoretycznych i reszt dla każdego z równań osobno
+\begin{gather*}
+\forall_{j=1,\dots,m}\hat Y_j\hat \varepsilon_j
+\end{gather*}
+Obliczamy kowariancje między resztami losowymi poszczególnych równań
+\begin{gather*}
+\hat \sigma_{ij}=
+\frac{\hat \varepsilon_i^T\hat \varepsilon_j}{T}
+\end{gather*}
+\begin{gather*}
+\hat \Sigma=
+\begin{bmatrix}
+	\hat \sigma ^2 _{11} & \hat \sigma ^2 _{12} & \dots  & \hat \sigma ^2 _{1m} \\
+	\hat \sigma ^2 _{21} & \hat \sigma ^2 _{22} & \dots  & \hat \sigma ^2 _{2m} \\
+	\vdots               & \vdots               & \ddots & \vdots               \\
+	\hat \sigma ^2 _{m1} & \hat \sigma ^2 _{m2} & \dots  & \hat \sigma ^2 _{mm}
+\end{bmatrix}
+\end{gather*}
+Jeżeli znamy macierz wariancji-koawriancji całego wektora składników losowych po oszacowaniu $ \hat \Sigma $, to możemy zastosować UMNK w odniesieniu do modelu $ yZF+\varepsilon,\varepsilon\sim(o,\Omega) $
+\begin{gather*}
+\tilde{F}^{UMNK}=
+\left(Z^T\Omega^{-1}Z\right)^{-1}
+Z^T\Omega^{-1}y
+\end{gather*}
+Przy jednoczesnym zastosowaniu 2MNK zastępujemy w powyższym wzorze $ Z $ wartościami teoretycznymi z kroku 1.
+\begin{gather*}
+\hat F^{UMNK}=
+\left(\hat Z^T\Omega^{-1}\hat Z\right)^{-1}
+\hat Z^T\Omega^{-1}y
+\end{gather*}
+Skoro $ \hat \Omega=\hat \Sigma\otimes I_T $ oraz $ \hat Z=\left\{I_m\otimes\left[X\left(X^TX\right)^{-1}X^T\right]\right\}Z $, to
+\begin{gather*}
+\tilde{F}^{UMNK}
+=\\=
+\left[Z^T\left\{I_m\otimes\left[X\left(X^TX\right)^{-1}X^T\right]\right\}
+\left(\hat \Sigma\otimes I_T\right)^{-1}
+\left\{I_m\otimes\left[X\left(X^TX\right)^{-1}X^T\right]\right\}Z\right]^{-1}
+\cdot\\\cdot
+Z^T\left\{I_m\otimes\left[X\left(X^TX\right)^{-1}X^T\right]\right\}^T
+\left(\hat \Sigma\otimes I_T\right)^{-1}y
+\end{gather*}
+Z własności iloczynu Kroneckera
+\begin{gather*}
+\tilde{F}^{UMNK}
+=\\=
+\left[^ZT\left\{\hat \Sigma^{-1}\otimes\left[X\left(X^TX\right)^{-1}X^T\right]\right\}Z\right]^{-1}
+Z^T
+\left\{\hat \Sigma^{-1}\otimes\left[X\left(X^TX\right)^{-1}X^T\right]\right\}y
+\end{gather*}
+\subsection{Własności estymatora 3MNK}
+\begin{enumerate}
+\item Jest zgodny
+\item Jest asymptotycznie najlepszy w pewnej klasie estymatorów zmiennych instrumentalnych (do której należy 2MNK), więc jest bardziej efektywny od 2MNK.
+\item Jeżeli założymy normalność $ \varepsilon $, estymator jest asymptotycznie  równoważny estymatorowi MNK z pełną informacją (przedstawionej dalej): 3MNK ma ten sam rozkład asymptotyczny, ale nie oznacza to numerycznej równoważności oszacowań w skończonej próbie.
+\end{enumerate}
+\subsection{Szczególne przypadki 3MNK}
+\begin{itemize}
+\item W sytuacji, gdy wiem, \textit{a priori}, że $ \Sigma $ jest macierzą diagonalną, czyli równoczesne kowariancje składników losowych są zerowe, metoda 3MNK oczywiście nie poprawia efektywności. W takim przypadku 3MNK sprowadza się do 2MNK. Taki sąd \textit{a priori} jest jednak dość mocny i w praktyce zakładamy, raczej niezerowe równoczesne kowariancje.
+\item Kiedy wszystkie równania są jednoznacznie identyfikowalne, 3MNK sprowadza się do 2MNK.
+\end{itemize}
+\section{Estymator metody największej wiarygodności z pełną informacją (MNWPO,FIML)}
+Układ równań w postaci strukturalnej $ Ay+BX=\varepsilon $. Składnik losowy postaci zredukowanej ma macierz wariancji-kowariancji $ \hat \Sigma $. Jeżeli poszczególne wektory składnika losowego z różnych okresów (i) są niezależne i (ii) mają wielowymiarowy rozkład normalny, to ich łączna funkcja gęstości
+\begin{gather*}
+L_\varepsilon=\left(2\pi \right)^{-\frac{mT}{2}}\left|\hat \Sigma \otimes I_T\right|^{-\frac{1}{2}}\exp \left(-\tfrac{1}{2}\varepsilon^T\left(\hat\Sigma\otimes I_T\right)^{-1}\varepsilon\right)
+\end{gather*}
+Funkcja gęstości obserwacji i składnika losowego zależą od siebie $ L_y=L_\varepsilon\cdot \left|\det A\right| $
+\begin{gather*}
+\left(2\pi \right)^{-\frac{mT}{2}}\left|\hat \Sigma \otimes I_T\right|^{-\frac{1}{2}}
+\left|\det A\right|
+\exp\left(-\tfrac{1}{2}\left(y-\tilde{Z}\tilde{F}\right)^T\left(\hat \Sigma\otimes I_T\right)^{-1}\left(y-\tilde{Z}\tilde{F}\right)\right)
+\end{gather*}
+Po zlogarytmowaniu
+\begin{gather*}
+L_y=-\tfrac{mT}{2}\ln (2\pi)-\tfrac{T}{2}\ln \left|\Sigma\right|+T\cdot\ln\left|\det A\right|
+-\\-
+\frac{1}{2}
+\left(\left(y-\tilde{Z}\tilde{F}\right)^T\left(\hat \Sigma\otimes I_T\right)^{-1}\left(y-\tilde{Z}\tilde{F}\right)\right)
+\end{gather*}
+Oszacowanie FIML otrzymamy maksymalizując powyższe wyrażenie ze względu na niezerowe wartości parametrów modelu.
+\subsection{Estymacja parametrów modelu liniowego estymatorem uogólnionym Aitkena}
+W sytuacji, w której niesferyczność składników zakłócających, przejawiająca się zmiennością wariancji, bądź kowariancji w czasie składników zakłócających, nie jest wynikiem błędów konstrukcji modelu estymator KMNK nie jest efektywny.
+Zdefiniujmy strukturę stochastyczną modelu, w którym składniki zakłócające nie są sferyczne
+\begin{gather*}
+\mathbb E \varepsilon=0\\
+\mathbb E \varepsilon\varepsilon'=\sigma^2_\varepsilon\Omega,
+\end{gather*}
+gdzie $ \Omega $ jest $ T\times T $ wymiarową macierzą, określoną dodatnio
+\begin{gather*}
+\mathbb E X'\varepsilon=0
+\end{gather*}
+Jeżeli składniki zakłócające są nieskorelowane w czasie, ale mają zmienne w czasie wariancje, wtedy macierz $ \Omega $ ma postać
+\begin{gather*}
+\Omega=\begin{bmatrix}
+	\omega _{11} & 0            & \ldots & 0            \\
+	0            & \omega _{22} & \ldots & 0            \\
+	\vdots       & \vdots       & \ddots & \vdots       \\
+	0            & 0            & \ldots & \omega _{TT}
+\end{bmatrix}
+\end{gather*}
+gdzie $ \sigma^2_\varepsilon\omega_{tt} $ jest wariancją jednoczesnych składników zakłócających.\\
+Jeśli składniki zakłócające maja stałe wariancje, ale są skorelowane w czasie, wtedy macierz $ \Omega $ może być zapisana następująco
+\begin{gather*}
+\Omega=\begin{bmatrix}
+	1            & \omega _{12} & \ldots & \omega _{1T} \\
+	\omega _{21} & 1            & \ldots & \omega _{2T} \\
+	\vdots       & \vdots       & \ddots & \vdots       \\
+	\omega _{T1} & \omega _{T2} & \ldots & 1
+\end{bmatrix}
+\end{gather*}
+gdzie $ \sigma^2_\varepsilon\omega_{ij} $ jest kowariancją niejednoczesnych składników zakłócających modelu.\\
+W przypadku, gdy występuje zarówno skorelowanie w czasie, jak również zmienność wariancji, wtedy
+\begin{gather*}
+\Omega=\begin{bmatrix}
+	\omega _{11} & \omega _{12} & \ldots & \omega _{1T} \\
+	\omega _{21} & \omega _{22} & \ldots & \omega _{2T} \\
+	\vdots       & \vdots       & \ddots & \vdots       \\
+	\omega _{T1} & \omega _{T2} & \ldots & \omega _{TT}
+\end{bmatrix}
+\end{gather*}
+
+Rozważmy estymator parametrów strukturalnych $ \hat{\beta} $ modelu $ y=X\beta+\varepsilon $, w którym składniki zakłócające są niesferyczne i który minimalizuje uogólnioną sumę kwadratów reszt
+\begin{gather*}
+\tilde S=\tilde \varepsilon'\Omega^{-1}\tilde \varepsilon
+\end{gather*}
+gdzie $ \tilde \varepsilon=y-X\tilde \beta $ jest wektorem reszt. Rozwijając otrzymujemy
+\begin{gather*}
+\tilde S=y'\Omega^{-1}y-2\tilde \beta'X'\Omega^{-1}y+\tilde \beta'X'\Omega^{-1}X\tilde \beta.
+\end{gather*}
+Szukać będziemy takiego $ \tilde \beta $, dla którego zachodzi
+\begin{gather*}
+\tilde S\underset{\tilde \beta}{\to} \min
+\end{gather*}
+Obliczamy wektor pochodnych cząstkowych $ \tilde S $ względem $ \tilde \beta $ i przyrównujemy go od zera. Otrzymamy w ten sposób
+\begin{gather*}
+\frac{\partial \tilde S}{\partial \tilde \beta}=-2X'\Omega^{-1}y+2X'\Omega^{-1}X\tilde \beta =0
+\end{gather*}
+W konsekwencji mozemy zapisać tzw. uogólniony układ równań normalnych
+\begin{gather*}
+X'\Omega^{-1}X\tilde \beta=X'\Omega^{-1}y
+\end{gather*}
+którego rozwiązaniem jest, jeśli $ X $ jest macierzą o pełnym rzędzie kolumnowym, tak, że $ \left|X'\Omega^{-1}X\right|>0 $, estymator uogólnionej metody najmniejszych kwadratów, zwany estymatorem Aitkena i mającym postać
+\begin{gather*}
+\tilde \beta=\left(X'\Omega X\right)^{-1}X'\Omega^{-1}y
+\end{gather*}
+Ponieważ macierz drugich pochodnych $ \tilde S $ względem $ \tilde \beta  $, tj.
+\begin{gather*}
+\frac{\partial ^2\tilde S}{\partial \tilde \beta \partial \beta'}=2X'\Omega^{-1}X
+\end{gather*}
+jest macierzą określoną dodatnio, zatem estymator Aitkena rzeczywiście minimalizuje uogólnioną sumę kwadratów reszt.
+
+Estymator $ \tilde \beta  $ należy do klasy estymatorów liniowych, który można zapisać jako
+\begin{gather*}
+\tilde \beta=\tilde C'y
+\end{gather*}
+gdzie $ \tilde C'=\left(X'\Omega X\right)^{-1}X'\Omega^{-1} $ jest macierzą $ (K+1)\times T $ wymiarową.
+Jeśli elementy macierzy $ X $ są nielosowe lub losowe, ale nieskorelowane ze składnikami zakłócającymi modelu, estymator Aitkena jest nieobciążony. Możemy zapisać, że
+\begin{gather*}
+\tilde \beta=\beta+\tilde C'\varepsilon
+\end{gather*}
+dlatego, że spełniony jest warunek konieczny nieobciążoności, tj.
+\begin{gather*}
+\tilde C'X=I_{K+1}
+\end{gather*}
+Zatem możemy zapisać, że
+\begin{gather*}
+\mathbb E \tilde \beta=\beta 
+\end{gather*}
+Można udowodnić, zakładają nielosowość macierzy $ X $, że macierz wariancji-kowariancji błędów estymacji w tym przypadku jest równa
+\begin{gather*}
+\Sigma^2_{\tilde {\beta }}=
+\mathbb E \left(\tilde \beta-\beta\right)\left(\tilde \beta-\beta\right)'=
+\mathbb E \tilde C'\varepsilon\left(\tilde C'\varepsilon\right)'=
+\tilde C'\sigma^2_\varepsilon\Omega\tilde C=
+\sigma^2_\varepsilon\tilde C'\Omega\tilde C
+\end{gather*}
+Znając postać macierzy $ \tilde C' $ możemy wykazać, że
+\begin{gather*}
+\Sigma_{\tilde \beta}=\sigma^2_\varepsilon \left(X'\Omega^{-1}X\right)^{-1}
+\end{gather*}
+Estymator Aitkena jest najlepszym liniowym, nieobciążonym estymatorem w klasie liniowych estymatorów dla modelu z niesferycznymi składnikami zakłócającymi. Zatem dowolny estymator nieobciążony typu
+\begin{gather*}
+\tilde \beta_D=\tilde C'_Dy
+\end{gather*}
+dla którego zachodzi $ \tilde C_DX=I_{K+1} $, charakteryzuje się macierzą wariancji-kowariancji
+\begin{gather*}
+\Sigma^2_{\tilde {\beta_D }}=
+\mathbb E \left(\tilde \beta_D-\beta\right)\left(\tilde \beta_D-\beta\right)'=
+\sigma^2_\varepsilon\tilde C_D'\Omega\tilde C_D
+\end{gather*}
+której elementy są nie mniejsze niż macierz wariancji-kowariancji estymatora Aitkena.
+Jeśli macierz $ \Omega $ jest określona dodatnio, wtedy istnieje $ T\times T $ wymiarowa macierz $ P $ spełniająca następujące własności
+\begin{gather*}
+P'P=\Omega^{-1}\\
+P\Omega\Omega'=I_T
+\end{gather*}
+gdzie $ I_T $ jest macierzą jednostkową stopnia $ T $.
+Macierz $ P $ nazywać będziemy macierzą transformacji. Macierz ta umożliwia ukazanie estymatora Aitkena jako specyficznego estymatora MNK, dla transformowanych obserwacji zmiennych modelu. Niech pierwotny model
+\begin{gather*}
+y=X\beta+\varepsilon
+\end{gather*}
+zostanie przemnożony przez macierz $ P $ tak, że
+\begin{gather*}
+Py=PX\beta+P\varepsilon
+\end{gather*}
+Ponieważ macierz $ P $ ma nielosowe elementy, zatem jest prawdą, że
+\begin{align*}
+&\mathbb E P\varepsilon=0\\
+&\mathbb E P\varepsilon\left(P\varepsilon\right)'-\sigma_\varepsilon^2 P\Omega\Omega'=\sigma_\varepsilon^2 I_T
+\end{align*}
+Widzimy zatem, że składniki zakłócające modelu transformowanego maja sferyczne składniki zakłócające i parametry tego modelu można szacować metodą najmniejszych kwadratów. Niech
+\begin{gather*}
+Y^*=X^*\beta+\varepsilon^*
+\end{gather*}
+gdzie
+\begin{align*}
+&Y^*=Py\\
+&X^*=PX\\
+&\varepsilon^*=P\varepsilon
+\end{align*}
+Stosując MNK modelu, w którym pierwotne obserwacje zostały zważone elementami macierzy $ \Omega $ jest równoważne estymacji uogólnioną metodą najmniejszych kwadratów.
+\subsection{Przypadek zmienności wariancji}
+Dla przypadku składników zakłócających o zmiennych wariancjach z macierzą $ \Omega $ o postaci
+\begin{gather*}
+\Omega=
+\begin{bmatrix}
+	\omega _{11} & 0             & \ldots & 0             \\
+	0             & \omega _{22} & \ldots & 0             \\
+	\vdots        & \vdots        & \ddots & \vdots        \\
+	0             & 0             & \ldots & \omega _{TT}
+\end{bmatrix}
+\end{gather*}
+można wykazać, że
+\begin{align*}
+\Omega^{-1}=
+\begin{bmatrix}
+	\frac{1}{\omega _{11}} & 0                       & \ldots & 0                       \\
+	0                       & \frac{1}{\omega _{22}} & \ldots & 0                       \\
+	\vdots                  & \vdots                  & \ddots & \vdots                  \\
+	0                       & 0                       & \ldots & \frac{1}{\omega _{TT}}
+\end{bmatrix}
+&&
+P=
+\begin{bmatrix}
+	\frac{1}{\sqrt{\omega _{11}}} & 0                       & \ldots & 0                       \\
+	0                       & \frac{1}{\sqrt{\omega _{22}}} & \ldots & 0                       \\
+	\vdots                  & \vdots                  & \ddots & \vdots                  \\
+	0                       & 0                       & \ldots & \frac{1}{\sqrt{\omega _{TT}}}
+\end{bmatrix}
+\end{align*}
+Macierze te spełniają równania
+\begin{align*}
+P'P=\Omega^{-1}
+&&
+P\Omega\Omega'=I_T
+\end{align*}
+\subsection{Przypadek autokorelacji}
+W przypadku, gdy składniki zakłócające są skorelowane w czasie i gdy skorelowanie nie jest wynikiem niepoprawnej specyfikacji modelu, staramy się wykorzystać estymator Aitkena w celu eliminacji skutków jej występowania.
+W takim przypadku elementy macierzy $ \Omega $ i $ P $ są funkcjami parametrów występujących w procesie generującym skorelowane w czasie składniki losowe. Rozważmy przykład, w którym składniki zakłócające w liniowym modelu.
+\begin{gather*}
+y_t\beta_{0}+\beta_{1}x_{1t}+\dots+\beta_kx_{tk}+\varepsilon_t
+\end{gather*}
+są generowane przez stacjonarny proces autoregresyjny rzędu pierwszego.
+\begin{gather*}
+\varepsilon_t=\rho _1\varepsilon_{t-1}+\eta_t
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ |\rho _1|<1 $ jest współczynnikiem autokorelacji rzędu pierwszego
+\item $ \eta_t $ jest czysto losowym (sferycznym) składnikiem zakłócającym, spełniającym następujące warunki
+\begin{itemize}
+\item $ \mathbb E \eta_t=0 $
+\item $ \mathbb E \eta^2_t=\sigma_\eta^2 $
+\item $ \mathbb E \eta_t\eta_s=0 $ dla $ t\neq s $
+\end{itemize}
+\end{itemize}
+Rozważmy jakie parametry rozkładu charakteryzować będą kolejne składniki zakłócające $ \varepsilon_t $, generowane przez model autoregresyjny. Przedstawiamy obecnie składnik zakłócający jako funkcję wszystkich przeszłych i bieżących zakłóceń $ \eta_t $. Drogą kolejnych podstawień otrzymamy
+\begin{align*}
+\varepsilon_t =&\rho _1\underbrace{\left(\rho _1\varepsilon_{t-2}+\eta_{t-1}\right)}_{\varepsilon_{t-1}}+\eta_t
+=
+\rho _1^2\varepsilon_{t-2}+\rho _1\eta_{t-1}+\eta_t \\
+\varepsilon_t =&\rho _1^2\underbrace{\left(\rho _1\varepsilon_{t-3}+\eta_{t-2}\right)}_{\varepsilon_{t-2}}+\rho _1\eta_{t-1}+\eta_t
+=
+\rho _1^3\varepsilon_{t-3}+\rho _1^2\eta_{t-2}+\rho _1\eta_{t-1}+\eta_t
+\\
+& \vdots\\
+\varepsilon_t =&\rho _1^{s+1}\varepsilon_{t-s-1}+\rho _1^{s}\eta_{t-s}+\dots +\rho _1^2\eta_{t-2}+\rho _1\eta_{t-1}+\eta_t
+\end{align*}
+Jeśli proces generujący składniki zakłócające jest stacjonarny, tj $ |\rho _1|<1 $ wtedy
+\begin{gather*}
+\rho _1^{s+1}\varepsilon_{t-s-1}\to0 
+\end{gather*}
+i w postaci końcowej
+\begin{gather*}
+\varepsilon_t =\rho _1^{s}\eta_{t-s}+\dots +\rho _1^2\eta_{t-2}+\rho _1\eta_{t-1}+\eta_t
+\end{gather*}
+Składnik losowy $ \varepsilon_t $ jest przedstawiony jako ważona funkcja wszystkich (przyszłych i bieżącego) sferycznych składników $ \eta $. Ponieważ parametry rozkładu $ \eta_t $ są zadane, zatem można wyznaczyć parametry rozkładu $ \varepsilon_t $. W przypadku wariancji możemy zapisać, że
+\begin{gather*}
+\mathbb E \varepsilon_t^2=
+\mathbb E \bigl(
+\rho _1^{s}\eta_{t-s}+\dots +\rho _1^2\eta_{t-2}+\rho _1\eta_{t-1}+\eta_t
+\bigr)^2
+=\\=
+\rho_1^{2s}\mathbb E \eta_{t-s}^2+\dots
++
+\rho_1^{4}\mathbb E \eta_{t-2}^2+
+\rho_1^{2}\mathbb E \eta_{t-1}^2+
+\mathbb E \eta_t^2
+\end{gather*}
+gdzie wszystkie kowariancje niejednoczesnych składników zakłócających $ \eta_t,\eta_s $, dla $ t\neq s $ przyrównano do zera. W konsekwencji można zapisać, że
+\begin{gather*}
+\mathbb E \varepsilon_t^2=
+\eta _1^{2s} \sigma_\eta^2+\dots +\eta _1^4 \sigma_\eta^2+\eta _1^2 \sigma_\eta^2+\sigma_\eta^2
+=
+\sigma_\eta^2
+\left(\eta _1^{2s} +\dots +\eta _1^4 +\eta _1^2 +1\right)
+\end{gather*}
+ponieważ suma elementów w nawiasie stanowi szereg geometryczny zbieżny o ilorazie $ \rho_1^2 $, zatem jego suma jest równa $ \frac{1}{1-\rho_1^2} $. Ostatecznie więc mamy:
+\begin{gather*}
+>E\varepsilon_t^2=\sigma_\eta^2 \cdot \frac{1}{1-\rho_1^2}
+=
+\sigma_\varepsilon^2
+\end{gather*}
+Z powyższego zapisu widać, że skorelowane w czasie składniki zakłócające mają stałe w czasie wariancje. Aby obliczyć kowariancje przeprowadzimy niestępującą procedurę kolejnych podstawień
+\begin{align*}
+\varepsilon_{t+1}=&
+\rho_1\varepsilon_t+\eta_{t+1}
+\\
+\varepsilon_{t+2}=&
+\rho_1
+\underbrace{\left(
+\rho_1\varepsilon_t+\eta_{t+1}
+\right)}_{\varepsilon_{t+1}}
++\eta_{t+2}
+=
+\rho_1^2\varepsilon_t+\rho_1\eta_{t+1}+\eta_{t+2}
+\\
+\varepsilon_{t+3}=&
+\rho_1
+\underbrace{\left(
+\rho_1^2\varepsilon_t+\rho_1\eta_{t+1}+\eta_{t+2}
+\right)}_{\varepsilon_{t+2}}
++\eta_{t+3}
+=
+\rho_1^3\varepsilon_t+\rho_1^2\eta_{t+1}+\rho_1\eta_{t+2}+\eta_{t+3}
+\\
+&\vdots\\
+\varepsilon_{t+\tau}=&
+\rho_1^\tau \varepsilon_t+\rho_1^{\tau-1}\eta_{t+1}+\dots+\rho_1^2\eta_{t+\tau-2}+\rho_1\eta_{t+\tau-1}
+\\
+\end{align*}
+Mnożąc obie strony ostatniej równości przez $ \varepsilon_t $ i obliczając wartość oczekiwaną otrzymamy
+\begin{gather*}
+\mathbb E \varepsilon_t\varepsilon_{t+\tau}=
+\rho_1^\tau \mathbb E \varepsilon_t^2
++
+\rho_1^{\tau -1}\mathbb E \varepsilon_t\eta_{t+1}
++\dots+
+\rho_1^2\mathbb E \varepsilon_t\eta_{t+\tau-1}
++
+\mathbb E \varepsilon_t\eta_{t+\tau}
+=
+\rho_1^\tau \sigma_\varepsilon^2
+\end{gather*}
+Ponieważ $ \varepsilon_t $ zależny tylko od opóźnionych i bieżących składników zakłócających $ \eta_{t-i} $ oraz $ \eta_t $, nie zależy natomiast od przyszłych składników $ \eta_{t+j} $. Jeśli składniki zakłócające generowane są przez proces autoregresyjny rzędu pierwszego, to prawdziwe są następujące własności:
+\begin{align*}
+&\mathbb E \varepsilon_t>0\\
+&\mathbb E \varepsilon_t^2=\sigma_\varepsilon^2=\frac{\sigma_\eta^2}{1-\rho_1^2}\\
+&\mathbb E\varepsilon_t\varepsilon_{t+\tau}=\rho_1^\tau\sigma_\varepsilon^2 
+\end{align*}
+Możemy pokazać, że $ T\times T $ macierz wariancji-kowariancji składników zakłócających $ \sigma_\varepsilon^2\Omega $ ma elementy będące funkcjami współczynnika $ \rho_1 $. Możemy zapisać, że
+\begin{align*}
+\Omega=
+&\begin{bmatrix}
+	1         & \rho _1   & \rho _1^2 & \rho _1^3 & \ldots & \rho _1^5 \\
+	\rho _1   & 1         & \rho _1   & \rho _1^2 & \ldots & \rho _1^4 \\
+	\rho _1^2 & \rho _1   & 1         & \rho _1   & \ldots & \rho _1^3 \\
+	\rho _1^3 & \rho _1^2 & \rho _1   & 1         & \ldots & \rho _1^2 \\
+	\vdots    & \vdots    & \vdots    & \vdots    & \ddots & \vdots    \\
+	\rho _1^5 & \rho _1^4 & \rho _1^3 & \rho _1^2 & \ldots & 1
+\end{bmatrix}
+\\
+\Omega^{-1}=
+\frac{1}{1-\rho_1^2}
+&\begin{bmatrix}
+	1        & -\rho _1    & 0           & 0           & \ldots & 0           & 0        \\
+	-\rho _1 & 1+\rho _1^2 & -\rho _1    & 0           & \ldots & 0           & 0        \\
+	0        & -\rho _1    & 1+\rho _1^2 & -\rho _1    & \ldots & 0           & 0        \\
+	0        & 0           & -\rho _1    & 1+\rho _1^2 & \ldots & 0           & 0        \\
+	\vdots   & \vdots      & \vdots      & \vdots      & \ddots & \vdots      & \vdots   \\
+	0        & 0           & 0           & 0           & \ldots & 1+\rho _1^2 & -\rho _1 \\
+	0        & 0           & 0           & 0           & \ldots & -\rho _1    & 1
+\end{bmatrix}
+\end{align*}
+Macierz transformacji $ P $ może być przedstawiona w postaci
+\begin{gather*}
+P=
+\frac{1}{\sqrt{1-\rho_1^2}}
+\begin{bmatrix}
+	\sqrt{1-\rho_1^2} & 0        & 0      & \ldots & 0        & 0      \\
+	-\rho _1          & 1        & 0      & \ldots & 0        & 0      \\
+	0                 & -\rho _1 & 1      & \ldots & 0        & 0      \\
+	\vdots            & \vdots   & \vdots & \ddots & \vdots   & \vdots \\
+	0                 & 0        & 0      & \ldots & 1        & 0      \\
+	0                 & 0        & 0      & \ldots & -\rho _1 & 1
+\end{bmatrix}
+\end{gather*}
+Rozważmy równanie $ Py=PX\beta +P\varepsilon $. Ponieważ obie strony tej równości możemy podzielić przez stałą $ \frac{1}{\sqrt{1-\rho_1^2}} $, zatem transformowanymi obserwacjami zmiennej endogenicznej, zmiennych objaśniających oraz składników zakłócających są
+\begin{gather*}
+\sqrt{1-\rho_1^2}Py=
+\begin{bmatrix}
+	\sqrt{1-\rho_1^2} & 0        & 0      & \ldots & 0      \\
+	-\rho _1          & 1        & 0      & \ldots & 0      \\
+	0                 & -\rho _1 & 1      & \ldots & 0      \\
+	\vdots            & \vdots   & \vdots & \ddots & \vdots \\
+	0                 & 0        & 0      & \ldots & 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+	y_1    \\
+	y_2    \\
+	y_3    \\
+	\vdots \\
+	y_T
+\end{bmatrix}
+=
+\begin{bmatrix}
+	y_1 \sqrt{1-\rho _1^2} \\
+	y_2-\rho _1 y_1        \\
+	y_3-\rho _1 y_2        \\
+	\vdots                 \\
+	y_T-\rho _1 y_{T-1}
+\end{bmatrix}
+\end{gather*}
+\begin{gather*}
+\sqrt{1-\rho_1^2}Px=
+\begin{bmatrix}
+	\sqrt{1-\rho_1^2} & 0        & 0      & \ldots & 0      \\
+	-\rho _1          & 1        & 0      & \ldots & 0      \\
+	0                 & -\rho _1 & 1      & \ldots & 0      \\
+	\vdots            & \vdots   & \vdots & \ddots & \vdots \\
+	0                 & 0        & 0      & \ldots & 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+	  1    & x_{11} & x_{12} & x_{14} & \ldots & x_{1T} \\
+	  1    & x_{21} & x_{22} & x_{24} & \ldots & x_{2T} \\
+	  1    & x_{31} & x_{32} & x_{34} & \ldots & x_{3T} \\
+	\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	  1    & x_{T1} & x_{T2} & x_{T4} & \ldots & x_{TT}
+\end{bmatrix}
+=\\=
+\begin{bmatrix}
+	\sqrt{1-\rho _1^2} & \sqrt{1-\rho _1^2} x_{11} & \sqrt{1-\rho _1^2} x_{12} & \ldots & \sqrt{1-\rho _1^2} x_{1T} \\
+	1-\rho _1          & x_{21}-\rho _1 x_{11}     & x_{22}-\rho _1 x_{12}     & \ldots & x_{2T}-\rho _1 x_{1T}     \\
+	1-\rho _1          & x_{31}-\rho _1 x_{21}     & x_{32}-\rho _1 x_{22}     & \ldots & x_{3T}-\rho _1 x_{2T}     \\
+	\vdots             & \vdots                    & \vdots                    & \ddots & \vdots                    \\
+	1-\rho _1          & x_{T1}-\rho _1 x_{(T-1)1} & x_{T2}-\rho _1 x_{(T-1)2} & \ldots & x_{T}-\rho _1 x_{(T-1)T}
+\end{bmatrix}
+\end{gather*}
+Zatem typowe przekształcenia auteregresyjne maja postać
+\begin{align*}
+	 & \text{dla}t=1         &  & y_1^*=y_1\sqrt{1-\rho_1^2} &  & x_{ti}^*=x_{ti}\sqrt{1-\rho_1^2} &  & i=1,\dots,k \\
+	 & \text{dla}t=2,\dots,T &  & y_t^*=y_t-\rho_1y_{t-1}    &  & x_{ti}^*=x_{ti}-\rho_1 x_{t-1,i} &  & i=1,\dots,k
+\end{align*}
+Jeśli nie przeprowadzone jest autoregresyjne przekształcenie pierwszych obserwacji zmiennych, wtedy zamiast macierzy $ P $ występuje macierz $ Q $ o wymiarach $ )T+1=<times T $
+\begin{gather*}
+Q=
+\begin{bmatrix}
+ -\rho _1 & 1 & 0 & \ldots  & 0 \\
+ 0 & -\rho _1 & 1 & \ldots  & 0 \\
+ 0 & 0 & -\rho _1 & \ldots  & 0 \\
+ \vdots  & \vdots  & \vdots  & \ddots & \vdots  \\
+ 0 & 0 & 0 & \ldots  & -\rho _1 \\
+\end{bmatrix}
+\end{gather*}
+Macierz ta nie spełnia warunków takich jak $ P $. W ogólnym przypadku zachodzi bowiem, że $ Q'Q\neq P'P=\Omega^{-1} $. Różnica występuje w górnym lewym elemencie obu macierzy.
+
+Nieznany współczynnik $ \rho_1 $ estymujemy następująco
+\begin{gather*}
+\hat{\rho_1}=\frac{\sum_{t=2}^{T}\varepsilon_t\varepsilon_{t-1}}{\sum_{t=1}^{T}\hat{\varepsilon}^2_t}
+\end{gather*}
+Utwórzmy macierz $ \hat \Omega $ zgodnie z
+\begin{gather*}
+\hat \Omega=\begin{bmatrix}
+	1                 & \tilde{\rho }_1   & \tilde{\rho }_1^2 & \ldots & \tilde{\rho }_1^{T-1} \\
+	\tilde{\rho }_1   & 1                 & \tilde{\rho }_1   & \ldots & \tilde{\rho }_1^{T-2} \\
+	\tilde{\rho }_1^2 & \tilde{\rho }_1   & 1                 & \ldots & \tilde{\rho }_1^{T-3} \\
+	\vdots            & \vdots            & \vdots            & \ddots & \vdots            \\
+	\tilde{\rho }_1^{T-1} & \tilde{\rho }_1^{T-2} & \tilde{\rho }_1^{T-3} & \ldots & 1
+\end{bmatrix}
+\end{gather*}
+Wykorzystując powyższą macierz zdefiniujemy dwukrotnie estymator Aitkena w następujący sposób
+\begin{gather*}
+\hat{ \tilde\beta}=\left(X'\hat \Omega^{-1}X\right)^{-1}X'\hat \Omega^{-1}y
+\end{gather*}
+Estymator ten jest przybliżeniem optymalnego estymatora Aitkena za znaną macierzą wariancji-kowariancji zakłóceń modelu. Jego macierz wariancji-kowariancji jest przybliżeniem macierzy wariancji-kowariancji estymatora Aitkena. Można tę macierz zapisać
+\begin{gather*}
+\Sigma^2_{\hat{\tilde{\beta}}}\approx\left(X'\hat \Omega^{-1}X\right)^{-1}
+\end{gather*}
+\subsection{Konsekwencje występowania niesferycznych składników losowych}
+Istotnym pytaniem jest jakie własności posiada estymator MNK, jeśli prawdziwym modelem generującym obserwacje zmiennej endogenicznej nie jest model klasyczny, lecz uogólniony. Aby to prześledzić rozważmy raz jeszcze estymator MNK zapisany w postaci
+\begin{gather*}
+\tilde{\beta}=\beta +\left(X'X\right)^{-1}X'\varepsilon
+\end{gather*}
+Niesferyczność składników losowych nie wpływa na nieobciążenie estymatora MNK, jeśli tylko zmienne objaśniające pozostają nieskorelowane ze składnikami losowymi modelu. Istotne konsekwencje związane są z szacowaniem wariancji składników losowych oraz z szacowaniem macierz wariancji-kowariancji błędów estymacji.
+Wariancja reszt oblicza na "klasycznie" jako suma kwadratów reszt podzielona przez liczbę stopni swobody nie jest już nieobciążonym estymatorem wariancji składników losowych. Zauważmy, że wariancja reszt KMNK jest zdefiniowana jako
+\begin{gather*}
+\tilde{\sigma}^2_\varepsilon=\frac{1}{T-K-1}\sum_{t=1}^{T}\hat{\varepsilon}^2_t=
+\frac{1}{T-K-1}\hat{\varepsilon}'\hat{\varepsilon}=
+\frac{1}{T-K-1}{\varepsilon}'M{\varepsilon}
+\end{gather*}
+gdzie
+\begin{gather*}
+M=I_T-X(X'X)^{-1}X'
+\end{gather*}
+jest macierzą indepotentną o wymiarach $ T\times T $, taką, że $ M=M' $ oraz $ MM=M $.\\
+Suma kwadratów reszt jest kwadratową formą wektora składników losowych. Obliczając jej wartość oczekiwaną, przy wykorzystaniu własności śladu macierzy otrzymujemy
+\begin{align*}
+&\mathbb E \hat{\varepsilon'}\hat{\varepsilon}
+=\\=&
+\mathbb E \varepsilon' M\varepsilon
+=\\=&
+\mathbb E  tr\left(\varepsilon'M\varepsilon\right)
+=\\=&
+\mathbb E  tr\left(M\varepsilon'\varepsilon\right)
+=\\=&
+tr\mathbb E  \left(M\varepsilon'\varepsilon\right)
+=\\=&
+trM\sigma^2_\varepsilon\Omega
+=\\=&
+\sigma^2_\varepsilon trM\Omega
+\end{align*}
+Aby wariancja reszt była nieobciążonym estymatorem wariancji składników losowych, wyrażenie powyższe powinno równać się
+\begin{gather*}
+\mathbb E \hat{\varepsilon}'\hat{\varepsilon}=\sigma^2_\varepsilon\left(T-K-1\right)
+\end{gather*}
+Jest to możliwe wtedy, gdy $ \Omega=I_T $. W takim przypadku, z uwagi na własności macierz $ M $ zachodzi
+\begin{align*}
+&trM
+=\\=&
+tr\left(I_T-X(X'X)^{-1}X'\right)
+=\\=&
+T-trX(X'X)^{-1}X'
+=\\=&
+T-tr(X'X)^{-1}X'X
+=\\=&
+T-trI_{K+1}
+=\\=&
+T-K-1
+\end{align*}
+Jeśli zatem $ \Omega\neq I_T $, wtedy $ \mathbb E \hat{\varepsilon}'\hat{\varepsilon}\neq\sigma^2_\varepsilon\left(T-K-1\right) $ i w konsekwencji
+\begin{gather*}
+\mathbb E \sigma^2_\varepsilon\neq
+\mathbb E \tfrac{\hat{\varepsilon}'\hat{\varepsilon}}{T-K-1}=\sigma^2_\varepsilon
+\end{gather*}
+zatem wariancja reszt jest w takim przypadku obciążonym estymatorem wariancji składników losowych. Jeszcze poważniejszy problem związany jest z macierzą wariancji-kowariancji błędów estymacji. Jest ona równa macierzy $ \Sigma^2_{\hat{\beta}}=\sigma^2_\varepsilon\left(X'X\right) $ tylko wtedy, gdy $ \Omega=I_T $. Jeśli powyższa równość nie zachodzi, wtedy macierz wariancji-kowariancji przyjmuje postać
+\begin{gather*}
+\Sigma^2_{\hat{\beta}}=
+\mathbb E \left(\hat{\beta}-\beta\right)\left(\hat{\beta}-\beta\right)'=
+\sigma_\varepsilon^2\left(X'X\right)^{-1}\left(X'\Omega X\right)^{-1}
+\end{gather*}
+Wykorzystując estymator macierzy wariancji-kowariancji, prawdziwy dla sferycznych składników losowych, tj. $ \hat\Sigma_{\hat{\beta}}=\hat{\sigma}_\varepsilon^2(X'X)^{-1} $, w sytuacji, gdy składniki te nie są sferyczne popełniamy błąd zarówno z tytułu niewłaściwej postaci macierzy wariancji-kowariancji, jak również z tytułu obciążonej estymacji wariancji składników losowych. Na dodatek nie potrafimy w ogólnym przypadku określić jakiego rodzaju obciążenie towarzyszy wykorzystaniu macierzy $ \hat\Sigma_{\hat{\beta}}=\hat{\sigma}_\varepsilon^2(X'X)^{-1} $ sytuacji niesferycznych składników zakłócających. Wykorzystanie tej macierzy prowadzi do wyznaczenia niepoprawnych średnich błędów ocen parametrów strukturalnych.
+Sugestia jest zatem następująca:\\
+budując model ekonometryczny mależy dążyć do wyeliminowania niesferycznych składników losowych (drogą respecyfikacji modelu) lub jeśli nie jest to możliwe, oszacować parametry modelu UMNK, tj. eliminować skutki występowania niesferycznych składników losowych.
+\section{Wybrane jednowymiarowe modele zmiennosci cen i stóp zwrotu}
+Analiza szeregów czasowych rynku finansowego o wysokiej częstotliwosci obejmuje
+\begin{itemize}
+\item cechy analizy krótkookresowej (szeregi z tzw. krótką pamięcią)
+\item podstawowy i uogólniony model grupowania wariancji ARCH
+\item testowanie efektu ARCH i uogólnionego GARCH
+\item niestandardowe modele ARCH (tzw. in mean, z symetrią, E-GARCH)
+\item estymację i wykorzystanie modeli klasy GARCH
+\end{itemize}
+\subsection{Cechy analizy krótkookresowej}
+Do cech procesów losowych (najczęściej procesów na rynkach finansowych) charakteryzują się wysoką częstotliwością zalicza się:
+\begin{itemize}
+\item naprzemienne występowanie okresów o zwiększonej fluktuacji i okresów niskiej zmienności zmiennej finansowe
+\item skupiania wariancji w kolejnych jednostkach czasu, tj. dodatniej korelacji w dziedzinie zmienności zmiennej będącej przedmiotem zainteresowania, co przejawia się w wysokiej wariancji zmiennej powodowanej wzrostem tej wariancji w okresie poprzedzającym i analogicznie spadkiem wariancji na skutek niskiej wariancji w okresie poprzedzającym.
+\end{itemize}
+\subsection{Podstawowy i uogólniony model ARCH}
+Rodzaje nieliniowych procesów stochastycznych.\\
+W nieliniowej analizie jdenowymiarowych szeregów czasowych poszukuje się funkcji $ f $ wiążącej deny profces z ciagiem niezależnych zmiennych losowych o jednakowym rozkładzie
+\begin{gather*}
+Y_t=f\left(\varepsilon_t,\varepsilon_{t-1},\varepsilon_{t-2},\dots\right )
+\end{gather*}
+gdzie $ \varepsilon_t $ jest zmienną losową o średniej zero i jednostkowej wariancji.
+Powyższa reprezentacja jest na tyle ogólna, że nie wiadomo jak dobierać postać funkcji $ f $. Najczęściej przyjmuje się, że nieliniowy proces ekonomiczny na postać
+\begin{gather*}
+Y_t=g\left(\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)+\varepsilon_th\left (\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)
+\end{gather*}
+Procesy $ Y_t $ wyrażone z nieliniową funkcją $ g $ nazywamy procesami nieliniowymi w warunkowej wariancji.
+
+Powyższa klasyfikacja ma sens, gdyż:
+\begin{enumerate}
+\item Warunkowa wartość oczekiwana $ Y_t $ możne być zapisana
+\begin{gather*}
+\mathbb E \left(Y_t\backslash\Omega_{t-1}\right)=g\left (\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)
+\end{gather*}
+funkcja $ g $ opisuje zmiany wartości średniej procesu $ Y_t $ warunkowo względem informacji z przeszłości (zbiór $ \Omega_{t-1} $ oznacza zbiór wszystkich informacji dostępnych do momentu $ t-1 $).
+\item Kwadrat funkcji $ h $ przedstawia zmiany warunkowej wariancji procesu $ Y_t $
+\begin{align*}
+&D^2\left(Y_t\backslash\Omega_{t-1}\right)
+=\\=&
+\mathbb E \left[Y_t-\mathbb E \left(Y_t\backslash\Omega_{t-1}\right)^2\backslash\Omega_{t-1}\right]
+=\\=&
+\mathbb E \left[\varepsilon_t^2 h^2\left (\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)\backslash\Omega_{t-1}\right]
+=\\=&
+h^2\left (\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)\mathbb E \left(\varepsilon_t^2 \right)
+=\\=&
+h^2\left (\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)
+\end{align*}
+\end{enumerate}
+Do najbardziej znanych modeli nieliniowych w warunkowej wartości średniej należą: procesy dwuliniowe, nieliniowe procesy autoregresji i średniej ruchomej, autoregresyjne modele progowe, przełącznikowe i wygładzonej przejścia, procesy autogresyjne o losowych współczynnikach. Znanymi procesami o zmiennej wariancji warunkowej są procesy ARCH/GARCH

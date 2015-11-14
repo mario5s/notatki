@@ -1,0 +1,103 @@
+\chapter{5 października 2015}
+Szereg funkcyjny $ \sum_{n=1}^{\infty }f_n(x) $ to ciag sum częściowych
+\begin{gather*}
+S(_n(x)=f_1(x)+\dots+f_n(x)\\
+s(x)=\lim\limits_{n\to\infty} s_n(x)
+=
+\lim\limits_{n\to\infty} \sum_{k=1}^{n}f_k(x)
+=
+\sum_{n=1}^{\infty }f_n(x)
+\end{gather*}
+
+\textbf{Wniosek}\\
+Jeżeli funkcje $ f_n:[a,b]\to \mathbb R  $ są nieujemne, ciągłe i szereg $ \sum f_n(x) $ jest zbieżny punktowo do funkcji ciągłej to $ f_n $ jest zbieżny jednostajnie
+
+\textsc{Kryterium Weierstrassa}\\
+$ f_n:A\to \mathbb R \; \sum f_n(x) $. Jeśli $ u_n:=\sup_{x\in A}\left|f_n(x)\right| $ i $ \sum u_n $ zbieżny, to $ \sum f-n(x) $ jest zbieżny bezwzględnie i jednostajnie na $ A $.
+
+\textsc{Warunek Cauchy'ego}\\
+\begin{gather*}
+\forall_{\varepsilon>0}\exists_{n_0}\forall_{n>k>n_0}
+\left|f_k(x)+\dots+f_n(x)\right|<\varepsilon
+\end{gather*}
+warunek konieczny i dostateczny na zbieżność jednostajną $ \sum f_n(x) $
+\begin{gather*}
+\left|f_k(x)+\dots+f_n(x)\right|
+\le
+\left|f_k(x)\right|+\dots+\left|f_n(x)\right|
+\le
+u_k+\dots+u_n<\varepsilon
+\end{gather*}
+
+\textsc{Warunek Cauchy'ego dal ciagu}\\
+$ a-n $ jest zbieżny wtedy i tylko wtedy, gdy
+\begin{gather*}
+\forall_{\varepsilon>0}\exists_{n_0}\forall_{n,k>n_0}\left|a_n-a_k\right|<\varepsilon
+\end{gather*}
+dla szeregu $ s_n=\sum_{k=1}^{n}a_k\\
+s_n-s_k=a_{k+1}+\dots+a_n $
+\begin{prz}
+\begin{align*}
+\sum_{n=0}^{\infty }\frac{x^n}{n!}&&\text{zbieżny jednostajnie na }&&[-\alpha,\alpha]\subset \mathbb R ,\;\alpha>0
+\end{align*}
+\begin{gather*}
+\frac{x^n}{n!}\le \frac{\alpha^n}{n!}
+\Rightarrow
+\sum_{n=0}^{\infty }\frac{x^n}{n!}
+\le
+\sum_{n=0}^{\infty }\frac{\alpha^n}{n!}\\
+\frac{a_{n+1}}{a_n}=\frac{\alpha}{n+1}\to 0\Rightarrow\text{ zbieżny}
+\end{gather*}
+\end{prz}
+\begin{prz}
+$ \sum_{n=1}^{\infty }e^{nx^2}n^2\,,x\in \mathbb R $\\
+$ \sum_{n=1}^{\infty }\frac{\sin nx}{\sqrt[3]{n^4+x^2}}\qquad\left|\frac{\sin nx}{\sqrt[3]{n^4+x^2}}\right|\le \frac{1}{\sqrt[3]{n^4}} $ - zbieżność jednostajna, bezwzględna na $ \mathbb R  $
+
+Przykłady szeregów zbieżnych, do których nie nadaje się kryterium Weierstrassa.
+\begin{itemize}
+	\item 
+	\begin{gather*}
+	\sum_{n=1}^{\infty }\frac{\sin nx}{n}
+	\text{ zbieżność jednostajna na }A\subset [0,2\pi]
+	\end{gather*}
+	\item \begin{gather*}
+	\sum_{n=1}^{\infty }f_n(x)\\
+	f_n(x)=
+	\left \{
+	\begin{array}{ll}
+		\frac{1}{x} & x\in[n,n+1) \\
+		0           & x\notin[n,n+1)
+	\end{array}
+	\right .\\
+	\sup_{x\ge 1}\left|f_n(x)\right|=\frac{1}{n}\\
+	\sum_{k=1}^{n}f_k(x)=\frac{1}{x}\mathbbm1_{[q,n+1)}=
+	\left \{
+	\begin{array}{ll}
+		\frac{1}{2} & x\in[1,n+1) \\
+		0           & x\ge n+1
+	\end{array}
+	\right .\\
+	\sup_{n\ge1}\left|s_n(x)-s(x)\right|=\sup_{x\ge1}
+	\left \{
+	\begin{array}{ll}
+	\frac{1}{2} & x\in[1,n+1) \\
+	0           & x\ge n+1
+	\end{array}
+	\right \}=\frac{1}{n+1}\to0	
+	\end{gather*}
+\end{itemize}
+\end{prz}
+\begin{twr}[Kryterium Abela]
+	Załóżmy, że sumy częściowe $ \sum f_n(x) $ są jednostajnie ograniczone na zbiorze $ A $, tzn.
+	\begin{gather*}
+	\exists_{M>0}\forall_{n\in \mathbb N }\forall_{x\in A}\left|\sum_{k=1}^{n}f_k(x)\right|\le M
+	\end{gather*}
+	Jeśli $ a_n\to0 $ to szereg $ \sum a_nf_n(x) $ jest zbieżny jednostajnie na $ A $.
+\end{twr}
+\begin{prz}
+	$ sum_{n=1}^{\infty }\frac{\sin nx}{n} $\\
+	$ a_n\to0 $
+	\begin{gather*}
+	\exists_{M>0}\forall_{n\in \mathbb N }\forall_{x\in A} \left|\sum_{k=1}^{n}\sin kx\right|\le M
+	\end{gather*}
+\end{prz}

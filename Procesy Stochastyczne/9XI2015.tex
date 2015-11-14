@@ -1,0 +1,292 @@
+\chapter{9 listopada 2015}
+
+$ \left\{N(t)\right\}_{t\ge0} $ jednorodny proces Poissona z intensywnością $ \lambda=\text{const}>0 $\\
+$ X_n(\omega) $ zmienna losowa czas pomiędzy $ n-1 $ i $ n $-tym zdarzeniem ("międzyczas")\\
+$ X_1,X_2,\dots $ i.i.d.$ \sim Exp(\lambda) $
+
+\begin{proof}
+pokazaliśmy, że $ X_1\sim Exp(\lambda) $\\
+$ (X_1,X_2,\dots,X_n) $ czy składowe są niezależne o rozkładzie $ Exp(\lambda) $?
+\begin{gather*}
+f_{X_1,\dots,X_n}(x_1,\dots,x_n)=
+\left(\lambda e^{-\lambda x_1}\right)\cdot
+\left(\lambda e^{-\lambda x_2}\right)
+\cdot\dots\cdot
+\left(\lambda e^{-\lambda x_n}\right)
+\end{gather*}
+Wystarczy. Żeby czasy skończyły się na tablicy policzymy dla $ n=2 $
+\begin{align*}
+&f_{X_1,X_2}(x_1,x_2)\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{P\bigl(
+X_1\in \left(x_1,x_1+\Delta t_1\right]\wedge
+X_2\in \left(x_2,x_2+\Delta t_2\right]\bigr)}{\Delta t_1\cdot \Delta t_2}
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{1}{\Delta t_1\cdot \Delta t_2}\cdot
+P\bigl(
+N(x_1)=0,
+N(x_1+\Delta t_1)-N(x_1)=1,\\&
+N(x_1+x_2)-N(x_1+\Delta t_1)=0,
+N(x_1+x_2+\Delta t_2)-N(x_1+x_2)=1
+\bigr)
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{1}{\Delta t_1\cdot \Delta t_2}\cdot
+P\bigl(
+N(x_1)=0\bigr)P\bigl(
+N(x_1+\Delta t_1)-N(x_1)=1\bigr)\\&
+P\bigl(N(x_1+x_2)-N(x_1+\Delta t_1)=0\bigr)
+P\bigl(N(x_1+x_2+\Delta t_2)-N(x_1+x_2)=1
+\bigr)
+\bigr)
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{1}{\Delta t_1\cdot \Delta t_2}\cdot
+e^{-\lambda x_1}(\lambda\cdot \Delta t_1)^1e^{-\lambda \Delta t_1}P\bigl(x_2-\Delta t_1)=0\bigr)\cdot\lambda\Delta t_2 e^{-\lambda\Delta t_2}
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\lambda e^{-\lambda x_1}\cdot
+e^{-\lambda \Delta t_1}\cdot
+e^{-\lambda (x_2-\Delta t)}\cdot
+\lambda e^{-\lambda \Delta t_2}
+=\\=&
+\lambda e^{-\lambda x_1}\cdot\lambda e^{-\lambda x_2}
+=
+f_{Exp(\lambda)}(x_1)
+f_{Exp(\lambda)}(x_2)
+\end{align*}	
+$ X_1,X_2 $ są niezależne i $ X_1,X_2\sim Exp(\lambda) $\\
+Dla dowolnych $ n\in \mathbb{N} $ rozumowanie jest takie samo, jedynie rachunki dłuższe.
+\end{proof}
+\textbf{Wnioski}\\
+Niech $ T_n=X_1+\dots+X_n $ czas oczekiwania na $ n $-te zdarzenie. Wówczas $ T $ ma rozkład Erlanga z parametrami $ \Gamma_{n,\lambda} $
+\begin{gather*}
+f_{T_n}(t)=\frac{\lambda^n	\Gamma(n)}{t^{n-1}e^{-\lambda t}}
+\end{gather*}
+\begin{proof}
+Wiemy, że
+\begin{gather*}
+X_j\sim Exp(\lambda)\Rightarrow X_1+\dots+X_n\sim\Gamma_{n,\lambda}
+\end{gather*}
+$ t>0 $\\
+$ T_n\le t\Leftrightarrow N(t)\ge n $
+\begin{gather*}
+F_{T_n}(t)=P\left(N(t)\ge n\right)=
+\sum_{j=n}^{\infty }\frac{\left(\lambda t\right)^j}{j!}e^{-\lambda t}
+\end{gather*}
+\begin{align*}
+&f_{T_n}(t)=F'_{T_n}(t)
+=\\=&
+\sum_{j=n}^{\infty }\left(\frac{\left(\lambda t\right)^j}{j!}e^{-\lambda t}\right)'
+=\\=&
+\sum_{j=n}^{\infty }
+\frac{\lambda^{j+1}}{j!}jt^{j+1}e^{-\lambda t}+
+\sum_{j=n}^{\infty }\frac{\lambda^jt^j}{j!}e^{-\lambda t}
+=\\=&
+\frac{\lambda^{(n-1)+1}}{(n-1)!}t^{n-1}e^{-\lambda t}
+=\\=&
+\frac{\lambda^n}{\Gamma(n)}t^{n-1}e^{-\lambda t}
+\end{align*}
+To rozkład Erlanga z parametrami $ n,\lambda $
+\end{proof}
+\section{Statystyki pozycyjne}
+$ Y_1,Y_2,\dots,Y_n $ - zmienne losowe\\
+Permutujemy, aby uzyskać ciąg niemalejący
+\begin{gather*}
+\tilde{Y}_1(\omega)\le\tilde{Y}_2(\omega)\le\dots\le\tilde{Y}_n(\omega)\\
+{Y}_{\alpha(1)}(\omega)\le{Y}_{\alpha(2)}(\omega)\le\dots\le{Y}_{\alpha(n)}(\omega)
+\end{gather*}
+Permutacja $ \alpha $ zależy od $ \omega $\\
+Zakładamy, że zmienne losowe $ Y_1,\dots,Y_n$ są typu ciągłego(a nawet absolutnie ciągłego) i niezależne. Z prawdopodobieństwem 1 mamy
+\begin{gather*}
+\tilde{Y}_1(\omega)<\tilde{Y}_2(\omega)<\dots<\tilde{Y}_n(\omega)
+\end{gather*}
+bo $ P\left(Y_i=Y_j\right)=0 $ dla $ i\neq j $\\
+My założymy dodatkowo, że $ Y_1,\dots,Y_n$ mają ten sam rozkład.\\
+Reasumując $ Y_1,\dots,Y_n$ i.i.d. z gęstością $ f_Y $
+\begin{align*}
+&f_{(\tilde{Y}_1,\dots,\tilde{Y}_n)}(t_1,\dots,t_n)
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\vdots\\\Delta t_n\to0}}
+\frac{n!P\left(Y_1\in[t_1,t_1+\Delta t_1),\dots,Y_n\in[t_n,t_n+\Delta t_n)\right)}{\Delta t_1\cdot\ldots\cdot\Delta t_n}
+=\\=&
+n!\lim\limits_{\substack{\Delta t_1\to0\\\vdots\\\Delta t_n\to0}}
+\frac{P\left(Y_1\in[t_1,t_1+\Delta t_1)\right)}{\Delta t_1}\cdot
+\frac{P\left(Y_2\in[t_2,t_2+\Delta t_2)\right)}{\Delta t_2}\cdot
+\ldots\cdot
+\frac{P\left(Y_n\in[t_n,t_n+\Delta t_n)\right)}{\Delta t_n}
+=\\=&
+n!f_{Y_1}(t_1)\cdot f_{Y_2}(t_2)\cdot \ldots \cdot f_{Y_n}(t_n)
+=\\=&
+n!\prod_{j=1}^{n}f_Y(t_j)
+\end{align*}
+\begin{gather*}
+f_{(\tilde Y_1,\dots,\tilde Y_n)}\left(t_1,t_2,\ldots,t_n\right)
+=
+\frac{n!}{t^n}\mathbbm1_{\{0<t_1<\dots<t_n<t\}}
+\end{gather*}
+\begin{twr}
+Niech $ \left\{N(t)\right\}_{t\ge 0} $ jednorodny proces Poissona. Wówczas warunkowy rozkład momentu skoku pod warunkiem $ N(t)=1 $ jest rozkładem jednostajnym na $ [0,t] $.
+\begin{proof}
+\begin{align*}
+&P\left(X_1\le t_1|N(t)=1\right)
+=\\=&
+\frac{P\left(X_1\le t_q\wedge N(t)=1\right)}{P\left(N(t)=1\right)}
+=\\=&
+\frac{P\left(N(t_1)=1\wedge N(t)=1\right)}{P\left(N(t)=0\right)}
+=\\=&
+\frac{P\left(N(t_1)=1\right)P\left(N(t)=1\right)}{P\left(N(t)=0\right)}
+=\\=&
+\frac{P\left(N(t_1)=1\right)P\left(N(t-t_1)=1\right)}{P\left(N(t)=0\right)}
+=\\=&
+\frac{\lambda t_1e^{-\lambda t_1}e^{-\lambda (t-t_1)}}{\lambda te^{-\lambda t}}=\frac{t_1}{t}
+\end{align*}
+\begin{gather*}
+F_{X_1|N(t)=1}(x)=
+\left \{
+\begin{array}{cr}
+	     0      &  x\le0 \\
+	\frac{x}{t} &  0<x<t \\
+	     1      & x\ge t
+\end{array}
+\right .
+\end{gather*}
+\end{proof}
+\end{twr}
+\begin{twr}
+Rozkład warunkowy wektora momentu skoków $ \left(zawartość...T_1,T_2,\dots,T_n\right) $ pod warunkiem zdarzenia $ N(t)=n $ ma gęstość $ f_{(T_1,\dots,T_n)}(t_1,\dots,t_n)=\frac{n!}{t^n}\mathbbm1_{\{0<t_1<\dots<t_n<t\}} $. Czyli jest taki sam jak rozkład statystyk pozycyjnych dla $ Y_1,\dots,Y_n$ i.i.d. na przedziale $ [0,t] $.
+\begin{proof}
+Zobaczmy jak "idzie" dla $ n=2 $ $ f_{(T_1,T_2)}(t_1,t_2)=? $\\
+Oczywiście $ 0<t_1<t_2<t $
+\begin{align*}
+&f_{(T_1,T_2)}(t_1,t_2)
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{P\bigl(T_1\in[t_1,t_1+\Delta t_1),T_2\in[t_2,t_2+\Delta t_2)\bigr)}{\Delta t_1\cdot \Delta t_2}
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{P\bigl(T_1\in[t_1,t_1+\Delta t_1),T_2\in[t_2,t_2+\Delta t_2),N(t)=2\bigr)}{\Delta t_1\cdot \Delta t_2P\left(N(t)=2\right)}
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{P\bigl(
+\substack{N(t_1)=0,N(t_1+\Delta t_1)-N(t_1)=1,N(t_2)-N(t_1+\Delta t_1)=0,N(t_2+\Delta t_2)-N(t_2)=1,N(t)-N(t_2+\Delta t_2)=0}
+\bigr)}{\Delta t_1\cdot \Delta t_2\frac{(\lambda t)^2}{2!}e^{-\lambda t}}
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{P\bigl(
+N(t_1)=0\bigr)P\bigl(N(t_1+\Delta t_1)-N(t_1)=1\bigr)P\bigl(N(t_2)-N(t_1+\Delta t_1)=0\bigr)}{\Delta t_1\cdot \Delta t_2\frac{(\lambda t)^2}{2!}e^{-\lambda t}}
+\cdot\\\cdot
+&P\bigl(N(t_2+\Delta t_2)-N(t_2)=1\bigr)P\bigl(N(t)-N(t_2+\Delta t_2)=0
+\bigr)
+=\\=&
+\lim\limits_{\substack{\Delta t_1\to0\\\Delta t_2\to0}}
+\frac{e^{-\lambda t_1}\cdot \lambda\Delta t_1e^{-\lambda\Delta t_1}\cdot e^{\lambda t}\cdot e^{\lambda\Delta t}\cdot e^{-\lambda\Delta t_2}\cdot e^{-\lambda t}\cdot e^{\lambda t_2}\cdot e^{\lambda\Delta t_2}}{\frac{t^2}{2}\cdot e^{-\lambda t}}
+=\\=&
+\frac{2!}{t^2}\mathbbm1_{\left\{0<t_1<t_2<t\right\}}
+\end{align*}
+\end{proof}
+\end{twr}
+\section{Niejednorodny proces Poissona}
+$ \lambda(t)\ge0  $ - intensywność pojawiania się zdarzeń zależny od czasu.
+\begin{defi}[Niejednorodny proces Poissona]
+Mówimy, że proces $ \left\{N(t)\right\}_{t\ge 0} $ jest niejednorodnym procesem Poissona z funkcją intensywności (deterministyczną) $ \lambda:[0,\infty )\to \mathbb R _+ $. (ciągła)
+\begin{itemize}
+\item $ N(0)=0 $ z pr. 1
+\item $ \left\{N(t)\right\}_{t\ge 0} $ ma przyrosty niezależne
+\item $ P\bigl(N(t+\Delta t)-N(t)=1\bigr)=\lambda(t)\cdot\Delta t+o(\Delta t) $
+\item $ P\bigl(N(t+\Delta t)-N(t)\ge2\bigr)=o(\Delta t) $
+\end{itemize}
+\end{defi}
+\begin{twr}
+Jeżeli $ \left\{N(t)\right\}_{t\ge 0} $ jest niejednorodnym procesem Poissona z ciągłą funkcją intensywności $ \lambda:[0,\infty )\to \mathbb R _+ $, to
+\begin{gather*}
+P\bigl(N(s+t)-N(t)=k\bigr)=\frac{(\mu(s+t)-\mu(t))^k}{k!}e^{-\left(\mu(s+t)-\mu(t)\right)}
+\end{gather*}
+To znaczy
+\begin{gather*}
+\forall_{s,t>0}N(s+t)-N(t)\sim Poiss\bigl(\mu(s+t)-\mu(t)\bigr)
+\end{gather*}
+gdzie
+\begin{gather*}
+\mu(t)=\int\limits_{0}^{t}\lambda(u)\,du
+\end{gather*}
+\begin{proof}
+Ustalmy $ t $\\
+$ P_k(s)=P\bigl(N(t+s)-N(t)=k\bigr) $\\
+Czy $ P\bigl(N(t+s)-N(t)=k\bigr)=\frac{(\mu(s+t)-\mu(t))^k}{k!}e^{-\left(\mu(s+t)-\mu(t)\right)}$?\\
+Dowód indukcyjnie po $ k $. Rozpoczynamy od $ k=0 $
+\begin{align*}
+&P\bigl(N(t+s+\Delta s)-N(t+s)=0\wedge N(t+s)-N(t)=0\bigr)
+=\\=&
+P\bigl(N(t+s+\Delta s)-N(t+s)=0\bigr)P\bigl( N(t+s)-N(t)=0\bigr)
+=\\=&
+\Bigl(1-P\bigl(N(t+s+\Delta s)-N(t+s)=1\bigr)+o(\Delta s)\Bigr)
+\cdot P_0(s)
+=\\=&
+\Bigl(1-\lambda(t+s)\Delta s+o(\Delta s)\Bigr)
+\cdot P_0(s)
+=\\=&
+P_0(s)-\lambda(t+s)P_0(s)\Delta s+o(\Delta s)
+\end{align*}
+\begin{align*}
+\frac{P_0\left(s+\Delta t\right)-P_0(s)}{\Delta s}&=-\lambda(t+s)P_0(s)-\frac{o(\Delta s)}{\Delta s}\\
+P_0'(s)&=-\lambda(t+s)P_0(s)\\
+\frac{P_0'(s)}{P_0(s)}&=-\lambda(t+s)\\
+\bigl(\ln P_0(s)\bigr)'&=-\lambda(t+s)\\
+\ln P_0(s)&=-\int\limits_{0}^{s}\lambda(t+n)\,dn\\
+\ln P_0(s)&=-\int\limits_{t}^{t+s}\lambda(n)\,dn\\
+P_0(s)&=\exp \left(-\int\limits_{t}^{t+s}\lambda(n)\,dn\right)\\
+P_0(s)&=\exp \left(-\int\limits_{0}^{t+s}\lambda(n)\,dn+\int\limits_{0}^{t}\lambda(n)\,dn\right)\\
+P_0(s)&=e^{-\left(\mu(t+s)-\mu(t)\right)}
+\end{align*}
+Dla $ k=1 $ formuła zachodzi. Krok indukcyjny robi się tak samo jak w przypadku jednorodnym.
+\end{proof}
+\end{twr}
+Ogólnie\\
+$ \left\{\tilde{N}(t)\right\}_{t\ge 0} $ niejednorodny proces Poissona $ \supseteq\left\{N(t)\right\}_{t\ge 0} $ standardowy proces Poissona (jednorodny z $ \lambda=1 $ {\small szczególny przypadek})\\
+Załóżmy, że $ \lambda(u)>0 $, ciągłe (ewentualnie $ \lambda(0)=0 $)
+\begin{gather*}
+\mu(t)=\int\limits_{0}^{t}\lambda(u)\,du
+\xrightarrow[t\to\infty ]{}
+\int\limits_{0}^{\infty }\lambda(u)\,du=\infty 
+\end{gather*}
+$ \mu(t) $ jest funkcją $ \mu(0)=0 $, $ \mu $ ściśle rosnące i klasy $ C\left([0,\infty ]\right) $
+\begin{twr}
+Jeśli $ \left\{N(t)\right\}_{t\ge 0} $ jest niejednorodnym procesem Poissona z funkcją intensywności $ \lambda:[0,\infty )\to \mathbb R _+ $ ciągłą, $ \lambda(u)>0 $ dla $ u>0 $ i $ \int\limits_{o}^{\infty }\lambda(u)\,du=\infty  $, to proces $ N(t)\stackrel{df}{=}\tilde{N}(\mu^{-1}(t)) $ jest niejednorodnym procesem Poissona z funkcją intensywności
+\begin{gather*}
+\lambda(t)=\mu'(t)
+\end{gather*}
+\end{twr}
+\begin{twr}
+Niech $ \left\{N(t)\right\}_{t\ge 0} $ będzie standardowym procesem Poissona oraz $ \mu:[0,\infty )\to[0,\infty ) $ będzie funkcją klasy $ C^1 $, ściśle rosnącą, $ \mu(0)=0,\lim\limits_{t\to\infty} \mu(t)=\infty  $. Wówczas proces $ \tilde{N}(t)\stackrel{df}{=}N\left(\mu(t)\right) $ jest niejednorodnym procesem Poissona z funkcją intensywności
+\begin{gather*}
+\lambda(t)=\mu'(t)
+\end{gather*}
+\end{twr}
+\textbf{Wniosek}\\
+Niejednorodne procesy Poissona powstają przez deterministyczne przeskalowanie czasu w standardowym procesie Poissona.
+
+Naturalnym uogólnieniem są procesy Coxa.
+\begin{gather*}
+N(t+\Delta t)-N(t)=1\qquad\text{z intensywnością }\lambda_t
+\end{gather*}
+\begin{proof}
+\begin{gather*}
+\tilde{N}\left(\mu^{-1}(t)\right)=N(t)\\
+\tilde{N}\left(\mu^{-1}(0)\right)=N(0)\\
+\end{gather*}
+$ N(t) $ jest rosnące, gdyż $ \tilde{N} $ jest liczący.\\
+$ N(t) $ ma przyrosty niezależne, gdyż $ \tilde{N} $ ma przyrosty niezależne
+\begin{align*}
+&P\bigl(N(t+s)-N(t)=k\bigr)
+=\\=&
+P\Bigl(\tilde{N}\left(\mu^{-1}(t+s)\right)-\tilde{N}\left(\mu^{-1}(t)\right)=k\Bigr)
+=\\=&
+\frac{\bigl(\mu\left (\mu^{-1}(t+s)\right)-\mu\left (\mu^{-1}(t)\right)\bigr)^k}{k!}
+=\\=&
+e^{-\mu\left (\mu^{-1}(t+s)\right)-\mu\left (\mu^{-1}(t)\right)}
+=\\=&
+\frac{(t+s-t)^k}{k!}e^{-s}\sim Poiss(1)
+\end{align*}
+Niezależność przyrostów $ \tilde{N}(\mu^{-1}(t)) $ wynika z niezależności przyrostów $ \tilde{N}T=(t) $ i faktu, że $ \mu^{-1} $ jest rosnąca.
+\end{proof}

@@ -1,0 +1,216 @@
+\chapter{19 października 2015}
+\begin{twr}
+Funkcja intensywności awarii wyznacza jednoznacznie $ F_X $. ($ F_X\leftrightsquigarrow \lambda_X $)
+\end{twr}
+\begin{proof}
+\begin{gather*}
+\lambda_X=-\frac{R_x'}{R_X}=-\left(\ln R_X\right)'
+\end{gather*}
+\begin{align*}
+\Lambda_X(x)
+=
+\int\limits_{0}^{x}\lambda_X(u)\,du
+=
+-\int\limits_{0}^{x}\left(\ln R_X\right)\,du
+=
+\left. -\ln R_X \right|_0^x
+=
+-\ln R_X(x)+\ln \overset{=1}{\overbrace{R_X(0)}}
+\end{align*}
+\begin{gather*}
+R_X(x)=e^{-\int\limits_{0}^{x}\lambda_X(u)\,du}\\
+F_X(x)=1-e^{-\int\limits_{0}^{x}\lambda_X(u)\,du}
+\end{gather*}
+\end{proof}
+  \begin{defi}
+Jeżeli urządzenie opisane jest funkcją intensywności awarii $ \lambda_X $, to
+\begin{enumerate}
+\item mówimy, że urządzenie starzeje się, gdy $ \lambda_X\nearrow $ jest funkcją rosnącą
+\item mówimy, że urządzenie dociera się, gdy $ \lambda_X\searrow $ jest funkcją malejącą
+\end{enumerate}
+\end{defi}
+\textbf{Uwaga!}
+\begin{gather*}
+\lambda_X=\text{const}\Leftrightarrow X\sim \text{Exp}
+\end{gather*}
+\newpage
+\section{Klasyczne rozkłady w teorii niezawodności}
+\begin{defi}
+Mówimy, że nieujemna zmienna losowa $ X $ ma rozkład Weibulla, gdy
+\begin{align*}
+&F_X(t)=1-e^{-(\lambda t)^\beta}&&t\ge 0&&\lambda,\beta>0\\
+&R_X(t)=e^{-(\lambda t)^\beta}&&t\ge 0&&\lambda,\beta>0
+\end{align*}
+\end{defi}
+
+Dla rozkładu Weibulla
+\begin{gather*}
+\lambda_X(t)=\frac{\lambda\beta(\lambda t)^{\beta-1}e^{-(\lambda t)^\beta}}{e^{-(\lambda t)^\beta}}=\lambda^\beta\beta t^{\beta-1}
+\end{gather*}
+Układ dociera się, gdy $ \beta<1 $\\
+Układ starzeje się, gdy $ \beta>1 $\\
+\begin{gather*}
+\text{Weib}_{\lambda,1}=\text{Exp}(\lambda)
+\end{gather*}
+W praktyce inżynierskiej
+\begin{gather*}
+F_X(t)=\alpha_1e^{-\lambda_1 t}+\alpha_2 e^{-\lambda_2 t}+\alpha_3 \frac{\text{const}}{\sqrt{2\pi}}\int\limits_{\frac{t-m}{\sigma}}^{\infty }e^{-\tfrac{1}{2}u^2}\,du
+\end{gather*}
+Czyli mieszane rozkłady Exp $ \nsim $ Exp $\nsim \Gamma $
+
+\section{Formalne definicje z teorii procesów stochastycznych}
+\begin{defi}
+Niech $ T(\neq\emptyset) $ będzie zbiorem indeksów. Procesem stochastycznym indeksowanym elementami zbioru $ T $ nazywamy rodzinę $ \left\{X_t:t\in T\right\} $ zmiennych losowych (ogólniej elementów losowych) określonych na wspólnej przestrzeni probabilistycznej $(\Omega,\mathcal F,P)$. Jeżeli card$ (T)<\infty  $ albo card$ (T)=\aleph_0 $, to mówimy o procesach z indeksem dyskretnym. Jeżeli card$ (T)=\mathfrak c $, to mówimy, o procesach nad indeksami "ciągłymi".\\
+$ T $ identyfikujemy z biegnącym czasem\\
+$ T=\left\{0,1,\dots,N\right\} $
+albo
+$ T=\left\{1,2,\dots,N\right\} $
+albo
+$ T=\left\{0,1,2,\dots\right\} $
+albo
+$ T=\left\{-3,-2,-1,0,1,2,3,\dots\right\} $ - procesy z czasem dyskretnym.\\
+$ T=[a,b],[a,\infty ),(-\infty ,0],(-\infty ,+\infty ) $ - procesy z czasem ciągłym\\
+$ \mathfrak X=\left\{X_t:t\in T\right\} $ - matematyczny opis (model) ewolucji w czasie
+\end{defi}
+\begin{defi}
+Dla ustalonego procesu stochastycznego $ \mathfrak X=\left\{X_t:t\in T\right\} $ trajektorią (realizacją) odpowiadają zdarzeniu elementarnemu $ \omega\in\Omega $ nazywamy funkcję\\
+$ T\ni t\to X_t(\omega)\in \mathbb R $
+\end{defi}
+\begin{prz}
+W urnie mamy 1 kulę białą i 1 kulę niebieską. Po wylosowaniu jednej kuli zwracamy ją do urny dodając jedną kulę w wylosowanym kolorze (po $ n $-tym losowaniu mamy w urnie $ 2+n $ kul). Procesy stochastyczne na tym mechanizmie (losowym). ($ \equiv $ procesy urnowe).
+\begin{enumerate}
+\item $ X_n $ - liczba kul białych w urnie po $ n $-tym losowaniu
+\begin{align*}
+&X_0=1\\
+&X_1=\left(P\left(X_1=1\right)=P\left(X_1=2\right)=\frac{1}{2}\right)\\
+&X_3\in\left\{1,2,3\right\},\dots
+\end{align*}
+$ \mathfrak X=\left\{X\right\}_{n=0}^\infty  $ - proces stochastyczny z czasem dyskretnym,\\
+$ T=\left\{0,1,2,\dots \right\}=\mathbb N _0 $
+\item 
+\begin{gather*}
+Y_n=\left \{
+\begin{array}{ll}
+1&\text{gdy kula wylosowana w $ n $-tym ciągnięciu jest niebieska}\\
+3&\text{gdy kula wylosowana w $ n $-tym ciągnięciu jest biała}
+\end{array}
+\right .
+\end{gather*}
+$ \left\{Y_n\right\}_{n=1}^\infty  $,\qquad $ T=\left\{1,2,\dots\right\} $
+\item $ Z_n= $ liczba wylosowanych kul białych w ciągnięciach $ 1,2,\dots,n $
+\item Zrób to sam(a)
+\end{enumerate}
+\end{prz}
+\section{Spacer losowy na grupie}
+$ \xi_1,\xi_2,\xi_3,\dots $ ciąg Berboulliego niezależnych zmiennych losowych o tym samym rozkładzie
+\begin{gather*}
+P\left(\xi_j=1\right)=P\left(\xi_j=-1\right)=\frac{1}{2}
+\end{gather*}
+$ X_0 $ niezależna zmienna losowa od ciągu $ \left(\xi_j\right) _{j=1}^\infty $ o wartościach w $ \mathbb Z$.\\
+Spacerem losowym nazywamy
+\begin{gather*}
+S_{X_{0,n}}=X_0+\xi_1+\dots+\xi_n
+=
+X_0+\sum_{j=1}^{b}\xi_j
+\end{gather*}
+Zauważmy, że
+\begin{gather*}
+P\left(S_{X_{0,n+1}}-S_{X_{0,n}}=\pm1\right)
+=
+P\left(\xi_{n+1}=\pm1 \right)=\frac{1}{2}
+\end{gather*}
+\begin{gather*}
+P\left(S_{X_{0,n+1}}=j|S_{X_{0,n}=i}=\pm1\right)
+=
+\left \{
+\begin{array}{ll}
+\frac{1}{2}&\text{, gdy }\left|i-j\right|=1\\
+0&\text{, gdy }\left|i-j\right|\neq1
+\end{array}
+\right .
+\end{gather*}
+\textbf{Uwaga!}\\
+Jeżeli $ \mathfrak X=\left\{X_t\right\}_{t\in T} $ jest procesem stochastycznym, to $ Y_t=g_t(X_t),\quad t\in T $ jest też procesem stochastycznym $ g_t:\mathbb R \to \mathbb R  $ (funkcja borelowska).
+\begin{defi}
+Niech $ \mathfrak X=\left\{X_t:t\in T\right\}=\left\{X_t\right\}_{t\in T} $ będzie procesem stochastycznym określonym na $(\Omega,\mathcal F,P)$, przy czym $ T=\mathbb Z $ albo $ \mathbb N ,\mathbb R ,\mathbb R _+,\mathbb Q,\mathbb Q_+ $. Mówimy, że $ \mathfrak X $ ma przyrosty:
+\begin{itemize}
+\item niezależne, gdy
+\begin{gather*}
+\forall_{n\in N}\forall_{t_j\in T}\forall_{t_0<t_1<\dots<t_n}
+X_{t_1}-X_{t_0},X_{t_2}-X_{t_1},\dots,X_{t_n}-X_{t_{n-1}}
+\end{gather*}
+są zmiennymi losowymi niezależnymi
+\item jednorodne, gdy
+\begin{gather*}
+\forall_{t_1,t_2\in T;t_1<t_2}\forall_{t_1+h,t_2+h\in T}(X_{t_2}-X_{t_1})\sim (X_{t_2+h}-X_{t_1+h})
+\end{gather*}
+\item stacjonarne, gdy
+\begin{gather*}
+\forall_{n\in \mathbb N }\forall_{t_1,t_2\in T;t_1<t_2}\forall_{t_1+h,t_2+h\in T}\\
+\left(X_{t_1}-X_{t_0},\dots,X_{t_n}-X_{t_{n-1}}\right)
+\sim
+\left(X_{t_1+h}-X_{t_0+h},\dots,X_{t_n+h}-X_{t_{n-1}+h}\right)
+\end{gather*}
+\end{itemize}
+\end{defi}
+\textbf{Uwaga!}\\
+Stacjonarność przyrostów implikuje jednorodność przyrostów.
+\begin{defi}
+Niech $ \mathfrak X=\left\{X_t:t\in T\right\} $ będzie procesem stochastycznym określonym na $(\Omega,\mathcal F,P)$ przy czym $ T=\mathbb Z $ albo $ \mathbb N ,\mathbb R ,\mathbb R _+,\mathbb Q,\mathbb Q_+ $. Mówimy, że proces $ \mathfrak X $ jest stacjonarny, gdy
+\begin{gather*}
+\forall_{n\in \mathbb N }\forall_{t_j\in T}\forall_{t_0<t_1<\dots<t_n}\forall_{h:t_0+h,\dots,t_n+h\in T}
+\left(X_{t_0},X_{t_1},\dots,X_{t_n}\right)
+\sim
+\left(X_{t_0+h},X_{t_1+h},\dots,X_{t_n+h}\right)
+\end{gather*}
+\end{defi}
+\textbf{Oznaczenia}\\
+$ \mu_{t_0,t_1,\dots,t_n}\stackrel{ozn.}{=}\mu_{\left(X_{t_0},X_{t_1},\dots,X_{t_n}\right)} $ - rozkład wektora losowego \\
+$ \left(X_{t_0},X_{t_1},\dots,X_{t_n}\right)\in \mathbb R ^{n+1},\qquad n=0,1,2\dots $\\
+$ \mu_t $ - rozkład $ X_t $ losowych o tym samym, czyli rozkład jednowymiarowy\\
+$ \mu_{r,t} $ rozkład $ \left(X_r,X_t\right) $, czyli rozkład dwuwymiarowy itd.\\
+$ F_{t_0,t_1,\dots,t_n} \stackrel{ozn.}{=}F_{\left(X_{t_0},X_{t_1},\dots,X_{t_n}\right)}$
+\begin{defi}
+Jeżeli $ \mathfrak X=\left\{X_t:t\in T\right\} $ jest procesem stochastycznym, to rozkładem skończenie wymiarowym odpowiadającym wyborowi indeksów $ \left(t_1,t_2,\dots,t_n\right)\in T^n $ nazywamy rozkład wektora losowego $ \left(X_{t_0},X_{t_1},\dots,X_{t_n}\right) $. Oznaczam
+\begin{gather*}
+\mu_{\left(t_1,t_2,\dots,t_n\right)}\stackrel{df}{=}\mathcal L\left(\left(X_{t_0},X_{t_1},\dots,X_{t_n}\right)\right)\in\mathcal P\left(\mathbb R ^n\right)
+\end{gather*}
+Rodziną rozkładów skończenie wymiarowych procesów $ \mathfrak X=\left\{X_t:t\in T\right\} $ nazywamy
+\begin{gather*}
+\mathcal M^\mathfrak X=
+\left\{
+\mu_{\left(t_1,t_2,\dots,t_n\right)}:t_1,t_2,\dots,t_n\in T,n=1,2,\dots
+\right\}
+\end{gather*}
+\end{defi}
+\textbf{Uwaga!}\\
+Zmienną losową $ X $ charakteryzuje $ F_X $\\
+Wektor losowy $ \overrightarrow{X}=\left(X_1,\dots,X_n\right) $ charakteryzuje $ F_{\overrightarrow{X}} $ dystrybuanta łączna $ n $-wymiarowa.\\
+Proces stochastyczny $ \mathfrak X $ charakteryzuje $ \mathcal{M}^\mathfrak X $
+\begin{lem}
+Proces $ \mathfrak X=\left\{X_t:t\in T\right\} $ o przyrostach niezależnych ma przyrosty stacjonarne wtedy i tylko wtedy, gdy ma przyrosty jednorodne.
+\end{lem}
+\begin{proof}
+\text{ }\\
+"$ \Rightarrow $" jasne\\
+"$ \Leftarrow $"\\
+Wybieramy $ t_0<t_1,<\dots<t_n\in T $ oraz $ h $ "dowolne", takie, że\\
+$ t_0+h,t_1+h,\dots,t_n+h\in T $
+\begin{align*}
+&\mu_{\left(X_{t_1}-X_{t_0},X_{t_2}-X_{t_1},\dots,X_{t_n}-X_{t_{n-1}}\right)}
+=\\=&
+\mu_{\left(X_{t_1}-X_{t_0}\right)}
+\otimes
+\mu_{\left(X_{t_2}-X_{t_1}\right)}
+\otimes\dots\otimes
+\mu_{\left(X_{t_n}-X_{t_{n-1}}\right)}
+\stackrel{jed.}{=}\\=&
+\mu_{\left(X_{t_1+h}-X_{t_0+h}\right)}
+\otimes
+\mu_{\left(X_{t_2+h}-X_{t_1+h}\right)}
+\otimes\dots\otimes
+\mu_{\left(X_{t_n+h}-X_{t_{n-1}+h}\right)}
+=\\=&
+\mu_{\left(X_{t_1+h}-X_{t_0+h},X_{t_2+h}-X_{t_1+h},\dots,X_{t_n+h}-X_{t_{n-1}+h}\right)}
+\end{align*}
+\end{proof}

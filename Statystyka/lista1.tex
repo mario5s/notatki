@@ -1,0 +1,401 @@
+\chapter*{Lista 1}
+\addcontentsline{toc}{chapter}{Lista 1}
+\subsection*{Zadanie 1}
+\addcontentsline{toc}{section}{Zadanie 1}
+Wykazać, że jeśli $ X_1,X_2,\dots $ są zmiennymi losowymi o jednakowych wartościach oczekiwanych $ \mathbb E X_i=m $ dla $ i=1,\dots $ to
+\begin{gather*}
+\mathbb E \left(\frac{1}{N}\sum_{i=1}^{N}X_i\right)=m
+\end{gather*}
+niezależnie od tego czy $ N $ jest ustaloną liczbą naturalną, czy zmienną losową niezależną od $ X_1,X_2,\dots  $
+
+Rozwiązanie:
+\begin{enumerate}[a)]
+\item 
+\begin{align*}
+&\mathbb E  \left(\frac{1}{N}\sum_{i=1}^{N}X_i\right)
+=\\=&
+\frac{1}{N} \mathbb E \left(\sum_{i=1}^{N}X_i\right)
+=\\=&
+\frac{1}{N}\sum_{i=1}^{N} \mathbb E \left(X_i\right)
+=\\=&
+\frac{1}{N}\sum_{i=1}^{N} m
+=\\=&
+\frac{N}{N}\cdot m=m
+\end{align*}
+\item 
+\begin{align*}
+&\mathbb E  \left(\frac{1}{N}\sum_{i=1}^{N}X_i\right)
+=\\=&
+\sum_{n=1}^{\infty }\mathbb E  \left(\frac{1}{N}\sum_{i=1}^{N}X_i|N=n\right)P\left(N=n\right)
+=\\=&
+\sum_{n=1}^{\infty }\mathbb E  \left(\frac{1}{n}\sum_{i=1}^{n}X_i\right)P\left(N=n\right)
+=\\=&
+\sum_{n=1}^{\infty }m\cdot P\left(N=n\right)=m
+\end{align*}
+\end{enumerate}
+
+
+\subsection*{Zadanie 2}
+\addcontentsline{toc}{section}{Zadanie 2}
+Zmienna losowa $ X $ ma rozkład jednostajny na przedziale $ (0,1) $. Obliczyć wartość oczekiwaną zmiennej losowej $ Y=\min\left\{\frac{X}{1-X},\frac{1-X}{X}\right\} $.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ f_X(t)=\mathbbm1_{(0,1)}(t) $
+\end{itemize}
+\begin{gather*}
+\frac{X}{1-X}=\frac{1-X}{X}\\
+X^2=\left(1-X\right)^2\\
+X^2-\left(1-X\right)^2=0\\
+\left(2X-1\right)\cdot 1=0\\
+X=\tfrac{1}{2}
+\end{gather*}
+\begin{align*}
+\mathbb E Y=&\mathbb E \min\left\{\tfrac{X}{1-X},\tfrac{1-X}{X}\right\}
+=\\=&
+\int\limits_{0}^{1} \min\left\{\tfrac{x}{1-x},\tfrac{1-x}{x}\right\}f_X(x)\,dx
+=\\=&
+\int\limits_{0}^{\frac{1}{2}}\tfrac{x}{1-x}f_X(x)\,dx
++
+\int\limits_{\frac{1}{2}}^{1}\tfrac{1-x}{x}f_X(x)\,dx
+=\\=&
+\int\limits_{0}^{\frac{1}{2}}\frac{x}{1-x}\,dx
++
+\int\limits_{\frac{1}{2}}^{1}\frac{1-x}{x}\,dx
+=\\=&
+\int\limits_{0}^{\frac{1}{2}}\frac{1}{1-x}-1\,dx
++
+\int\limits_{\frac{1}{2}}^{1}\frac{1}{x}-1\,dx
+=\\=&
+\ln \tfrac{1}{2}-\ln 1+\ln1-\ln\tfrac{1}{2}-1
+=\\=&
+2\ln2-1
+\end{align*}
+
+
+\subsection*{Zadanie 4}
+\addcontentsline{toc}{section}{Zadanie 4}
+Niech $ X_1,\dots,X_n$ będzie ciągiem zmiennych niezależnych zmiennych losowych o rozkładzie dwumianowym $ Ber(n_i,p) $, $ 1\le i\le n $. Wykazać, że zmienna losowa $ Y=X_1+\dots+X_n $ ma rozkład dwumianowy.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ \varphi _{Ber}(t)=\left(q+p^{it}\right)^n$
+\end{itemize}
+
+\begin{align*}
+\varphi_{Y}=\varphi_{X_1+\dots+X_n}(t)\stackrel{\Perp}{=}&
+\prod_{j=1}^{n}\varphi_{X_j}
+=
+\prod_{j=1}^{n}\left(q+p^{it}\right)^{n_j}
+=
+\left(q+p^{it}\right)^{\sum_{j=1}^{n}n_j}
+\end{align*}
+\begin{gather*}
+Y\sim Ber\left(\sum_{j=1}^{n}n_j,p\right)
+\end{gather*}
+
+
+\newpage
+\subsection*{Zadanie 5}
+\addcontentsline{toc}{section}{Zadanie 5}
+Niech $ X_1,\dots,X_n$ będzie ciągiem zmiennych niezależnych zmiennych losowych o rozkładzie Poissona $ P(\lambda_i) $, $ 1\le i\le n $. Wykazać, że zmienna losowa $ Y=X_1+\dots+X_n $ ma rozkład Poissona.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ \varphi_P(t)=e^{\lambda(e^{it}-1)}=\exp\bigl(\lambda(e^{it}-1)\bigr) $
+\end{itemize}
+\begin{gather*}
+\varphi_{Y}=\varphi_{X_1+\dots+X_n}(t)\stackrel{\Perp}{=}
+\prod_{j=1}^{n}\varphi_{X_j}
+=
+\prod_{j=1}^{n}\exp\bigl(\lambda_j(e^{it}-1)\bigr)
+=
+\exp\left(\sum_{j=1}^{n}\lambda_j(e^{it}-1)\right)
+\end{gather*}
+\begin{gather*}
+Y\sim P\left(\sum_{j=1}^{n}\lambda_j\right)
+\end{gather*}
+
+
+\subsection*{Zadanie 6}
+\addcontentsline{toc}{section}{Zadanie 6}
+Niech $ X_1,\dots,X_n$ będzie ciągiem zmiennych niezależnych zmiennych losowych o rozkładzie Cauchy'ego $ C(\alpha_i,\lambda_i) $, $ \alpha_i\in \mathbb R ,\;\lambda_i>0,\;1\le i\le n $. Wykazać, że zmienna losowa $ Y=X_1+\dots+X_n $ ma rozkład Cauchy'ego.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ \varphi_X(t; \alpha_i,\lambda_i)
+=
+\mathbb E \left[e^{iXt} \right ]
+=
+e^{i\alpha_it - \lambda_i |t|} $
+\end{itemize}
+\begin{gather*}
+\varphi_{Y}=\varphi_{X_1+\dots+X_n}(t)\stackrel{\Perp}{=}
+\prod_{j=1}^{n}\varphi_{X_j}
+=
+\prod_{j=1}^{n}e^{i\alpha_jt - \lambda_j |t|}
+=\\=
+\exp \left({\sum_{j=1}^{n}i\alpha_jt - \lambda_j |t|}\right)
+=
+\exp \left({\sum_{j=1}^{n}i\alpha_jt - \sum_{j=1}^{n}\lambda_j |t|}\right)
+\end{gather*}
+\begin{gather*}
+Y\sim C\left(\sum_{j=1}^{n}\alpha_j,\sum_{j=1}^{n}\lambda_j\right)
+\end{gather*}
+
+
+\newpage
+\subsection*{Zadanie 7}
+\addcontentsline{toc}{section}{Zadanie 7}
+Niech $ X_1,\dots,X_n$ będzie ciągiem zmiennych niezależnych zmiennych losowych o rozkładzie wykładniczym z parametrem $ \lambda>0 $. Wyznaczyć rozkład zmiennej losowej $ Y=X_1+\dots+X_n $.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ \varphi_{Exp}(t)=\frac{\lambda}{\lambda-it} $
+\item $ \varphi_{\Gamma}(t)=\left(\frac{1}{1-it\lambda}\right)^p$
+\end{itemize}
+\begin{gather*}
+\varphi_{Y}=\varphi_{X_1+\dots+X_n}(t)\stackrel{\Perp}{=}
+\prod_{j=1}^{n}\varphi_{X_j}
+=
+\prod_{j=1}^{n}\frac{\lambda}{\lambda-it}
+=
+\left(\frac{\lambda}{\lambda-it}\right)^n
+=
+\left(\frac{1}{1-\frac{it}{\lambda}}\right)^n
+\end{gather*}
+\begin{gather*}
+Y\sim \Gamma\left(\tfrac{1}{\lambda},n\right)
+\end{gather*}
+
+
+\subsection*{Zadanie 8}
+\addcontentsline{toc}{section}{Zadanie 8}
+Niech zmienna losowa $ U $ ma rozkład jednostajny na przedziale $ (0,1) $ i niech $ F $ będzie dystrybuantą pewnego rozkładu. Wykazać, że zmienna losowa $ Y=F^{-1}(U) $ ma dystrybuantę $ F $.
+
+Rozwiązanie:
+\begin{align*}
+F_Y(t)
+=&
+P\left(Y\le t\right)
+=\\=&
+P\left(F^{-1}(U)\le t\right)
+=\\=&
+P\bigl(U\le F(t)\bigr)
+=\\=&
+F\bigl(F(t)\bigr)=F(t)
+\end{align*}
+Do uzupełnienia formalizmów (trochę tego będzie).
+
+
+\subsection*{Zadanie 9}
+\addcontentsline{toc}{section}{Zadanie 9}
+Zmienne losowe $ X $ i $ Y $ są niezależne o gęstościach:
+\begin{align*}
+&f_X(x)=\left \{
+\begin{array}{cl}
+	2x & \text{dla }x\in(0,1)   \\
+	0  & \text{dla pozostałych}
+\end{array}
+\right .
+&&x\in \mathbb R, \\
+&f_Y(y)=\left \{
+\begin{array}{cl}
+	e^{-y} & \text{dla }y>0         \\
+	  0    & \text{dla pozostałych}
+\end{array}
+\right .
+&&y\in \mathbb R.
+\end{align*}
+Niech $ S=X+Y $. Obliczyć $ \mathbb E \left(S|X\le\frac{1}{2}\right) $.
+
+Rozwiązanie:
+\begin{align*}
+\mathbb E \left(S|X\le\frac{1}{2}\right)=&
+\frac{1}{P\left(X\le\frac{1}{2}\right)}\int\limits_{0}^{\frac{1}{2}}
+\mathbb E \left(S|X=x\right)f_X(x)\,dx
+=\\=&
+\frac{1}{\int\limits_{0}^{\frac{1}{2}}2x\,dx}\int\limits_{0}^{\frac{1}{2}}
+\mathbb E \left(X+Y|X=x\right)f_X(x)\,dx
+=\\=&
+4\int\limits_{0}^{\frac{1}{2}}
+\mathbb E \left(x+Y|X=x\right)f_X(x)\,dx
+=\\=&
+4\int\limits_{0}^{\frac{1}{2}}
+\mathbb E \left(x+Y|X=x\right)f_X(x)\,dx
+=\\=&
+4\int\limits_{0}^{\frac{1}{2}}
+\mathbb E \left(x+Y\right)f_X(x)\,dx
+=\\=&
+4\int\limits_{0}^{\frac{1}{2}}
+\bigl(\mathbb E \left(x\right) + \mathbb E \left(Y\right)\bigr)f_X(x)\,dx
+=\\=&
+4\int\limits_{0}^{\frac{1}{2}}
+\bigl(x + \mathbb E \left(Y\right)\bigr)f_X(x)\,dx
+=\\=&
+4\int\limits_{0}^{\frac{1}{2}}
+xf_X(x)\,dx + 
+4\int\limits_{0}^{\frac{1}{2}}
+\mathbb E \left(Y\right)f_X(x)\,dx
+=\\=&
+4\int\limits_{0}^{\frac{1}{2}}
+x\cdot 2x\,dx + 
+4\mathbb E \left(Y\right)\int\limits_{0}^{\frac{1}{2}}
+2x\,dx
+=\\=&
+\frac{4}{12}+\frac{4}{4}\mathbb E \left(Y\right)
+\end{align*}
+$ \mathbb E \left(Y\right)=1 $
+\begin{gather*}
+\mathbb E \left(S|X\le\frac{1}{2}\right)=\frac{4}{3}
+\end{gather*}
+
+
+\subsection*{Zadanie 10}
+\addcontentsline{toc}{section}{Zadanie 10}
+Niech $ X $ i $ Y $ będą niezależnymi zmiennymi losowymi o rozkładach dwumianowych $ Ber(n,p) $ i $ Ber(m,p) $ odpowiednio. Wyznaczyć rozkład warunkowy zmiennej losowej $ X $ pod warunkiem $ X+Y=t $ oraz obliczyć $ \mathbb E \left(X|X+Y=t\right) $.
+
+Rozwiązanie:
+\begin{itemize}
+\item 
+\begin{gather*}
+f_{X|Y}(x)=\frac{f_{X,Y}(x,y)}{\int\limits_{-\infty }^{\infty }f_{X,Y}(x,y)\,dy}
+\end{gather*}
+\item $ P\left(X=k\right)=\binom{n}{k}p^{k}(1-p)^{n-k} $
+\end{itemize}
+\begin{align*}
+P\left(X+Y=t\right)=&
+\sum_{k=0}^{t}P\left(X+Y=t|Y=k\right)P\left(Y=k\right)
+\stackrel{\Perp}{=}\\=&
+\sum_{k=0}^{t}P\left(X+k=t\right)P\left(Y=k\right)
+=\\=&
+\sum_{k=0}^{t}P\left(X=t-k\right)P\left(Y=k\right)
+=\\=&
+\sum_{k=0}^{t}
+\binom{n}{t-k}p^{t-k}(1-p)^{n-t+k}
+\binom{m}{k}p^{k}(1-p)^{m-k}
+=\\=&
+\sum_{k=0}^{t}
+\binom{n}{t-k}\binom{m}{k}p^{t}(1-p)^{n+m-t}
+=\\=&
+p^{t}(1-p)^{n+m-t}\sum_{k=0}^{t}
+\binom{n}{t-k}\binom{m}{k}
+=\\=&
+\binom{m+n}{t}p^{t}(1-p)^{n+m-t}
+\end{align*}
+Uzasadnienie ostatniego przejścia:
+\begin{gather*}
+\sum_{k=0}^{n+m}\binom{n+m}{k}x^t
+=
+\left(1+x\right)^{n+m}
+=
+\left(1+x\right)^{n}
+\left(1+x\right)^{m}
+=\\=
+\Biggl(\sum_{k=0}^{n}\binom{n}{k}x^k\Biggr)
+\Biggl(\sum_{j=0}^{m}\binom{m}{j}x^j\Biggr)
+=\\=
+\sum_{k=0}^{m+n}\Biggl(\sum_{j=0}^k \binom{m}{k-j}\binom{n}{j}\Biggr) x^k
+\end{gather*}
+\begin{align*}
+P\left(X=k|X+Y=t\right)=&\frac{P\left(X=k,X+Y=t\right)}{P\left(X+Y=t\right)}
+=\\=&
+\frac{P\left(X=k\right) P\left(Y=t-k\right)}{P\left(X+Y=t\right)}
+=\\=&
+\frac{\binom{n}{k}p^{k}(1-p)^{n-k}
+\binom{m}{t-k}p^{t-k}(1-p)^{m-t+k}}
+{\binom{m+n}{t}p^{t}(1-p)^{n+m-t}}
+=\\=&
+\frac{\binom{n}{k}\binom{m}{t-k}p^{t}(1-p)^{n+m-t}}
+{\binom{m+n}{t}p^{t}(1-p)^{n+m-t}}
+=\\=&
+\frac{\binom{n}{k}\binom{m}{t-k}}
+{\binom{m+n}{t}}
+\end{align*}
+\begin{align*}
+\mathbb E \left(X=k|X+Y=t\right)=&
+\sum_{k=0}^{t}\frac{\binom{n}{k}\binom{m}{t-k}}
+{\binom{m+n}{t}}k
+\stackrel{wikipedia}{=}
+\frac{nt}{m+n}
+\end{align*}
+
+
+\subsection*{Zadanie 11}
+\addcontentsline{toc}{section}{Zadanie 11}
+Niech $ N_1,N_2 $ będą niezależnymi zmiennymi losowymi o rozkładzie Poissona z parametrem $ \lambda_1=20$ i $ \lambda_2=30 $ odpowiednio. Obliczyć wariancję warunkową: $ \Var\left(N_1|N_1+N_2=50\right) $.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ \varphi_{Poiss}(t)=\exp \bigl(\lambda(e^{it}-1)\bigr) $
+\item $ P\left(Poiss=t\right)=\frac{\lambda^t}{t!}e^{-\lambda} $
+\end{itemize}
+\begin{align*}
+\varphi_{N_1+N_2}(t)
+=&
+\varphi_{N_1}(t)\varphi_{N_2}(t)
+=\\=&
+\exp \bigl(\lambda_1(e^{it}-1)\bigr)\exp \bigl(\lambda_2(e^{it}-1)\bigr)
+=\\=&
+\exp \bigl(\left(\lambda_1+\lambda_2\right)(e^{it}-1)\bigr)
+\end{align*}
+\begin{align*}
+P \left(N_1=t|N_1+N_2=50\right)
+=&
+\frac{P\left(N_1=t,N_1+N_2=50\right)}{P\left(N_1+N_2=50\right)}
+=\\=&
+\frac{P\left(N_1=t,N_2=50-t\right)}{P\left(N_1+N_2=50\right)}
+=\\=&
+\frac{P\left(N_1=t\right) P\left(N_2=50-t\right)}{P\left(N_1+N_2=50\right)}
+=\\=&
+\frac{\frac{\lambda_1^t}{t!}e^{-\lambda_1}
+\cdot
+\frac{\lambda_2^{50-t}}{(50-t)!}e^{-\lambda_2}}{\frac{(\lambda_1+\lambda_2)^{50}}{50!}e^{-\lambda_1-\lambda_2}}
+=\\=&
+\frac{50!}{t!(50-t)!}\cdot \frac{20^t\cdot30^{50-t}}{(20+30)^{50}}
+=\\=&
+\binom{50}{t}\cdot \left(\frac{2}{5}\right)^t\cdot \left(\frac{3}{5}\right)^{50-t}
+\end{align*}
+\begin{gather*}
+\left(N_1=t|N_1+N_2=50\right)\sim Ber(50,\tfrac{2}{5})\\
+\Var\left(N_1=t|N_1+N_2=50\right)=
+50\cdot\frac{2}{5}\cdot\frac{3}{5}=12
+\end{gather*}
+
+
+\subsection*{Zadanie 12}
+\addcontentsline{toc}{section}{Zadanie 12}
+Niech $ X_1,\dots,X_n$ będą niezależnymi zmiennymi losowymi o rozkładzie Poissona z parametrem $ \lambda>0 $. Znaleźć rozkład warunkowy zmiennej losowej $ X_1 $ pod warunkiem $ S_n $, gdzie $ S_n=\sum_{i=1}^{n}X_i $
+
+Rozwiązanie:
+\begin{itemize}
+\item $ X_i\sim Poiss(\lambda) $
+\item $ S_n\sim Poiss(n\lambda) $
+\end{itemize}
+\begin{align*}
+P\left(X_1=t|S_n=k\right)\stackrel{\Perp}{=}&
+\frac{P\left(X_1=t,S_n=k\right)}{P\left(S_n=k\right)}
+=\\=&
+\frac{P\left(X_1=t,X_2+\dots+X_n=k-t\right)}{P\left(S_n=k\right)}
+=\\=&
+\frac{P\left(X_1=t\right) P\left(X_2+\dots+X_n=k-t\right)}{P\left(S_n=k\right)}
+=\\=&
+\frac{\lambda^t}{t!}e^{-\lambda}
+\cdot 
+\frac{\bigl((n-1)\lambda\bigr)^{k-t}}{(k-t)!}e^{-(n-1)\lambda}
+\cdot 
+\frac{k!}{(n\lambda)^k}e^{n\lambda}
+=\\=&
+\frac{\lambda^t}{t!}
+\cdot 
+\frac{\bigl((n-1)\lambda\bigr)^{k-t}}{(k-t)!}
+\cdot 
+\frac{k!}{(n\lambda)^k}
+=\\=&
+\frac{(n-1)^{k-t}}{n^k}\cdot \frac{k!}{t!(k-t)!}
+=\\=&
+\left(\frac{n-1}{n}\right)^{k-t}\left(\frac{1}{n}\right)^t\binom{k}{t}
+\end{align*}
+\begin{gather*}
+\left(X_1=t|S_n=k\right)\sim Ber(k,\tfrac{1}{n})
+\end{gather*}

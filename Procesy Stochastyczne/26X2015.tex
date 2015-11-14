@@ -1,0 +1,388 @@
+\chapter{26 października 2015}
+\begin{defi}[Proces Poissona]
+Mówimy, że proces $ \left\{N_t\right\}_{t\in[0,\infty )} $ określony na przestrzeni probabilistycznej $(\Omega,\mathcal F,P)$ jest procesem liczącym, jeżeli
+\begin{enumerate}
+\item $ N_0=0 $
+\begin{gather*}
+\forall_{\omega\in\Omega}\forall_{t\in T}N_T(\omega)\in \mathbb N _0=\left\{0,1,2,\dots \right\}
+\end{gather*}
+\item 
+\begin{gather*}
+\forall_{0\le s<t}\forall_{\omega\in\Omega}\;
+N_s(\omega)\le N_t(\omega)
+\end{gather*}
+\item $ \forall_{0\le s<t}\; N_t(\omega)-N_s(\omega) $ reprezentuje liczbę zdarzeń jakie zaszły na odcinku czasowym $ (s,t] $.
+\end{enumerate}
+\end{defi}
+\begin{defi}[Proces jednorodny]
+Mówimy, że proces liczący $ \left\{N_t\right\}_{t\in[0,\infty )} $ określony na   przestrzeni probabilistycznej $(\Omega,\mathcal F,P)$jest jednorodnym procesem Poissona z intensywnością $ \lambda>0 $ - liczba, jeżeli spełnia
+\begin{enumerate}[i]
+\item $ N(0)=0 $ z prawdopodobieństwem 1
+\item $ \left\{N_t\right\}_{t\in[0,\infty )} $ ma przyrosty niezależne
+\item $ \forall_{0\le s<t}\; N_t(\omega)-N_s(\omega) $ ma rozkład Poissona z parametrem $ \lambda(t-s) $
+\begin{gather*}
+\left[\forall_{k\in\left\{0,1,2,\dots\right\}}\;
+P\bigl(N(t)-N(s)=k\bigr)=\frac{\left[\lambda(t-s)\right]^k}{k~}e^{-\lambda(t-s)}
+\right]
+\end{gather*}
+\end{enumerate}
+\end{defi}
+
+\textbf{Uwaga!}\\
+(iii) implikuje, że przyrosty są jednorodne
+\begin{gather*}
+N(t+h)-N(s+h)\sim
+Poiss\bigl(\lambda(t+h-(s+h))\bigr)=
+Poiss\bigl(\lambda(t-s)\bigr)\sim
+N(t)-N(s)
+\end{gather*}
+
+Zatem (iii) w połączeniu z (ii) mamy proces o przyrostach stacjonarnych (niezależnych).
+
+\textbf{Uwaga!}\\
+\begin{gather*}
+\mathbb E N(t)=\lambda t\\
+\Var N(t)=\lambda t
+\end{gather*}
+\begin{twr}
+Niech $ \left\{N_t\right\}_{t\in[0,\infty )} $ będzie procesem liczącym określonym na przestrzeni probabilistycznej $(\Omega,\mathcal F,P)$. Wówczas $ \left\{N_t\right\}_{t\in[0,\infty )} $ jest jednorodnym procesem Poissona z intensywnością $ \lambda>0 $ wtedy i tylko wtedy, gdy spełnia\begin{enumerate}
+\item $ N(0)=0 $ z pr. 1
+\item $ \left\{N_t\right\}_{t\in[0,\infty )} $ ma jednorodne i niezależne przyrosty
+\item 
+\begin{gather*}
+ P\bigl(N(h)=1\bigr)=\lambda\cdot h+o(h) \\
+ \left[\frac{o(h)}{h}\xrightarrow[h\to0]{}0\right]
+\end{gather*}
+\item 
+\begin{gather*}
+P\bigl(N(h)\ge2 \bigr)=P\bigl(N(h)=2\vee N(h)=3\vee\dots\bigr)=o(h)
+\end{gather*}
+\end{enumerate}
+\end{twr}
+\begin{proof}
+{\Large $ \Rightarrow $}\\
+(i)$ \equiv $(1)\\
+$ (ii)+(iii)\Rightarrow(2) $\\
+\begin{gather*}
+P\bigl(N(h)=1\bigr)\stackrel{(iii)}{=}
+\frac{(\lambda h)^1}{1!}e^{-\lambda h}=
+\lambda he^{-\lambda h}
+\end{gather*}
+3)
+\begin{align*}
+&P\bigl(N(h)=1\bigr)-\lambda h\stackrel{?}{=}o(h)\\
+&\frac{\lambda he^{-\lambda h}-\lambda h}{h}=
+\lambda  \left(e^{-\lambda h}-1\right)\xrightarrow[h\to0]{}
+\left(e^{-\lambda 0}-1\right)=0
+\end{align*}
+4)
+\begin{align*}
+&\frac{P\bigl(N(h)\le 2\bigr)}{h}\xrightarrow[h\to0]{?}0\\
+&\frac{1-P\bigl(N(h)=0\bigr)-P\bigl(N(h)=1\bigr)}{h}\stackrel{(iii)}{=}
+\frac{1-e^{-\lambda h}-\lambda he^{-\lambda h}}{h}
+\end{align*}
+Stosując regułę de l'Hospitala
+\begin{gather*}
+\lim\limits_{h\to0} \frac{P\bigl(N(h)\le 2\bigr)}{h}=
+\lim\limits_{h\to0} \frac{\lambda  e^{-\lambda h }-\lambda  \left(e^{-\lambda h }-\lambda h  e^{-\lambda h }\right)}{1}=
+\lim\limits_{h\to0} \lambda ^2 h e^{-\lambda h }=0
+\end{gather*}
+{\Large $ \Leftarrow $}\\
+(i)$ \equiv $(1)\\
+(2)$ \Rightarrow $(ii)\\
+Jak pokazać (iii)? $ P_n(t)=P\bigl(N(t)=n\bigr) \qquad n=0,1,2,\dots $
+
+Etapami
+\begin{gather*}
+P_0(t)=P\bigl(N(t)=0\bigr)\stackrel{?}{=}e^{-\lambda h}=\frac{(\lambda
+ h)^0}{0!}e^{\lambda h}
+\end{gather*}
+\begin{align*}
+P_0(t+h)=&
+P\bigl(N(t+h)=0\bigr)
+=\\=&\marginnote{
+{\tiny $ N(t)\Perp N(t+h) $
+\\}}
+P\bigl(N(t)=0\wedge N(t+h)-N(t)=0\bigr)
+=\\=&
+P\bigl(N(t)=0\bigr) P\bigl(N(t+h)-N(t)=0\bigr)
+\stackrel{(2)}{=}\\=&
+P_0\left(t\right)\cdot P\bigl(N(h)=0\bigr)
+\stackrel{(3)}{=}\\=&
+P_0\left(t\right)\cdot \Bigl(1-P\bigl(N(h)=1\bigr)-P\bigl(N(h)\ge 2\bigr)\Bigr)
+=\\=&
+P_0(t)\left(1-\lambda h-o(h)-o(h)\right)
+=\\=&
+P_0(t)-\lambda  P_0(t)h -2 o(h) P_0(t)
+=\\=&
+P_0(t)-\lambda  P_0(t)h - o(h)
+\end{align*}
+\begin{gather*}
+\frac{P_0(t+h)-P_0(t)}{h}=
+-\lambda P_0(t)- \frac{o(h)}{h}\\
+P_0'(t)=-\lambda P_0(t)
+\end{gather*}
+z warunkiem $ P_0(0)=P\bigl(N(0)=0\bigr)=1 $\\
+$ P_0(t)=e^{\lambda t} \\
+P_0(0)=P\bigl(N(0)=0\bigr)=
+\frac{(\lambda h)^0}{0!}e^{\lambda h}$
+ 
+Indukcyjnie pokazuje się, ze
+\begin{gather*}
+\forall_{n\ge0}\;
+P\bigl(N(t)=n\bigr)=
+\frac{(\lambda h)^n}{n!}e^{\lambda h}
+\end{gather*}
+Pokazaliśmy, już I krok indukcyjny i formuła zachodzi dla n=0.
+\begin{align*}
+P_n(t+h)=&
+P\bigl(N(t+h)=n\bigr)
+=\\=&
+P\bigl(
+\left\{N(t)=n\wedge N(t+h)-N(t)=0\right\}
+\dot{\cup}\\&\dot{\cup}
+\left\{N(t)=n-1\wedge N(t+h)-N(t)=1\right\}
+\dot{\cup}\\&\dot{\cup}
+\left\{N(t)<n-1\wedge N(t+h)-N(t)\ge2\right\}
+\bigr)
+=\\=&
+P\bigl(N(t)=n\wedge N(t+h)-N(t)=0\bigr)
++\\&+
+P\bigl(N(t)=n-1\wedge N(t+h)-N(t)=1\bigr)
++\\&+
+P\bigl(N(t)<n-1\wedge N(t+h)-N(t)\ge2\bigr)
+\stackrel{(2)}{=}\\=&
+P\bigl(N(t)=n\bigr) P\bigl( N(h)=0\bigr)
++\\&+
+P\bigl(N(t)=n-1\bigr) P\bigl( N(h)=1\bigr)
++\\&+
+P\bigl(N(t)<n-1\bigr) P\bigl(N(h)\ge2\bigr)
+=\\=&
+P\bigl(N(t)=n\bigr) P\bigl( N(h)=0\bigr)
++
+P\bigl(N(t)=n-1\bigr) P\bigl( N(h)=1\bigr)
++
+o(h)
+=\\=&
+P_n(t)e^{-\lambda h}+P_{n-1}(t)\bigl(\lambda h+o(h)\bigr)+o(h)
+=\\=&
+P_n(t)\bigl(1-\lambda h+o(h)\bigr)+\lambda hP_{n-1}(t)+o(h)
+=\\=&
+P_n(t)-\lambda hP_n(t)+\lambda hP_{n-1}+o(h)
+\end{align*}
+\begin{gather*}
+P_n(t+h)=P_n(t)-\lambda hP_n(t)+\lambda hP_{n-1}+o(h)\\
+\frac{P_n(t+h)-P_n(t)}{h}=\frac{-\lambda hP_n(t)+\lambda hP_{n-1}(t)}{h}+\frac{o(h)}{h}
+\end{gather*}
+Przechodząc $ h\to0 $
+\begin{align*}
+&P_n'(t)=-\lambda P_n(t)+\lambda P_{n-1}(t)\\
+&P_n'(t)+\lambda P_n(t)=\lambda P_{n-1}(t)\\
+&P_n'(t)e^{\lambda t}+\lambda P_n(t)e^{\lambda t}=\lambda P_{n-1}(t)e^{\lambda t}\\
+&\left(P_n(t)e^{\lambda t}\right)'=\lambda P_{n-1}(t)e^{\lambda t}\qquad n=1,2,3,\dots
+\end{align*} 
+dla $ n=1 $
+\begin{gather*}
+\left(P_1(t)e^{\lambda t}\right)'=\lambda P_{0}(t)e^{\lambda t}=\lambda e^{-\lambda t} e^{\lambda t}=\lambda\\
+P_1(t) e^{\lambda t}=\lambda t+C
+\end{gather*}
+Warunek początkowy
+\begin{gather*}
+P_1(0)=P\bigl(N(0)=1\bigr)=0
+\end{gather*}
+daje
+\begin{gather*}
+P_1(0)e^{\lambda 0}=\lambda\cdot 0 +C\Rightarrow C=0
+\end{gather*}
+Ostatecznie
+\begin{gather*}
+P_1(t) e^{\lambda t}=\lambda t\\
+P_1(t)=\frac{\left(\lambda t\right)^1}{1!} e^{-\lambda t}
+\end{gather*}
+W II kroku indukcyjnym załóżmy, że
+\begin{align*}
+&\left(P_n\left(t\right)e^{\lambda t}\right)'=
+\lambda\frac{\left(\lambda t\right)^{n-1}}{(n-1)!}e^{-\lambda t}\cdot e^{\lambda t}=
+\frac{\lambda^n\cdot  t^{n-1}}{(n-1)!}\\
+&P_n\left(t\right)e^{\lambda t}=
+\int \frac{\lambda ^n t^{n-1}}{(n-1)!} \, dt=
+\frac{\lambda ^n}{n!} ^n+C
+\end{align*}
+Warunek
+\begin{gather*}
+P_n(0)=
+P\left(N(0)=n\right)=0\Rightarrow C=0
+\end{gather*}
+Na mocy indukcji matematycznej
+\begin{gather*}
+\forall_{n\ge 0}P\left(N(t)=n\right)=P_n(t)=\frac{(\lambda t)^n}{n!}e^{-\lambda t}
+\end{gather*}
+(iii)
+\begin{align*}
+& P\left(N(t)-N(s)=n\right)
+=\\=&
+P\left(N(s+(t-s))-N(s)=n\right)
+\stackrel{(2)}{=}\\=&
+P\left(N(t-s)=n\right)=
+\frac{(\lambda(t-s))^n}{n!}e^{-\lambda(t-s)}
+\end{align*}
+\end{proof}
+\section{Własności trajektorii Procesu Poissona}
+\textbf{Fakt 1}\\
+Z prawdopodobieństwem 1 trajektoria ma tylko skończenie wiele skoków na każdym skończonym odcinku czasowym $ [0,t] $.\\
+$ A_n $ - zdarzenie polegające na tym, że na odcinku $ [0,n] $ było nieskończenie wiele skoków\\
+$ A_n $ - zdarzenie polegające na tym, że na odcinku skończonym było skończenie wiele skoków
+\begin{gather*}
+B^\mathrm c=\Omega\backslash B=\bigcup_{n=1}^\infty A_n
+\end{gather*}
+\begin{align*}
+&P\left(A_n\right)
+=\\=&
+P\left(\text{na odcinku }[0,n]\text{ było nieskończenie wiele skoków}\right)
+=\\=&
+P\left(\forall_{k\in \mathbb N }N(n)\ge k\right)
+=\\=&
+P\left(\bigcap_{k=1}^\infty \left\{N(n)\ge k\right\}\right)
+=\\=&
+\lim\limits_{k\to\infty} P\left(N(n)\ge k\right)
+=\\=&
+\lim\limits_{k\to\infty} P\left(\bigcup_{j=k}^\infty N(n)=j\right)
+=\\=&
+\lim\limits_{k\to\infty} \underbrace{\sum_{j=k}^\infty \frac{(\lambda n)^j}{j!}e^{-\lambda n}}_{\text{ogon szeregu zbieżnego}}=0
+\end{align*}
+\begin{gather*}
+\forall_nP\left(A_n\right)=0
+\end{gather*}
+\begin{align*}
+&0\le P\left(\bigcup_{n=1}^\infty A_n\right)\le \sum_{n=1}^{\infty }P\left(A_n\right)=0\\
+&P\left(B^\mathrm c\right)=0\Rightarrow P\left(B\right)=1-P\left(B^\mathrm c\right)=1-0=1
+\end{align*}
+\textbf{Uwaga!}\\
+Jednorodny proces Poissona nie eksploduje (na skończonym odcinku czasu).\\
+\textbf{Fakt 2}\\
+Z prawdopodobieństwem 1 skoki trajektorii są równe 1.
+\begin{gather*}
+P\left(\left\{\omega\in\Omega:[0,\infty )\ni t\to N_t(\omega)\text{ ma skoki równe }1\right\}\right)=1
+\end{gather*}
+Zdarzenie przeciwne
+\begin{align*}
+&\left\{\omega\in\Omega:[0,\infty )\ni t\to N_t(\omega)\text{ ma skoki }\ge 2\right\}
+=\\=&
+\bigcup_{n=1}^\infty \left\{\omega\in\Omega:[0,\infty )\ni t\to N_t(\omega)\text{ ma skoki }\ge 2\text{ na odcinku }[0,n]\right\}=
+\bigcup_{n=1}^\infty A_n
+\end{align*}
+\begin{gather*}
+A_n=\bigcup_{j=0}^{n\cdot m-1}
+\left\{\text{skok $ \ge 2 $ zdarzył się na }(\tfrac{j}{m},\tfrac{j+1}{m}]\right\}\le
+\bigcup_{j=0}^{n\cdot m-1}
+\left\{N\left(\frac{j+1}{m}\right)-N\left(\frac{j}{m}\right)\ge 2\right\}
+\end{gather*}
+\begin{align*}
+&0\le P\left(A_n\right)\le
+\sum_{j=0}^{n\cdot m -1}P\Bigl(N\left(\tfrac{j}{m}+\tfrac{1}{m}\right)-N\left(\tfrac{j}{m}\right)\ge 2\Bigr)
+\underset{\text{jednorodność}}{\stackrel{\text{\text{przyrostu}}}{=}}\\
+=
+&\sum_{j=0}^{n\cdot m -1}
+P\Bigl(N\left(\tfrac{1}{m}\right)\ge 2\Bigr)
+=
+n\cdot m\Bigl(1-P\left(N\left(\tfrac{1}{m}\right)=0\right)-P\left(N\left(\tfrac{1}{m}\right)=1\right)\Bigr)
+=\\=&
+n\left(1-e^{-\frac{1}{m}\cdot\lambda}-\frac{1}{m}e^{-\frac{1}{m}\cdot\lambda}\right)\cdot \frac{1}{\frac{1}{m}}
+\le n\cdot\varepsilon
+\end{align*}
+\begin{gather*}
+\lim\limits_{x\to0^+}
+\frac{1-e^{-\lambda x}-\lambda xe^{-\lambda x}}{x}
+\stackrel{\text{"H"}}{=}
+\lim\limits_{x\to0^+}
+\frac{\lambda e^{-\lambda  x}-\lambda e^{-\lambda  x}+\lambda ^2 x e^{-\lambda  x}}{1}=0
+\end{gather*}
+Jeśli
+\begin{gather*}
+X<\delta_\varepsilon
+\end{gather*}
+wtedy
+\begin{gather*}
+\left|\frac{1-e^{-\lambda x}-\lambda xe^{-\lambda x}}{x}\right|<\varepsilon
+\text{ dla }\frac{1}{m}<\delta_\varepsilon\Bigl(\equiv\left(m>\tfrac{1}{\delta_\varepsilon}\right)\Bigr)
+\end{gather*}
+\begin{gather*}
+0\le P\left(A_n\right)\le\varepsilon\cdot n
+\end{gather*}
+Zatem $ \forall_n P\left(A_n\right)=0 $\\
+Stąd \begin{gather*}
+P\left(\bigcup_{n=1}^\infty A_n\right)=0
+\end{gather*}
+\begin{align*}
+&P\left(\left\{\omega\in\Omega:[0,\infty )\ni t\to N_t(\omega)\text{ ma skok }\ge 2\right\}\right)=0\\
+&P\left(\left\{\omega\in\Omega:[0,\infty )\ni t\to N_t(\omega)\text{ ma skok }=1\right\}\right)=1
+\end{align*}
+\textbf{Fakt 3}\\
+Z prawdopodobieństwem 1 trajektorie dążą do $ \infty  $, gdy $ t\to\infty  $
+\begin{gather*}
+P\left(\left\{\omega\in\Omega:\lim\limits_{t\to\infty} N_t(\omega)=\infty \right\}\right)=1
+\end{gather*}
+Zdanie przeciwne
+\begin{gather*}
+\left\{\omega\in\Omega:\lim\limits_{t\to\infty} N_t(\omega)<\infty \right\}
+=
+\bigcup_{n=1}^{\infty }
+\left\{\omega\in\Omega:\lim\limits_{t\to\infty} N_t(\omega)<n \right\}
+=
+\bigcup_{n=1}^{\infty }A_n
+\end{gather*}
+\begin{align*}
+A_n=&
+\left\{\omega\in\Omega:\forall_{t\in[0,\infty )} N_t(\omega)\le n \right\}
+=\\=&
+\left\{\omega\in\Omega:\forall_{k\in \mathbb N } N_k(\omega)\le n \right\}
+=\\=&
+\bigcap_{k=1}^{\infty }
+\left\{\omega\in\Omega: N_k(\omega)\le n \right\}
+\end{align*}
+\begin{align*}
+P\left(A_n\right)=&
+P\left(\bigcap_{k=1}^{\infty }\left\{N_k\le n\right\}\right)
+=\\=&
+\lim\limits_{k\to\infty}
+P\left(N_k\le n\right)
+=\\=&
+\lim\limits_{k\to\infty}
+P\left(N_k=0\vee N_k=1\vee\dots\vee N_k=n\right)
+=\\=&
+\lim\limits_{k\to\infty}
+\sum_{j=0}^{n}P\left(N_k=j\right)
+=\\=&
+\lim\limits_{k\to\infty}
+\sum_{j=0}^{n} \frac{(\lambda k)^j}{j!}\cdot e^{-\lambda k}=0
+\end{align*}
+\begin{gather*}
+P\left(\bigcup_{n=1}^{\infty }A_n\right)=0
+\end{gather*}
+Stąd z prawdopodobieństwem 1
+\begin{gather*}
+\lim\limits_{t\to\infty} N_t=\infty 
+\end{gather*}
+\begin{twr}
+Jeżeli $ \left\{N_t\right\}_{t\in[0,\infty )} $ jest jednorodnym procesem Poissona z intensywnością $ \lambda>0 $, to z prawdopodobieństwem 1 trajektorie $ [0,\infty )\ni t\to N_t(\omega) $ są funkcjami schodkowymi, startującymi z 0, o skokach równych 1, o skończenie wielu skokach na każdym odcinku skończonym i dążących do nieskończoności (gdy $ t\to\infty $) i prawostronnie ciągłymi.
+\end{twr}\noindent
+Moment skoku $ \equiv $ chwila skoku $ \left(T_1,T_2,\dots \right) $\\
+Czas oczekiwania na kolejny skok $ X_1,X_2,\dots  $ "międzyczasy"; "czasypomiędzy"
+\begin{twr}
+Ciąg zmiennych losowych $ X_1,X_2,\dots$ dla jednorodnego procesu Poissona z intensywnością $ \lambda>0 $ jest ciągiem niezależnym o tym samym rozkładzie Exp$ \left(\lambda\right) $.
+\begin{proof}
+\begin{gather*}
+P\left(X_1\le t\right)
+=
+P\left(N_t\ge 1\right)
+=
+1-P\left(N_t=0\right)
+=
+1-e^{-\lambda t}\qquad\text{dla }t\ge 0
+\end{gather*}
+$ F_{X_1}(t)=1-e^{-\lambda t} $. Z definicji $ X_n\ge 0 $.
+\begin{gather*}
+X_1\sim\text{Exp}\left(\lambda\right)
+\end{gather*}
+\end{proof}
+\end{twr}

@@ -1,0 +1,590 @@
+\chapter*{Lista 4}
+\addcontentsline{toc}{chapter}{Lista 4}
+
+
+\subsection*{Zadanie 37}
+\addcontentsline{toc}{section}{Zadanie 37}
+Niech wektor losowy $ (X,Y) $ ma gęstość daną wzorem $ \left(k\ge 2\right) $
+\begin{gather*}
+f_{(X,Y)}(x,y)=\left \{
+\begin{array}{cll}
+	k(k-1)(y-x)^{k-2} & \text{dla} & 0<x<y<1     \\
+	        0         & \text{dla} & \text{else}
+\end{array}
+\right .
+(x,y)\in \mathbb R ^2
+\end{gather*}
+Wyznaczyć $ \mathbb E \left(X|Y\right) $ oraz $ \mathbb E \left(Y|X\right) $. Wykorzystując otrzymane wzory obliczyć $ \mathbb E \left(X\right) $.
+
+Rozwiązanie:\\
+\begin{minipage}[t]{0.5\linewidth}
+\begin{align*}
+&f_{X|Y}(x|y)
+=\\=&
+\frac{f(x,y)}{f_Y(y)}
+=\\=&
+\frac{k(k-1)(y-x)^{k-2}}{\int\limits_{0}^{y}k(k-1)(y-x)^{k-2}\,dx}
+=\\=&
+\frac{(k-1)(y-x)^{k-2}}{y^{k-1}}
+\end{align*}
+\begin{align*}
+&\mathbb E \left(X|Y=y\right)
+=\\=&
+\int\limits_{0}^{y}
+x\cdot\frac{(k-1)(y-x)^{k-2}}{y^{k-1}}
+\,dx
+=\\=&
+\int\limits_{0}^{y}
+\frac{(y-x)^{k-1}}{y^{k-1}}
+\,dx
+=\\=&
+\frac{y}{k}
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{align*}
+&f_{Y|X}(y|x)
+=\\=&
+\frac{f(x,y)}{f_X(x)}
+=\\=&
+\frac{k(k-1)(y-x)^{k-2}}{\int\limits_{x}^{1}k(k-1)(y-x)^{k-2}\,dy}
+=\\=&
+\frac{(k-1)(y-x)^{k-2}}{(1-x)^{k-1}}
+\end{align*}
+\begin{align*}
+&\mathbb E \left(Y|X=x\right)
+=\\=&
+\int\limits_{x}^{1}
+y\cdot \frac{(k-1)(y-x)^{k-2}}{(1-x)^{k-1}}
+\,dy
+=\\=&
+\left .y\cdot \frac{(y-x)^{k-1}}{(1-x)^{k-1}}\right |_x^1
+-
+\int\limits_{x}^{1}
+\frac{(y-x)^{k-1}}{(1-x)^{k-1}}
+\,dy
+=\\=&
+1-\frac{1-x}{k}
+\end{align*}
+\end{minipage}\\
+\begin{align*}
+&E\left(X\right)
+=\\=&
+E\left(E\left(X|Y\right)\right)
+=\\=&
+\int\limits_{0}^{1}E\left(X|Y=y\right)f_Y(y)\,dy
+=\\=&
+\int\limits_{0}^{1}\frac{y}{k}\cdot ky^{k-1}\,dy
+=\\=&
+\int\limits_{0}^{1}y^k\,dy
+=\\=&
+\frac{1}{k+1}
+\end{align*}
+
+
+\subsection*{Zadanie 38}
+\addcontentsline{toc}{section}{Zadanie 38}
+Niech $ X_1,\dots,X_n$ będą niezależnymi zmiennymi losowymi o rozkładzie wykładniczym z parametrem $ \alpha=1 $. Znaleźć rozkład $ S_n $ oraz rozkład warunkowy $ X_1 $ pod warunkiem $ S_n $, gdzie $ S_n=\sum_{i=1}^{n}X_i $.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ \varphi(t)=\frac{a}{a-it} $
+\item $ S_{n-1}=\sum_{i=2}^{n}X_i $
+\end{itemize}
+\begin{gather*}
+f_{X_1,\dots,X_n}( x_1,\dots,x_n)
+=
+f(x_1,\dots,x_n)
+=
+\prod_{i=1}^{n}e^{-x_i}
+=
+\exp\left(-\sum_{i=1}^{n}x_i\right)
+\end{gather*}
+\begin{align*}
+\varphi_{S_n}(t)
+=
+\prod_{i=1}^{n}\varphi_{x_1}(t)
+=
+\bigl(\varphi_{x_1}(t)\bigr)^n
+=
+\left(\frac{1}{1-it}\right)^n
+=
+\varphi_{\Gamma(n,1)}(t)
+\end{align*}
+\begin{align*}
+f_{S_n}(t)=\frac{t^{n-1}}{(n-1)!}e^{-t}
+&&
+f_{S_{n-1}}(t)=\frac{t^{n-2}}{(n-2)!}e^{-t}
+\end{align*}
+\begin{align*}
+&f_{X_1|S_n}(x|t)
+=\\=&
+\frac{f_{X}(x)f_{S_{n-1}}(t-x)}{f_{S_n}(t)}
+=\\=&
+e^{-x}\frac{(t-x)^{n-2}}{(n-2)!}e^{-(t-x)}
+\frac{(n-1)!}{t^{n-1}}e^{t}
+=\\=&
+\frac{n-1}{t}\left(\frac{t-x}{t}\right)^{n-2}\mathbbm1_{(0,t)}(x)\cdot\mathbbm1_{(0,\infty )}(t)
+\end{align*}
+
+
+\subsection*{Zadanie 39}
+\addcontentsline{toc}{section}{Zadanie 39}
+Niech $ X_1,\dots,X_n$ będą niezależnymi zmiennymi losowymi o rozkładzie $ \mathcal N(m,1)$. Znaleźć rozkład warunkowy zmiennej warunkowe losowej $ X_1 $ pod warunkiem $ \frac{S_n}{n} $, gdzie $ S_n=\sum_{i=1}^{n}X_i $.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ X_1\sim \mathcal N(m,1) $
+\item $ S_n\sim \mathcal N(nm,n) $
+\item $ S_{n-1}=\sum_{i=2}^{n}X_i\sim \mathcal N\bigl((n-1)m,(n-1)\bigr) $
+\end{itemize}
+\begin{align*}
+&f(X_1=x|S_n=ns)
+=\\=&
+\frac{f(X_1=x,S_n=ns)}{f_{S_n}(ns)}
+=\\=&
+\frac{f(X_1=x,S_{n-1}=ns-x)}{f_{S_n}(ns)}
+=\\=&
+\frac{f(X_1=x)\cdot f(S_{n-1}=ns-x)}{f_{S_n}(ns)}
+=\\=&
+\frac{e^{-\frac{1}{2} (x-m)^2}}{\sqrt{2 \pi }}\cdot
+\frac{\exp\left(-\frac{(-m (n-1)+n s-x)^2}{2 (n-1)}\right)}{\sqrt{2 \pi }\sqrt{n-1}}\cdot
+\sqrt{2 \pi } \sqrt{n} e^{\frac{(n s-m n)^2}{2 n}}
+=\\=&
+\frac{\sqrt{n} \exp \left(-\frac{(-m (n-1)+n s-x)^2}{2 (n-1)}+\frac{(n s-m n)^2}{2 n}-\frac{1}{2} (x-m)^2\right)}{\sqrt{2 \pi } \sqrt{n-1}}
+=\\=&
+\frac{e^{-\frac{n (s-x)^2}{2 (n-1)}}}{\sqrt{2 \pi } \sqrt{\frac{n-1}{n}}}
+=
+\frac{e^{-\frac{n (x-s)^2}{2 (n-1)}}}{\sqrt{2 \pi } \sqrt{\frac{n-1}{n}}}
+\end{align*}
+\begin{gather*}
+\left(X_1\left |\frac{S_n}{n}\right .\right)\sim\mathcal N\left(s,\frac{n-1}{n}\right)
+\end{gather*}
+
+
+\subsection*{Zadanie 40 - NR}
+\addcontentsline{toc}{section}{Zadanie 40 - NR}
+Niech $ A_1,\dots,A_d $  będą podzbiorami otwartymi $ \mathbb R ^k $ takimi, że dla wektora losowego $ X:\Omega\to \mathbb R ^k $ mamy
+\begin{gather*}
+P\left\{X\in\bigcup_{i=1}^d A_i\right\}=1,\qquad
+P\left\{X\in A_i\cap A_j\right\}=0,
+\qquad
+i\neq j
+\qquad
+i,j,=1,2,\dots,d
+\end{gather*}
+Załóżmy ponadto, ze odwzorowanie $ g:\bigcup_{i=1}^d A_i\to \mathbb R ^k $ będzie funkcją o następujących własnościach:
+\begin{enumerate}[a)]
+\item funkcja $ g $ jest ciągła i różnowartościowa na każdym $ A_i,\; i=1,\dots,d $
+\item funkcja $ g^{-1} $ jest lokalnie lipschitzowska na każdym $ g(A_i),\;i=1\dots,d $
+\end{enumerate}
+Udowodnić, że jeśli $ f_X $ jest gęstością wektora losowego $ X $ to wektor losowy $ Y=g(X) $ ma gęstość postaci
+\begin{gather*}
+f_Y(y)=\sum_{i=1}^{d}f_X\bigl(g_i^{-1}(y)\bigr)\left|J\bigl(g_i^{-1}(y)\bigr)\right|I_{g(A_i)}(y)\qquad
+y\in \mathbb R ^k
+\end{gather*}
+
+Rozwiązanie:
+
+
+\subsection*{Zadanie 41}
+\addcontentsline{toc}{section}{Zadanie 41}
+Wektor losowy $ (X,Y) $ ma gęstość
+\begin{gather*}
+f(x,y)=\left \{
+\begin{array}{cll}
+	x+y & \text{dla} & (x,y)\in [0,1]^2 \\
+	 0  & \text{dla} & (x,y)\notin [0,1]^2
+\end{array}
+\right .
+\qquad
+(x,y)\in \mathbb R ^2
+\end{gather*}
+\begin{enumerate}[a)]
+\item Wyznaczyć gęstość $ f(U,V) $ wektora losowego $ (U,V) =  \bigl(\sin \left(\pi X\right),\cos\left (\pi Y\right)\bigr) $
+\item Wyznaczyć gęstość $ f(U,V) $ wektora losowego $ (U,V)=\left(X\exp \left(\frac{Y+1}{Y}\right),Y\right) $, a następnie obliczyć $ \mathbb E \left(X\exp \left(\frac{Y+1}{Y}\right)|Y=y\right) $
+\end{enumerate}
+Rozwiązanie:
+\begin{enumerate}[a)]
+\item $ (U,V) =  \bigl(\sin \left(\pi X\right),\cos\left (\pi Y\right)\bigr) $
+\begin{gather*}
+(X,Y)=\left(\frac{\arcsin\left(U\right)}{\pi},
+\frac{\arccos\left(V\right)}{\pi}\right)
+\end{gather*}
+Macierz Jakobiego\begin{gather*}
+J=\left|\begin{bmatrix}
+ \frac{1}{\pi  \sqrt{1-U^2}} & 0 \\
+ 0 & -\frac{1}{\pi  \sqrt{1-V^2}} \\
+\end{bmatrix}\right|\\
+\left|J\right|=\frac{1}{\pi ^2 }\cdot\frac{1}{\sqrt{1-U^2}}\cdot \frac{1}{\sqrt{1-V^2}}
+\end{gather*}
+Kończąc
+\begin{align*}
+&f_{(U,V)}(u,v)
+=\\=&
+f_{(X,Y)}(x,y)|J|
+=\\=&
+\left(\frac{\arcsin\left(U\right)}{\pi}+
+\frac{\arccos\left(V\right)}{\pi}\right)\cdot
+\frac{1}{\pi ^2 }\cdot\frac{1}{\sqrt{1-U^2}}\cdot \frac{1}{\sqrt{1-V^2}}\cdot
+\mathbbm1_{[0,1]}(u)\cdot\mathbbm1_{[-1,1]}(v)
+\end{align*}
+\item $ (U,V)=\left(X\exp \left(\frac{Y+1}{Y}\right),Y\right) $
+\begin{gather*}
+\left \{
+\begin{array}{l}
+X=U e^{-\frac{V+1}{V}}\\
+Y=V
+\end{array}
+\right .
+\end{gather*}
+Macierz Jakobiego
+\begin{gather*}
+J=\left|\begin{bmatrix}
+ e^{-\frac{v+1}{v}} & \frac{ u}{v^2}e^{-\frac{v+1}{v}} \\
+ 0 & 1 \\
+\end{bmatrix}\right|\\
+|J|=e^{-\frac{v+1}{v}}
+\end{gather*}
+\begin{align*}
+&f_{(U,V)}(u,v)
+=\\=&
+f_{(X,Y)}(x,y)|J|
+=\\=&
+\left(ue^{-\frac{v+1}{v}}+v\right)\cdot e^{-\frac{v+1}{v}}
+\end{align*}
+Wartość oczekiwana
+\begin{align*}
+f_Y(y)=\int\limits_{0}^{1}x+y\,dx
+=
+\frac{1}{2}+y
+\end{align*}
+\begin{align*}
+&\mathbb E \left(X\exp \left(\frac{Y+1}{Y}\right)|Y=y\right)
+=\\=&
+\exp \left(\frac{y+1}{y}\right) \mathbb E \left(X|Y=y\right)
+=\\=&
+\exp \left(\frac{y+1}{y}\right)
+\int\limits_{0}^{1}\frac{x+y}{\frac{1}{2}+y}\,dx
+=\\=&
+\exp \left(\frac{y+1}{y}\right)
+\end{align*}
+\end{enumerate}
+
+
+\subsection*{Zadanie 43}
+\addcontentsline{toc}{section}{Zadanie 43}
+Zmienna losowa $ X $ ma rozkład jednostajny na przedziale $ (0,1) $. Wyznaczyć rozkłady zmiennych losowych $ Y=-\lambda\ln \left(1-X\right) $ i $ U=-\lambda\ln \left(X\right) $
+
+Rozwiązanie:
+\begin{gather*}
+F_X(t)=t\cdot \mathbbm1_{[0,1]}(t)
+\end{gather*}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{align*}
+&F_Y(t)
+=\\=&
+P\left(Y\le t\right)
+=\\=&
+P\left(-\lambda\ln \left(1-X\right)\le t\right)
+=\\=&
+P\left(\ln \left(1-X\right)\ge-\frac{t}{\lambda}\right)
+=\\=&
+P\left(1-X\ge e^{-\frac{t}{\lambda}}\right)
+=\\=&
+P\left(X\le 1-e^{-\frac{t}{\lambda }}\right)
+=\\=&
+F_X\left(1-e^{-\frac{t}{\lambda }}\right)
+=\\=&
+\left(1-e^{-\frac{t}{\lambda }}\right)\mathbbm1_{[0,1)}(1-e^{-\frac{t}{\lambda }})
+=\\=&
+\left(1-e^{-\frac{t}{\lambda }}\right)\mathbbm1_{[0,\infty )}(t)
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+\begin{align*}
+&F_U(t)
+=\\=&
+P\left(U\le t\right)
+=\\=&
+P\left(-\lambda\ln \left(X\right)\le t\right)
+=\\=&
+P\left(\ln \left(X\right)\ge -\frac{t}{\lambda}\right)
+=\\=&
+P\left(X\ge e^{-\frac{t}{\lambda }}\right)
+=\\=&
+1-F_X\left(e^{-\frac{t}{\lambda }}\right)
+=\\=&
+\left(1-e^{-\frac{t}{\lambda }}\right)\mathbbm1_{(0,1]}\left(e^{-\frac{t}{\lambda }}\right)
+=\\=&
+\left(1-e^{-\frac{t}{\lambda }}\right)\mathbbm1_{[0,\infty) }(t)
+\end{align*}
+\end{minipage}
+
+
+\subsection*{Zadanie 44}
+\addcontentsline{toc}{section}{Zadanie 44}
+Zmienna losowa $ X $ ma rozkład jednostajny na przedziale $ (0,\pi) $. Wykazać, że zmienna losowa $ Y=\text{tg}(X) $ ma rozkład Cauchy'ego.
+
+Rozwiązanie:
+\begin{align*}
+&F_Y(t)
+=\\=&
+P\left(Y\le t)\right)
+=\\=&
+P\left(\tg(X)\le t\right)
+=\\=&
+P\left(\tg(X)\le t|X\le\frac{\pi}{2}\right)
++
+P\left(\tg(X)\le t|X>\frac{\pi}{2}\right)
+=\\=&
+P\left(X\le\arctan(t)|X\le\frac{\pi}{2}\right)\cdot P\left(X\le\frac{\pi}{2}\right)
++\\+&
+P\left(X\le\arctan(t)+\pi|X>\frac{\pi}{2}\right)\cdot P\left(X>\frac{\pi}{2}\right)
+=\\=&
+F_{U|X\le\frac{\pi}{2}}\left(\arctan(t)\right)\cdot P\left(X\le\tfrac{\pi}{2}\right)+
+F_{U|X>\frac{\pi}{2}}\left(\arctan(t)+\pi\right)\cdot P\left(X>\tfrac{\pi}{2}\right)
+=\\=&
+\frac{1}{\pi}\arctan(t)\cdot \frac{1}{2}+
+\frac{1}{\pi}\bigl(\arctan(t)+\pi\bigr)\cdot \frac{1}{2}
+=\\=&
+\frac{1}{\pi}\arctan(t)+\frac{1}{2}
+\end{align*}
+To jest dystrybuanta rozkładu Cauchy'ego.
+
+
+\subsection*{Zadanie 45}
+\addcontentsline{toc}{section}{Zadanie 45}
+Wykazać, że jeśli $ X $ i $ Y $ są niezależnymi zmiennymi losowymi o rozkładzie standardowym normalnym to zmienna losowa $ \frac{X}{Y} $ ma rozkład Cauchy'ego.
+
+Rozwiązanie:
+\begin{align*}
+Y&=V\\
+\tfrac{X}{Y}&=U\\
+X&=UV
+\end{align*}
+\begin{gather*}
+g(x,y)=(\tfrac{x}{y},y)=(u,v)\\
+g^{-1}(u,v)=(uv,v)
+\end{gather*}
+\begin{gather*}
+J=
+\begin{Vmatrix}
+ v & u \\
+ 0 & 1 \\
+\end{Vmatrix}
+=|v|
+\end{gather*}
+\begin{align*}
+&f_{U,V}(u,v)
+=\\=&
+f_{X,Y}(uv,v)|v|
+=\\=&
+f_X(uv)f_Y(v)|v|
+=\\=&
+\frac{1}{\sqrt{2 \pi }}e^{-\frac{(uv)^2}{2}}\frac{1}{\sqrt{2 \pi }}e^{-\frac{v^2}{2}}|v|
+=\\=&
+\frac{|v|}{2 \pi} e^{-\frac{(uv)^2+v^2}{2}}
+\end{align*}
+Rozkład brzegowy
+\begin{align*}
+&\int\limits_{-\infty }^{\infty }
+\frac{|v|}{2 \pi}e^{-\frac{(uv)^2+v^2}{2}}\,dv
+=\\=&
+\int\limits_{-\infty }^{\infty }
+\frac{|v|}{2 \pi}e^{-\frac{ v^2\left(u^2+1\right) }{2}}\,dv
+=\\=&
+\frac{1}{\pi}\int\limits_{0}^{\infty }
+ ve^{-\frac{ v^2\left(u^2+1\right) }{2}}\,dv
+=\\=&
+ \frac{1}{\pi(u^2+1)}\int\limits_{0}^{\infty }
+v(u^2+1)e^{-\frac{ v^2\left(u^2+1\right) }{2}}\,dv
+=\\=&
+\frac{1}{\pi(u^2+1)} \int\limits_{0}^{\infty }e^{-w}\,dw
+=\\=&
+\frac{1}{\pi(u^2+1)}
+\end{align*}
+To gęstość rozkładu Cauchy'ego.
+
+
+\subsection*{Zadanie 46}
+\addcontentsline{toc}{section}{Zadanie 46}
+Niech $ X $ i $ Y $ będą niezależnymi zmiennymi losowymi o rozkładzie wykładniczym z parametrem $ \alpha=1 $. Oznaczmy $ U=X-Y,V=Y $. Wyznaczyć gęstość wektora losowego $ (U,V) $.
+
+Rozwiązanie
+\begin{gather*}
+\begin{array}{lll}
+	U=X-Y &  & X=U+V \\
+	V=Y   &  & Y=V
+\end{array}\\
+g(x,y)=(x-y,y)\\
+g^{-1}(u,v)=(u+v,v)
+\end{gather*}
+Jakobian
+\begin{gather*}
+|J|=
+\begin{Vmatrix}
+ 1 & 1 \\
+ 0 & 1 \\
+\end{Vmatrix}=1
+\end{gather*}
+gęstość
+\begin{align*}
+&f_{U,V}(u,v)
+=\\=&
+f_{X,Y}(u+v,v)\cdot 1
+=\\=&
+e^{-u-v}e^{-v}=
+e^{-u-2v}\mathbbm1_{[0,\infty )}(v)\mathbbm1_{[-v,\infty )}(u)
+\end{align*}
+
+
+\subsection*{Zadanie 47}
+\addcontentsline{toc}{section}{Zadanie 47}
+Niech $ X $ i $ Y $ będą niezależnymi zmiennymi losowymi o rozkładzie jednostajnym na przedziale $ (0,1) $. Określmy
+\begin{align*}
+U=\sqrt{-2\ln(X)}\cos(2\pi Y)
+&&
+V=\sqrt{-2\ln(X)}\sin(2\pi Y)
+\end{align*}
+Wykazać, że $ U $ i $ V $ są niezależnymi zmiennymi losowymi o rozkładzie normalnym $ \mathcal N(0,1) $.
+
+Rozwiązanie:\\
+Niech $ U,V\sim \mathcal N(0,1) $ oraz $ U\Perp V $
+\begin{gather*}
+g(x,y)=\left(\sqrt{-2\ln(x)}\cos(2\pi y),\sqrt{-2\ln(x)}\sin(2\pi y)\right)
+\end{gather*}
+\begin{gather*}
+|J|=\begin{Vmatrix}
+ -\frac{\cos (2 \pi  y)}{\sqrt{2} x \sqrt{-\log (x)}} & -2 \sqrt{2} \pi 
+   \sqrt{-\log (x)} \sin (2 \pi  y) \\
+ -\frac{\sin (2 \pi  y)}{\sqrt{2} x \sqrt{-\log (x)}} & 2 \sqrt{2} \pi 
+   \sqrt{-\log (x)} \cos (2 \pi  y) \\
+\end{Vmatrix}
+=\\=
+\left|-\frac{2 \pi  \cos ^2(2 \pi  y)}{x}-\frac{2 \pi  \sin ^2(2 \pi  y)}{x}\right|
+=
+\left|-\frac{2 \pi }{x}\right|=\frac{2 \pi }{x}
+\end{gather*}
+\begin{align*}
+&f_{U,V}(u,v)
+=\\=&
+f_{X,Y}(u,v)|J|
+=\\=&
+\frac{e^{\frac{1}{2} \left(-u^2-v^2\right)}}{2 \pi }\cdot\frac{2 \pi }{x}
+=\\=&
+\frac{1}{x}\exp \left(\frac{1}{2} \left(2 \log (x) \sin ^2(2 \pi  y)+2 \log (x) \cos^2(2 \pi  y)\right)\right)
+=\\=&
+\frac{1}{x}\exp \left(\log (x)\right)
+=\\=&
+1
+\end{align*}
+
+
+\subsection*{Zadanie 48}
+\addcontentsline{toc}{section}{Zadanie 48}
+Niech $ X $ i $ Y $ będą niezależnymi zmiennymi losowymi o rozkładzie normalnym $ \mathcal N(0,1) $. Wyznaczyć gęstość wektora losowego $ (U,V) $, gdzie
+\begin{align*}
+U=\sqrt{X^2+Y^2}
+&&
+V=\frac{X}{Y}
+\end{align*}
+Czy zmienne losowe $ U $ i $ V $ są niezależne?
+
+Rozwiązanie:
+\begin{align*}
+X=\frac{U V}{\sqrt{V^2+1}} && Y=\frac{U}{\sqrt{V^2+1}}
+\end{align*}
+alternatywnie
+\begin{align*}
+X=-\frac{U V}{\sqrt{V^2+1}} && Y=-\frac{U}{\sqrt{V^2+1}}
+\end{align*}
+Ale okazuje się, że w sumie ta alternatywa wcale nie jest do niczego potrzebna, bo wystarczy tylko dobrze i porządnie wyliczyć Jakobian, a nie filozofować o jakichś tam dziwnych przypadkach...
+\begin{align*}
+&g(x,y)=\left(\sqrt{x^2+y^2},\frac{x}{y}\right)\\
+&g^{-1}(u,v)=\left( \frac{u v}{\sqrt{v^2+1}},\frac{u}{\sqrt{v^2+1}}\right)
+\end{align*}
+Jakobian
+\begin{gather*}
+|J|=
+\begin{Vmatrix}
+\frac{v}{\sqrt{v^2+1}} & \frac{u}{\sqrt{v^2+1}}-\frac{u
+v^2}{\left(v^2+1\right)^{3/2}} \\
+\frac{1}{\sqrt{v^2+1}} & -\frac{u v}{\left(v^2+1\right)^{3/2}}
+\end{Vmatrix}
+=
+\begin{Vmatrix}
+\frac{v}{\sqrt{v^2+1}} & \frac{u}{\left(v^2+1\right)^{3/2}} \\
+\frac{1}{\sqrt{v^2+1}} & -\frac{u v}{\left(v^2+1\right)^{3/2}} \\
+\end{Vmatrix}
+=
+\left|\frac{-uv^2-u}{\left(v^2+1\right)}\right|
+=
+\left|\frac{-u}{v^2+1}\right|
+=\\=
+\frac{|u|}{v^2+1}
+\end{gather*}
+\textsc{Bardzo istotna} jest tutaj wartość bezwzględna przy Jakobianie, bo bez tego, wszystko się posypie. Obliczanie końcowe
+\begin{align*}
+&f_{U,V}(u,v)
+=\\=&
+f_{X,Y}(x,y)|J|
+=\\=&
+\frac{1}{2 \pi }e^{\frac{1}{2} \left(-x^2-y^2\right)}|J|
+=\\=&
+f_{X,Y}\left(\frac{u v}{\sqrt{v^2+1}},\frac{u}{\sqrt{v^2+1}}\right)|J|
+=\\=&
+\frac{1}{2
+\pi }e^{\frac{1}{2} \left(-\frac{u^2 v^2}{v^2+1}-\frac{u^2}{v^2+1}\right)}\cdot\frac{|u|}{v^2+1}
+=\\=&
+\frac{1}{2 \pi }e^{-\frac{u^2}{2}}\cdot\frac{|u|}{v^2+1}
+\end{align*}
+Rozkłady brzegowe:
+\begin{align*}
+&f_U(u)
+=\\=&
+\int\limits_{-\infty }^{\infty }
+\frac{1}{2 \pi }e^{-\frac{u^2}{2}}\cdot\frac{|u|}{v^2+1}\,dv
+=\\=&
+\frac{|u|}{2 \pi }e^{-\frac{u^2}{2}}\cdot\bigl(\arctan(+\infty )-\arctan(-\infty )\bigr)
+=\\=&
+\frac{|u|}{2 \pi }e^{-\frac{u^2}{2}}\cdot\pi 
+=\\=&
+\frac{|u|}{2 }e^{-\frac{u^2}{2}}
+\end{align*}
+\begin{align*}
+&f_V(v)
+=\\=&
+\int\limits_{-\infty }^{+\infty }
+\frac{1}{2 \pi }e^{-\frac{u^2}{2}}\cdot\frac{|u|}{v^2+1}\,du
+=\\=&
+\frac{1}{v^2+1}\int\limits_{-\infty }^{+\infty }
+\frac{|u|}{2 \pi }e^{-\frac{u^2}{2}}\cdot\,du
+=\\=&
+\frac{1}{v^2+1}
+\left(\int\limits_{0}^{\infty}
+\frac{u}{2 \pi }e^{-\frac{u^2}{2}}\,du
++
+\int\limits_{-\infty }^{0}
+\frac{-u}{2 \pi }e^{-\frac{u^2}{2}}\,du\right)
+=\\=&
+\frac{1}{v^2+1}
+\left(\int\limits_{0}^{\infty}
+\frac{u}{2 \pi }e^{-\frac{u^2}{2}}\,du
++
+\int\limits_{0}^{\infty}
+\frac{u}{2 \pi }e^{-\frac{u^2}{2}}\,du\right)
+=\\=&
+\frac{1}{v^2+1}\int\limits_{0}^{\infty}
+\frac{u}{\pi }e^{-\frac{u^2}{2}}\,du
+=\\=&
+\frac{1}{\pi (v^2+1)}
+\end{align*}
+\begin{gather*}
+f_U(u)f_V(v)=
+\frac{|u|}{2 }e^{-\frac{u^2}{2}}\cdot
+\frac{1}{\pi (v^2+1)}=
+\frac{1}{2 \pi }e^{-\frac{u^2}{2}}\cdot\frac{|u|}{v^2+1}=
+f_{U,V}(u,v)
+\end{gather*}
+Tak. Są niezależne.
