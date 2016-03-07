@@ -106,7 +106,6 @@ M_X'(0)=\mathbb E X\\
 M''_X(0)=\mathbb E X^2
 itd.
 \end{gather*}
-\end{twr}
 \begin{proof}
 \begin{align*}
 &M_X'(x)
@@ -126,6 +125,7 @@ M_X'(0)=\bigl(M_X'(x)\bigr)_{x=0}=\mathbb E Xe^{0X}=\mathbb E X
 \end{gather*}
 Indukcyjnie dla wyższych momentów.
 \end{proof}
+\end{twr}
 \begin{twr}
 Jeżeli zmienne losowe $ X,Y $ są niezależne to
 \begin{gather*}
@@ -301,9 +301,6 @@ W dziedzinie $ \mathbb N _0=\left\{0,1,2,\dots \right\} $ jedynym rozkładem o w
 \begin{defi}
 Niech $ X $ będzie zmienną losową opisującą czas pracy bezawaryjnej. Intensywnością awarii nazywamy funkcję $ \lambda_X:[0,\infty )\to [0,\infty )$
 \begin{gather*}
-\marginnote{
-{\tiny $ R_X'=\left(1-F_X\right)'=$  $=-F_X'=-f_X $
-}}
 \lambda_X(t)
 =
 \frac{f_X(t)}{\overline{F}_X(t)}
@@ -312,6 +309,7 @@ Niech $ X $ będzie zmienną losową opisującą czas pracy bezawaryjnej. Intens
 =
 -\frac{R_X'(t)}{R_X(t)}
 \end{gather*}
+$ R_X'=\left(1-F_X\right)'=-F_X'=-f_X $
 \end{defi}
 
 \textbf{Uwaga!}\\

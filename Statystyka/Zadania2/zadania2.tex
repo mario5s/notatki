@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt]{report}
 \usepackage[MeX]{polski}
 \usepackage{amsfonts}
 \usepackage{color}
@@ -6,16 +6,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{mathtools}
 \usepackage{enumerate}
+\usepackage{bbm}
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{cancel}
 \usepackage{amsmath}
-\usepackage{titlesec}
-\titleformat{\subsection}
-{\normalfont\bfseries\scshape\large}
-{\thesubsection}{1em}{}
-\titleformat{\subsubsection}
-{\normalfont\scshape}
-{\thesubsubsection}{.5em}{}
+\usepackage{makeidx}
 \title{}
 \author{Mariusz Motyl}
 \newtheoremstyle{break}
@@ -37,7 +34,12 @@
 \newtheorem{lem}{Lemat}
 \theoremstyle{defi}
 \newtheorem{prz}{Przykład}
-\DeclareMathOperator{\Var}{Var}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\cov}{\text{cov}}
+\newcommand{\Perp}{{\perp \! \! \! \perp}}
 \begin{document}
-		\input{tresc}
+\input{lista5}
+\input{lista6}
+\input{lista7}
+\input{lista8}
 \end{document}

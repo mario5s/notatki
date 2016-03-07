@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt]{report}
 \usepackage[MeX]{polski}
 \usepackage{amsfonts}
 \usepackage{color}
@@ -9,13 +9,6 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsthm}
 \usepackage{amsmath}
-\usepackage{titlesec}
-\titleformat{\subsection}
-{\normalfont\bfseries\scshape\large}
-{\thesubsection}{1em}{}
-\titleformat{\subsubsection}
-{\normalfont\scshape}
-{\thesubsubsection}{.5em}{}
 \title{}
 \author{Mariusz Motyl}
 \newtheoremstyle{break}
@@ -37,7 +30,8 @@
 \newtheorem{lem}{Lemat}
 \theoremstyle{defi}
 \newtheorem{prz}{Przykład}
-\DeclareMathOperator{\Var}{Var}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Perp}{{\perp \! \! \! \perp}}
 \begin{document}
-		\input{tresc}
+\input{1III2016}
 \end{document}

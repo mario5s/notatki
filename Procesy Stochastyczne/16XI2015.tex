@@ -1,0 +1,356 @@
+\chapter{16 listopada 2015}
+\section{Złożony proces Poissona}
+\begin{defi}[Złożony rozkład Poissona]
+Niech $ X_1,X_2,\dots  $ będzie ciągiem niezależnych zmiennych losowych o tym samym rozkładzie, a $ N $ zmienną losową o rozkładzie Poissona z intensywnością $ \lambda>0 $ i niezależną od $ X_1,X_2,\dots  $. Złożonym rozkładem Poissona nazywamy rozkład zmiennej losowej\begin{gather*}
+W=\sum_{j=1}^{N}X_j
+\end{gather*}
+\end{defi}
+Wyjaśnienie dla ustalonego $ \omega\in\Omega $
+\begin{gather*}
+W(\omega)=\sum_{j=1}^{n(\omega)}X_j(\omega)\\
+\sum_{j=0}^{0}\blacksquare=0
+\end{gather*}
+Zastosowania - ubezpieczenia\\
+Problem - znając rozkłady $ X_j $ wyznaczyć rozkład $ W $.
+\begin{twr}
+Przy oznaczeniach z definicji
+\begin{align*}
+&\mathbb E (W)=\lambda\cdot \mathbb E X_1 &(\text{o ile }\mathbb E X_1<\infty )\\
+&\Var(W)=\lambda\cdot \mathbb E X_1^2 &(\text{o ile }\mathbb E X_1^2<\infty )
+\end{align*}
+\begin{proof}
+Uprościmy zakładając, że $ \mathbb E e^{t|X|}<\infty $ dla $ t\in (-\infty ,\varepsilon] $
+\begin{align*}
+&\mathbb E e^{tW}
+=\\=&
+\int\limits_{\Omega}e^{tW}\,dP
+=\\=&
+\sum_{k=0}^{\infty }\mathbb E \left(e^{tW}|N=k\right)P(N=k)
+=\\=&
+\sum_{k=0}^{\infty }\mathbb E \left(\exp \left(t\sum_{j=i}^{N}X_j\right)|N=k\right)\frac{\lambda^k}{k!}e^{-\lambda}
+=\\=&
+\mathbb E \left(\exp \left(t\sum_{j=i}^{N}X_j\right)|N=0\right)e^{-\lambda}+
+\sum_{k=1}^{\infty }
+\mathbb E \left(\exp \left(t\sum_{j=i}^{N}X_j\right)|N=k\right)\frac{\lambda^k}{k!}e^{-\lambda}
+=\\=&
+1\cdot e^{-\lambda}+
+\sum_{k=1}^{\infty }
+\left(\prod_{j=1}^{k}\mathbb E e^{tX_j}\right)
+\frac{\lambda^k}{k!}e^{-\lambda}
+=\\=&
+e^{-\lambda}+
+\sum_{k=1}^{\infty }
+\frac{M_X(t)^k\cdot\lambda^k}{k!}\cdot e^{-\lambda}
+=\\=&
+\left[1+\sum_{k=1}^{\infty }\frac{(\lambda M_X(t))^k}{k!}\right]e^{-\lambda}
+=\\=&
+\sum_{k=0}^{\infty }\frac{(\lambda M_X(t))^k}{k!}\cdot e^{-\lambda}
+=\\=&
+e^{\lambda M_X(t)-\lambda}
+=\\=&
+e^{\lambda(M_X(t)-1)}
+=\\=&
+M_W(t)
+\end{align*}
+Wariancja
+\begin{gather*}
+\mathbb E W=M_W'(0)=
+e^{\lambda(M_X(0)-1)}\cdot M_X'(0)=
+e^0\cdot\lambda\cdot \mathbb E X=
+\lambda \mathbb E X\\
+\mathbb E W^2=M''(0)=
+\lambda ^2 e^{\lambda  \left(M_X(0)-1\right)} M_X'(0)^2+\lambda  e^{\lambda    \left(M_X(0)-1\right)} M_X''(0)
+=\\=
+\lambda ^2 \left(\mathbb E X\right)^2+\lambda \mathbb E X^2\\
+\Var(W)=\mathbb E W^2-\left(\mathbb E W\right)^2=
+\lambda ^2 \left(\mathbb E X\right)^2+\lambda \mathbb EX-
+\left(\lambda \mathbb E X\right)^2=\lambda \mathbb E X^2
+\end{gather*}
+\end{proof}
+\end{twr}
+\textbf{Uwaga!}\\
+Licząc na wprost można pozbyć się tych dodatkowych założeń.
+\begin{defi}[Złożony proces Poissona]
+Niech $ X_1,X_2,\dots  $ będzie ciągiem niezależnych zmiennych  losowych o tym samym rozkładzie oraz $ \left\{N(t)\right\}_{t\ge 0} $ procesem Poissona niezależnym od $ X_1,X_2,\dots  $. Złożonym procesem Poissona nazywamy procesem stochastyczny
+\begin{gather*}
+W(t)=\sum_{j=1}^{N(t)}X_j
+\end{gather*}
+\end{defi}
+Zastosowania
+\begin{itemize}
+\item $ W(t) $ - reprezentowaną kwotę roszczeń
+\item $ N(t) $ - liczba roszczeń napływających do firmy ubezpieczeniowej na odcinku czasu $ [0,t] $
+\item $ X_j $ - $ j $-te roszczenie
+\end{itemize}
+\textbf{Winosek}
+\begin{align*}
+&\mathbb E W(t)=\lambda t\mathbb E X_1\\
+&\Var W(t)=\lambda t\mathbb E X_1^2
+\end{align*}
+gdy $ \left\{N(t)\right\}_{t\ge 0} $ jest jednorodnym procesem Poissona
+\subsection{Klasyczny model ryzyka}
+\begin{gather*}
+S(t)=
+\underbrace{u}_{\substack{\text{kapitał}\\\text{początkowy}}}
++\underbrace{c}_{\substack{\text{składka}\\\text{na jednostkę}\\\text{ubezpieczenia}}}
+t-
+\underbrace{\sum_{j=1}^{N(t)}X_j}_{\substack{\text{zagregowane}\\\text{roszczenia}}}
+\end{gather*}
+Problem\\
+Wyznacz $ c>0 $ taki, że
+\begin{gather*}
+P\left(\exists_{t\ge0}\;S(t)<0\right)\approx0,0001
+\end{gather*}
+\subsection{Dualny model ryzyka}
+\begin{gather*}
+W(t)=\underbrace{w}_{\substack{\text{kapitał}\\\text{początkowy}}}-
+\underbrace{c}_{\substack{\text{koszt}\\\text{na jednostkę}\\\text{ czasu}}}t+
+\underbrace{\sum_{j=1}^{N(t)}X_j}_{\substack{\text{zagregowane}\\\text{zyski}}}
+\end{gather*}
+\begin{gather*}
+P\left(\exists_{t\ge0}\;W(t)<0\right)\approx\text{ przejęte normy bankowe}
+\end{gather*}
+\section{Moment stopu}
+Niech $ \mathcal F _0\subseteq\mathcal F _1\subseteq\dots\subseteq \mathcal F  $ niemalejący ciąg pod$ \sigma $-ciał w $ (\Omega,\mathcal F ,P) $
+\begin{gather*}
+\mathbb F=(\mathcal F _n)_{n\ge0}
+\end{gather*}
+nazywamy filtracją
+\begin{prz}
+$ X_0,X_1,\dots  $ ciąg zmiennych losowych określonych na $ (\Omega,\mathcal F ,P) $\\
+$ \mathcal F _n=\sigma\left(X_j:j\le n\right) $\\
+$ \mathbb F=(\mathcal F _n)=\left(\sigma(X_j:j\le n)\right) $ - filtracja naturalna
+\end{prz}
+\begin{defi}
+Przy ustalonej filtracji $ \mathbb F=(\mathcal F _n)_{n\ge 0} $ mówimy, że zmienna losowa $ \tau:\Omega\to \mathbb N _0 $ jest momentem stopu (momentem zatrzymania, momentem Markowa), jeśli
+\begin{gather*}
+\forall_{n\in \mathbb N _0}\;\left\{\tau=k\right\}\in \mathcal F _n
+\end{gather*}
+\end{defi}
+\begin{twr}
+Przy ustalonej filtracji $ \mathbb F=(\mathcal F _n)_{n\ge 0} $, $ \tau:\Omega\to \mathbb N _0 $ jest momentem stopu wtedy i tylko wtedy, gdy\begin{gather*}
+\forall_{k\in \mathbb N _0}\;\left\{\tau=k\right\}\in \mathcal F _k
+\end{gather*}
+\begin{proof}
+$ "\Rightarrow"$\\
+Bardzo ważne uwagi
+\begin{align*}
+&\left\{\tau\ge k\right\}\in \mathcal F _{k-1}\\
+&\Omega\backslash\left\{\tau<k\right\}=\Omega\backslash \bigcup_{j=0}^{k-1}\left\{\tau=j\right\}\in \mathcal F _{k-1}
+\end{align*}
+\begin{gather*}
+\left\{\tau=k\right\}=\left\{\tau\le k\right\}\backslash\left\{\tau\le k-1\right\}\in \mathcal F _k
+\end{gather*}
+$ "\Leftarrow" $
+\begin{gather*}
+\left\{\tau\le n\right\}=\bigcup_{k=0}^n\left\{\tau=k\right\}\in \mathcal F _n
+\end{gather*}
+\end{proof}
+\end{twr}
+\begin{twr}[Tożsamość Walda]
+Niech $ X_1,X_2,\dots $ będzie ciągiem niezależnych zmiennych losowych o tym samym rozkładzie i skończonej wartości oczekiwanej $ \mathbb E X_1\in \mathbb R  $ oraz $ \tau  $ będzie momentem stopu względem filtracji naturalnej. Wówczas
+\begin{gather*}
+\mathbb E \sum_{j=1}^{T}X_j=\left(\mathbb E \tau\right)\cdot \left(\mathbb E X_1\right)
+\end{gather*}
+\begin{proof}
+(Etap I)
+\begin{align*}
+&\mathbb E \sum_{j=1}^{\tau}|X_j|
+=\\=&
+\mathbb E \left(\sum_{n=0}^{\infty }\mathbbm1_{\left\{\tau=n\right\}}\cdot\sum_{j=1}^{\tau}|X_j|\right)
+=\\=&
+\mathbb E \left(\sum_{n=0}^{\infty }\mathbbm1_{\left\{\tau=n\right\}}\cdot\sum_{j=1}^{n}|X_j|\right)
+=\\=&
+\mathbb E \left(\mathbbm1_{\left\{\tau=0\right\}}\sum_{j=1}^{0}|X_j|+\mathbbm1_{\left\{\tau=1\right\}}|X_1|+\dots +\mathbbm1_{\left\{\tau=n\right\}}\bigl(|X_1|+|X_2|+\dots +|X_n|\bigr)\right)
+=\\=&
+\mathbb E \left(0+\sum_{j=1}^{\infty }\mathbbm1_{\left\{\tau=j\right\}}\cdot|X_1|+\sum_{j=2}^{\infty }\mathbbm1_{\left\{\tau=j\right\}}\cdot|X_2|+\dots+\sum_{j=n}^{\infty }\mathbbm1_{\left\{\tau=j\right\}}\cdot|X_n|+\dots\right)
+\stackrel{B-L}{=}\\=&
+\sum_{n=1}^{\infty }\mathbb E \left(\mathbbm1_{\left\{\tau\ge n\right\}}\cdot|X_n|\right)
+=\\=&
+\sum_{n=1}^{\infty }P \left(\tau\ge n\right)\mathbb E |X_n|
+=\\=&
+\mathbb E |X_1|\cdot \sum_{n=1}^{\infty }P\left(\tau\ge n\right)
+=\\=&
+\left(\mathbb E \tau \right)\cdot \left(\mathbb E |X_1|\right)
+\end{align*}
+(Etap II)\\
+Powtarzamy cały dowód z etapem 1 opuszczając wartość bezwzględną i argumentując zamiast $ \overset{B-L}{\underset{dla \ge 0}{=}} $ twierdzeniem Fubiniego
+\begin{gather*}
+\int |f|\,d\mu_1\otimes\mu_2<\infty \Leftrightarrow \int f\,d\mu_1\otimes\mu_2=\int \left[\int f(\dots)\,d\mu_1\right]\,d\mu_2
+\end{gather*}
+\begin{gather*}
+\mathbb E \left(\sum_{j=1}^{\tau}X_j\right)=\mathbb E \tau \cdot \mathbb E (X_1)
+\end{gather*}
+\end{proof}
+\end{twr}
+\section{Łańcuchy Markowa}
+Zajmiemy się łańcuchami Markowa z czasem dyskretnym na skończonej lub przeliczalnej przestrzeni fazowej.
+\begin{defi}
+Niech $ (\Omega,\mathcal F ,P) $ będzie przestrzenią probabilistyczną, $ S $ zbiór skończony lub przeliczalny z $ \sigma $-ciałem $ \mathcal G=2^S $. Mówimy,że ciąg elementów (zmiennych) losowych $ X_1,X_2,\dots,X_n:(\Omega,\mathcal F P) \to(S,\mathcal G) $ jest łańcuchem Markowa, jeżeli dla dowolnych $ i,j,i_{n-1},i_{n-2},\dots,i_0\in S $ oraz dowolnego $ n\in \mathbb N _0 $
+\begin{gather*}
+P\left(X_{n+1}=j|X_n=i,X_{n-1}=i_{n-1},\dots,X_0=i_0\right)=
+P\left(X_{n+1}=j|X_n=i\right)=
+p_{ij}^{[n,n+1]}
+\end{gather*}
+przy założeniu
+\begin{gather*}
+P\left(X_n=i,X_{n-1}=i_{n-1},\dots,X_0=i_0\right)>0
+\end{gather*}
+$ p_{ij}^{[n,n+1]} $ - prawdopodobieństwo przejścia ze stanu $ i\in S $ do stanu $ j\in S $ przy zmianie cen z $ n $ na $ n+1 $.
+\end{defi}
+\begin{defi}
+Jeżeli łańcuch Markowa $ X_0,X_1,\dots$ spełnia
+\begin{gather*}
+\forall_{i,j\in S}\forall_{n\in \mathbb N _0}\;p_{ij}^{[n,n+1]}=p_{ij}
+\end{gather*}
+to łańcuch Markowa nazywa się jednorodnym (w czasie)
+\end{defi}
+\textbf{Oznaczenie}
+\begin{gather*}
+P^{[n,n+1]}=
+\begin{bmatrix}
+p_{ij}^{[n,n+1]}
+\end{bmatrix}_{S\times S}
+\end{gather*}
+nazywa się macierzą prawdopodobieństw przejść z $ n $ do $ n+1 $
+
+\textbf{Uwaga!}\\
+Każdy skończony lub przeliczalny zbiór $ S $ można "ponumerować".
+\begin{align*}
+S=\left\{s_1,s_2,\dots,s_n\right\}
+&&
+S=\left\{s_1,s_2,\dots\right\}
+\end{align*}
+Można utożsamiać $ s_j $ z etykietą $ j $. Można od razu zakładać, że
+\begin{align*}
+&S=\left\{1,2,\dots,N\right\}
+&&
+\text{alternatywnie}
+&&
+S=\left\{0,1,\dots,N\right\}\\
+&S=\mathbb N 
+&&
+\text{alternatywnie}
+&&
+S=\mathbb N _0
+\end{align*}
+Zamiast elementów losowych $ X_1,X_2,\dots$ mamy zmienne o wartościach w \\$ \mathbb N ,\mathbb N _0,\left\{1,\dots,N\right\} $.
+\begin{lem}
+Macierz prawdopodobieństw przejść $ P=\left[p_{ij}\right] $ spełnia
+\begin{enumerate}
+\item $ \forall_{i,j}\;0\le p_{ij}\le 1 $
+\item $ \forall_{i}\; \sum_j p_{ij}=1 $
+\end{enumerate}
+\begin{proof}$  $
+\begin{enumerate}
+\item $ p_{ij}=P\left(X_1=j|X_0=i\right)\in[0,1] $
+\item 
+\begin{gather*}
+\sum_j p_{ij}=
+\sum_j P\left(X_1=j|X_0=i\right)=
+P\left(\bigcup_{j\in S}\left\{X_1=j\right\}|X_0=i\right)=
+P\left(\Omega|X_0=i\right)=1
+\end{gather*}
+\end{enumerate}
+\end{proof}
+\end{lem}
+\textbf{Ostrzeżenie}\\
+Fizycy (również w biologii/medycynie)
+\begin{gather*}
+P\left(X_1=j|X_0=i\right)=p_{j|i}=p_{ij}
+\end{gather*}
+\begin{defi}
+Niech $ X_0,X_1,\dots  $ będzie łańcuchem Markowa $ p_{ij}^{[m,m+n]}\stackrel{df}{=}P\left(X_{m+n}=j|X_m=i\right) $ prawdopodobieństwo przejścia w $ n $ krokach począwszy od chwili $ m $ do chwili $ m+n $ dla jednorodnego
+\begin{gather*}
+p_{ij}^{\{n\}}\stackrel{df}{=}
+P\left(X_{m+n}=j|X_m=i\right)=
+P\left(X_{n}=j|X_0=i\right)
+\end{gather*}
+\end{defi}
+\begin{gather*}
+P^{\{n\}}\stackrel{ozn.}{=}\left[p_{ij}^{\{n\}}\right]_{S\times S}
+\end{gather*}
+\begin{twr}
+Jeżeli $ X_0,X_1,\dots  $ jest jednorodnym łańcuchem Markowa o macierzy przejść $ P $, to
+\begin{gather*}
+\forall_{n\in \mathbb N }\;P^{\{n\}}=
+\underbrace{P\circ P\circ \dots\circ P}_{n\text{ złożeń}}=
+P^n
+\end{gather*}
+\begin{proof}
+Indukcja po $ n $\\
+\begin{enumerate}
+\item Dla $ n=1 $
+\begin{gather*}
+p^{\{1\}}=
+\left[p_{ij}^{\{1\}}\right]=
+\left[p_{ij}\right]=P
+\end{gather*} 
+\item 
+\begin{align*}
+&p_{ij}^{\{n+1\}}
+=\\=&
+P\left(X_{n+1}=j|X_0=i\right)
+=\\=&
+\frac{P\left(X_{n+1}=j,X_0=i\right)}{P\left(X_0=i\right)}
+=\\=&
+\frac{P\vphantom{\overbrace{\bigcup_l\left\{X_n=l\right\}}^\Omega}\left(\vphantom{\bigcup\limits_l\left\{X_n=l\right\}}X_{n+1}=j,\smash{\overbrace{\bigcup_l\left\{X_n=l\right\}}^\Omega},X_0=i\right)}{P\left(X_0=i\right)}
+=\\=&
+\sum_l\frac{P\left(X_{n+1}=j,X_n=l,X_0=i\right)}{P\left(X_0=i\right)}
+=\\=&
+\sum_l\frac{P\left(X_{n+1}=j,X_n=l,X_0=i\right)}{P\left(X_n=l,X_0=i\right)}\cdot
+\frac{P\left(X_n=l,X_0=i\right)}{P\left(X_0=i\right)}
+=\\=&
+\sum_lP\left(X_{n+1}=j|X_n=l,X_0=i\right)\cdot
+P\left(X_n=l|X_0=i\right)
+=\\=&
+\sum_lP\left(X_{n+1}=j|X_n=l\right)\cdot
+P\left(X_n=l|X_0=i\right)
+=\\=&
+p_{lj}\cdot p_{il}^{\{n\}}
+\end{align*}
+\item 
+$ p_{il}^{\{n\}}=\left(P^n\right)_{il} $
+\begin{gather*}
+p_{ij}^{\{n+1\}}=\sum_l \underbrace{p_{il}^{\{n\}}}_{\mathclap{\text{z założenia indykcyjnego}}}p_{lj}=
+\sum_l \left(P^n\right)_{il}\left(P\right)_{lj}=
+\left(P^{n+1}\right)_{ij}
+\end{gather*}
+\end{enumerate}
+\end{proof}
+\end{twr}
+\begin{twr}[Twierdzenie Chapmana-Kołmogorowa]
+Niech $ x_0,x_1,\dots  $ będzie jednorodnym łańcuchem Markowa o macierzy prawdopodobieństw przejść $ P=\left[p_{ij}\right]_{S\times S} $. Wówczas dla dowolnych $ n,m\ge 0 $ oraz stanów $ i,j\in S $
+\begin{gather*}
+P\left(X_{n+m}=j|X_0=i\right)
+=\sum_lP\left(X_n=l|X_0=i\right)
+P\left(X_m=j|X_0=l\right)\\
+\forall_{i\,j\in S}\;p_{ij}^{\{n+m\}}=\sum_{l\in S}p_{il}^{\{n\}}p_{lj}^{\{m\}}
+\end{gather*}
+\begin{proof}
+$ P^{n+m}=P^n\circ P^m $
+\begin{gather*}
+\underbrace{P\circ \dots \circ P}_{n+m\text{ razy}}=
+\underbrace{P\circ \dots \circ P}_{n\text{ razy}}\circ
+\underbrace{P\circ \dots \circ P}_{m\text{ razy}}\\
+\left[P_{ij}^{\{n+m\}}\right]=
+\left[P_{ij}^{\{n\}}\right]\circ
+\left[P_{ij}^{\{m\}}\right]
+\end{gather*}
+\end{proof}
+\end{twr}
+\begin{twr}
+Niech $ x_0,x_1,\dots  $ będzie jednorodnym łańcuchem Markowa i $ P(X_0=i)=\mu_i $ ($ (\mu_0\mu_1\mu_2,\dots ) $ rozkład początkowy). Wówczas $ \rho_j=P(X_n=j) $ rozkład procesu w chwili $ n $ spełnia
+\begin{gather*}
+\rho=(\rho_0,\rho_1,\dots)=
+(\mu_0\mu_1,\dots)\circ P^n\qquad\bigl(=\mathcal L(X_0)\circ P^n\bigr)
+\end{gather*}
+\end{twr}
+\begin{proof}
+\begin{gather*}
+P(X_n=j)=
+\sum_iP(X_n=j|X_0=i)\underbrace{P(X_0=i)}_{\mu_i}=
+\sum_i\mu_i\cdot p_{ij}^{\{n\}}=\left(\mu\circ P\right)^n_j\\
+\mathcal L(X_{n+1})=\mathcal L(X_0)\circ P^n
+\end{gather*}
+\end{proof}

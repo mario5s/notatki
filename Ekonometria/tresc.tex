@@ -1333,4 +1333,947 @@ h^2\left (\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)\mathbb E \left(\vare
 h^2\left (\varepsilon_{t-1},\varepsilon_{t-2},\dots \right)
 \end{align*}
 \end{enumerate}
-Do najbardziej znanych modeli nieliniowych w warunkowej wartości średniej należą: procesy dwuliniowe, nieliniowe procesy autoregresji i średniej ruchomej, autoregresyjne modele progowe, przełącznikowe i wygładzonej przejścia, procesy autogresyjne o losowych współczynnikach. Znanymi procesami o zmiennej wariancji warunkowej są procesy ARCH/GARCH
+Do najbardziej znanych modeli nieliniowych w warunkowej wartości średniej należą: procesy dwuliniowe, nieliniowe procesy autoregresji i średniej ruchomej, autoregresyjne modele progowe, przełącznikowe i wygładzonej przejścia, procesy autogresyjne o losowych współczynnikach. Znanymi procesami o zmiennej wariancji warunkowej są procesy ARCH/GARCH oraz procesy zmienności stochastycznej.
+
+Podstawowym modelem ARCH jest układ dwurównaniowy
+\begin{align*}
+y_t=x_t^T\beta+\varepsilon
+&&
+h_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2
+\end{align*}
+gdzie
+\begin{itemize}
+\item $ x_t $ jest wektorem zmiennych objaśniających (najczęściej opóźnionych zmiennych endogenicznych postaci modelu autoregresji AR)
+\item $ \beta  $ jest wektorem parametrów strukturalnych
+\item $ \varepsilon_t $ jest składnikiem zakłócającym spełniającym warunek 
+\begin{gather*}
+\frac{\varepsilon_{t}}{\Omega_{t-1}}\sim\mathcal N(0,h)
+\end{gather*}
+\end{itemize}
+W celu zapewnienia dodatniości warunkowej wariancji zakłada się ponadto, ze $ \alpha_0>0 $ i $ \alpha_i\le0  $. Warto zauważyć, że równanie powyższe jest nieliniowe za względu na zmienne, ale nie ze względu na parametry; równanie to (czyli granica sumy $ q $) wyznacza tzw. stopień modelu ARCH; mówimy wtedy o modelu ARCH(q). Model ARCH(q) opisuje poprawnie proces stacjonarny (lub inaczej ARCH(q) generuje proces stacjonarny), jeśli spełniony jest warunek
+\begin{gather*}
+\sum_{i=1}^{q}\alpha_i<1
+\end{gather*}
+Uogólnionym modelem ARCH, czyli modelem GARCH, jest
+\begin{align*}
+&y_t=x_t^T\beta+\varepsilon_t\\
+&h_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-1}^2+\sum_{i=1}^{p}\gamma_ih_{t-1}
+\end{align*}
+gdzie oznaczenia zmiennych i parametrów jak w równaniach poprzednich.\\
+W celu zapewnienia dodatniości warunkowej wariancji zakłada się ponadto, że $ \alpha_0>0 $ i $ \alpha_i\le0  $ i $ \gamma_1\le0  $. Granice sumowania $ q $ i $ p $ wyznaczają stopień modelu GARCH; mówimy, o modelu GARCH(q,p).
+
+Stacjonarność procesu (czyli skończoność bezwarunkowej wariancji) opisanego modelem GARCH(q,p) jest zapewniona, jeśli spełniony jest warunek
+\begin{gather*}
+\sum_{i=1}^{q}\alpha_i+\sum_{i=1}^{p}\gamma_i<1
+\end{gather*}
+W zastosowaniach modelu rynków finansowych wygodnie jest korzystać z tzw. reprezentacji równoważnej modelu GARCH. Niech dany będzie proces $ v_t $ taki, że
+\begin{align*}
+&v_t=\varepsilon_t^2-h_t=(\eta_t^2-1)h_t\\
+&h_t=\varepsilon-t^2-v_t\\
+&\eta_t\sim\mathcal N(0,1)
+\end{align*}
+Z formuły wyrażającej warunkową wariancję w modelu GARCH wiemy, że $ h_t $ należy zapisać jako
+\begin{align*}
+&h_t
+=\\=&
+\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2+\sum_{i=1}^{p}\gamma_ih_{t-i}
+\Leftrightarrow\\\Leftrightarrow&
+h_t=\varepsilon_t^2-v_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2+\sum_{i=1}^{p}\gamma_ih_{t-i}\\&
+\varepsilon_t^2-v_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2+\sum_{i=1}^{p}\gamma_i\left(\varepsilon_{t-i}^2-v_{t-i}\right)\\&
+\varepsilon_t^2-v_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2+\sum_{i=1}^{p}\gamma_i\varepsilon_{t-i}^2-\sum_{i=1}^{p}\gamma_iv_{t-i}\\&
+\varepsilon_t^2=\alpha_0+\underbrace{\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2+\sum_{i=1}^{p}\gamma_i\varepsilon_{t-i}^2}_{AR(\max(p,q))}-\underbrace{\sum_{i=1}^{p}\gamma_iv_{t-i}+v_t}_{MA(p)}\\&
+\end{align*}
+\subsection{Testowanie efektu ARCH/GARCH}
+Testowanie efektu ARCH/GARCH jest ekwiwalentne, tj. istniejące testy nie pozwalają odróżnić obu procesów. Wynik testu wskazujący na obecność omawianego efektu pozwala jedynie z określonym prawdopodobieństwem wnioskować o obecności ARCH lub GARCH, beż możliwość rozróżnienia. Wnioskowanie o rzędach $ p $ i $ q $ procesów ARCHA/GARCH odbywa się na podstawie miar pojemności informacyjnej.
+\subsubsection{Test Engle'a}
+Jest to test typu mnożnika Lagrange'a, tzn. do testowania hipotezy zerowej niezbędna jest znajomość jedynie modelu z restrykcjami nałożonymi poprzez testową hipotezę. Przypomnijmy, że równaniem pomocniczym wariancji warunkowej w modelu ARCH jest
+\begin{gather*}
+h_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2
+\end{gather*}
+Engle zaproponował postać modelu AR dla kwadratów reszt uzyskanych z tej relacji, zatem szacowany (KMNK lub MNK) model przyjmuje postać
+\begin{gather*}
+\hat{\varepsilon}_k^2=\alpha_0+\sum_{i=1}^{q}\alpha_i\hat\varepsilon_{t-i}^2+\mu_t
+\end{gather*}
+Jeśli efekt ARCH/GARCH nie występuje, czyli nie występuje heteroskedastyczność wariancji warunkowej, wówczas wszystkie parametry $ \alpha_i $ powinny zanikać, tak więc hipotezami są
+\begin{align*}
+&H_0:\alpha_1=\alpha_2=\dots=\alpha_q=0\\
+&H_A:\exists_{\alpha_i}\neq 0
+\end{align*}
+Statystyką testową jest typowa statystyka Lagrange'a
+\begin{gather*}
+LM=T\cdot R^2
+\end{gather*}
+gdzie $ R^2 $ jest współczynnikiem determinacji wyznaczonym dla modelu kwadratów reszt. Statystyka testowa $ LM $ ma rozkład graniczny $ \chi^2 $ o $ q $ stopniach swobody; wnioskowanie o odrzuceniu $ H_0 $ lub braku podstaw do odrzucenia jest typowe dla testu prawostronnego.
+\subsubsection{Test McLeoda i Li}
+W omawianym teście wykorzystuje się statystykę Ljunga-Boxa do weryfikacji hipotezy o braku autokorelacji kwadratów reszt, zatem test przebiega następująco
+\begin{enumerate}
+\item Oszacować relację KMNK
+\item Wyznaczyć kwadraty reszt $ \hat\varepsilon_t^2 $
+\item Obliczyć współczynniki autokorelacji (rzędu od 1 do $ q $) kwadratów reszt uzyskanych w punkcie poprzednim
+\begin{gather*}
+\hat{\rho}=\frac{cov\left(\hat \varepsilon_t^2,\hat \varepsilon_{t-i}^2\right)}{D^2\left(\hat \varepsilon_t^2\right)}
+=
+\frac{\frac{1}{T-i}\sum_{t=i+1}^{T}\hat \varepsilon_t^2\hat \varepsilon_{t-i}^2}{\frac{1}{T}\sum_{t=1}^{T}\hat \varepsilon_t^2}
+\end{gather*}
+\item Obliczyć statystykę Ljunga-Boxa
+\begin{gather*}
+Q'=T(T+2)\sum_{i=1}^{q}\frac{\rho_i}{T-i}
+\end{gather*}
+\item Statystyka Ljunga-Boxa ma rozkład graniczny $ \chi^2 $ o $ q $ stopniach swobody
+\item Wobec zastosowanej statystyki testowej, zestawem hipotez jest
+\begin{align*}
+&H_0:\rho_1=\rho_2=\dots=\rho_q=0\\
+&H_A:\exists_{\rho_i}\neq 0
+\end{align*}
+\end{enumerate}
+\subsection{Niestandardowe modele GARCH}
+\subsubsection{Model GARCH-M}
+Model GARCH in MEAN (GARCH-M) przyjmuje postać
+\begin{align*}
+&y_t=x_t^T\beta +\lambda h_t+\varepsilon_t &&\frac{\varepsilon_t}{\Omega_{t-1}}\sim\mathcal N(0,h_t)\\
+&h_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2+\sum_{i=1}^{p}\gamma_ih_{t-i}
+\end{align*}
+GRACH-M stosowany jest do modelowania ryzyka (premii za ryzyko). Jeżeli ocena parametru $ \lambda $ jest dodatnia i parametr może zostać uznany za statystycznie istotny, wówczas wzrost wariancji warunkowej $ h_t $ (czyli miary ryzyka) powoduje wzrost premii za ryzyko w postaci oczekiwanej stopy zwrotu z papieru ($ y_t $).
+\subsubsection{Model GARCH z asymetrią reakcji}
+Asymetria reakcji na "pakietowe" zmiany zmienności zmiennej będącej przedmiotem zainteresowania (np. stopa zwrotu $ t_t $) może być przybliżona prostym modelem GARCH-M
+\begin{align*}
+&r_t=a+\lambda h_t+\varepsilon_t
+&&
+\frac{\varepsilon_t}{\Omega_{t-1}}\sim \mathcal N(0,h_t)\\
+&\varepsilon_t=v_t\sqrt{h_t}
+&&
+v_t\sim\mathcal N(0,1)\\
+&h_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\varepsilon_{t-i}^2+\sum_{i=1}^{p}\gamma_ih_{t-i}
+\end{align*}
+Wówczas możliwe jest wyznaczenie $ v_t $ jako
+\begin{gather*}
+v_t=\frac{r_t-\left(a+\lambda h_t\right)}{\sqrt{h_t}}
+\end{gather*}
+Warto zauważyć, ze proces opisany przez to równanie charakteryzuje się rozkładem normalnym standardowym.
+\subsubsection{Model E-GARCH}
+W modelu E-GARCH czyni się typowe założenia odnoszące się do równania opisującego zmienną będącą przedmiotem zainteresowania, czyli
+\begin{align*}
+&y_t=x_t^T\beta+\varepsilon&&\frac{\varepsilon_t}{\Omega_{t-1}}\sim\mathcal N(0,h-t)\\
+&\varepsilon_t=v_t\sqrt{h_t}&&v_t\sim\mathcal N(0,1)
+\end{align*}
+Funkcją warunkową wariancji jest
+\begin{gather*}
+\ln h_t=\alpha_0+\sum_{i=1}^{q}\alpha_i\left(\delta_1v_{t-1}+\delta_2\left(v_{t-1}-\sqrt{\frac{2}{\pi}}\right)\right)+\sum_{i=1}^{p}\gamma_i\ln h_{t-1}
+\end{gather*}
+Powyższy model jest modelem typu wykładniczego. Z definicji funkcji wykładniczej wynika, ze zapewniona jest nieujemność wariancji warunkowej.
+
+\section{Ekonomiczne modele panelowe}
+Definicja danych panelowych\\
+\begin{tabular}{lll}
+	dane przekrojowe         & $ y_i $    & $ i=1,\dots,N $                  \\
+	szeregi czasowe          & $ y_t $    & $ t=1,\dots,T $                  \\
+	dane przekrojowo-czasowe & $ y_{it} $ & $ i=1,\dots,N,\quad t=1,\dots,T$
+\end{tabular}
+\subsection{Dane panelowe}
+\subsubsection{Przykłady danych panelowych.}
+\begin{itemize}
+\item Dane miesięczne o wydatkach dla 1000 gospodarstw domowych obserwowanych przez 5 lat - analiza preferencji konsumentów, badania skuteczności kompanii reklamowej.
+\item Makroekonomiczne wskaźniki 25 krajów UE w ostatnich 10 lat publikowane przez Eurostat - badanie skuteczności europejskich funduszy strukturalnych.
+\item Penn World Tables - skonstruowana przez Summersa i Hestona baza porównywalnych danych makroekonomicznych zawierająca informacje dla ponad 200 krajów dla 1960-2010 - analiza czynników wzrostu gospodarczego, weryfikacja hipotezy konwergencji gospodarczej.
+\item Wskaźniki zatrudnienia i wynagrodzeń w Polsce w podziale na województwa za ostatnie 15 lat - badanie skuteczności polityki makroekonomicznej, szukanie czynników determinujących zmiany na rynku pracy.
+\item Liczba inwestorów zagranicznych inwestujących w poszczególnych województwach w latach 1993-2015 - modelowanie częstotliwości występowania określonego zdarzenia - badanie atrakcyjności inwestycyjnej poszczególnych województw.
+\item Dane firmy ubezpieczeniowej o ubezpieczeniach komunikacyjnych dotyczące np. szkodowości klientów w różnych latach - np. możliwość wykorzystania wyników do budowy systemu Bonus-Malus.
+\item Informacje banków o kredytach konsumpcyjnych, hipotecznych i ich spłacalności na przestrzeni kilkunastu miesięcy lub lat - budowa modeli scoringowych - modeli wstępnej oceny ryzyka kredytowego.
+\item Informacje firmy odzieżowej o przychodach i kosztach poszczególnych sklepów w sieci w różnych miastach lub centrach dla szeregu miesięcy - ocena skuteczności poszczególnych kampanii reklamowych, szczegółowa analiza indywidualnej specyfiki poszczególnych sklepów lub miast.
+\end{itemize}
+\subsubsection{Dlaczego warto stosować dane panelowe}
+\begin{itemize}
+\item Dane panelowe pozwalają na analizę zjawiska równocześnie w czasie jak i wymiarze przekrojowym lub przestrzennym.
+\item Dane panelowe pozwalają na wyodrębnienie indywidualnej specyfiki poszczególnych obiektów.
+\item Zastosowanie paneli danych pozwala na większą heterogeniczność (większe zróżnicowanie) jednostek badania.
+\item Zapewnia większą liczbę stopni swobody oraz zwiększa efektywność oszacowania.
+Wyodrębnienie efektów wpływu nieobserwowalnych zmiennych lub efektów.
+\end{itemize}
+\subsubsection{Specyfika danych panelowych}
+\begin{itemize}
+\item Obserwacje dotyczące tej samej jednostki mogą być ze sobą skorelowane.
+\item Obserwacje dotyczące tego samego okresu mogą być ze sobą skorelowane
+\item Czasem mamy do czynienia z przypadkami, gdzie nie występuje ani jeden, ani drugi rodzaj korelacji (przypadek akademicki)
+\end{itemize}
+\subsection{Ogólny zapis modelu panelowego}
+Model statyczny
+\begin{gather*}
+Y_{it}=\beta_0+\beta'x_{it}+\alpha_{it}+v_t+u_{it}
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ \beta $ - wektor parametrów
+\item $ x_{it} $ macierz obserwacji na zmiennych objaśniających
+\item $ \alpha_i $ - efekty indywidualne, część zmienności $ y $ charakterystyczna dla efektu $ i $-tej jednostki ($ N $ efektów)
+\item $ v_t $ efekty okresowe, część zmienności zmiennej $ y $ charakterystyczna dla okresu $ t $; ($ T $ efektów)
+\item $ u_it $ czysto losowy składnik zakłócający
+\end{itemize}
+Rodzaje modeli panelowych
+\begin{itemize}
+\item[1a)] Jeżeli efekty indywidualne $ \alpha_i $ i efekty $ v_t $ są nieistotne, oznacza to, że mamy do czynienia z tak zwanym homogenicznym panele - analizowana przez nas relacja jest taka sama w każdym okresie i dla każdej badanej jednostki - Model Łącznej Regresji.
+\item [a2)] Jeżeli zarówno efekty indywidualne jak i efekty okresowe są istotne, mamy do czynienia z heterogenicznym panelem - Dwukierunkowy Model Panelowy.
+\item [a3)] Jeżeli tylko jedna grupa efektów jest istotna - Jednokierunkowy Model Panelowy
+\item [b1)] Efekty indywidualne i (lub) okresowe mogą być efektami ustalonymi, czyli stałymi w danym czasie lub dla danej jednostki, nie zależą od czynników losowych - Model z Efektami Ustalonymi (ang. \textit{Fixed Effects Model}) - FE
+\item [b2)] Efekty indywidualne i (lub) okresowe mogą być efektami losowymi, czyli zależą od czynników losowych i mogą się zmieniać, są zmiennymi losowymi o określonych rozkładach - Model z Efektami Losowymi (ang. \textit{Random Effects Model}) - RE.
+\end{itemize}
+Pozornie Niezależne Regresje\\
+Czasami dysponując danymi panelowymi nie jesteśmy zainteresowani budową jednego modelu ekonometrycznego dal wszystkich posiadanych informacji. Szacowane sa wówczas oddzielne regresje dla każdej jednostki badania, ale dla podniesienia dokładności (efektywności) oszacowania, wykorzystana jest dodatkowa informacja wynikająca z faktu, że dla wszystkich jednostek badania można określić pewną strukturę stochastyczną; stosujemy Model Pozornie Niezależnych Regresji (ang. \textit{Seemingly Unrelated Regression Model}) - SUR
+\subsection{Model regresji Łącznej}
+Założenia
+\begin{enumerate}
+\item Mamy do czynienia z homogeniczną próbą - wszystkie jednostki badania są do siebie podobne. Oznacza to, że parametry szacowanego modelu są jednakowa dla wszystkich jednostek oraz we wszystkich okresach badania.
+\item Różnice między empirycznymi wartościami zmiennej endogenicznej, a wartościami teoretycznymi są jedynie efektem działania zakłóceń losowych o tym samym rozkładzie dla każdej $ i $-tej jednostki i dla każdego okresu $ t $.
+\end{enumerate}
+Wybór takiego modelu może być poprzedzony odpowiednim testowaniem.
+Model możemy zapisać jako
+\begin{gather*}
+y_{it}=\beta_0+\sum_{s=1}^{k}\beta_{sit}x_{sit}+u_{it}
+\qquad i=1,\dots,N
+\qquad t=1,\dots,T
+\end{gather*}
+gdzie:
+\begin{itemize}
+\item $ N $ - liczba jednostek w próbce
+\item $ T $ - liczba okresów
+\item $ k $ - liczba zmiennych objaśniających w modelu
+\end{itemize}
+Metody estymacji: MNK lub KMNK w przypadku niesferycznego składnika losowego.
+\subsection{Model z Efektami Ustalonymi (FE)}
+Jednokierunkowy (\textit{one-way})\\
+Model możemy zapisać
+\begin{gather*}
+y_{it}=\alpha_{i}+\beta'x_{it}+u_{it}
+\qquad i=1,\dots,N
+\qquad t=1,\dots,T
+\end{gather*}
+$ \beta $ - wektor parametrów estymacji
+
+Zapis macierzowy
+\begin{gather*}
+y_i=\alpha_ie+X_i\beta+u_i
+\qquad i=1,\dots,N
+\end{gather*}
+Założenia do estymacji
+\begin{itemize}
+\item $ u_i $ oraz $ X_i $ są niezależne dla $ i=1,\dots,N $ - zmienne tworzące macierz $ X $ są ściśle egzogeniczne, czyli
+\begin{gather*}
+\forall_{i=1,\dots,N}\;
+\mathbb E \left\{x_{it},u_{rs}\right\}=0
+\end{gather*}
+\item $ \mathbb E (u_i) =0$
+\item $ \mathbb E(u_i,u_j')=\sigma^2 I,
+\quad i=1,\dots,N, 
+\quad j=1,\dots,N $ gdzie $ I $ jest macierzą jednostkową
+\item $ r(X)=N+K\le NT $
+\end{itemize}
+Wprowadzamy $ N $ zmiennych zerojedynkowych - każda zmienna przyjmuje wartość 1 dla danej jednostki i 0 dla pozostałych jednostek.\\
+Szacowanie:
+\begin{itemize}
+\item KMNK
+\item Estymator Wewnątrzgrupowy
+\end{itemize}
+\subsection{Model z Efektami Losowymi (RE)}
+Jednokierunkowy (\textit{one-way})\\
+Ogólna postać modelu
+\begin{gather*}
+y_{it}=\beta_0+\beta'x_{it}+v_{it}
+\qquad i=1,\dots,N
+\qquad t=1,\dots,T
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ v_{it}=u_{it}+\alpha_i $ - dwuczęściowy składnik losowy
+\end{itemize}
+Dodatkowe założenia
+\begin{itemize}
+\item $ \mathbb E (\alpha_i)=0,\quad i=1,\dots,N $
+\item Efekty indywidualne $ \alpha_i $ są niezależne od $ u_i $ oraz $ X_i $ dla $ i=1,\dots,N $
+\item Efekty indywidualne dla rożnych jednostek są nieskorelowane, ale występuje korelacja między efektami z różnych okresów dla tej samej jednostki.
+\end{itemize}
+\begin{gather*}
+\mathbb E (\alpha_i,\alpha_j)=
+\left \{
+\begin{array}{ll}
+	0               & i\neq j \\
+	\sigma^2_\alpha & i=j
+\end{array}
+\right .
+\qquad i,j=1,\dots,N
+\end{gather*}
+Wariancja składnika losowego w modelu RE składa się z dwóch części
+\begin{gather*}
+\sigma^2_v=\sigma^2_u+\sigma^2_\alpha
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ \sigma_u^2 $ - wariancja składnika losowego
+\item $ \sigma_\alpha^2 $ - wariancja efektów indywidualnych
+\end{itemize}
+\textbf{Uwaga!}\\
+Składniki losowe w modelu RE są ze sobą skorelowane, czyli KMNK przestaje być efektywna, dlatego do oszacowania tego modelu zastosować estymator Uogólnionej Metody Najmniejszych Kwadratów.
+
+Macierz wariancji i kowariancji
+\begin{gather*}
+V_{(NT\times NT)}=
+\begin{bmatrix}
+	\Omega _1 & 0         & \ldots & 0         \\
+	0         & \Omega _2 & \ldots & 0         \\
+	\vdots    & \vdots    & \ddots & \vdots    \\
+	0         & 0         & \ldots & \Omega _N
+\end{bmatrix}
+=I_N\otimes \Omega_i
+\end{gather*}
+gdzie macierz $ \Omega_i $ jest w przypadku stałych efektów indywidualnych macierzą jednostkową rzędu $ T $, a w przypadku losowym efektów indywidualnych macierzą
+\begin{gather*}
+\Omega_t=\mathbb E (v_iv_i')=
+\begin{bmatrix}
+	(\sigma _{u}^2+\sigma_\alpha^2) & \sigma _{\alpha }^2             & \ldots & \sigma
+ _{\alpha }^2            \\
+	\sigma _{\alpha }^2             & (\sigma _{u}^2+\sigma_\alpha^2) & \ldots & \sigma
+ _{\alpha }^2            \\
+	\vdots                          & \vdots                          & \ddots & \vdots                          \\
+	\sigma _{\alpha }^2             & \sigma _{\alpha }^2             & \ldots & (\sigma _{u}^2+\sigma_\alpha^2)
+\end{bmatrix}
+=\sigma_u^2I_T+\sigma_\alpha^2ii'
+\end{gather*}
+gdzie $ v_i=\alpha_i+u_i $
+\subsection{Niespełnienie założeń}
+\subsubsection{Heteroskedastyczność}
+\begin{itemize}
+\item \textit{groupwise heteroskedasticity} - macierze $ \Omega_i $ są różne dla poszczególnych jednostek, co może być spowodowane zmiennością czysto losowego składnika lub (w modelu random effects) zmiennością wariancji efektów indywidualnych.
+\item \textit{cross-sectional correlation} - w macierzy blokowej $ V $ poza przekątną występują macierze niezerowe; sytuację taką najczęściej opisuje się poprzez współczynnik korelacji równoczesnych realizacji "czystego" zaburzenia losowego.
+\end{itemize}
+\subsubsection{Autokorelacja}
+\begin{gather*}
+\mathbb E (u_{it},u_{jt}|X_i,X_j)=\rho_{ij}
+\end{gather*}
+mogą wystąpić np. procesy autoregresyjne i/lub średniej ruchomej
+\begin{gather*}
+\mathbb E (u_{it},u_{is}|X_i)=\rho_{ts}
+\end{gather*}
+\subsection{Konsekwencje niespełnienia założeń}
+Jeśli założenia o strukturze wariancji składnika losowego są błędne, to:
+\begin{itemize}
+\item Estymatory modelu po zostają nieobciążone, zgodne i asymptotycznie normalne, lecz są nieefektywne w porównaniu z estymatorem uwzględniającym strukturę prawdziwą.
+\item Dodatkowo, obciążony jest estymator macierzy wariancji kowariancji parametrów, zatem mogą okazać się błędne wyniki o istotności zmiennych wyciągane na podstawie statystyki $ t $.
+\end{itemize}
+\subsection{Sposoby rozwiązania problemu}
+\begin{itemize}
+\item Zastosowanie UMNK z estymacją:
+\begin{itemize}
+\item dla modelu, w którym autokorelacja rzędu pierwszego: np. Cochrana-Orcutta
+\item dla modelu ze zmienną wariancją tzw. Ważona Metoda Najmniejszych Kwadratów
+\end{itemize}
+\item Estymacja macierzy wariancji i kowariancji parametrów (czyli również błędów szacunku parametrów strukturalnych) w taki sposób, że byłaby odporna (roboust) na niespełnienie założeń o sferyczności składnika losowego.
+\end{itemize}
+\subsection{Estymatory odporne (roboust)}
+\begin{enumerate}
+\item Metoda zaproponowana przez Arellana (duże $ N $, małe $ T $). Macierz kowariancji i wariancji może by szacowana jako
+\begin{gather*}
+\Sigma_{\hat{\beta}}=NT(X'X)^{-1}\hat{\Omega}(X'X)^{-1}
+\end{gather*}
+gdzie $ \hat{\Omega} $ jest zgodnym estymatorem macierzy wariancji składnika losowego; dla wszelkich postaci heteroskedastyczności i autokorelacji " czystego składnika losowego $ u_{it} $ ma postać
+\begin{gather*}
+\hat{\Omega}=\frac{1}{NT}\sum_{i=1}^{N}\sum_{t=1}^{T}\hat{u}_{it}^2x_{it}x"_{it}
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ u_{it} $ - reszty modelu
+\item $ x_{ti} $ - obserwacje na zmiennych objaśniających.
+\end{itemize}
+Jest to tzw. korekta White'a uogólniona do danych panelowych.
+\item Metoda Arellano niedoszacowuje błędów w przypadku wystąpienia znaczącej autokorelacji zakłóceń pomiędzy jednostkami w tym samym momencie czasu. W takich przypadkach stosuje się
+\begin{gather*}
+\Sigma_{\hat{\beta}}=(X'X)^{-1}\left(\sum_{t=1}^{N}\sum_{j=1}^{N}\hat{\sigma}_{ij}(X_i'X_j)^{-1}\right)(X'X)^{-1}
+\end{gather*}
+gdzie $ \hat{\sigma}_{ij}=\frac{\hat{u}_i'\hat{u}_j}{T} $\\
+$ T $ Oznacza długość szeregu czasowego dla każdej jednostki.
+\end{enumerate}
+\subsubsection{Heteroskedastyczność}
+Dwa źródła
+\begin{itemize}
+\item duże zróżnicowanie jednostek w panelu
+\item duża zmienność zakłóceń losowych w czasie
+\end{itemize}
+Przy dużym $ N $ i małym $ T $ uwzględnienie zmienności wariancji w modelu RE wiąże się z estymacją zbyt dużej liczby parametrów, stąd w takim przypadku powinno się stosować model FE. Wówczas macierz wariancji i kowariancji składników losowych
+\begin{gather*}
+V_{(NT\times NT)}=\Sigma_{(N\times N)}\otimes I_T
+\end{gather*}
+Model taki możemy szacować Uogólnioną Metodą Najmniejszych Kwadratów
+\begin{gather*}
+\hat{\beta}_{UMNK}=(x'\hat V^{-1}X)^{-1}
+\end{gather*}
+A elementy macierzy wariancji i kowariancji parametrów
+\begin{gather*}
+\Sigma_{\hat{\beta}}=(X'\hat V^{-1}X)^{-1}
+\end{gather*}
+a elementy macierzy $ \hat V $ obliczamy na podstawie reszt z oszacowania wstępnej regresji Klasyczną Metodą Najmniejszych Kwadratów
+\begin{align*}
+\hat{\sigma}_I^2=\frac{\hat u_i'\hat u_i}{T}
+&&
+\hat{\sigma}_{ij}=\frac{\hat u_i'\hat u_j}{T}
+\end{align*}
+\subsection{Model RE a model FE}
+\begin{itemize}
+\item Brak różnicy w estymacji, jeśli $ T $ dąży do nieskończoności
+\item Jeśli efekty indywidualne nie są skorelowane za zmiennymi objaśniającymi, to zarówno FE jak i RE są nieobciążone i zgodne, ale RE jest efektywniejszy
+\item Jeśli efekty indywidualne są skorelowane za zmiennymi objaśniającymi, to FE jest nieobciążony, a RE obciążony.
+\end{itemize}
+\subsection{Model z efektami ustalonymi (FE)}
+Dwukierunkowy (\emph{two-way})\\
+Jeżeli efekty okresowe (czasowe) mają być efektami ustalonymi to wyraz wolny dzielony jest na dwie części. Możemy  zatem zapisać:
+\begin{gather*}
+y_{it}=\alpha_i+\lambda_t+\beta'x_{it}+\varepsilon_{it}\qquad i=1,\dots,N\qquad t=1,\dots,T
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ \alpha_i $ - ustalony efekt indywidualny stały w każdym okresie czasu, ale inny (może być inny) dla każdego obiektu w panelu
+\item $ \lambda_t $ - ustalony efekt, który ma tę samą wartość dla wszystkich jednostek w panelu w tym samym okresie, ale jest różny (może być różny) w każdym czasie.
+\end{itemize}
+Należy pamiętać, nie możemy wprowadzić równocześnie $ N $ efektów indywidualnych oraz $ T $ efektów okresowych, jeśli chcemy oszacować model $ \rightarrow $ dokładana współliniowość wektorów.
+\subsection{Testowanie modeli FE, RE oraz FE vs RE}
+\begin{itemize}
+\item model FE: test Walda istotności efektów istotności efektów indywidualnych tzw. testowanie różnicy w sumie kwadratów reszt dla modelu \emph{pooled} (hipoteza zerowa) vs FE (hipoteza alteernatywna)
+\item model RE: test Breuscha-Pagana (wersja testu mnożników Lagrange'a) istotności wariancji przy prawdziwości hipotezy zerowej wariancja jest stała w czasie dla wszystkich badanych jednostek
+\item Fe vs RE: test hausmana; testowanie są różnice między oszacowaniami parametrów obu modeli; duże różnice (hipoteza alternatywna) mogą być spowodowane tym, że RE jest obciążony, czyli efekty indywidualne są skorelowane ze zmiennymi objaśniającymi lub nastąpił błąd w specyfikacji modelu; małe różnice (hipoteza zerowa) wskazują, że FE i RE są zgodne...
+\end{itemize}
+\subsection{Istotność efektów stałych w modelu FE}
+Pytanie: czy wprowadzanie różnych dla poszczególnych wyrazów wolnych prowadzi do uzyskania dokładniejszych oszacowań?
+\subsubsection{Test Walda (F)}
+\begin{align*}
+&H_0:\alpha_{it}=const,&&i=1,\dots,N&&t=1,\dots,T\\
+&H_A:\forall_{i,j}\;\alpha_i\neq\alpha_j, \text{ale }\alpha_{it}=\alpha_{is}=\alpha_i&&i=1,\dots,N&&t,s=1,\dots,T
+\end{align*}
+Według hipotezy zerowej wyrazy wolne (wszystkich jednostek i okresów) mają tę samą własność. Według hipotezy alternatywnej wyrazy wolne są stałe w czasie, lecz mogą różnić się dla poszczególnych jednostek.
+
+\textbf{Statystyka testowa z pórby}
+\begin{gather*}
+F=\frac{(R_1^2-R_0^2)/(N-1)}{(1-R_1^2)/(NT-N-k)}
+\end{gather*}
+gdzie:
+\begin{itemize}
+\item $ R_0^2 $ - wartość współczynnika determinacji dla modelu prawidłowego według hipotezy zerowej, czyli
+\begin{gather*}
+y_{it}=\alpha+\beta'x_{it}+\varepsilon_{it}\qquad i=1,\dots,N,\qquad t=1,\dots,T
+\end{gather*}
+\item $ R_1^2 $ - prawidłowa wartość współczynnika determinacji dla modelu poprawionego według hipotezy alternatywnej, czyli
+\begin{gather*}
+y_{it}=\alpha_i+\beta'x_{it}+\varepsilon_{it}\qquad i=1,\dots,N,\qquad t=1,\dots,T
+\end{gather*}
+\end{itemize}
+Można również skorzystać ze statystyki testowej
+\begin{gather*}
+F=\frac{(S_1^2-S_0^2)/(N-1)}{(1-S_1^2)/(NT-N-k)}
+\end{gather*}
+gdzie:
+\begin{itemize}
+\item $ S_0^2 $ - suma kwadratów reszt dla modelu prawidłowego według hipotezy zerowej,
+\item $ S_1^2 $ - dla modelu prawidłowego według hipotezy alternatywnej.
+\end{itemize}
+W obu przypadkach obszar krytyczny testu jest prawostronnie określony przez wartość krytyczną
+\begin{gather*}
+F_\alpha=(N-1,NT-N-k)
+\end{gather*}
+\subsection{Istotności efektów okresowych w FE}
+Pytanie: czy właściwy jest model jednokierunkowy (\emph{one-way}), czy dwukierunkowy (\emph{two-way})?
+\begin{align*}
+&H_0:\gamma_{it}=\gamma_{is}=\gamma_i,&&i=1,\dots,N&&t,s=1,\dots,T\\
+&H_A:\forall_{i,j}\;\gamma_i\neq\gamma_j,&&i=1,\dots,N&&t,s=1,\dots,T
+\end{align*}
+gdzie:
+\begin{itemize}
+\item $ \gamma_{it}=\alpha_i+\lambda_t $
+\end{itemize}
+Według hipotezy zerowej jest model jednokierunkowy, a według hipotezy alternatywnej model dwukierunkowy.
+
+\textbf{Staytstyka z próby}
+\begin{gather*}
+F=\frac{(S_0^2-S_1^2)/(T-1)}{S_1^2/[NT-(N-1)-(T-1)-k]}
+\end{gather*}
+\subsection{Istotność efektów w modelu RE}
+W modelu z efektami losowymi zakładamy, że składnik losowy zawiera w sobie zarówno efekty indywidualne jak i okresowe. Należy zbadać, czy wariancja składników losowych dla wszystkich obserwacji jest stała. Jeżeli jest stała, tzn. że brak istotnego zróżnicowania efektów i należy zastosować model regresji łącznej.
+\subsubsection{Test Breuuscha-Pagana (jak w teście mnożników Lagrange'a)}
+\begin{gather*}
+H_0:\sigma_\alpha^2=0\\
+H_A:\sigma_\alpha^2\neq 0
+\end{gather*}
+\textbf{Statystyka testowa z próby}
+\begin{gather*}
+LM=\frac{NT}{2(T-1)}
+\left[\frac{\sum\limits_{i=1}^{N}\left(\sum\limits_{t=1}^{T}e_{it}\right)^2}{\sum\limits_{i=1}^{N}\sum\limits_{t=1}^{T}e_{it}^2}-1\right]^2
+\end{gather*}
+gdzie wartości reszt $ e_{it} $ to reszty z modelu regresji łącznej. Przy prawidłowości hipotezy zerowej powyższa statystyka ma rozkład $ \chi^2 $ z jednym stopniem swobody.
+\subsection{Czy stosować model FE czy raczej RE?}
+\begin{itemize}
+\item Jakie założenia można przyjąć co do efektów indywidualnych?\\
+Czy można je ocenić jako nieprzypadkowe (systematycznie) związane z poszczególnymi jednostkami?
+\item Testowanie statystyczne - czy są spełnione przyjęte założenia?
+\begin{itemize}
+\item Kluczowym założeniem dla modelu RE jest założenie o niezależności efektów indywidualnych i zmiennych objaśniających.
+\item Jeżeli założenie to nie jest spełnione wówczas estymator UMNK staje się estymatorem obciążonym.
+\item W przypadku spełnienia założenia zarówno estymator UMNK jak i estymator KMNK dla modelu FE są zgodne i nieobciążone, jednak estymator UMNK jest bardziej lub co najmniej tak samo efektywny.
+\end{itemize}
+\end{itemize}
+\subsubsection{Test Hausmana}
+Polega na porównaniu wartości ocen parametrów uzyskanych przy pomocy obu estymatorów.
+\begin{gather*}
+H_0:\mathbb E (\xi_{it}|X)=0\\
+H_A:\mathbb E (\xi_{it}|X)\neq 0
+\end{gather*}
+gdzie:
+\begin{itemize}
+\item $ \xi_{it}=\eta_i+u_{it} $
+\item $ H_0 $ - oba estymatory są zgodne i nieobciążone, ale estymator UMNK dla modelu RE jest bardziej efektywny.
+\item $ H_A $ - estymator UMNK dla RE jest obciążony, zatem należy stosować model FE, którego estymator jest nieobciążony
+\end{itemize}
+\textbf{Statystyka testowa z próby}
+\begin{gather*}
+m_1=
+\left(\hat{\beta}_{RE}-\hat{\beta}_{FE}\right)^T
+\left(\Var\left(\hat{\beta}_{FE}\right)-\Var\left(\hat{\beta}_{RE}\right)\right)^{-1}
+\left(\hat{\beta}_{RE}-\hat{\beta}_{FE}\right)
+\end{gather*}
+gdzie:
+\begin{itemize}
+\item $ \hat{\beta}_{RE} $ - wektor ocen parametrów z modelu RE
+\item $ \hat{\beta}_{FE} $ - wektor ocen parametrów z modelu FE
+\item $ \Var(\hat{\beta}_{RE}) $ - macierz wariancji i kowariancji ocen parametrów modelu RE
+\item $ \Var(\hat{\beta}_{FE}) $ - macierz wariancji i kowariancji ocen parametrów modelu FE
+\end{itemize}
+Jeżeli hipoteza $ H_0 $ jest prawdziwa to statystyka $ m_1 $ ma rozkład $ \chi^2 $ z $ k $  stopniami swobody (prawostronny obszar krytyczny).
+\subsubsection{Macierz wariancji i kowariancji parametrów}
+Ogólna formuła wyznaczania macierzy wariancji i kowariancji parametrów strukturalnych
+\begin{gather*}
+\Var\left(\hat{\beta }\right)=
+\Sigma_{\hat{\beta}}=
+\mathbb E \Bigl(\left(\hat{\beta}-\beta\right)\left(\hat{\beta}-\beta\right)'\Bigr)
+=(X'X)^{-1}X'\Omega X(X^TX)^{-1}
+\end{gather*}
+gdzie $ \Omega $ jest macierzą wariancji i kowariancji składników losowych.\\
+Tylko wtedy, gdy $ \Omega=\sigma^2I $ redukuje się do:
+\begin{gather*}
+\Var\left(\hat{\beta }\right)=
+\Sigma_{\hat{\beta}}=
+\mathbb E \Bigl(\left(\hat{\beta}-\beta\right)\left(\hat{\beta}-\beta\right)'\Bigr)
+=\sigma_u^2(X^TX)^{-1}
+\end{gather*}
+\subsubsection{Współczynnik determinacji w analizie}
+Dla modeli panelowych definiujemy różne współczynniki determinacji
+\begin{itemize}
+\item ogólny współczynnik determinacji
+\begin{gather*}
+R^2=r^2\left\{\hat{y}_{it},y_{it}\right\},\qquad i=1,\dots,N\qquad t=1,\dots,T
+\end{gather*}
+\item wewnątrzgrupowy współczynnik determinacji
+\begin{gather*}
+R^2=r^2\left\{\hat{y}_{it}-\overline{\hat{y}}_{it},y_{it}-\overline{y}_{it}\right\},\qquad i=1,\dots,N\qquad t=1,\dots,T
+\end{gather*}
+gdzie
+\begin{gather*}
+\begin{array}{l}
+\overline{\hat{y}}_{it}=\frac{1}{T}\sum\limits_{t=1}^{T}\hat y_{it}\\
+\overline{{y}}_{it}=\frac{1}{T}\sum\limits_{t=1}^{T} y_{it}
+\end{array}
+\qquad i=1,\dots,N
+\end{gather*}
+\item międzygrupowy współczynnik determinacji
+\begin{gather*}
+R^2_{BG}=r^2\left\{\overline{\hat{y}}_{it},\overline y_{it}\right\}
+\end{gather*}
+\end{itemize}
+Wszystkie współczynniki wyznaczone są jako kwadraty współczynnika korelacji liniowej Pearsona i przyjmuje wartości z przedziału $ [0,1] $
+
+Wartości przedstawionych współczynników mogą istotnie się różnić w zależności od postaci wybranego estymatora.
+\begin{itemize}
+\item Ogólny współczynnik determinacji przyjmuje z reguły największe wartości dla modelu regresji łącznej.
+\item Zastosowanie modelu FE pozwala na maksymalizację $ R^2 $ wewnątrzgrupowego.
+\item W regresji międzygrupowej uzyskamy najwyższe wartości współczynnika determinacji międzygrupowego.
+\end{itemize}
+\subsubsection{Szacowanie modeluu z Efektami ustalonymi (FE)}
+Model FE ze zmiennymi zerojedynkowymi generalnie szacujemy KMNK (tzw. \emph{LSDV - LS with Dummy Variables}), pojawia się jednak często problem zbyt dużej liczby zmiennych w modelu - czyli zbyt dużego wymiaru macierzy $ X $. Rozwiązaniem (dla dużej liczby jednostek $ N $) jest Estymator Wewnątrzgrupowy.
+\subsubsection{Estymator Wewnątrzgruopwy (\emph{Within estimator})}
+Zdfeiniujemy następującee średnie wartości zmiennych dla każdej $ i $-tej jednostki:
+\begin{align*}
+\overline{y}_i=\frac{1}{T}\sum_{i=1}^{T}y_{it}
+&&
+\overline{x}_{ik}=\frac{1}{T}\sum_{i=1}^{T}x_{itk}
+\end{align*}
+Mamy zatem szereg średnich, każdy po $ N $ obserwacji. Możemy zapisać wówczas następujący model
+\begin{gather}
+\overline y_i=\alpha_i+\overline x_i\beta+\overline u_i\qquad i=1,\dots,N\label{r1}
+\end{gather}
+Model taki nazywany jest regresją międzygrupową (\emph{between group regression}) i jest modelem przekrojowym, gdzie wartości zmiennych są średnimi po czasie. Zwróćmy uwagę, że średnia wartość efektu indywidualnego dla $ i $-tej jednostki jest równa $ \alpha_i $, ponieważ efekt ten jest stały w czasie. Jeżeli zapiszemy informacje dla jednej jednostki ze wszystkich okresów w jeden wektor możemy zapisać, że
+\begin{gather}
+y_i=\alpha_i e+X_i\beta+u_i\label{r2}
+\end{gather}
+Jeżeli od równania \eqref{r2} odejmiemy równanie \eqref{r1} otrzymamy wówczas
+\begin{gather*}
+\left(y_i-\overline y_i\right)=\left(\alpha_i-\alpha_i\right)+
+\left(x_i-\overline x_i\right)\beta+
+\left(u_i-\overline u_i\right)
+\end{gather*}
+Zwróćmy uwagę, że poprzez taką transformację z modelu "znika" efekt indywidualny. Dzieje się tak dla każdej badanej jednostki. Poprzez transformację pierwotnych danych do postaci odchyleń od średnich uzyskujemy nowe zmienne:
+\begin{align*}
+&\tilde y_{it}=(y_{it}-\overline y_{it}),\\
+&\tilde x_{it}=(x_{it}-\overline x_{it})
+\end{align*}
+Wówczas stosujemy KMNK dla przetransformowanych danych
+\begin{gather*}
+\hat \beta_{FE}=\left(\sum_{i=1}^{N}(\tilde X_i'\tilde X_i)\right)^{-1}\sum_{i=1}^{N}(\tilde X_i'\tilde Y_i)
+\end{gather*}
+Jest to tzw. estymator wewnątrzgrupowy (\emph{within group}). Może być zapisany również skalarnie jako
+\begin{gather*}
+\hat \beta_{FE}=
+\left(\sum_{i=1}^{N}\sum_{t=1}^{T}(x_{it}-\overline x_{i})(x_{it}-\overline x_{i})'\right)^{-1}
+\sum_{i=1}^{N}\sum_{t=1}^{T}(x_{it}-\overline x_{i})(y_{it}-\overline y_{i})'
+\end{gather*}
+Własności:
+\begin{itemize}
+\item Estymator wewnątrzgrupowy daje identyczne oceny parametrów jak MNK za zmiennymi zerojedynkowymi
+\item Nie jest konieczne szacowanie $ N $ dodatkowych parametrów reprezentujących efekty indywidualne, jeżeli nie są one przedmiotem zainteresowania
+\item Jeżeli zainteresowani jesteśmy konkretnymi wartościami efektów indywidualnych, mogą być one oszacowane następująco
+\begin{gather*}
+\hat \alpha_i=\overline y_i-\overline x_i'\hat \beta _{FE}
+\end{gather*}
+\item Estymator efektów indywidualnych jest zgodny tylko wówczas, gdy ilość obserwacji po czasie jest duża. $ T\rightarrow \infty  $.
+\end{itemize}
+Estymator macierzy wariancji-kowariancji definiujemy jako
+\begin{gather*}
+\Var\left(\hat \beta _{FE}\right)=\sigma _u^2\left(\sum_{i=1}^{N}\sum_{t=1}^{T}(x_{it}-\overline x_{i})(x_{it}-\overline x_{i})'\right)^{-1}
+\end{gather*}
+Nieznaną wartość wariancji zakłóceń losowych $ \sigma _u^2 $ zastępujemy wartością oszacowaną
+\begin{gather*}
+\hat \sigma _u^2=
+\frac{\sum\limits_{i=1}^{N}\sum\limits_{t=1}^{T}e_{it}^2}{NT-N-k}=
+\frac{\sum\limits_{i=1}^{N}\sum\limits_{t=1}^{T}\left(y_{it}-\hat \alpha_i-x_{it};\hat \beta_{FE}\right)^2}{NT-N-k}
+\end{gather*}
+gdzie:
+\begin{itemize}
+\item $ e_{it} $ - reszty oszacowanego przy pomocy estymatora wewnątrzgrupowego.
+\end{itemize}
+Z diagonalnych elementów macierzy $ \Var\left(\hat \beta_{FE} \right) $ wyliczamy błędy szacunku estymatora FE. Estymator wariancji ocen parametrów jest zgodny, gdy $ N\to \infty  $ lub $ T\to \infty  $.
+
+\textbf{Uwaga!}\\
+Estymator wewnątrzgrupowy nie może być wykorzystany do modelu, w którym wśród zmiennych objaśniających występują czynniki, które nie zmieniają się w czasie (marka i rodzaj produktu, płeć, pochodzenie, miejsce zamieszkania, położenie geograficzne itp.) Czynniki te są współliniowe z efektami indywidualnymi (nie mogą wchodzić razem do macierzy $ X $). W transformacji \emph{within} są eliminowane z modelu tak, jak efekty indywidualne (problem ten został rozwiązany poprzez zastosowanie tzw. estymatorów Hausmana-Taylora).
+\subsubsection{Estymator wewnątrzgrupowy (\emph{within} dla modelu dwukierunkowego)}
+Rozważmy cztery różne modele
+\begin{enumerate}[Model (a):-]
+\item Panelowy model z dekompozycją wyrazu wolnego na dwie części:
+\begin{gather*}
+y_{it}=\alpha _i+\lambda_t+\beta'x_{it}+u_{it}
+\qquad i=1,\dots,N
+\qquad t=1,\dots,T
+\end{gather*}
+\item Model uśredniony po czasie - \emph{between regression}
+\begin{gather*}
+\overline y_t=\alpha_i+\overline \lambda_t+\beta'\overline x_i +\overline u_i
+\qquad i=1,\dots,N
+\end{gather*}
+\item Model uśredniony po jednostkach
+\begin{gather*}
+\overline y_t=\overline \alpha _i +\lambda _t+\beta'\overline x_t+\overline u_t
+\qquad t=1,\dots,T
+\end{gather*}
+\item Obliczamy średnie wartości dla wszystkich obserwacji (łącznie po czasie i po jednostkach)
+\begin{gather*}
+\overline y _{it}=\overline \alpha _i+\overline \lambda _t+\beta '\overline x+\overline u_{it}
+\end{gather*}
+\end{enumerate}
+(Zauważmy, że model (d) jest tylko pojedynczym równaniem)\\
+Następnie wykonujemy następujące działania na poszczególnych równaniach stronami:
+\begin{gather*}
+(a)-(b)-(c)-(d)
+\end{gather*}
+W ten sposób eliminujemy wszystkie efekty ustalone indywidualne i okresowe
+\begin{gather*}
+\left(y_{it}-\overline y_i-\overline y_t+\overline y_{it}\right)=
+\left(x_{it}-\overline x_i-\overline x_t+\overline x_{it}\right)+
+\left(u_{it}-\overline u_i-\overline u_t+\overline u_{it}\right)\\
+i=1,\dots,N
+\qquad t=1,\dots,T
+\end{gather*}
+Jeżeli zdefiniujemy
+\begin{align*}
+&\dddot y_{it}=y_{it}-\overline y_i-\overline y_t+\overline y_{it}\\
+&\dddot x_{it}=x_{it}-\overline x_i-\overline x_t+\overline x_{it}
+\end{align*}
+To możemy zapisać model postaci
+\begin{gather*}
+\dddot y_{it}=\beta'\dddot x_{it}+\dddot u_{it}
+\end{gather*}
+Model ten może być oszacowany KMNK na przekształconych danych.
+\subsubsection{Jak znaleźć oceny efektów indywidualnych i okresowych?}
+Załóżmy, że mamy następujący model
+\begin{gather*}
+y_{it}=\beta_0+\alpha_i+\lambda_t+\beta'x_{it}+u_{it}
+\end{gather*}
+w którym wprowadzimy $ (N-1)+(T-1) $ zmiennych sztucznych - pomijamy efekty dla pierwszego okresu $ \lambda_1 $. Możemy oszacować wartość $ i $-tego efektu indywidualnego jako
+\begin{gather*}
+\hat alpha _i=(\overline y_i-\overline y_1)-\hat \beta' (\overline x_i-\overline x _1)
+\end{gather*}
+Musimy pamiętać, że jakość estymacji zależy od liczby obserwacji dostępnych po czasie. Efekty okresowe można oszacować w analogiczny sposób.
+\subsubsection{Błędy szacunku w modelach dwukierunkowych.}
+Niech macierz kowariancji estymatorów parametrów
+\begin{gather*}
+\Var\left(\hat \beta \right)=\sigma _u^2\left(\dddot X'\dddot X\right)^{-1}
+\end{gather*}
+gdzie jako oszacowaną wartość wariancji zakłóceń stosujemy
+\begin{gather*}
+\hat \sigma _n^2=
+\frac{\sum\limits_{i=1}^{N}\sum\limits_{t=1}^{T}\hat u_{it}^2}{NT-T-N-k}
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ \hat u_{it} $ - reszty wyliczone z estymacji modelu dwukierunkowego, $ i=1,\dots ,N$, $t=1,\dots,T $.
+\end{itemize}
+\subsection{Testowanie heteroskedastyczności}
+Występowanie heteroskedastyczności możemy testować za pomocą trzech klasycznych testów ekonometrycznych, które są asymptotycznie równoważne (przy $ T\to \infty  $), jednak przy niewielkiej ilości okresów czasu mogą dawać różne rezultaty. We wszystkich trzech przypadkach testujemy:
+\begin{center}
+\begin{tabular}{ll}
+$ H_0:\sigma_i=\sigma  $ & dla każdego $ i $\\
+$ H_1:\sigma_i\neq\sigma_j  $ & dla $ i\neq j $
+\end{tabular}
+\end{center}
+i wszystkie trzy statystyki testujące mają rozkład $ \chi^2(N-1) $
+\begin{enumerate}
+\item Dysponując resztami z modelu z ograniczeniami, czyli zakładającej homoskedastyczność metody KMNK, możemy znaleźć statystykę testy=u mnożnika Lagrange'a
+\begin{gather*}
+LM=\frac{T}{2}\sum_{i=1}^{N}\left(\frac{\hat \sigma _i^2}{\hat \sigma^2}-1\right)^2
+\end{gather*}
+gdzie:
+\begin{gather*}
+\hat \sigma ^2=\frac{1}{N}\sum_{i=1}^{N}\hat \sigma ^2_i=\frac{\hat u'\hat u}{NT}
+\end{gather*}
+\item Wstawiając estymatory uzyskane analogicznie na podstawie reszt z modelu bez ograniczeń (estymacja UMNK), otrzymujemy statystykę Walda
+\begin{gather*}
+W=\frac{T}{2}\sum_{i=1}^{N}\left(\frac{\hat \sigma ^2}{\hat \sigma_i^2}-1\right)^2
+\end{gather*}
+\item Estymując oba modele za pomocą metody największej wiarygodności (lub iteracyjnej UMNK) i znajdując $ \hat \sigma ^2 $ z modelu z ograniczeniami oraz $ \hat \sigma _i^2 $ z modelu bez ograniczeń, możemy obliczyć statystykę testu ilorazu wiarygodności
+\begin{gather*}
+LR= NT\ln \hat \sigma ^2-\sum_{i=1}^{N}T\ln \hat \sigma ^2
+\end{gather*}
+Niestety, wszystkie statystyki są wrażliwe na założenie o normalności reszt. Jeżeli założenie to nie jest spełnione, możemy posłużyć się skorygowaną statystyką Walda
+\begin{gather*}
+W'=\sum_{i=1}^{N}\frac{\left(góra\hat \sigma_i^2-\hat{\sigma ^2}\right)^2}{V_i}
+\end{gather*}
+gdzie
+\begin{gather*}
+V_i=\frac{1}{T(T-1)}\sum_{i=1}^{N}\left(\hat u_{it}^2-\hat \sigma _i^2\right)
+\end{gather*}
+\end{enumerate}
+\subsection{Testowanie korelacji międzygrupowej}
+Testowanie korelacji międzygrupowej (przekrojowej, międzyjednostkowej, \emph{cross-sectional}) - korelacja składników losowych pochodzących z różnych obiektów, ale z tego samego czasu. Najczęściej testowaniu podlega hipoteza zerowa o i istnieniu \emph{cross-sectional correlation}
+\begin{align*}
+&H_0:\Omega=
+\begin{bmatrix}
+	\sigma _1 & 0         & \ldots & 0         \\
+	0         & \sigma _2 & \ldots & 0         \\
+	\vdots    & \vdots    & \ddots & \vdots    \\
+	0         & 0         & \ldots & \sigma _N
+\end{bmatrix}\\
+&H_1:\Omega=
+\begin{bmatrix}
+	\sigma _{11} & \sigma _{12} & \ldots & \sigma _{1N} \\
+	\sigma _{21} & \sigma _{22} & \ldots & \sigma _{2N} \\
+	\vdots       & \vdots       & \ddots & \vdots       \\
+	\sigma _{N1} & \sigma _{N2} & \ldots & \sigma _{NN}
+\end{bmatrix}
+\end{align*}
+\begin{enumerate}
+\item Test mnożników Lagrange'a Breucha-Pagana będzie miał postać
+\begin{gather*}
+LM=T\sum_{i=2}^{N}\sum_{j=1}^{i-1}r_{ij}^2
+\end{gather*}
+gdzie
+\begin{itemize}
+\item $ r_{ij} $ to współczynnik korelacji reszt między obiektami $ i $-tym i $ j $-tym uzyskanymi z oszacowania UMNK (ze względu na założenie stałości parametrów strukturalnych względem obiektów.)
+\end{itemize}
+Statystyka z próby ma rozkład $ \chi ^2(N(N-1)/2) $
+\item Test ilorazu wiarygodności (statystyka testu)
+\begin{gather*}
+LR=T\left(\sum_i \ln \hat \sigma_i^2-\ln \left|\hat \Sigma\right|\right)
+\end{gather*}
+gdzie:
+\begin{itemize}
+\item $ \hat \sigma_i^2 $ - wyliczane są z modelu oszacowanego z uwzględnieniem zjawiska heteroskedastyczności grupowej
+\item $ \hat \Sigma $ - elementami tej macierzy są oceny kowariancji wyznaczone na podstawie reszt modelu oszacowanego z uwzględnieniem zjawiska heteroskedsastyczności i korelacji przekrojowej
+\end{itemize}
+Obie powyższe estymacje wykonane są przy pomocy metody największej wiarygodności.\\
+Rozkład z próby ma rozkład $ \chi^2(N(N-1)\backslash2) $.
+\end{enumerate}
+\subsection{Szacowanie modelu z heteroskedastycznością}
+Zjawisko heteroskedastyczności grupowej jest szczególnym przypadkiem heteroskedastyczności składnika losowego. W takim przypadku do estymacji wykorzystać można Ważoną Metodę Najmniejszych Kwadratów (WMNK):
+\begin{itemize}
+\item próba dzielona jest w sposób naturalny na podpróby składające się z obserwacji w czasie dla poszczególnych jednostek
+\item na podstawie reszt KNK z kolejnych podprób, wyznacza się wariancje próbkowe $ \hat \sigma_i^2 $, które określają wagi przypisywane kolejnym jednostkom.
+\end{itemize}
+Wówczas estymator WMNK ma postać
+\begin{gather*}
+\hat \beta_{WMNK}=
+\left(X^TV^{-1}X\right)^{-1}
+\left(X^TV^{-1}y\right)=
+\left[\sum_{i=1}^{N}\frac{1}{\sigma_i^2}X_i^TX_i\right]^{-1}
+\left[\sum_{i=1}^{N}\frac{1}{\sigma_i^2}X_i^Ty_i\right]
+\end{gather*}
+\subsection{Szacowanie modelu z korelacją przekrojową i heteroskedastycznością grupową}
+\begin{enumerate}
+\item Metoda UMNK z estymacją (FGLS) - metoda Parka
+\begin{itemize}
+\item[Krok 1:] Wyznacza się oceny kowariancji pomiędzy obiektami Mi-tym i $ j $-tym na podstawie reszt uzyskanych ze zgodnego, choć obciążonego estymatora KMNK
+\item[Krok 2:] Wyznacza się ocney parametrów strukturalnych według wzoru:
+\begin{gather*}
+\hat \beta_{UMNK}=
+\left(X^TV^{-1}X\right)^{-1}
+\left(X^TV^{-1}y\right)
+\end{gather*}
+gdzie elementami $ V $ są kowariancje wyznaczone w pierwszym kroku estymacji.
+\end{itemize}
+\item Metoda \emph{Panel-Corrected Standard Error} (PCSE)
+\begin{itemize}
+\item parametry strukturalne modelu szacowane są przy pomocy KMNK - oceny są zgodne i nieobciążone
+\item problem nieefektywności rozwiązany jest poprzez zastosowanie specyficznej formuły obliczania średnich błędów szacunku parametrów, tzw. "skorygowanych błędów standardowych dla danych panelowych"
+\item efektywność estymatora rośnie wraz ze wzrostem wymiaru czasowego danych względem jednostek
+\end{itemize}
+Macierz wariancji i kowariancji estymatorów
+\begin{gather*}
+D^2\left(\hat \beta \right)_{PCSE}=\left(X^TX\right)^{-1}
+\left(X^T\hat VX\right)^{-1}
+\left(X^TX\right)^{-1}
+\end{gather*}
+gdzie $ E $ jest macierzą reszt modelu oszacowanego KMNK, w której kolumna o numerze $ i $ zawiera reszty pochodzące z $ i $-tego obiektu.
+\end{enumerate}
+\subsection{Testowanie "zwykłej" autokorealcji składnika losowego}
+W modelu panelowym może ponadto występować jeszcze klasyczna autokorelacja zakłóceń losowych. Możliwe warianty:
+\begin{itemize}
+\item[1a.] Składniki losowe z różnych obiektów są nieskorelowane, autokorealcja występuje tylko "wewnątrz" poszczególnych obiektów
+\item[2a.] Oprócz autokorelacji dopuszcza się też występowanie korelacji przekrojowej
+\item[1b.] Współczynnik autokorelacji może być jednakowy dla wszystkich obiektów
+\item[2b.] Współczynnik autokorelacji może być różnych dla różnych obiektów
+\end{itemize}
+\begin{enumerate}
+\item Test seryjnej autokorelacji dowolnego rzędu Breuscha-Godfrey'a (opaty na mnożnikach Lagrange'a); stosowany w modelach regresji łącznej FE i RE.
+\item Test Baltagi-Li (oparty na mnożnikach Lagrange'a) - bada składniki losowe dla poszczególnych jednostek, czy nie mają charakteru AR(1) lub MA(1), stosowany w modelach RE
+\item Test Durbina-Watsona, stosowany w modelach regresji łącznej FE i RE.
+\end{enumerate}
+\subsection{Szacowanie modelu z autokorelacją}
+W celu usunięcia autokorelacji stosuje się zazwyczaj przekształcenie Praisa-Winstera - szeregi czasowe dotyczące kolejnych obiektów transformuje się w następujący sposób:
+\begin{align*}
+Y_i^*=
+\begin{bmatrix}
+\sqrt{1-r_i^2}y_{i1}\\
+y_{i2}-r_iy_{i1}\\
+\vdots \\
+y_{it}-r_iy_{i(T-1)}
+\end{bmatrix}
+&&
+X_i^*=
+\begin{bmatrix}
+\sqrt{1-r_i^2}y_{i1}\\
+x_{i2}-r_ix_{i1}\\
+\vdots \\
+x_{it}-r_ix_{i(T-1)}
+\end{bmatrix}
+\end{align*}
+gdzie
+\begin{itemize}
+\item $ r_i $ jest oceną współczynnika autokorelacji
+\item $ x_{it} $ jest wektorem wartości wszystkich zmiennych objaśniających przyjmowanych dla $ i $-tego obiektu w okresie $ t $.
+\end{itemize}
+W modelu szaconym na przetransformowanych danych nie występuje autokorelacja.
+\subsection{UMNK dla modelu z efektami losowymi}
+W zapisie macierzowym
+\begin{gather*}
+Y=X\beta +v
+\end{gather*}
+Macierz wariancji i kowariancji dwuczęściowego składnika losowego można ogólnie zapisać jako
+\begin{gather*}
+\mathbb E \left(vv'\right)=
+\mathbb E \left(
+\begin{bmatrix}
+	v_1v_1 & \ldots & v_1v_N \\
+	\vdots & \ddots & \vdots \\
+	v_Nv_1 & \ldots & v_Nv_N
+\end{bmatrix}
+\right)=\Omega
+\end{gather*}
+zauważmy, że z założeń o niezależności poszczególnych części składnika losowego wynika, że
+\begin{itemize}
+\item dla $ i\neq j $
+\begin{gather*}
+\mathbb E \left(v_iv_j'\right)=
+\mathbb E \left(\alpha_i+u_i\right)\left(\alpha_j+u_j\right)'
+=\\=
+\mathbb E \left(\alpha_i\alpha_j'\right)+
+\mathbb E \left(\alpha_iu_j'\right)+
+\mathbb E \left(\alpha_iu_i\right)+
+\mathbb E \left(u_iu_j'\right)=0
+\end{gather*}
+\item dla $ i=j $
+\begin{gather*}
+\mathbb E \left(v_iv_j'\right)=
+\mathbb E \left(\alpha_i+u_i\right)\left(\alpha_i+u_i\right)'
+=\\=
+\mathbb E \left(\alpha_i^2\right)+\mathbb E \left(\alpha_iu_i\right)+\mathbb E \left(u_iu_i'\right)=
+\sigma_\alpha^2+\sigma_u^2I=\omega
+\end{gather*}
+\end{itemize}
+Macierz wariancji i kowariancji składników losowych w modelu RE jest macierzą blokowo-diagonalną:
+\begin{gather*}
+\Omega=
+\begin{bmatrix}
+	\omega & 0      & \ldots & 0      \\
+	0      & \omega & \ldots & 0      \\
+	\vdots & \vdots & \ddots & \vdots \\
+	0      & 0      & \ldots & \omega
+\end{bmatrix}\neq\sigma^2I
+\end{gather*}
+W UMNK potrzebujemy odwrotności tej macierzy, a zatem i odwrotności $ \omega $. Można wykazać, że przy przyjętych założeniach:
+\begin{gather*}
+\omega^{-1}=\frac{1}{\sigma_u^2}\left[I-\frac{\sigma_\alpha^2}{\sigma_u^2+T\sigma_\alpha^2}\right]
+\end{gather*}
+Nieznane wariancje można zatąpić ich ocenami uzyskanymi z oszacowania:
+\begin{itemize}
+\item $ \sigma_u^2 $ - z modelu FE
+\item $ \sigma_\alpha^2 $ - z regresji międzygrupowej
+\end{itemize}
+Ostateczną postać estymatora UMNK dla modelu z efektami losowymi (RE) można zapisać
+\begin{gather*}
+\hat \beta_{RE}=
+\left(
+\sum_{i=1}^{N}\sum_{t=1}^{T}
+\left(x_{it}-\overline{x_i}\right)
+\left(x_{it}-\overline{x_i}\right)'+
+\psi T\sum_{i=1}^{N}
+\left(x_i-\overline{x}\right)
+\left(x_i-\overline{x}\right)'
+\right)^{-1}
+\cdot\\\cdot
+\left(
+\sum_{i=1}^{N}\sum_{t=1}^{T}
+\left(x_{it}-\overline{x_i}\right)
+\left(x_{it}-\overline{x_i}\right)'+
+\psi T\sum_{i=1}^{N}
+\left(x_i-\overline{x}\right)
+\left(y_i-\overline{y}\right)'
+\right)^{-1}
+\end{gather*}
+gdzie
+\begin{gather*}
+\psi=\frac{\sigma_u^2}{\sigma_i^2+T\sigma_\alpha^2}
+\end{gather*}
+Przybliżona wartość losowych efektów indywidualnych można wyznaczyć jako
+\begin{gather*}
+\hat \mu_{RE}=\overline Y=\hat \beta_{RE}\overline x
+\end{gather*}
+Przypadki modeli panelowych niespełniających dotychczasowych założeń
+\begin{enumerate}
+\item Model ze zmiennymi stratami w czasie
+\end{enumerate}
+Załóżmy, że część zmiennych objaśniających w modelu panelowym jest stała w czasie. Zauważmy, że zmienne stałe w czasie są współliniowe w ustalonymi efektami indywidualnymi. Zatem nie możemy uzyskać ocen parametrów strukturalnych przy tych zamiennych w modelu FE.
+
+Rozwiązania:
+\begin{enumerate}
+\item Stosujemy model RE - nie jest możliwe, jeśli zmienne objaśniający okazują się skorelowane ze składnikiem losowym - (test Hausmana).
+\item Szacujemy model FE przy pomocy estymatora Hausmana-Tatylora
+\item Stosujemy inny zastaw założeń dla efektów indywidualnych w modelu RE.
+\end{enumerate}

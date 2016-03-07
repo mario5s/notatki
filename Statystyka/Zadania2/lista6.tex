@@ -1,0 +1,800 @@
+\chapter*{Lista 6}
+\addcontentsline{toc}{chapter}{Lista 6}
+
+
+\subsection*{Zadanie 61}
+\addcontentsline{toc}{section}{Zadanie 61}
+Wektor losowy $ W=(X,Y,Z) $ ma rozkład normalny o gęstości
+\begin{gather*}
+f(x,y,z)=C\exp\left[-\frac{1}{2}\left(2x^2+y^2+3z^2-2xy-2yz+4xz\right)\right]
+\end{gather*}
+Wyznaczyć $ C $ oraz macierz kowariancji tego wektora losowego oraz wyznaczyć gęstość wektora losowego $ Y=AW $, jeśli
+\begin{gather*}
+A=\begin{bmatrix}
+	1 & 0  & 1 \\
+	1 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}.
+\end{gather*}
+
+Rozwiązanie:
+Aby wyznaczyć stałą $ C $ trzeba policzyć całkę z zaprezentowanej gęstości i przyrównać ją do jedynki.
+\begin{align*}
+&\iiint\limits_{\mathbb R ^3}\exp\left[-\frac{1}{2}\left(2x^2+y^2+3z^2-2xy-2yz+4xz\right)\right]\,dxdydz
+=\\=&
+\iiint\limits_{\mathbb R ^3}\exp\left[-\frac{1}{2}\left((y-x-z)^2+(x+z)^2+z^2\right)\right]\,dxdydz
+=\\=&
+2\sqrt 2\pi^\frac{3}{2}\int\limits_{\mathbb R }\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{1}{2}z^2\right]
+\int\limits_{\mathbb R }\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{1}{2}\left(x+z\right)^2\right]\dots\\\dots&
+\int\limits_{\mathbb R }\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{1}{2}\left(y-x-z\right)^2\right]dydxdz
+=\\=&
+2\sqrt 2\pi^\frac{3}{2}\int\limits_{\mathbb R }\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{1}{2}z^2\right]
+\int\limits_{\mathbb R }\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{1}{2}\left(x+z\right)^2\right]dxdz
+=\\=&
+2\sqrt 2\pi^\frac{3}{2}\int\limits_{\mathbb R }\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{1}{2}z^2\right]dz
+=\\=&
+2\sqrt 2\pi^\frac{3}{2}
+\end{align*}
+Ponieważ
+\begin{gather*}
+\iiint\limits_{\mathbb R ^3}f(x,y,z)\,dxdydz=
+2\sqrt 2\pi^\frac{3}{2}\\
+C=\frac{1}{2\sqrt 2\pi^\frac{3}{2}}
+\end{gather*}
+W celu znalezienia macierzy kowariancji przeanalizujmy wykładnik eksponenty
+\begin{gather*}
+-\frac{1}{2}(w-\mu)^T\Sigma^{-1}(w-\mu)=
+-\frac{1}{2}\left(2x^2+y^2+3z^2-2xy-2yz+4xz\right)\\
+(w-\mu)^T\Sigma^{-1}(w-\mu)=
+2x^2+y^2+3z^2-2xy-2yz+4xz
+\end{gather*}
+Oznaczmy
+\begin{gather*}
+\Sigma^{-1}=
+\begin{bmatrix}
+	\rho _{1,1} & \rho _{1,2} & \rho _{1,3} \\
+	\rho _{1,2} & \rho _{2,2} & \rho _{2,3} \\
+	\rho _{1,3} & \rho _{2,3} & \rho _{3,3}
+\end{bmatrix},\qquad
+\mu=\begin{bmatrix}
+\mu_1\\
+\mu_2\\
+\mu_3
+\end{bmatrix}
+\end{gather*}
+Przyjmując te oznaczenia i rozpisując zaprezentowaną zależność otrzymujemy
+\begin{align*}
+&(x-\mu)^T\Sigma^{-1}(x-\mu)
+=\\=&
+\begin{bmatrix}
+	x-\mu _1 & y-\mu _2 & z-\mu _3
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	\rho _{1,1} & \rho _{1,2} & \rho _{1,3} \\
+	\rho _{1,2} & \rho _{2,2} & \rho _{2,3} \\
+	\rho _{1,3} & \rho _{2,3} & \rho _{3,3}
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	x-\mu _1 \\
+	y-\mu _2 \\
+	z-\mu _3
+\end{bmatrix}
+=\\=&
+\begin{bmatrix}
+	x-\mu _1 & y-\mu _2 & z-\mu _3
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	\left(x-\mu _1\right) \rho _{1,1}+\left(y-\mu
+   _2\right) \rho _{1,2}+\left(z-\mu _3\right) \rho
+   _{1,3} \\
+	\left(x-\mu _1\right) \rho _{1,2}+\left(y-\mu
+   _2\right) \rho _{2,2}+\left(z-\mu _3\right) \rho
+   _{2,3} \\
+	\left(x-\mu _1\right) \rho _{1,3}+\left(y-\mu
+   _2\right) \rho _{2,3}+\left(z-\mu _3\right) \rho
+   _{3,3}
+\end{bmatrix}
+=\\=&
+ \rho _{1,1} \left(\mu _1^2+x^2-2 \mu _1 x\right) \\
++&\rho _{1,2} \left(2 \mu _1 \mu _2-2 \mu _2 x+2 x y-2 \mu _1 y\right) \\
++&\rho _{1,3} \left(2 \mu _1 \mu _3-2 \mu _3 x+2 x z-2 \mu _1 z\right) \\
++&\rho _{2,2} \left(\mu _2^2+y^2-2 \mu _2 y\right) \\
++&\rho _{2,3} \left(2 \mu _2 \mu _3-2 \mu _3 y+2 y z-2 \mu _2 z\right) \\
++&\rho _{3,3} \left(\mu _3^2+z^2-2 \mu _3 z\right) \\
+\end{align*}
+Ponieważ nie ma wyrazu wolnego, oznacza to, że wektor $ \mu=\vec 0 $, co upraszcza obliczenia
+\begin{align*}
+&x^2 \rho _{1,1}+2 x y \rho _{1,2}+2 x z \rho _{1,3}+y^2 \rho _{2,2}+2 y z \rho _{2,3}+z^2 \rho _{3,3}
+=\\=&
+2 x^2-2 x y+4 x z+y^2-2 y z+3 z^2
+\end{align*}
+Spisując rozwiązania
+\begin{gather*}
+\Sigma^{-1}=
+\begin{bmatrix}
+	2  & -1 & 2  \\
+	-1 & 1  & -1 \\
+	2  & -1 & 3
+\end{bmatrix}\\
+\Sigma=
+\begin{bmatrix}
+	2  & 1 & -1 \\
+	1  & 2 & 0  \\
+	-1 & 0 & 1
+\end{bmatrix}.
+\end{gather*}
+
+Oto szukana macierz kowariancji.\\
+Aby znaleźć gęstość wektora $ Y $ musimy znaleźć parametry $ m_Y $ i $ \Sigma_Y $, gdzie
+\begin{itemize}
+\item $ m_Y=Am $,
+\item $ \Sigma_Y=A\Sigma A^T $.
+\end{itemize}
+Ponieważ wektor $ m $ jest wektorem zerowym, to również wektor $ m_Y $ jest wektorem zerowym, zatem pozostaje skupić się na macierzy kowariancji.
+\begin{gather*}
+\Sigma_Y=A\Sigma A^T=
+\begin{bmatrix}
+	1 & 0  & 1 \\
+	1 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	2  & 1 & -1 \\
+	1  & 2 & 0  \\
+	-1 & 0 & 1
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	1 & 1  & 1 \\
+	0 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}
+=\\=
+\begin{bmatrix}
+	1 & 1  & 0  \\
+	0 & -1 & 0  \\
+	3 & 3  & -1
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	1 & 1  & 1 \\
+	0 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}=
+\begin{bmatrix}
+	1 & 0  & 2  \\
+	0 & 1  & -1 \\
+	2 & -1 & 6
+\end{bmatrix}.
+\end{gather*}
+Do wyznaczenia gęstości potrzebna jest macierz $ \Sigma_Y^{-1} $
+\begin{gather*}
+\Sigma_Y^{-1}=
+\begin{bmatrix}
+	5  & -2 & -2 \\
+	-2 & 2  & 1  \\
+	-2 & 1  & 1
+\end{bmatrix}.
+\end{gather*}
+Wykorzystując fakt, iż wektor średnich jest zerowy, możemy zapisać wzór na gęstość zmiennej losowej $ Y $ następująco
+\begin{gather*}
+f_Y(t)=\frac{1}{\sqrt{2\pi}^3}\det(\Sigma_Y)^{-\frac{1}{2}}
+\exp\left(-\frac{1}{2}t^T\Sigma_Y^{-1}t\right),
+\end{gather*}
+gdzie $ t $ w naszym przypadku to $ t=(x,y,z) $.
+Wykonajmy niezbędne obliczenia pomocnicze
+\begin{align*}
+&\det(\Sigma_Y^{-1})=1\\
+&\begin{bmatrix}
+	x & y & z
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	5  & -2 & -2 \\
+	-2 & 2  & 1  \\
+	-2 & 1  & 1
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	x \\
+	y \\
+	z
+\end{bmatrix}
+=\\=&
+\begin{bmatrix}
+	5 x-2 y-2 z & -2 x+2 y+z & -2 x+y+z
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	x \\
+	y \\
+	z
+\end{bmatrix}
+=\\=&
+\begin{bmatrix}
+	x (5 x-2 y-2 z)+z (-2 x+y+z)+y (-2 x+2 y+z)
+\end{bmatrix}
+=\\=&
+\begin{bmatrix}
+	5 x^2-4 x (y+z)+2 y^2+2 y z+z^2
+\end{bmatrix}
+\end{align*}
+Ostatecznie
+\begin{gather*}
+f_Y(x,y,z)=\frac{1}{2\sqrt{2}\pi^{\frac{3}{2}}}\exp \left(5 x^2-4 x y-4 x z+2 y^2+2 y z+z^2\right)
+\end{gather*}
+
+
+\subsection*{Zadanie 62}
+\addcontentsline{toc}{section}{Zadanie 62}
+Dane są niezależne zmienne losowe $ X,Y,Z $ są o rozkładzie normalnym $ \mathcal N(0,1) $. Wykazać, że zmienna losowa
+\begin{gather*}
+U=\frac{X+YZ}{\sqrt{1+Z^2}}
+\end{gather*}
+ma rozkład normalny $ \mathcal N(0,1) $
+
+
+
+\subsection*{Zadanie 65}
+\addcontentsline{toc}{section}{Zadanie 65}
+Zmienna losowa $ X $ ma rozkład $ t $ Studenta o $ n $ stopniach swobody, jeśli gęstość wynosi
+\begin{gather*}
+f(x)=\frac{1}{\sqrt nB \left(\frac{1}{2},\frac{n}{2}\right)}\left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}},
+\end{gather*}
+gdzie $ B \left(\frac{1}{2},\frac{n}{2}\right) $ jest funkcją beta. Dane są niezależne zmienne losowe $ X $ i $ Y $ o rozkładach (odpowiednio) $ \mathcal N(0,1) $ i $ G\left(\frac{1}{2},\frac{n}{2}\right) $. Wykazać, że zmienna losowa
+\begin{gather*}
+Z=\frac{X}{\sqrt{\frac{Y}{n}}}
+\end{gather*}
+ma rozkład $ t$ Studenta o $ n $ stopnia swobody. Korzystając ze wzoru Stirlinga dla funkcji gamma
+\begin{gather*}
+\ln \Gamma(a)=\sqrt{2\pi}+\left(a-\frac{1}{2}\right)\ln a-a+\frac{\theta }{12a},\qquad
+a>0,\quad 0<\theta<1.
+\end{gather*}
+Wykazać, że
+\begin{gather*}
+f(x)\xrightarrow[n\to \infty]{}\frac{1}{\sqrt{2\pi }}\exp \left(-\frac{x^2}{2}\right),\qquad x\in \mathbb R 
+\end{gather*}
+
+Rozwiązanie:
+\begin{itemize}
+\item $ f_X(x)=\frac{1}{\sqrt{2\pi }}\exp \left(-\frac{x^2}{2}\right) $
+\item $ f_Y(y)=\left(\frac{1}{2}\right)^\frac{n}{2}\frac{y^{\frac{n}{2}-1}}{\Gamma\left(\frac{n}{2}\right)} \exp\left(-\frac{y}{2}\right)$
+\end{itemize}
+\begin{align*}
+&F_Z(t)=P\left(Z\le t\right)
+=
+P\left(\frac{X}{\sqrt{\frac{Y}{n}}}\le t\right)
+=
+P\left(X\le t\sqrt{\frac{Y}{n}}\right)
+=\\=&
+\int\limits_{0}^{\infty }F_X\left(t\sqrt{\frac{y}{n}}\right)f_Y(y)\,dy
+\end{align*}
+Różniczkujemy obustronnie po $ t $
+\begin{align*}
+&\left(F_Z(t)\right)'=
+\int\limits_{0}^{\infty }f_X\left(t\sqrt{\frac{y}{n}}\right)f_Y(y)\sqrt{\frac{y}{n}}\,dy\\
+&f_Z(t)=\int\limits_{0}^{\infty }\frac{1}{\sqrt{2\pi}}\exp \left(-\frac{1}{2}t^2\cdot
+\frac{y}{n}\right)\left(\frac{1}{2}\right)^\frac{n}{2}\frac{1}{\Gamma(\frac{n}{2})}y^{\frac{n}{2}-1}\exp \left(-\frac{y}{2}\right)\sqrt{\frac{y}{n}}\,dy
+=\\=&
+\frac{1}{\sqrt n}\frac{1}{\Gamma(\frac{n}{2})\Gamma(\frac{1}{2})}\int\limits_{0}^{\infty }\left(\frac{1}{2}\right)^\frac{n+1}{2}y^{\frac{n+1}{2}-1}\exp \left(-\frac{1}{2} y \left(\frac{t^2}{n}+1\right)\right)\,dy
+=\\=&
+\frac{1}{\sqrt n}\frac{\Gamma(\frac{n}{2}+\frac{1}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{1}{2})}\left(1+\frac{t^2}{n}\right)^{-\frac{n+1}{2}}
+\cdot\\\cdot&
+\int\limits_{0}^{\infty }\frac{1}{\Gamma(\frac{n}{2}+\frac{1}{2})}\left(\frac{1}{2}\right)^\frac{n+1}{2}\left(1+\frac{t^2}{n}\right)^{\frac{n+1}{2}}y^{\frac{n+1}{2}-1}\exp \left(-\frac{1}{2} y \left(\frac{t^2}{n}+1\right)\right)\,dy
+=\\=&
+\frac{1}{\sqrt n}\frac{1}{B(\frac{1}{2},\frac{n}{2})}\left(1+\frac{t^2}{n}\right)^{-\frac{n+1}{2}}
+\end{align*}
+Do dokończenia
+
+
+\subsection*{Zadanie 66}
+\addcontentsline{toc}{section}{Zadanie 66}
+Zmienna losowa $ X $ ma rozkład beta $ B(p,q) $, jeśli jej gęstość wynosi
+\begin{gather*}
+f(x)\frac{1}{B(p,q)}x^{p-1}(1-x)^{q-1}
+\end{gather*}
+gdzie $ p>0,q>0 $ oraz $ B(p,q) $ jest funkcją beta. Udowodnić że jeśli zmienna losowa $ X $ ma rozkład $ t $ Studenta o $ n $ stopniach swobody to zmienna losowa
+\begin{gather*}
+Y=\frac{1}{1+\frac{X^2}{n}}
+\end{gather*}
+ma rozkład beta $ B\left(\frac{n}{2},\frac{1}{2}\right) $.
+
+Rozwiązanie:
+\begin{itemize}
+\item Gęstość rozkładu $ t $ Studenta o $ n $ stopniach swobody
+\begin{gather*}
+f(x)=\frac{1}{\sqrt nB \left(\frac{1}{2},\frac{n}{2}\right)}\left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}}
+\end{gather*}
+\end{itemize}
+Jeżeli
+\begin{gather*}
+Y=\frac{1}{1+\frac{X^2}{n}}
+\end{gather*}
+to
+\begin{gather*}
+X=\pm\sqrt n\sqrt{\frac{1}{Y}-1}
+\end{gather*}
+Policzmy jeszcze potrzebną później pochodną
+\begin{gather*}
+\left(\sqrt n\sqrt{\frac{1}{y}-1}\right)'
+=\\=
+-\frac{\sqrt{n}}{2 \sqrt{\frac{1}{y}-1} y^2}
+=\\=
+-\frac{\sqrt{n}}{2\sqrt{1-y}} \left(\frac{1}{y}\right)^{\frac{3}{2}}
+=\\=
+-\frac{\sqrt{n}}{2\sqrt{1-y}} y^{-\frac{3}{2}}
+\end{gather*}
+Następnie
+\begin{align*}
+&f_Y(y)
+=\\=&
+2f_X\left(\sqrt n\sqrt{\frac{1}{y}-1}\right)\left|-\frac{\sqrt{n}}{2\sqrt{1-y}} y^{-\frac{3}{2}}\right|
+=\\=&
+\frac{1}{\sqrt nB \left(\frac{1}{2},\frac{n}{2}\right)}y^{\frac{n+1}{2}}\frac{\sqrt{n}}{\sqrt{1-y}} y^{-\frac{3}{2}}
+=\\=&
+\frac{1}{B \left(\frac{1}{2},\frac{n}{2}\right)}y^{\frac{n+1}{2}}\frac{1}{\sqrt{1-y}} y^{-\frac{3}{2}}
+=\\=&
+\frac{1}{B \left(\frac{1}{2},\frac{n}{2}\right)}y^{\frac{n}{2}-1}\left(1-y\right)^{\frac{1}{2}-1}
+\end{align*}
+I gotowe.
+
+
+\subsection*{Zadanie 67}
+\addcontentsline{toc}{section}{Zadanie 67}
+Wykazać, że jeśli zmienne losowe $ X $ i $ Y $ są niezależne o rozkładach gamma odpowiednio $ G(1,p_1) $ i $ G(1,p_2) $ to zmienna losowa
+\begin{gather*}
+Z=\frac{X}{X+Y}
+\end{gather*}
+ma rozkład beta $ B (p_1,p_2) $.
+
+Rozwiązanie:
+\begin{itemize}
+\item 
+\begin{gather*}
+f_X(x)=\frac{1}{\Gamma(p_1)}x^{p_1-1}\exp \left(-x\right)
+\end{gather*}
+\item 
+\begin{gather*}
+f_Y(y)=\frac{1}{\Gamma(p_2)}y^{p_2-1}\exp \left(-y\right)
+\end{gather*}
+\end{itemize}
+Przekształćmy dystrybuantę zmiennej $ Z $
+\begin{align*}
+&F_Z(t)=
+P\left(Z\le t\right)=
+P\left(\frac{X}{X+Y}\le t\right)=
+P\left(X\le t(X+Y)\right)
+=\\=&
+P\left(X(1-t)\le tY\right)=
+P\left(X\le \frac{t}{1-t}Y\right)=F_X\left(\frac{t}{1-t}Y\right)
+=\\=&
+\int\limits_{0}^{\infty }F_X\left(\frac{t}{1-t}y\right)f_Y(y)\,dy
+\end{align*}
+Różniczkujemy po $ t $
+\begin{align*}
+&f_Z(t)=\left(F_Z(t)\right)'=F_X'\left(\frac{t}{1-t}y\right)
+=\\=&
+\left(\int\limits_{0}^{\infty }F_X\left(\frac{t}{1-t}y\right)f_Y(y)\,dy\right)'
+=\\=&
+\int\limits_{0}^{\infty }f_X\left(\frac{t}{1-t}y\right)f_Y(y)\frac{Y}{(t-1)^2}\,dy
+=\\=&
+\int\limits_{0}^{\infty }
+\frac{1}{\Gamma(p_1)}
+\left(\frac{t}{1-t}y\right)^{p_1-1}
+e^{-\frac{t}{1-t}y}
+\frac{1}{\Gamma(p_2)}
+y^{p_2-1}
+e^{-y}
+\frac{y}{(t-1)^2}
+\,dy
+=\\=&
+\frac{1}{\Gamma(p_1)\Gamma(p_2)}
+t^{p_1-1}
+\int\limits_{0}^{\infty }
+\left(\frac{1}{1-t}\right)^{p_1+1}
+y^{p_1+p_2-1}
+e^{-\frac{1}{1-t}y}
+\,dy
+=\\=&
+\frac{\Gamma(p_1+p_2)}{\Gamma(p_1)\Gamma(p_2)}
+t^{p_1-1}
+\left(1-t\right)^{p_2-1}
+\int\limits_{0}^{\infty }
+\frac{y^{p_1+p_2-1}}{\Gamma(p_1+p_2)}
+\left(\frac{1}{1-t}\right)^{p_1+p_2}
+e^{-\frac{1}{1-t}y}
+\,dy
+=\\=&
+\frac{\Gamma(p_1+p_2)}{\Gamma(p_1)\Gamma(p_2)}
+t^{p_1-1}
+\left(1-t\right)^{p_2-1}
+\end{align*}\qed
+
+
+
+\subsection*{Zadanie 68}
+\addcontentsline{toc}{section}{Zadanie 68}
+Zmienna losowa $ X $ ma rozkład $ F $ Snedecora o $ (n,m) $ stopniach swobody, jeśli jej gęstość wynosi
+\begin{gather*}
+f(x)=\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}\left(\frac{n}{m}\right)^\frac{n}{2}x^{\frac{n}{2}-1}\left(1+\frac{n}{m}x\right)^{-\frac{n+m}{2}}\mathbbm1_{[0,+\infty )}(x)
+\end{gather*}
+gdzie $ B\left(\frac{n}{2},\frac{m}{2}\right) $ jest funkcją beta. Wykazać, że jeśli zmienna losowa $ X $ ma rozkład $ \chi^2 $ o $ n $ stopniach swobody i zmienna losowa $ Y $ ma rozkład $ \chi^2 $ o $ m $ stopniach swobody i zmienne te są niezależne to zmienna losowa
+\begin{gather*}
+F=\frac{Xm}{Yn}
+\end{gather*}
+ma rozkład $ F $ Snedecora o $ (n,m) $ stopniach swobody.
+
+Rozwiązanie:\\
+Gęstości zmiennych losowych $ X $ i $ Y $ mają postać
+\begin{align*}
+f_X(x)=\frac{1}{\Gamma(\frac{n}{2})}\left(\frac{x}{2}\right)^{\frac{n}{2}-1}\exp \left(-\frac{x}{2}\right)
+&&
+f_Y(y)=\frac{1}{\Gamma(\frac{n}{2})}\left(\frac{y}{2}\right)^{\frac{n}{2}-1}\exp \left(-\frac{y}{2}\right)
+\end{align*}
+Wyznaczmy rozkład $ F $
+\begin{gather*}
+F_F(t)=
+P\left(F\le t\right)=
+P\left(\frac{Xm}{Yn}\le t\right)=
+P\left(X\le t\frac{Yn}{m}\right)=F_X\left(t\frac{Yn}{m}\right)
+=\\=
+\int\limits_{0}^{\infty }
+F_X\left(\frac{ytn}{m}\right)
+\frac{1}{\Gamma(\frac{n}{2})}\left(\frac{y}{2}\right)^{\frac{n}{2}-1}\exp \left(-\frac{y}{2}\right)
+\end{gather*}
+Różniczkujemy obustronnie po $ t $
+\begin{align*}
+&\left(F_F(t)\right)'=f_F(t)
+=\\=&
+\int\limits_{0}^{\infty }
+F_X'\left(\frac{ytn}{m}\right)
+\frac{1}{\Gamma(\frac{n}{2})}y^{\frac{m}{2}-1}\left(\frac{1}{2}\right)^{\frac{m}{2}-1}\exp \left(-\frac{y}{2}\right)\,dy
+=\\=&
+\int\limits_{0}^{\infty }
+\frac{1}{\Gamma(\frac{m}{2})}\left(\frac{ytn}{2m}\right)^{\frac{n}{2}-1}\exp \left(-\frac{ytn}{2m}\right)
+\frac{1}{\Gamma(\frac{n}{2})}y^{\frac{m}{2}-1}\left(\frac{1}{2}\right)^{\frac{m}{2}-1}\exp \left(-\frac{y}{2}\right)\frac{yn}{m}\,dy
+=\\=&
+\frac{1}{\Gamma(\frac{m}{2})\Gamma(\frac{n}{2})}
+\int\limits_{0}^{\infty }
+\left(\frac{ytn}{2m}\right)^{\frac{n}{2}-1}
+y^{\frac{m}{2}-1}\left(\frac{1}{2}\right)^{\frac{m}{2}-1}\exp \left(-\frac{y}{2}\left(1+\frac{n t}{m}\right)\right)\frac{yn}{m}\,dy
+=\\=&
+%\frac{\Gamma\left(\frac{m}{2}+\frac{n}{2}\right)}{\Gamma(\frac{m}{2})\Gamma(\frac{n}{2})}t^{\frac{n}{2}-1}\left(\frac{n}{m}\right)^{\frac{n}{2}}
+%\int\limits_{0}^{\infty }
+%\frac{1}{\Gamma\left(\frac{m}{2}+\frac{n}{2}\right)}
+%\left(\frac{y}{2}\right)^{\frac{n}{2}-1}
+%y^{\frac{m}{2}-1}\left(\frac{1}{2}\right)^{\frac{m}{2}-1}\exp \left(-\frac{y}{2}\left(1+\frac{n t}{m}\right)\right)y\,dy
+%=\\=&
+%\frac{\Gamma\left(\frac{m}{2}+\frac{n}{2}\right)}{\Gamma(\frac{m}{2})\Gamma(\frac{n}{2})}t^{\frac{n}{2}-1}\left(\frac{n}{m}\right)^{\frac{n}{2}}
+%\int\limits_{0}^{\infty }
+%\frac{1}{\Gamma\left(\frac{m}{2}+\frac{n}{2}\right)}
+%y^{\frac{n+m}{2}-1}\left(\frac{1}{2}\right)^{\frac{n+m}{2}-2}\exp \left(-\frac{y}{2}\left(1+\frac{n t}{m}\right)\right)\,dy
+\end{align*}
+
+
+\subsection*{Zadanie 69}
+\addcontentsline{toc}{section}{Zadanie 69}
+Wykazać, że jeżeli zmienna losowa $ X $ ma rozkład $ t $ Studenta o $ n $ stopniach swobody, to zmienna losowa $ Y=X^2 $  ma rozkład $ F $ Snedecora o $ (1,n) $ stopniach swobody.
+
+Rozwiązanie:
+\begin{itemize}
+\item Gęstość rozkładu $ t $ Studenta o $ n $ stopniach swobody
+\begin{gather*}
+f_X(x)=
+\frac{\Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n}{2}\right)\sqrt n}\left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}}
+\end{gather*}
+\item Gęstość zmiennej losowej o rozkładzie $ F $ Snedecora o $ (n,m) $ stopniach swobody
+\begin{gather*}
+f(y)=\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}\left(\frac{n}{m}\right)^\frac{n}{2}y^{\frac{n}{2}-1}\left(1+\frac{n}{m}y\right)^{-\frac{n+m}{2}}
+\end{gather*}
+\item Gęstość zmiennej losowej o rozkładzie $ F $ Snedecora o $ (1,n) $ stopniach swobody
+\begin{gather*}
+f(y)=
+\frac{n^{\frac{n}{2}} (n+x)^{-\frac{n+1}{2}}}
+{\sqrt{x}B\left(\frac{1}{2},\frac{n}{2}\right)}
+\end{gather*}
+\end{itemize}
+Przekształćmy dystrybuantę
+\begin{align*}
+&F_Y(t)=
+P\left(Y\le t\right)=
+P\left(X^2\le t\right)=
+P\left(X\le \sqrt t\right)=F_X\left(\sqrt t\right)
+\end{align*}
+Różniczkując po $ t $ otrzymamy gęstość
+\begin{align*}
+&f_Y(t)=\left(F_X\left(\sqrt t\right)\right)'=
+f_X\left(\sqrt t\right)
+\frac{1}{2\sqrt t}
+=\\=&
+\frac{\Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n}{2}\right)\sqrt n}\left(1+\frac{t}{n}\right)^{-\frac{n+1}{2}}
+\frac{1}{2\sqrt t}
+=\\=&
+\frac{1}{B\left(\frac{1}{2},\frac{n}{2}\right)\sqrt n}
+\left(\frac{n}{n}\right)^{-\frac{n+1}{2}}
+\left(1+\frac{t}{n}\right)^{-\frac{n+1}{2}}
+\frac{1}{2\sqrt t}
+=\\=&
+\frac{n^\frac{n}{2}}{B\left(\frac{1}{2},\frac{n}{2}\right)\sqrt t}
+\left(n+t\right)^{-\frac{n+1}{2}}
+\end{align*}\qed
+
+\subsection*{Zadanie 70}
+\addcontentsline{toc}{section}{Zadanie 70}
+Wykazać, że jeśli zmienna losowa $ X $ ma rozkład $ F $ Snedecora o $ (m,n) $ stopniach swobody to zmienna
+\begin{gather*}
+Y=\frac{mX}{n+mX}
+\end{gather*}
+am rozkład beta $ B \left(\frac{m}{2},\frac{n}{2}\right) $
+
+Rozwiązanie:
+\begin{itemize}
+\item Gęstość rozkładu beta
+\begin{gather*}
+f(x)=\frac{1}{B (p,q)}x^{p-1}(1-x)^{q-1}
+\end{gather*}
+\item Gęstość rozkładu $ F $ Snedecora
+\begin{gather*}
+f(x)=\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}\left(\frac{n}{m}\right)^\frac{n}{2}x^{\frac{n}{2}-1}\left(1+\frac{n}{m}x\right)^{-\frac{n+m}{2}}\mathbbm1_{[0,+\infty )}(x)
+\end{gather*}
+\end{itemize}
+Przekształćmy
+\begin{align*}
+&F_Y(t)=
+P\left(Y\le t\right)=
+P\left(\frac{mX}{n+mX}\le t\right)=
+P\left(mX\le t(n+mX)\right)
+=\\=&
+P\left(mX-tmX\le tn\right)=
+P\left(X(m-tm)\le tn\right)=
+P\left(X\le \frac{tn}{m-tm}\right)
+=\\=&
+F_X(\frac{tn}{m-tm})
+\end{align*}
+Pochodna po $ t $
+\begin{align*}
+&F_X'\left(\frac{tn}{m-tm}\right)=
+f_X\left(\frac{tn}{m-tm}\right)\frac{n}{m (t-1)^2}=f_Y(t)
+\end{align*}
+Przekształcamy i podstawiamy
+\begin{align*}
+&f_X\left(\frac{tn}{m-tm}\right)\frac{n}{m (t-1)^2}
+=\\=&
+\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}
+\left(\frac{m}{n}\right)^\frac{m}{2}
+\left(\frac{tn}{m-tm}\right)^{\frac{m}{2}-1}
+\left(1+\frac{m}{n}\cdot \frac{tn}{m-tm}\right)^{-\frac{n+m}{2}}
+\frac{n}{m (t-1)^2}
+=\\=&
+\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}
+\left(\frac{m}{n}\right)^\frac{m}{2}
+\left(\frac{tn}{m(1-t)}\right)^{\frac{m}{2}-1}
+\left(\frac{1}{1-t}\right)^{-\frac{n+m}{2}}
+\frac{n}{m (t-1)^2}
+=\\=&
+\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}
+\left(\frac{m}{n}\right)^\frac{m}{2}
+\left(\frac{n}{m}\right)^{\frac{m}{2}-1}
+\left(\frac{t}{1-t}\right)^{\frac{m}{2}-1}
+\left(\frac{1}{1-t}\right)^{-\frac{n+m}{2}}
+\frac{n}{m (t-1)^2}
+=\\=&
+\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}
+\left(\frac{t}{1-t}\right)^{\frac{m}{2}-1}
+\left(\frac{1}{1-t}\right)^{-\frac{n+m}{2}}
+\frac{1}{(t-1)^2}
+=\\=&
+\frac{1}{B \left(\frac{n}{2},\frac{m}{2}\right)}
+t^{\frac{m}{2}-1}
+\left(1-t\right)^{\frac{n}{2}-1}
+\end{align*}
+
+Inaczej. Jeśli
+\begin{gather*}
+Y=\frac{mX}{n+mX}
+\end{gather*}
+otrzymujemy
+\begin{gather*}
+X=\frac{n Y}{m (1-Y)}
+\end{gather*}
+Potrzebna pochodna
+\begin{gather*}
+\left(\frac{n Y}{m (1-Y)}\right)'=
+\frac{n}{m (1-Y)^2}
+\end{gather*}
+Policzmy gęstość
+\begin{align*}
+&f_Y(y)
+=\\=&
+f_X\left(\frac{n y}{m (1-y)}\right)\left|\frac{n}{m (1-Y)^2}\right|
+=\\=&
+\frac{1}{B \left(\frac{m}{2},\frac{n}{2}\right)}\left(\frac{m}{n}\right)^\frac{m}{2}\left(\frac{n y}{m (1-y)}\right)^{\frac{m}{2}-1}\left(1-y\right)^{\frac{n+m}{2}}\frac{n}{m (1-y)^2}
+=\\=&
+\frac{1}{B \left(\frac{m}{2},\frac{n}{2}\right)}\left(\frac{y}{1-y}\right)^{\frac{m}{2}-1}\left(1-y\right)^{\frac{n+m}{2}} (1-y)^{-2}
+=\\=&
+\frac{1}{B \left(\frac{m}{2},\frac{n}{2}\right)}y^{\frac{m}{2}-1}\left(1-y\right)^{\frac{n+m}{2}-\frac{m}{2}+1-2}
+=\\=&
+\frac{1}{B \left(\frac{m}{2},\frac{n}{2}\right)}y^{\frac{m}{2}-1}\left(1-y\right)^{\frac{n}{2}-1}
+\end{align*}
+Krócej.
+
+
+\subsection*{Zadanie 71}
+\addcontentsline{toc}{section}{Zadanie 71}
+Niech $ X=(X_1,\dots,X_n) $ będzie próbą z rozkładu normalnego $ \mathcal N(m,\sigma^2) $. Wykazać, że statystyki
+\begin{align*}
+\overline X=\frac{1}{n}\sum_{i=1}^{n}X_i
+&&
+S^2=\frac{1}{n}\sum_{i=1}^{n}\left(X_i-\overline X\right)^2
+\end{align*}
+są niezależne (jako zmienne losowe) oraz $ \overline X $ ma rozkład normalny $ \mathcal N(m,\frac{\sigma ^2}{n}) $, a Statystyka $ \frac{nS^2}{\sigma^2} $ ma rozkład $ \chi^2 $ o $ n-1 $ stopniach swobody.
+
+Rozwiązanie:
+\begin{itemize}
+\item $ \varphi_{X_i}=\exp\left(itm-\frac{t^2\sigma^2}{2}\right) $
+\end{itemize}
+Tymczasowo pomińmy badanie niezależności i przejdźmy do wyznaczania rozkładów poprzez wykorzystanie funkcji charakterystycznej.
+\begin{gather*}
+\mathbb E e^{it\overline{X}}=
+\mathbb E \exp\left(\frac{it}{n}\sum_{i=1}^{n}X_i\right)=
+\mathbb E \prod_{i=1}^{n}\exp\left(\frac{it}{n}X_i\right)=
+\prod_{i=1}^{n}\mathbb E \exp\left(\frac{it}{n}X_i\right)
+=\\=
+\left(\mathbb E \exp\left(\frac{it}{n}X_i\right)\right)^n=
+\exp\left(i m t+\frac{\sigma ^2 t^2}{2 n}\right)
+\end{gather*}
+Jest to funkcja charakterystyczna rozkładu normalnego $ \mathcal N(m,\frac{\sigma^2}{n}) $. Zajmijmy się w podobny sposób drugą statystyką.
+Na początek zbadajmy rozkład zmiennej losowej $ \overline X - X_i$
+
+
+\begin{align*}
+&\varphi_{\overline X-X_i}(t)
+=\\=&
+\varphi_{\frac{1}{n}\sum_{k=1}^{n}X_k-X_i}(t)
+=\\=&
+\varphi_{\frac{1}{n}\sum_{\substack{k=1\\k\neq i}}^{n}X_k-\frac{n-1}{n}X_i}(t)
+=\\=&
+\varphi_{\frac{1}{n}\sum_{\substack{k=1\\k\neq i}}^{n}X_k}(t)\varphi_{-\frac{n-1}{n}X_i}(t)
+=\\=&
+\varphi_{\sum_{\substack{k=1\\k\neq i}}^{n}X_k}\left(\tfrac{t}{n}\right)
+\varphi_{X_i}\left(-\frac{n-1}{n}t\right)
+=\\=&
+\exp \left(itm\frac{n-1}{n} -\frac{\sigma ^{2}t^{2}}{2}\cdot \frac{n-1}{n^2}\right)
+\exp\left(-itm\frac{n-1}{n}-\frac{\sigma^2t^2}{2}\cdot \left(\frac{n-1}{n}\right)^2\right)
+=\\=&
+\exp \left(-\frac{\sigma ^2t^2}{2}\cdot\frac{n-1}{n}\right)
+\end{align*}
+Wyrażenie w nawiasie ma rozkład normalny $ \mathcal N(0,\frac{n-1}{n}\sigma ^2) $. Oznaczmy\\ $ Y_i=\sigma\sqrt{\frac{n}{n-1}}\left(X_i-\overline X\right) $, które mają rozkład standardowy normalny. Wtedy
+\begin{align*}
+&\frac{nS^2}{\sigma^2}=
+\frac{1}{\sigma ^2}\sum_{i=1}^{n}\left(\sigma\sqrt{\frac{n-1}{n}}Y_i\right)^2
+=\\=&
+\sum_{i=1}^{n}\frac{n-1}{n}Y_i^2
+\end{align*}
+Przejdźmy na funkcję charakterystyczną
+\begin{align*}
+&\varphi_{\frac{nS^2}{\sigma^2}}(t)
+=\\=&
+\end{align*}
+
+
+%\begin{align*}
+%&P\left(\overline X-X_i\le t\right )
+%=\\=&
+%P\left(\frac{1}{n}\sum_{k=1}^{n}X_k-X_i\le t\right)
+%=\\=&
+%\int\limits_{\mathbb R }P\left(\frac{1}{n}\sum_{k=1}^{n}X_k-X_i\le t|X_i=x\right)f(x)\,dx
+%=\\=&
+%\int\limits_{\mathbb R }
+%P\left(\frac{1}{n}\sum_{k=1}^{n}X_k\le t+x|X_i=x\right)
+%f(x)\,dx
+%=\\=&
+%\int\limits_{\mathbb R }
+%P\left(\frac{1}{n}\sum_{\substack{k=1\\k\neq i}}^{n}X_k\le t+x\frac{n-1}{n}|X_i=x\right)
+%f(x)\,dx
+%=\\=&
+%\int\limits_{\mathbb R }
+%P\left(\frac{1}{n-1}\sum_{\substack{k=1\\k\neq i}}^{n}X_k\le t\frac{n}{n-1}+x|X_i=x\right)
+%f(x)\,dx
+%=\\=&
+%\int\limits_{\mathbb R }
+%P\left(\frac{1}{n-1}\sum_{\substack{k=1\\k\neq i}}^{n}X_k\le t\frac{n}{n-1}+x\right)
+%f(x)
+%\,dx
+%\end{align*}
+
+\begin{align*}
+\mathbb E e^{it\frac{nS^2}{\sigma^2}}=&
+\mathbb E \exp \left(it\frac{n}{\sigma ^2}\cdot\frac{1}{n}\sum_{i=1}^{n}\left(X_i-\overline X\right)^2\right)
+=\\=&
+\mathbb E \exp \left(it\frac{1}{\sigma ^2}\sum_{i=1}^{n}\left(X_i-\overline X\right)^2\right)
+=\\=&
+\mathbb E \exp \left(\frac{it}{\sigma ^2}\left(X_i-\overline X\right)^2\right)
+=\\=&
+\mathbb E \exp \left(\frac{it}{\sigma ^2}\sum_{i=1}^{n}\left(\overline{X}^2-2 \overline{X} X_i+X_i^2\right)\right)
+=\\=&
+\mathbb E \exp \left(\frac{it}{\sigma ^2}\left(\sum_{i=1}^{n}\overline{X}^2-\sum_{i=1}^{n}2 \overline{X} X_i+\sum_{i=1}^{n}X_i^2\right)\right)
+=\\=&
+\mathbb E \exp \left(
+\frac{it}{\sigma ^2}\left(
+\frac{1}{n}\sum_{i=1}^{n}\sum_{k=1}^{n}X_iX_k
+-\frac{2}{n}\sum_{i=1}^{n}\sum_{k=1}^{n}X_iX_k
++\sum_{i=1}^{n}X_i^2
+\right)\right)
+=\\=&
+\mathbb E \exp \left(
+\frac{it}{\sigma ^2}\left(
+\sum_{i=1}^{n}X_i^2
+-\frac{1}{n}\sum_{i=1}^{n}\sum_{k=1}^{n}X_iX_k
+\right)\right)
+\end{align*}
+
+
+
+\subsection*{Zadanie 72}
+\addcontentsline{toc}{section}{Zadanie 72}
+Niech $ X=(X_1,\dots,X_n) $ będzie próbą z rozkładu normalnego $ \mathcal N(m,\sigma^2) $. Wykazać, że statystyka $ t $ Studenta określona wzorem
+\begin{gather*}
+t_n=\frac{\overline X-m}{S}\sqrt{n-1}
+\end{gather*}
+ma rozkład $ t $ Studenta o $ n-1 $ stopniach swobody.
+
+Rozwiązanie:
+\begin{itemize}
+\item Gęstość rozkładu $ t $ Studenta o 
+\begin{gather*}
+f(x)=\frac{\Gamma(\frac{n+1}{2})} {\sqrt{n\pi}\,\Gamma(\frac{n}{2})} \left(1+\frac{x^2}{n} \right)^{-\left(\frac{n+1}{2}\right)}
+\end{gather*}
+\end{itemize}
+Pamiętajmy, że $ \overline X $ oraz $ S $ są niezależne.
+Policzmy
+\begin{gather*}
+\frac{\overline X-m}{S}\sqrt{n-1}=
+\frac{\overline X-m}{\sigma}\sqrt n
+\frac{1}{\sqrt{\frac{nS^2}{\sigma^2}}}\sqrt{n-1}
+\end{gather*}
+Zauważmy, że $ \frac{\overline X-m}{\sigma}\sqrt n $ ma rozkład $ \mathcal N(0,1) $, natomiast $ \frac{nS^2}{\sigma^2} $ ma rozkład $ \chi^2 $ o $ n-1 $. Oznaczmy je odpowiednio $ A $ i $ B $
+\begin{gather*}
+P\left(t_n\le t\right)=
+P\left(\frac{A}{\sqrt B}\sqrt{n-1}\le t\right)=
+P\left(A\le t\frac{\sqrt B}{\sqrt{n-1}}\right)
+=\\=
+\int\limits_{0}^{\infty }F\left(t\frac{\sqrt b}{\sqrt{n-1}}\right)
+\left(\frac{1}{2}\right)^{\frac{n-1}{2}}\frac{b^{\frac{n-1}{2}-1}}{\Gamma\left(\frac{n-1}{2}\right)} \exp\left(-\frac{b}{2}\right)\,db
+\end{gather*}
+\begin{align*}
+&f(t)=
+\int\limits_{0}^{\infty }
+F'\left(t\frac{\sqrt b}{\sqrt{n-1}}\right)
+\left(\frac{1}{2}\right)^{\frac{n-1}{2}}
+\frac{b^{\frac{n-1}{2}-1}}{\Gamma\left(\frac{n-1}{2}\right)}
+\exp\left(-\frac{b}{2}\right)\,db
+=\\=&
+\int\limits_{0}^{\infty }
+f\left(t\frac{\sqrt b}{\sqrt{n-1}}\right)
+\left(\frac{1}{2}\right)^{\frac{n-1}{2}}
+\frac{b^{\frac{n-1}{2}-1}}{\Gamma\left(\frac{n-1}{2}\right)}
+\exp\left(-\frac{b}{2}\right)
+\frac{\sqrt b}{\sqrt{n-1}}\,db
+=\\=&
+\int\limits_{0}^{\infty }
+\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{t^2}{2}\cdot \frac{b}{n-1}\right){\sqrt{n-1}}
+\left(\frac{1}{2}\right)^{\frac{n-1}{2}}
+\frac{b^{\frac{n-1}{2}-1}}{\Gamma\left(\frac{n-1}{2}\right)}
+\exp\left(-\frac{b}{2}\right)
+\frac{\sqrt b}{\sqrt{n-1}}\,db
+=\\=&
+\int\limits_{0}^{\infty }
+\frac{1}{\sqrt{2\pi}}
+\left(\frac{1}{2}\right)^{\frac{n-1}{2}}
+\frac{b^{\frac{n-1}{2}-1}}{\Gamma\left(\frac{n-1}{2}\right)}
+\exp\left(-\frac{b}{2}\left(1+\frac{t^2}{n-1}\right)\right)
+\frac{\sqrt b}{\sqrt{n-1}}\,db
+=\\=&
+\frac{1}{\sqrt{\pi}}
+\left(1+\frac{t^2}{n-1}\right)^{-\frac{n}{2}}\frac{\Gamma(\frac{n}{2})}{\Gamma\left(\frac{n-1}{2}\right)}
+\int\limits_{0}^{\infty }
+\left(1+\frac{t^2}{n-1}\right)^{\frac{n}{2}}
+\left(\frac{1}{2}\right)^{\frac{n}{2}}
+\frac{b^{\frac{n}{2}-1}}{\Gamma\left(\frac{n-1}{2}\right)}
+\exp\left(-\frac{b}{2}\left(1+\frac{t^2}{n-1}\right)\right)
+\frac{1}{\sqrt{n-1}}\,db
+=\\=&
+\frac{\Gamma\left(\frac{n}{2}\right)}{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{n-1}{2}\right)}
+\left(1+\frac{t^2}{n-1}\right)^{-\frac{n}{2}}
+\end{align*}

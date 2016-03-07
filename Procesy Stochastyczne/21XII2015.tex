@@ -1,0 +1,328 @@
+\chapter{21 grudnia 2015}
+$ X_t^{\substack{\Delta x\\\Delta t}} =\Delta x\cdot X_1+\dots +\Delta x\cdot X_{\left \lfloor\frac{t}{\Delta t}\right \rfloor}, X_1,X_2,\dots$ - i.i.d.\\
+$ X_j\in\left\{-1,1\right\} $\\
+$P\left(X_j=1\right)=P\left(X_j=-1\right)=\frac{1}{2}$
+\begin{gather*}
+X_t^{\substack{\Delta x\\\Delta t}}\xrightarrow[\substack{\Delta x\to 0^+\\\Delta t\to 0^+}]{?}
+\end{gather*}
+Załóżmy, że $ \Delta x=c\sqrt{\Delta t} $\\
+$ c>0 $ - stała
+\begin{gather*}
+\frac{\Delta x\cdot X_1+\dots +\Delta x\cdot X_{\left \lfloor\frac{t}{\Delta t}\right \rfloor}}{\sqrt{\left \lfloor\frac{t}{\Delta t}\right \rfloor}\Delta x} \stackrel{\mathcal D}{\Longrightarrow}\mathfrak X\sim \mathcal N(0,1)\\
+\Delta x\cdot X_1+\dots +\Delta x\cdot X_{\left \lfloor\frac{t}{\Delta t}\right \rfloor}
+=\\=
+\sqrt{\left \lfloor\frac{t}{\Delta t}\right \rfloor\Delta x^2}\cdot
+\frac{\Delta x\cdot X_1+\dots +\Delta x\cdot X_{\left \lfloor\frac{t}{\Delta t}\right \rfloor}}{\sqrt{\left \lfloor\frac{t}{\Delta t}\right \rfloor}\Delta x}\stackrel{\mathcal D}{\Longrightarrow}\mathcal N(0,c^2t)\\
+\left(\frac{t}{\Delta t}-1\right)\Delta x^2\le \left \lfloor\frac{t}{\Delta t}\right \rfloor\Delta x^2\le \frac{t \Delta x^2}{\Delta t}
+\end{gather*}
+\begin{defi}
+Dla $ t\ge 0 $ niech
+\begin{gather*}
+X_t\stackrel{df}{=}\lim\limits_{\substack{\Delta t\to 0\\\Delta x=c\sqrt{\Delta t}}} X_t^{\substack{\Delta x\\\Delta t}}
+\end{gather*}
+\end{defi}
+
+\textbf{Wniosek}\\
+$ X_t\sim\mathcal N(\mu=0,\Var=c^2t) $
+\begin{gather*}
+\underbrace{\Delta xX_1+\dots+\Delta xX_{\left \lfloor\frac{s}{\Delta t}\right \rfloor}}_{X_s}+
+\underbrace{\Delta xX_{\left \lfloor\frac{s}{\Delta t}\right \rfloor+1}+\dots+\Delta xX_{\left \lfloor\frac{t}{\Delta t}\right \rfloor}}_{X_{t-s}}\to X_t
+\end{gather*}
+\begin{align*}
+X_s\sim \mathcal N(0,c^2s)&&
+X_{t-s}\sim \mathcal N(0,c^2(t-s))
+\end{align*}
+$ X_t-X_s $ ten sam rozkład co $ X_{t-s} $ oraz $ X_{t-s}\Perp X_s $
+
+Otrzymany proces jest procesem o przyrostach niezależnych, jednorodnych. Mała kolizja oznaczeń; proces graniczny oznaczamy $ \left\{X_t\right\}_{t\ge 0} $ i wyjściowy ciąg Bernoulliego niestety oznaczamy $ X_1,X_2,\dots  $.
+\begin{defi}
+Mówimy, że proces stochastyczny $ \mathfrak X=\left\{X_t\right\} _{t\ge 0}$ jest procesem ruchu Browna, jeżeli spełnia
+\begin{enumerate}
+\item $ X_0=0 $ z pr. 1
+\item $ \left\{X_t\right\}_{t\ge 0} $ jest procesem o przyrostach niezależnych i jednorodnych
+\item $ \forall_{t\ge0}\;X_t\sim \mathcal N(0,c^2t) $
+\item Trajektorie $ X_t(\omega) $ są funkcjami ciągłymi (zmiennej $ t $) dla $ P $ prawie wszystkich $ \omega\in \Omega $
+\end{enumerate}
+\end{defi}
+Pytanie\\
+Czy taki proces stochastyczny istnieje?\\
+Heurystycznie pokazaliśmy, że atk.\\
+Tak, istnieje (dowód pełny podał Wiener; w latach 60 piękny dowód istnienia podał Z. Ciesielski (Sopot, IMPAN))
+
+\textbf{Uwaga!}\\
+(10,(2),(3) implikuje (4) [z dokładnością do wersji]\\
+Od tej pory będziemy zakładali $ c=1 $.\\
+Standardowy proces ruchu Browna ma rozkłady $ X_t\sim \frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}} $. $ \Var X_t=t $
+\begin{defi}
+Mówimy, że proces stochastyczny $ \left\{Y_t\right\} _{t\ge 0}$ określony na $ (\Omega,\mathcal F,P) $ i wartościach w przestrzeni fazowej (stanów) $ (S<\mathcal G) $ jest procesem Markowa, jeżeli
+\begin{gather*}
+\forall_{n\in \mathbb N }\forall_{Y_{n-1},Y_{n-2},\dots,Y_0\in S}\forall_{B\in\mathcal G}\forall_{t_n>t_{n-1}>\dots>t_0}
+\end{gather*}
+zachodzi warunek Markowa
+\begin{gather*}
+P\left(Y_{t_n}\in B|
+Y_{t_{n-1}}=y_{n-1},
+Y_{t_{n-2}}=y_{n-2},
+\dots,
+Y_{t_{0}}=y_{0}
+\right)=
+P\left(Y_{t_n}\in B|
+Y_{t_{n-1}}=y_{n-1}
+\right)\\
+F_{Y_{t_n}|
+Y_{t_{n-1}}=y_{n-1},
+Y_{t_{n-2}}=y_{n-2},
+\dots,
+Y_{t_{0}}=y_{0}}=
+F_{Y_{t_n}|
+Y_{t_{n-1}}=y_{n-1}}
+\end{gather*}
+\end{defi}
+\textbf{Oznaczenie}
+\begin{gather*}
+P\left(Y_t\in B|Y_s=y\right)=P^{[s,t]}(y,B)\qquad 0\le s<t
+\end{gather*}
+funkcja prawdopodobieństwa przejścia. Czas ciągły i przestrzeń stanów (może być ciągła).
+\begin{twr}
+Proces ruchu Browna jest procesem Markowa.
+\begin{proof}
+Ustalmy $ n\in \mathbb N, \;t_0<t_1<\dots<t_{n-1}<t_n,\;y_0,y_1,\dots,y_{n-1}\in \mathbb R ,\\ B\in \mathfrak B_\mathbb R  $
+\end{proof}
+\begin{align*}
+&P\left(X_{t_n}\in B|X_{t_{n-1}}=y_{n-1},\dots,X_{t_0}=y_0\right)
+=\\=&
+P\left(X_{t_n}-X_{t_{n-1}}\in B-y_{n-1}|X_{t_{n-1}}-X_{t_{n-2}}=y_{n-1}-y_{n-2},\dots,X_{t_1}-X_{t_0}=y_1-y_0,\right .\\&\left .X_{t_0}=y_0\right)
+\end{align*}
+Niezależność przyrostów
+\begin{align*}
+&P\left(X_{t_{n}}-X_{t_{n-1}}\in B-y_{n-1}\right)
+=\\=&
+\int\limits_{B-y_{n-1}}\frac{1}{\sqrt{2\pi(t_n-t_{n-1})}}\exp\left(-\frac{x^2}{2\left(t_n-t_{n-1}\right)}\right)\,dx
+=\\=&
+\int\limits_{B-y_{n-1}}\frac{1}{\sqrt{2\pi(t_n-t_{n-1})}}\exp\left(-\frac{\left(x-y_{n-1}\right)^2}{2\left(t_n-t_{n-1}\right)}\right)\,dx
+=\\=&
+P^{[t_{n-1},t_n]}\left(y_{n-1},B\right)
+\end{align*}
+\begin{gather*}
+\mathbb E 
+\left(\mathbbm1_{\left\{X_{t_n}\in B\right\}}|X_{t_{n-1}},\dots,X_{t_0}\right)
+\stackrel{?}{=}
+\mathbb E 
+\left(\mathbbm1_{\left\{X_{t_n}\in B\right\}}|X_{t_{n-1}}\right)
+\end{gather*}
+\begin{align*}
+&
+P\left(X_{t_n}\in B|X_{t_{n-1}}=y_{n-1}\right)
+=\\=&
+P\left(X_{t_n}-y_{n-1}\in B-y_{n-1}|X_{t_{n-1}}-X_0=y_{n-1}-0\right)
+=\\=&
+P\left(X_{t_n}-y_{n-1}\in B-y_{n-1}|X_{t_{n-1}}-X_0=y_{n-1}\right)
+\end{align*}
+Niezależność przyrostów $ X_{t_n}-X_{t_{n-1}}\Perp X_{t_{n-1}}-X_0 $
+\begin{align*}
+&
+P\left(X_{t_n}-y_{n-1}\in B-y_{n-1}\right)
+=\\=&
+P\left(X_{t_n-t_{n-1}}\in B-y_{n-1}\right)
+=\\=&
+\int\limits_{B-y_{n-1}}\frac{1}{\sqrt{2\pi(t_n-t_{n-1})}}\exp\left(-\frac{x^2}{2\left(t_n-t_{n-1}\right)}\right)\,dx
+=\\=&
+\int\limits_{B}\frac{1}{\sqrt{2\pi(t_n-t_{n-1})}}\exp\left(-\frac{\left(x-y_{n-1}\right)^2}{2\left(t_n-t_{n-1}\right)}\right)\,dx
+\end{align*}
+\end{twr}
+Dygresja formalna
+\begin{gather*}
+\mathbb E \left(\mathbbm1_{\left\{X_{t_n}\in B\right\}}|X_{t_{n-1}},\dots,X_{t_0}\right)=P^{[t_{n-1},t_n]}\left(X_{t_{n-1},B}\right)
+\end{gather*}
+\begin{twr}
+Jeżeli $ \left\{B_t\right\} _{t\in [0,\infty )}$ jest standardowym procesem ruchu Browna to
+\begin{gather*}
+\cov \left(B_s,B_t\right)=s\wedge t\;\left(=\min\left\{s,t\right\}\right)
+\end{gather*}
+\begin{proof}
+\begin{align*}
+&
+\cov \left(B_s,B_t\right)
+=\\=&
+\mathbb E B_sB_t-\mathbb E B_s\mathbb E B_t
+=\\=&
+\mathbb E B_sB_t
+\stackrel{s=s\wedge t}{=}\\=&
+\mathbb E \left(\left(B_t-B_s+B_s\right)B_s\right)
+=\\=&
+\mathbb E \left(\left(B_t-B_s\right)B_s+B_s^2\right)
+=\\=&
+\mathbb E \left(\left(B_t-B_s\right)B_s\right)+\mathbb EB_s^2
+=\\=&
+\mathbb E \left(B_t-B_s\right)\mathbb E \left(B_s\right)+\Var B_s^2=s=s\wedge t
+\end{align*}
+\end{proof}
+\end{twr}
+\textbf{Ostrzeżenie}\\
+Dwa różne procesy $ \left\{N_t\right\}_{t\ge 0},\left\{B_t\right\}_{t\ge 0} $ mają tę samą funkcję autokorelacji $ c(s,t)=s\wedge t $
+\begin{twr}
+Niech $ \left\{X_t\right\}_{t\ge0 } $ będzie standardowym procesem ruchu Browna. Dla dowolnych $ t_1<t_2<\dots<t_n,\;n\ge 1 $, wektor gaussowski $ \left(X_{t_1},X_{t_2},\dots,X_{t_n}\right) $ ma gęstość $ n $-wymiarową (niezdegenerowaną) postaci
+\begin{gather*}
+f_{\left(X_{t_1},X_{t_2},\dots,X_{t_n}\right)}
+\left(x_1,x_2,\dots,x_n\right)=
+\prod_{j=1}^{n}\int\limits_{B}\frac{1}{\sqrt{2\pi(t_j-t_{j-1})}}\exp\left(-\frac{\left(x_j-y_{j-1}\right)^2}{2\left(t_j-t_{j-1}\right)}\right)\,dx
+\end{gather*}
+\begin{proof}
+$\left(X_{t_1}-X_{t_0},X_{t_2}-X_{t_1},\dots,X_{t_n}-X_{t_{n-1}}\right) $ ma gęstość
+\begin{gather*}
+f_{\left(X_{t_1},X_{t_2}-X_{t_1},\dots,X_{t_n}-X_{t_{n-1}}\right)}\left(x_1,x_2,\dots,x_n\right)
+=\\=
+\prod_{j=1}^{n}f_{X_{t_j-X_{t_{j-1}}}}(x_j)=
+\prod_{j=1}^{n}f_{X_{t_j-X_{t_{j-1}}}}(x_j)
+\frac{1}{\sqrt{2\pi(t_j-t_{j-1})}}\exp\left(-\frac{x_j^2}{2\left(t_j-t_{j-1}\right)}\right)\\
+\psi\left(X_{t_1},X_{t_2}-X_{t_1},\dots,X_{t_n}-X_{t_{n-1}}\right)=
+\left(X_{t_1},X_{t_2},\dots,X_{t_n}\right)
+\end{gather*}
+Jak wygląda $ \psi:\mathbb R^n\to \mathbb R ^n $?
+\begin{align*}
+&\psi \left(x_1,x_2-x_1,\dots,x_n-x_{n-1}\right)=
+\left(x_1,\dots,x_n\right)\\
+&\psi \left(y_1,y_2,\dots,y_n\right)=
+\left(y_1,y_1+y_2,y_1+y_2+y_3,\dots,y_1+y_2+\dots+y_n\right)
+\end{align*}
+$ \psi $ operacja liniowa.
+\begin{gather*}
+f_{\psi\left(\vec Z\right)}\left(z_1,\dots,z_n\right)=f\left(\psi^{-1}\right)\left|J_{\psi^{-1}}\right|\\
+\psi^{-1}\left(z_1,\dots,z_n\right)=\left(z_1,z_2-z_1,\dots,z_n-z_{n-1}\right)
+\end{gather*}
+Macierz
+\begin{gather*}
+J_{\psi^{-1}}=
+\begin{bmatrix}
+	1      & 0      & 0      & \ldots & 0      & 0      \\
+	-1     & 1      & 0      & \ldots & 0      & 0      \\
+	0      & -1     & 1      & \ldots & 0      & 0      \\
+	\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+	0      & 0      & 0      & \ldots & 1      & 0      \\
+	0      & 0      & 0      & \ldots & -1     & 1
+\end{bmatrix}\\
+\left|J_{\psi^{-1}}\right|=1
+\end{gather*}
+\begin{gather*}
+f_{\left(X_{t_1},X_{t_2},\dots,X_{t_n}\right)}\left(x_1,\dots,x_n\right)=
+f_{\left(X_{t_1},X_{t_2}-X_{t_1},\dots,X_{t_n}-X_{t_{n-1}}\right)}\left(\psi^{-1}\left(x_1,\dots,x_n\right)\right)
+=\\=
+\prod_{j=1}^{n}\frac{1}{\sqrt{2\pi(t_j-t_{j-1})}}\exp\left(-\frac{\left(x_j-y_{j-1}\right)^2}{2\left(t_j-t_{j-1}\right)}\right)
+\end{gather*}
+\end{proof}
+\end{twr}
+\section{Własności trajektorii standardowego procesu ruchu Browna}
+$ \mathbb R _+\ni t\to B_t(\omega) $ jest funkcją ciągłą dla $ P $ p.w. $ \omega\in\Omega $.\\
+Problem różniczkowalności
+\begin{gather*}
+P\left(\left|\frac{X_{t+\Delta t}(\omega)-X_t(\omega)}{\Delta t}\right|>n\right)=
+2\int\limits_{n}^{\infty }\frac{1}{\sqrt{2\pi \frac{1}{\Delta t}}}\exp\left(-\frac{x^2}{2\cdot \frac{1}{\Delta t}}\right)\,dx\xrightarrow[\Delta t\to0]{}1
+\end{gather*}
+Według prawdopodobieństwa $ \left|\frac{X_{t+\Delta t}-X_t}{\Delta t}\right|\xrightarrow[\Delta t\to0]{}\infty $\\
+Trajektorie procesu ruchu Browna są nigdzie różniczkowalne z prawdopodobieństwem 1.
+\begin{twr}[Prawo iterowania logarytmu]
+Niech $ \left\{B_t\right\} _{t\ge 0}$ będzie standardowym procesem Wienera (ruch Browna). Wówczas
+\begin{align*}
+&P\left(\left\{\omega\in\Omega:\limsup_{t\to+\infty }\frac{B_t(\omega)}{\sqrt{2t\ln \left(\ln t\right)}}=1\right\}\right)=1\\
+&P\left(\left\{\omega\in\Omega:\liminf_{t\to+\infty }\frac{B_t(\omega)}{\sqrt{2t\ln \left(\ln t\right)}}=-1\right\}\right)=1
+\end{align*}
+\end{twr}
+\begin{twr}[Lokalne prawo iterowania logarytmu]
+Niech $ \left\{B_t\right\} _{t\ge 0}$ będzie standardowym procesem Wienera (ruch Browna). Wówczas
+\begin{align*}
+&P\left(\left\{\omega\in\Omega:\limsup_{t\to0^+ }\frac{B_t(\omega)}{\sqrt{2t\ln \left(\ln t\right)}}=1\right\}\right)=1\\
+&P\left(\left\{\omega\in\Omega:\liminf_{t\to0^+ }\frac{B_t(\omega)}{\sqrt{2t\ln \left(\ln t\right)}}=-1\right\}\right)=1
+\end{align*}
+\end{twr}
+
+\textbf{Wniosek}\\
+Z prawdopodobieństwem 1, trajektoria $ B_t(\omega) $ w okolicy $ t_0=-0 $ przecina poziom 0 nieskończenie wiele razy.
+
+\textbf{Wniosek}\\
+Z prawdopodobieństwem 1, trajektoria $ B(\omega) $
+\begin{align*}
+\limsup_{t\to0^+}\frac{B_t(\omega)}{t}=+\infty
+&&
+\liminf_{t\to0^+}\frac{B_t(\omega)}{t}=-\infty
+\end{align*}
+Syntezując punkty skupienia $ \frac{B_t(\omega)}{t}\underset{t\to 0^+}{=}[-\infty ,+\infty ] $
+
+Widać
+\begin{gather*}
+\frac{B_t(\omega)}{t}=
+\frac{B_t(\omega)}{\sqrt{2t\ln\left|\ln t\right|}}\cdot \frac{2t\ln\left|\ln t\right|}{t}
+\end{gather*}
+\section{Procesy stacjonarne}
+\begin{defi}
+Mówimy, że proces stochastyczny $ \left\{X_t\right\} _{t\in T}$ jest procesem stacjonarnym w większym sensie (ściśle stacjonarnym, mocno stacjonarnym, \emph{strickly stationary},...), jeżeli
+\begin{align*}
+&\forall_n\forall_{t_0<t_1<\dots<t_n}\forall_h\;
+\mu_{\left(X_{t_0},X_{t_1},\dots,X_{t_n}\right)}=
+\mu_{\left(X_{t_0+h},X_{t_1+h},\dots,X_{t_n+h}\right)}\\
+&\forall_n\forall_{t_0<t_1<\dots<t_n}\forall_h\forall_{B\in\mathfrak B_\mathbb R }\;
+P\left(\left(X_{t_0},X_{t_1},\dots,X_{t_n}\right)\in B\right)=
+P\left(\left(X_{t_0+h},X_{t_1+h},\dots,X_{t_n+h}\right)\in B\right)
+\end{align*}
+$ T=\mathbb Z,\mathbb N _0,\mathbb R _+,\mathbb R  $, operacja $ t_0+h,t_1+h,\dots,t_n+h $ nie może wyprowadzić poza $ T $
+\end{defi}
+\begin{defi}
+Mówimy, że proces stochastyczny $ \left\{X_t\right\} _{t\in T}$ jest stacjonarny w szerszym sensie (słabo stacjonarny, \emph{weakly stationary}), jeżeli $ \forall_{t\in T}\; X_t\in L^2(P) $
+\begin{enumerate}
+\item 
+\begin{gather*}
+\forall_{t\in T}\;m_t=\mathbb E X_t=m=const
+\end{gather*}
+\item 
+\begin{gather*}
+\forall_{s,t\in T}\forall_h\;
+c(s,t)=
+\cov \left(X_s,X_t\right)=
+\cov \left(X_{s+h},X_{t+h}\right)=
+c(s+h,t+h)\\
+\left(=c(0,t-s)=c(t-s)\right)
+\end{gather*}
+\end{enumerate}
+\begin{gather*}
+\Var\left(X_0\right)=c(0)=\Var\left(X_t\right)=const
+\end{gather*}
+\end{defi}
+\begin{twr}
+Jeżeli $ \left\{X_t\right\} _{t\in T}$ jest stacjonarny w węższym sensie i $ X_t\in L^2(P) $ to jest stacjonarny w szerszym sensie (ale nie na odwrót).
+\begin{proof}
+$ \mu_{X_t}=\mu_{X_s} $ dla dowolnych $ s,t\in T $
+\end{proof}
+\begin{gather*}
+\mathbb E X_t=
+\int\limits_{\mathbb R }x\,d\mu_{X_t}(x)=
+\int\limits_{\mathbb R }x\,d\mu_{X_s}(x)=
+\mathbb E X_s=m=const\\
+\cov \left(X_s,X_t\right)\stackrel{?}{=}
+\cov \left(X_{s+h},X_{t+h}\right)
+\end{gather*}
+\begin{align*}
+&\int\limits_{\mathbb R ^2}\left(x-m\right)\left(y-m\right)\,d\mu_{\left(X_s,X_t\right)}(x,y)
+=\\=&
+\int\limits_{\mathbb R ^2}\left(x-m\right)\left(y-m\right)\,d\mu_{\left(X_{s+h},X_{t+h}\right)}(x,y)
+=\\=&
+\cov \left(X_{s+h},X_{t+h}\right)
+\end{align*}
+\end{twr}
+\begin{defi}
+Mówimy, że proces stochastyczny $ \left\{X_t\right\}_{t\in \mathbb R } $ jest procesem gaussowskim, jeżeli
+\begin{gather*}
+\forall_n\forall_{t_1<t_2<\dots<t_n}\;
+\left(X_{t_1},X_{t_2},\dots,X_{t_n}\right) \text{ma rozkład gaussowski}
+\end{gather*}
+$ \mu_{\left(X_{t_1},X_{t_2},\dots,X_{t_n}\right)} $ jest miarą gaussowską na $ \mathbb R ^n $ (być może zdegenerowaną). Czyli
+\begin{gather*}
+\varphi_{\left(X_{t_1},X_{t_2},\dots,X_{t_n}\right)}(\tau_1,\tau_2,\dots,\tau_n)=
+\exp\left(i\sum_{k=1}^{n}\tau_k\cdot \mathbb E X_{t_k}-\frac{1}{2}\sum_{k=1}^{n}v_{k,l}\cdot \tau_k\tau_l\right)
+\end{gather*}
+gdzie $ \cov \left(X_{t_k},X_{t_l}\right) $
+\end{defi}
+Oznaczenia
+\begin{gather*}
+V\left(t_1,\dots,t_n\right)=\left[\cov \left(X_{t_k},X_{t_l}\right)\right]_{n\times n}\\
+m\left(t_1,t_2,\dots,t_n\right)=
+\left(\mathbb E X_{t_1},\mathbb E X_{t_2},\dots,\mathbb E X_{t_n}\right)
+\end{gather*}

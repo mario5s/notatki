@@ -1,0 +1,192 @@
+\chapter{11 stycznia 2016}
+\begin{twr}
+Niech $ \mathfrak X=\left\{X_t\right\}_{t\in T} $ będzie procesem gaussowskim. Wówczas $ \mathfrak X $ jest stacjonarny w węższym sensie wtedy i tylko wtedy, gdy $ \mathfrak X $ jest stacjonarny w szerzym sensie.
+\begin{proof}
+$ \Rightarrow $
+mocna stacjonarność implikuje słabą stacjonarność
+\begin{gather*}
+X_t\in L^2\left(\text{gdyż }X_t\in \bigcap_pL^p,\text{ a nawet }\mathbb E e^{\alpha|X_t|^2}<\infty \text{ dla pewnej }\alpha>0\right)
+\end{gather*}
+$ \Leftarrow $
+\begin{align*}
+&\mu_{t_1,\dots,t_n}\sim\mathcal N\left(m_{t_1,\dots,t_n},V_{t_1,\dots,t_n}\right),
+&m_{t_1+h,\dots,t_n+h}=
+\left(\mathbb E X_{t_1+h},\dots,\mathbb E X_{t_n+h}\right)
+=\\=&
+\left(\mathbb E X_{t_1},\dots,\mathbb E X_{t_n}\right)
+=\\=&
+m_{t_1,\dots,t_n}
+\end{align*}
+i analogicznie
+\begin{gather*}
+V_{t_1+h,\dots,t_n+h}=
+\left[\cov\left(X_{t_j+h},X_{t_k+h}\right)\right]_{n\times n}=
+\left[\cov\left(X_{t_j},X_{t_k}\right)\right]_{n\times n}=
+V_{t_1,\dots,t_n}
+\end{gather*}
+\begin{gather*}
+\mu_{t_1+h,\dots,t_n+h}^\mathfrak X=
+\mathcal N\left(m_{t_1+h,\dots,t_n+h},V_{t_1+h,\dots,t_n+h}\right)
+=\\=
+\mathcal N\left(m_{t_1,\dots,t_n},V_{t_1,\dots,t_n}\right)=
+\mu_{t_1,\dots,t_n}^\mathfrak X
+\end{gather*}
+\end{proof}
+\end{twr}
+\begin{twr}
+Proces gaussowski $ \mathfrak X=\left\{X_t\right\} _{t\in T}$ jest procesem Markowa wtedy i tylko wtedy, gdy
+\begin{align*}
+&\forall_{n\in \mathbb N }\forall_{t_1<\dots<t_n=s<t}\;
+\mathbb E \left(X_t|X_{t_1},\dots,X_{t_n},X_s\right)=
+\mathbb E \left(X_t|X_s\right)\\
+&\forall_{n\in \mathbb N }\forall_{t_1<\dots<t_n=s<t}\forall_{g:\mathbb R \to \mathbb R }\;
+\mathbb E \left(g\left(X_t\right)|X_{t_1},\dots,X_{t_n},X_s\right)=
+\mathbb E \left(g\left(X_t\right)|X_s\right)
+\end{align*}
+gdzie $ g $ jest ograniczoną funkcją borelowską.
+\end{twr}
+\begin{prz}
+Funkcja autokorelacji gaussowskiego procesu stacjonarnego i markowskiego. $ \mathfrak X=\left\{X_t\right\} _{t\ge 0}, \mathbb E X_t=m_t=0$.
+\begin{align*}
+&\mathbb E \left(X_{t+s}|X_s\right)
+=\\=&
+\frac{\cov\left(_{t+s},X_s\right)}{\sqrt{\Var X_{t+s}}\sqrt{\Var X_s}}\cdot\frac{\sqrt{X_{t+s}}}{\sqrt{ \Var X_s}}X_s+\left(0+\dots+0\right)
+=\\=&
+\frac{\cov\left(_{t},X_0\right)}{\Var X_s}\cdot X_s=\frac{c(t)}{c(0)}X_s
+=\\=&
+\frac{\cov\left(_{t},X_0\right)}{\Var X_s}\cdot X_s=\frac{c(t)}{\Var X_0}X_s
+\end{align*}
+$ \cov\left(X_{t+s},X_s\right)=\cov\left(X_t,X_0\right) =c(t)$
+\begin{align*}
+&
+c(0)\cdot \cov \left(X_0,X_{t+s}\right)
+=\\=&
+c(0)\cdot \mathbb E \left(X_0\cdot X_{t+s}\right)
+=\\=&
+c(0)\cdot \mathbb E \left(\mathbb E \left(X_0\cdot X_{t+s}|X_0,X_s\right)\right)
+=\\=&
+c(0)\cdot \mathbb E \left(X_0\cdot\mathbb E \left( X_{t+s}|X_0,X_s\right)\right)
+=\\=&
+c(0)\cdot \mathbb E \left(X_0\cdot\frac{c(t)}{c(0)}X_s\right)
+=\\=&
+c(0)\cdot \frac{c(t)}{c(0)}\mathbb E \left(X_0\cdot X_s\right)
+=\\=&
+c(t)\mathbb E \left(X_0\cdot X_s\right)
+=\\=&
+c(t)\cdot c(s)
+\end{align*}
+Jak rozwiązać równanie funkcyjne $ C(0)\cdot c(t+s)=c(t)\cdot c(s) $? Dla uproszczenia załóżmy, że $ c:\mathbb R \to \mathbb R  $ jest funkcją ciągłą (borelowską)
+\begin{gather*}
+\varphi(s)=\frac{c(s)}{c(0)}\\
+\varphi(s+t)=\frac{c(s+t)}{c(0)}=\frac{c(t)c(s)}{c(0)c(0)}=\varphi(t)\cdot \varphi(s)\\
+\varphi(s+t)=\varphi(s)\varphi(t)\\
+\forall_{s,t>0}\;\varphi(s)=e^{-\alpha|s|}
+\end{gather*}
+dla pewnej stałej $ \alpha>0 $ $ \cov(X_0,X_s)=e^{-\alpha|s|} $\\
+Gdy $ \alpha=0 $ daje proces stały $ X_t=X $ 
+\end{prz}
+\section{Procesy gałązkowe}
+$ Z_0 $ - liczba osobników, cząstek w chwili $ t=0 $ - generacja zerowa\\
+$ Z_1 $ - liczba osobników, cząstek w chwili $ t=1 $ - pierwsza generacja\\
+\vdots\\
+$ Z_n $ - liczba osobników, cząstek w chwili $ t=n $ - $ n $-ta generacja
+
+$ \left(Z_n\right) _{n\ge 0}$ proces z czasem dyskretnym, $ Z_n\in \mathbb N _0=\left\{0,1,2,\dots \right\} $. W chwili $ k\ge 0 $ mamy $ Z_k $ ochotników. Każda osobniczka rodzi $ X_1,X_2,\dots,X_j,\dots,X_{Z_k}^k,X_{Z_{k+1}}^k,\dots $, "dzieci". $ X_j^k,\quad j=1,2,\dots $ niezależne zmienne losowe o wartościach w $ \mathbb N _0 $ i tych samych rozkładach.\\
+$ G_{X_j^k}(s)=G_X(s) $ - funkcja tworząca
+\begin{align*}
+Z_n=&\sum_{j=1}^{Z_{n-1}}X_j^{n-1}\Rightarrow\\
+& G_{Z_n}\mathbb E s^{Z_n}
+=\\=&
+G_{\sum_{j=1}^{Z_{n-1}}X_j^{n-1}}(s)
+=\\=&
+G_{Z_{n-1}}\left(G_Z(s)\right)
+=\\=&
+G_{Z_{n-1}}\circ G_Z(s)
+=\\=&
+G_{Z_0}\circ G_X^{\circ n}(s)
+\end{align*}
+
+\textbf{Wniosek}\\
+Jeżeli $ Z_0=1 $ z pr. 1($ G_{Z_0}(s)=s $), to $ G_{Z_n}(s)=G_{Z_0}\left(G_X^{\circ n}(s)\right)=G_X^{\circ n}(s) $
+\begin{twr}
+Dla procesu gałązkowego $ \left\{Z_n\right\} _{n\ge 0},Z_0=1$ z pr. 1.
+\begin{enumerate}
+\item 
+\begin{gather*}
+\mathbb E Z_n=\mu^n
+\end{gather*}
+gdzie $ \mu=\mathbb E X_j^k=\mathbb E X $
+\item 
+\begin{gather*}
+\Var Z_n=
+\left \{
+\begin{array}{ll}
+n\sigma^2&,\text{ gdy }\mu=1,\sigma^2=\Var (X)\\
+\frac{\sigma^2(\mu^n-1)\mu^{n-1}}{\mu-1}&,\text{ gdy }\mu\neq 1
+\end{array}
+\right .
+\end{gather*}
+\end{enumerate}
+\begin{proof}
+%\begin{enumerate}
+%\item $ \mathbb E X=G_X'(1) $
+%\begin{align*}
+%\mathbb E Z_n=&G_{Z_n}'(1)
+%=\\=&
+%\left(G_X^{\circ n}\right)'(1)
+%=\\=&
+%\underbrace{\left(G_X\circ G_X\circ\dots\circ G_X\right)'}_{n\text{ razy}}(1)
+%=\\=&
+%G_X'\underbrace{\left(G_X\circ G_X\circ\dots\circ G_X(1)\right)}_{n-1\text{ razy}}\cdot
+%\underbrace{\left(G_X\circ G_X\circ\dots\circ G_X(1)\right)'}_{n-1\text{ razy}}
+%=\\=&
+%G_X'(1)\cdot \left(G_X^{\circ(n-1)}\right)(1)
+%=\\=&
+%\mu\cdot \left(G_X^{\circ(n-1)}\right)'=\dots=\mu^n
+%\end{align*}
+%\item $ \Var Z_n=? $
+%\begin{align*}
+%&G_y''(1)=\mathbb E Y(Y-1)=\mathbb E Y^2-\mathbb E Y\\
+%&G_{Z_n}''(1)=\mathbb E Z_n^2-\mathbb E Z_n\\
+%&\mathbb E Z_n^2=G_{Z_n}''(1)+\mu^n\\
+%&\Var Z_n=\mathbb E Z_n^2-\left(\mathbb E Z_n\right)^2=G_{Z_n}''(1)+\mu^n-\mu^{2n}
+%\end{align*}
+%\begin{align*}
+%&\left(G_X^{\circ n}\right)''(s)
+%=\\=&
+%\left(\left(G_X^{\circ n}\right)'\right)'(s)
+%=\\=&
+%\left(G_X'\left(G_X^{\circ(n-1)}(s)\right)\cdot G_X^{\circ(n-1)'}(s)\right)'
+%=\\=&
+%G''_X\left(G_X^{\circ(n-1)}(s)\right)\cdot G_X'\left(G_X^{\circ(n-1)}(s)\right)\left(G_X^{\circ(n-1)}\right)'(s)\cdot
+%\left(G_X^{\circ (n-1)}\right)'(s)+\\
+%+&G_X'\left(G_X^{\circ(n-1)}(s)\right)\cdot G_X^{\circ(n-1)''}(s)=
+%\end{align*}
+%\end{enumerate}
+\end{proof}
+\end{twr}
+\begin{twr}
+Reich $ \left(Z_n\right)_{n\ge 0} $ będzie procesem gałązkowym; $ Z_0=1 $. Wówczas prawdopodobieństwo wymarcia populacji (w skończonym czasie) jest równe najmniejszemu pierwiastkowi równania
+\begin{gather*}
+G_X(s)=s.
+\end{gather*}
+\begin{proof}
+Jeżeli $ Z_n=0 $, to $ Z_{n+1}=Z_{n+2}=\dots=0 $
+\begin{gather*}
+\left\{Z_1=0\right\}\subseteq
+\left\{Z_2=0\right\}\subseteq
+\left\{Z_3=0\right\}\subseteq\dots\subseteq
+\left\{Z_n=0\right\}\subseteq
+\left\{Z_{n+1}=0\right\}\subseteq\dots \\
+P\left(\bigcup_{n=1}^\infty \left\{Z_n=0\right\}\right)=
+\lim\limits_{n\to\infty} P\left(Z_n=0\right)=
+\lim\limits_{n\to\infty} G_{Z_n}(0)=
+\lim\limits_{n\to\infty} G_{X}^{\circ n}(0)=s^*=G_X(s^*)
+\end{gather*}
+Rozpatrzmy przypadki:\\
+$ X=1 $ z pr. 1; $ G_X(s) $ ma najmniejszy pierwiastek $ s^*=0 $. Oczywiście prawdopodobieństwo wynosi 0.\\
+$ \mu=\mathbb E X=1=G_X'(1) $\\
+$ s^*=1= $ prawdopodobieństwo wymarcia populacji
+\end{proof}
+\end{twr}
+Paradoks $ P\left(\exists_{n\ge 1}\;Z_n=0\right)=1 $, ale $ \mathbb E Z_n=1=\mu^n $ dla każdego $ n $

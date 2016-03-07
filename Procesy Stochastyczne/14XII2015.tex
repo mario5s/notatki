@@ -1,0 +1,140 @@
+\chapter{14 grudnia 2015}
+Komentarz związany z kolokwium\\
+$ \left\{N(t)\right\}_{t\ge 0} $ jednorodny proces Poissona z intensywnością $ \lambda>0 $\\
+$ cov\left(N(t),N(s)\right)=\lambda\left(t\wedge s\right)=\lambda\cdot\min\left\{s,t\right\} $\\
+$ \mathbb E \left(N(t)\cdot N(s)\right)=cov\left(N(t),N(s)\right)+\mathbb E N(t)\mathbb E N(s)=\lambda\cdot\min\left\{s,t\right\}+\lambda s\cdot\lambda t $
+dla $ t \ge s $\\
+$ \mathbb E \left(N(t)\cdot N(s)\right)=\mathbb E \left(\left(N(t)\cdot N(s)\right)\cdot N(s)+N(t)^2\right) $
+koniec komentarza
+
+Niech $ \left(X_n\right)_{n\ge 0} $ będzie jednorodnym łańcuchem markowa z macierzą prawdopodobieństw przejść $ P=[p_{ij}] $. Oznaczmy
+\begin{gather*}
+\tau_j=\left \{
+\begin{array}{l}
+	\min\left\{n\ge 1:X_n(\omega)=j\right\}                     \\
+	\infty , \text{ jeżeli }\forall_{n\ge 1}\; X_n(\omega)\neq j
+\end{array}
+\right .
+\end{gather*}
+moment Markowa.
+\begin{gather*}
+m_{jj}=\mathbb E _j\left(\tau_j\right)=\sum_{n=1}^{\infty }n\cdot f_{jj}^{[n]}=\int\limits_{\Omega}\tau_j\,dP\left(\cdot|X_0=j\right)
+\end{gather*}
+Przypomnienie
+\begin{gather*}
+f_{jj}^{[n]}=P\left(X_1\neq j,\dots,X_{n-1}\neq j,X_n=j|X_0=j\right)
+\end{gather*}
+\begin{defi}
+Mówimy, że stan $ j\in C $ jest dodatnio powracający, jeżeli $ m_{jj}<\infty  $.\\
+Mówimy, że stan $ j\in C $ jest 0 powracający, jeżeli $ m_{jj}=\infty  $.
+\end{defi}
+\textbf{Uwawga!}\\
+Oczywiście, jeżeli $ j\in D=S\backslash C $ to $ P_j\left(\tau_j=\infty \right)>0 $. Zatem
+\begin{gather*}
+\forall_{j\in D}\;m_{jj}=\infty 
+\end{gather*}
+\begin{defi}
+Mówimy, że miara probabilistyczna $ \mu  $na $ (S, 2^S) $ jest niezmiennicza (stacjonarna) dla $ j $ łańcucha Markowa $ \left(X_n\right)_{n\ge 0} $ o macierzy prawdopodobieństw przejść $ P $, jeżeli
+\begin{gather*}
+\forall_{j\in S}\;\sum_{i\in S}\mu_i\cdot p_{ij}=\mu_j\\
+\underline{\mu}\circ P=\underline{\mu}
+\end{gather*}
+\end{defi}
+\begin{gather*}
+\mathcal P\left(S\right)\ni\underline{\mu}\to\underline{\mu}\circ P\in \mathcal P\left(S\right)\\
+\left(\mu_0,\mu_1,\mu_2,\dots \right)\circ
+\begin{bmatrix}
+	p_{0,0} & p_{0,1} & \ldots \\
+	p_{1,0} & p_{1,1} & \ldots \\
+	\vdots  & \vdots  & \ddots
+\end{bmatrix}=
+\left(\mu_0,\mu_1,\mu_2,\dots \right)
+\end{gather*}
+\textbf{Uwaga!}\\
+Niech $ X_0 $ ma rozkład $ \underline{\mu}\left[P\left(X_0=i\right)=\mu_i\right] $. Rozkład $ x_1 $?
+\begin{gather*}
+P\left(X_1=j\right)=
+\sum_{j\in S}P\left(X_1=j|X_0=i\right)P\left(X_0=i\right)=
+\sum_{i\in S}\mu_i\cdot p_{ij}=\underline{\mu}\circ P
+\end{gather*}
+\begin{align*}
+\underline{\mu}&\text{ rozkład }X_0\\
+\underline{\mu}\circ P&\text{ rozkład }X_1\\
+\underline{\mu}\circ P^2&\text{ rozkład }X_2\\
+\end{align*}
+\begin{twr}
+Niech $ \left(X_n\right)_{n\ge 0} $ będzie jednorodnym łańcuchem Markowa o macierzy prawdopodobieństw przejść $ P=\left[p_{ij}\right] _{S\times S}$. Jeżeli $ r\in C $ jest stanem dodatnio powracającym, wówczas istnieje dokładnie jedna miara probabilistyczna niezmiennicza $ \pi$ o własności $ \pi_r>0 $. Co więcej
+\begin{gather*}
+\pi_r=
+\left \{
+\begin{array}{ll}
+\frac{1}{m_{rr}=\frac{1}{\mathbb E _r\tau_r}},&j=r\\
+0,&j\notin [r]\\
+\frac{1}{\mathbb E _r\tau_r}\cdot \left(1+P_{r_j}+\sum_{n=1}^{\infty }\sum_{i_1,\dots,i_n\in S\backslash\{r\}}
+p_{ri_1}\cdot p_{i_1i_2}\cdot\dots p_{i_{n-1}j}\right),&j\in [r]\wedge j\neq r
+\end{array}
+\right .
+\end{gather*}
+\end{twr}
+\textbf{Wniosek}
+\begin{gather*}
+C=C_+\cup C_0\\
+C_+=\left\{r\in C:\mathbb E _r\tau_r<\infty \right\}=\left\{j\in C:\mu_j>0\text{ dla pewnej }\underline{\mu}\circ P=\underline{\mu}\right\}
+\end{gather*}
+\begin{twr}
+Niech $ \left(X_n\right)_{n\ge 0} $ będzie jednorodnym łańcuchem Markowa na przestrzeni stanów $ S $ o macierzy prawdopodobieństw przejść $ P[p_{ij}] $. Łańcuch $ \left(X_n\right)_{n\ge 0} $jest stacjonarny wtedy i tylko wtedy, gdy $ \mu^{(0)}=\mathcal L\left(X_0\right) $ rozkład początkowy jest miarą niezmienniczą.
+\end{twr}
+\begin{proof}$ \Rightarrow $
+Ze stacjonarności $ \left(X_0,X_1,\dots,X_n\right)\sim \left(X_1,X_2,\dots,X_{n+1}\right)$. $ \mathcal L(X_0)=\mathcal L(X_1) $. Ale pamiętamy, że $ \underline{\mu}^{(1)}=\underline{\mu}^{(0)}\circ P $, czyli mamy $ \underline{\mu}^{(0)}=\mu^{(0)}\circ P $.
+\textbf{Uwaga!}\\
+Iterując $ \underline{\mu}^{(n)}=\underline{\mu}^{(0)}\circ P^n $ dla dowolnego $ n\ge 0 $\\
+$ \Leftarrow $\\
+Załóżmy, że $ \underline{\mu}^{(0)}=\underline{\mu}^{(0)}\circ P $.\\
+$ \mu_{(X_0,\dots,X_n)}=\mu_{(X_k,\dots,X_{n+k})} $ dla dowolnego $ k=1,2,\dots $?
+\begin{gather*}
+P\left(X_0=i_0,X_1=i_1,\dots,X_n=i_n\right)=
+P\left(X_k=i_0,X_{k+1}=i_1,\dots,X_{k+n}=i_n\right)
+\end{gather*}
+dla dowolnego wyboru $ i_0,i_1,\dots,i_n\in S $
+\begin{align*}
+&P\left(X_0=i_0\right)p_{i_0i_1}\cdot p_{i_1i_2}\cdot\ldots \cdot p_{i_{n-1}i_n}\\
+&P\left(X_k=i_0\right)p_{i_0i_1}\cdot p_{i_1i_2}\cdot\ldots \cdot p_{i_{n-1}i_n}\\
+&P\left(X_k=i_0\right)=\left(\underline{\mu}^{(0)}\circ P^k\right)_{i_0}=\mu_{i_0}^{(0)}=P\left(X_0=i_0\right)
+\end{align*}
+Stąd $ P\left(X_0=i_0\right)p_{i_0i_1}\cdot p_{i_1i_2}\cdot\ldots \cdot p_{i_{n-1}i_n}=P\left(X_k=i_0\right)p_{i_0i_1}\cdot p_{i_1i_2}\cdot\ldots \cdot p_{i_{n-1}i_n} $ dla dowolnego $ k\ge 0 $. Czyli otrzymaliśmy stacjonarność $ X_0,X_1,\dots  $
+\end{proof}
+\begin{twr}
+Niech $ \left(X_n\right)_{n\ge 0} $ będzie jednorodnym łańcuchem Markowa z macierzą prawdopodobieństw przejść $ P=[p_{ij}] $. Wówczas
+\begin{enumerate}
+\item
+\begin{gather*}
+\lim\limits_{n\to\infty} \frac{1}{n}\sum_{k=1}^{n}p_{jj}^{(k)}=\frac{1}{m_{jj}}
+\end{gather*}
+\item 
+\begin{gather*}
+\lim\limits_{n\to\infty} p_{jj}^{(n)}=\frac{1}{m_{jj}}
+\end{gather*}
+jeśli dodatkowo założymy, że $ j $ jest aperiodyczny
+\item 
+\begin{gather*}
+\lim\limits_{n\to\infty} p_{jj}^{(n)}=\frac{d}{m_{jj}}
+\end{gather*}
+jeżeli dodatkowo założymy, że $ d(j)=d $.
+\end{enumerate}
+\end{twr}
+\textbf{Uwaga!}\\
+Powyższe twierdzenie nosi nazwę średniego twierdzenia ergodycznego na $ l^1 $.
+\newpage
+\begin{center}
+{\Large\textsc{Proces ruchu Browna}}
+\end{center}
+Intuicyjne wprowadzenie w teorię procesów ruchu Browna (procesów Wienera).\\
+$ X_1,\dots  $ ciąg niezależnych zmiennych losowych o tym samym rozkładzie takich, że 
+$ P\left(X_k=-1\right)=P\left(X_k=1\right)=\frac{1}{2} $\\
+$ X_t^{\substack{\Delta x\\\Delta t}} =\Delta x\cdot X_1+\Delta x\cdot X_2+\dots\Delta x\cdot X_{\left \lfloor\frac{t}{\Delta t}\right \rfloor}$ dla $ t\ge 0 $\\
+Spacer losowy o skokach $ \pm\Delta x $\\
+\begin{gather*}
+\mathbb E X_t^{\substack{\Delta x\\\Delta t}}=\sum_{j=1}^{\left \lfloor\frac{t}{\Delta t}\right \rfloor}\mathbb E \Delta x\cdot X_1=0\\
+\Var X_t^{\substack{\Delta x\\\Delta t}}=\sum_{j=1}^{\left \lfloor\frac{t}{\Delta t}\right \rfloor}\Var\left(\Delta x\cdot X_j\right)=\Delta x^2\cdot \left \lfloor\frac{t}{\Delta t}\right \rfloor\cdot 1
+\end{gather*}
+Dobieramy $ \Delta x,\Delta t $

@@ -1,0 +1,99 @@
+\chapter*{Lista 7}
+\addcontentsline{toc}{chapter}{Lista 7}
+
+
+\subsection*{Zadanie 75}
+\addcontentsline{toc}{section}{Zadanie 75}
+Niech $ X=(X_1,\dots,X_n),\,n\ge 1 $ będzie próbą z populacji, w której cecha ma $ X $ ma rozkład gamma $ G(a,p) $. Wyznaczyć rozkład statystyki $ \overline X $.
+
+Rozwiązanie:
+\begin{itemize}
+\item Gęstość rozkładu gamma
+\begin{gather*}
+f(x)=\frac{1}{\Gamma(p)}x^{p-1}a^p\exp\left(-ax\right)
+\end{gather*}
+\item Funkcja charakterystyczna
+\begin{gather*}
+\varphi_x(t)=\left(1 - \frac{it}{a}\right)^{-p}
+\end{gather*}
+\end{itemize}
+Policzmy rozkład przy użyciu funkcji charakterystycznej
+\begin{align*}
+&\varphi_{\frac{1}{n}\sum_{k=1}^{n}X_k}(t)
+=\\=&
+\prod_{k=1}^{n}\varphi_{\frac{X_k}{n}}(t)
+=\\=&
+\left(\varphi_{\frac{X_k}{n}}(t)\right)^n
+=\\=&
+\left(\varphi_{{X_k}}\left(\frac{t}{n}\right)\right)^n
+=\\=&
+\left(\left(1 - \frac{it}{an}\right)^{-p}\right)^n
+=\\=&
+\left(1 - \frac{it}{an}\right)^{-np}
+\end{align*}
+Statystyka ta ma rozkład $ G(an,ap) $.
+
+
+\subsection*{Zadanie 79}
+\addcontentsline{toc}{section}{Zadanie 79}
+Niech $ X=(X_1,\dots,X_n) $ będzie próbą z rozkładu o ciągłej dystrybuancie $ F $. Wykazać, że zmienna losowa $ F(X_{(k)}) $ ma rozkład beta $ B(k,n-k+1) $.
+
+Rozwiązanie:
+\begin{itemize}
+\item Gęstość rozkładu beta
+\begin{gather*}
+f(x)=\frac{1}{B (p,q)}x^{p-1}(1-x)^{q-1}=
+f(x)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}x^{p-1}(1-x)^{q-1}
+\end{gather*}
+\end{itemize}
+Spróbujmy
+\begin{align*}
+&P\left(F\left(X_{(k)}\right)\le t\right)
+=\\=&
+\sum_{l=1}^{n}P\left(F\left(X_{(k)}\right)\le t|X_{(k)}=X_l\right)P\left(X_{(k)}=X_l\right)
+=\\=&
+\sum_{l=1}^{n}P\left(F\left(X_l\right)\le t|X_{(k)}=X_l\right)P\left(X_{(k)}=X_l\right)
+=\\=&
+\sum_{l=1}^{n}\frac{1}{\binom{n}{k}}P\left(F(X_l)\le t\right)P\left(F(X)\le t\right)^{k-1}P\left(F(X)>t\right)^{n-k}
+=\\=&
+\frac{n}{\binom{n}{k}}t^{k-1}\left(1-t\right)^{n-k}
+=\\=&
+n\cdot \frac{k!(n-k)!}{n!}t^k\left(1-t\right)^{n-k}
+%\sum_{l=1}^{n}P\left(F\left(X_{(k)}\right)\le t|X_{(k)}=X_l\right)P\left(X_{(k)}=X_l\right)
+%=\\=&
+%\sum_{l=1}^{n}\frac{P\left(F\left(X_{(k)}\right)\le t,X_{(k)}=X_l\right)}{P\left(X_{(k)}=X_l\right)}P\left(X_{(k)}=X_l\right)
+%=\\=&
+%\sum_{l=1}^{n}\frac{P\left(F\left(X_l\right)\le t,X_{(k)}=X_l\right)}{P\left(X_{(k)}=X_l\right)}P\left(X_{(k)}=X_l\right)
+%=\\=&
+%\sum_{l=1}^{n}\frac{P\left(F\left(X_l\right)\le t\right )P\left (X_{(k)}=X_l\right)}{P\left(X_{(k)}=X_l\right)}P\left(X_{(k)}=X_l\right)
+%=\\=&
+%\sum_{l=1}^{n}P\left(F\left(X_l\right)\le t\right )P\left(X_{(k)}=X_l\right)
+\end{align*}
+Poddaję się
+
+
+%\subsection*{Zadanie 80}
+%\addcontentsline{toc}{section}{Zadanie 80}
+%Niech $ \mathbf X=(X_1,\dots,X_n) $ będzie próbą z rozkładu Poissona z parametrem $ \lambda>0 $. Korzystając z definicji, udowodnić, że $ T(X)=\sum_{i=1}^{n}X_i $ jest statystyką dostateczną dla parametru $ \lambda>0 $.
+%
+%Rozwiązanie:
+%\begin{itemize}
+%\item 
+%\begin{gather*}
+%P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda}
+%\end{gather*}
+%\end{itemize}
+%Należy pokazać, że prawdopodobieństwo warunkowe jest niezależne od parametru $ \lambda $. Rozkłąd statystyki $ T $ wynosi (korzystając z funkcji charakterystycznej)
+%\begin{gather*}
+%\varphi_{T(\mathbf X)}(t)=
+%\varphi_{\sum_{i=1}^{n}X_i}(t)=
+%\left(\varphi_{X_1}(t)\right)^n=
+%\left(e^{\lambda(e^{it} - 1)}\right)^n=
+%e^{n\lambda(e^{it} - 1)}
+%\end{gather*}
+%Czyli $ T(\mathbf X) $ ma rozkład Poissona z parametrem $ n\lambda $.
+%\begin{align*}
+%&P\left(\mathbf X=x|T(\mathbf X)\right)
+%=\\=
+%&\frac{P\left(\mathbf X=x,T(\mathbf X)=t\right)}{P\left(T(\mathbf X)=t\right)}
+%\end{align*}

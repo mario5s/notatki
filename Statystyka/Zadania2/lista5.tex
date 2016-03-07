@@ -1,0 +1,309 @@
+\chapter*{Lista 5}
+\addcontentsline{toc}{chapter}{Lista 5}
+
+
+\subsection*{Zadanie 52}
+\addcontentsline{toc}{section}{Zadanie 52}
+Wyznaczyć płaszczyznę (podać jej równanie ogólne) na której skoncentrowany jest normalny wektor $ X=(X_1,X_2,X_3) $ o macierzy kowariancji $ R $ i o wektorze średnim $ m $, jeśli
+\begin{gather*}
+m=(1,2,1),\qquad
+R=
+\begin{bmatrix}
+	5  & 4 & -2 \\
+	4  & 5 & 2  \\
+	-2 & 2 & 8
+\end{bmatrix}.
+\end{gather*}
+Rozwiązanie:
+\begin{itemize}
+\item Równanie ogólne płaszczyzny:
+\begin{gather*}
+Ax+By+Cz+D=0
+\end{gather*}
+\end{itemize}
+Sprawdzamy rząd macierzy $ R $, bo jeśli wynosi 3 lub 1 to nie ma czego wyznaczać.
+\begin{gather*}
+\det(R)=
+\det\left(
+\begin{bmatrix}
+	5  & 4 & -2 \\
+	4  & 5 & 2  \\
+	-2 & 2 & 8
+\end{bmatrix}
+\right)=0
+\end{gather*}
+Zatem rząd tej macierzy to maksymalnie 2. Weźmy pod uwagę minor główny rozmiaru 2 i policzmy jego wyznacznik.
+\begin{gather*}
+\det \left(
+\begin{bmatrix}
+	5 & 4 \\
+	4 & 5
+\end{bmatrix}
+\right)=
+9.
+\end{gather*}
+Oznacza to, ze $ rz(R)=2 $. Aby wyznaczyć szukaną płaszczyznę należy wybrać 2 liniowo niezależne wektory spośród wierszy macierzy $ R $.
+\begin{gather*}
+v_1=\left(5,4,-2\right)\\
+v_2=\left(4,5,2\right).
+\end{gather*}
+Wyznaczamy wektor prostopadły do wybranych wektorów $ v_1 $ i $ v_2 $ poprzez iloczyn wektorowy.
+\begin{gather*}
+v_1\times v_2=\left(18, -18, 9\right)\cong \left(2, -2, 1\right)
+\end{gather*}
+Jest to wektor normalny szukanej przez nas płaszczyzny. Ponadto wiemy, że punkt $ m $ należy do tej płaszczyzny, więc ostatecznie równanie naszej płaszczyzny wygląda następująco
+\begin{gather*}
+2 (x - 1) - 2 (y - 2) + 1 (z - 1)=0\\
+2 x-2 y+z+1=0
+\end{gather*}
+
+
+\subsection*{Zadanie 53}
+\addcontentsline{toc}{section}{Zadanie 53}
+Wektor losowy $ X=(X_1,X_2,X_3) $ ma rozkład normalny o macierzy kowariancji $ R $ i o wektorze średnim $ m $, gdzie
+\begin{gather*}
+m=(1,2,1),\qquad
+R=\begin{bmatrix}
+	5  & 4 & -2 \\
+	4  & 5 & 2  \\
+	-2 & 2 & 8
+\end{bmatrix}.
+\end{gather*}
+Podać równanie ogólne płaszczyzny, na której jest skoncentrowany wektor losowy $ Y=AX $, jeśli
+\begin{gather*}
+A=
+\begin{bmatrix}
+	1 & 0  & 1 \\
+	1 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}.
+\end{gather*}
+
+Rozwiązanie:
+\begin{itemize}
+\item Jeżeli $ X\sim \mathcal N(m,R) $ to $ Y\sim \mathcal N(Am,ARA^T) $
+\end{itemize}
+Nasze zadanie zaczyna się od wyznaczenia parametrów rozkładu zmiennej losowej $ Y $.
+\begin{gather*}
+m'=Am=
+\begin{bmatrix}
+	1 & 0  & 1 \\
+	1 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+	1 \\
+	2 \\
+	1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	2 \\
+	0 \\
+	3
+\end{bmatrix}\\
+R'=ARA^T=
+\begin{bmatrix}
+	1 & 0  & 1 \\
+	1 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	5  & 4 & -2 \\
+	4  & 5 & 2  \\
+	-2 & 2 & 8
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	1 & 1  & 1 \\
+	0 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}
+=\\=
+\begin{bmatrix}
+	3  & 6 & 6 \\
+	-1 & 1 & 4 \\
+	9  & 9 & 0
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	1 & 1  & 1 \\
+	0 & -1 & 1 \\
+	1 & 1  & 0
+\end{bmatrix}=
+\begin{bmatrix}
+	9 & 3 & 9  \\
+	3 & 2 & 0  \\
+	9 & 0 & 18
+\end{bmatrix}
+\end{gather*}
+Podobnie jak poprzednio sprawdzamy rząd macierzy $ R' $
+\begin{gather*}
+\det \left(
+\begin{bmatrix}
+	9 & 3 & 9  \\
+	3 & 2 & 0  \\
+	9 & 0 & 18
+\end{bmatrix}
+\right)=0
+\end{gather*}
+Sprawdźmy wyznacznik imnora głównego
+\begin{gather*}
+\det \left(
+\begin{bmatrix}
+	9 & 3 \\
+	3 & 2
+\end{bmatrix}\right)=9
+\end{gather*}
+Wybieramy jako wektory dwa pierwsze wiersze macierzy $ R' $
+\begin{gather*}
+v_1=(9,3,9)\\
+v_2=(3,2,0)
+\end{gather*}
+Wyznaczamy wektor prostopadły do wybranych wektorów $ v_1 $ i $ v_2 $ poprzez iloczyn wektorowy.
+\begin{gather*}
+v_1\times v_2=(-18,27,9)\cong(-2,3,1).
+\end{gather*}
+Podobnie jak poprzednio, wyznaczamy równanie płaszczyzny
+\begin{gather*}
+-2 (x-2)+3 y+z-3=0\\
+-2 x+3 y+z+1=0
+\end{gather*}
+
+
+\subsection*{Zadanie 54}
+\addcontentsline{toc}{section}{Zadanie 54}
+Wektor losowy $ X=(X_1,X_2,X_3) $ ma rozkład normalny o macierzy kowariancji $ R $ i o wektorze średnim $ m $, gdzie
+\begin{gather*}
+m=(1,2,1),\qquad
+R=\begin{bmatrix}
+	5  & 4 & -2 \\
+	4  & 5 & 2  \\
+	-2 & 2 & 8
+\end{bmatrix}.
+\end{gather*}
+Podać równanie krawędziowe prostej, na której jest skoncentrowany wektor losowy $ Y=AX $, jeśli
+\begin{gather*}
+A=
+\begin{bmatrix}
+	1  & 2  & 1  \\
+	2  & 4  & 2  \\
+	-1 & -2 & -1
+\end{bmatrix}.
+\end{gather*}
+\newpage
+Rozwiązanie:\\
+Wyznaczmy parametry rozważanego rozkładu.
+\begin{gather*}
+m'=Am=
+\begin{bmatrix}
+	1  & 2  & 1  \\
+	2  & 4  & 2  \\
+	-1 & -2 & -1
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	1 \\
+	2 \\
+	1
+\end{bmatrix}=
+\begin{bmatrix}
+	6  \\
+	12 \\
+	-6
+\end{bmatrix}\\
+R'=ARA^T=
+\begin{bmatrix}
+	1  & 2  & 1  \\
+	2  & 4  & 2  \\
+	-1 & -2 & -1
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	5  & 4 & -2 \\
+	4  & 5 & 2  \\
+	-2 & 2 & 8
+\end{bmatrix}\cdot
+\begin{bmatrix}
+	1 & 2 & -1 \\
+	2 & 4 & -2 \\
+	1 & 2 & -1
+\end{bmatrix}
+=\\=
+\begin{bmatrix}
+	11  & 16  & 10  \\
+	22  & 32  & 20  \\
+	-11 & -16 & -10
+\end{bmatrix}\cdot
+\begin{bmatrix}
+ 	1 & 2 & -1 \\
+ 	2 & 4 & -2 \\
+ 	1 & 2 & -1
+\end{bmatrix}=
+\begin{bmatrix}
+	53  & 106  & -53  \\
+	106 & 212  & -106 \\
+	-53 & -106 & 53
+\end{bmatrix} 
+\end{gather*}
+Wiemy, że do szukanej prostej należy punkt $ m' $ oraz, że wyznacza ją wektor uzyskany z macierzy $ R' $, której rząd wynosi 1.
+\begin{gather*}
+l:
+\left \{
+\begin{array}{l}
+x=53t+6\\
+y=106t+12\\
+z=-53t-6
+\end{array}
+\right .,\quad t\in \mathbb R \\
+l:
+\left \{
+\begin{array}{l}
+x=t+6\\
+y=2t+12\\
+z=-t-6
+\end{array}
+\right .,\quad t\in \mathbb R \\
+l:
+\left \{
+\begin{array}{l}
+x=t\\
+y=2t\\
+z=-t
+\end{array}
+\right .,\quad t\in \mathbb R 
+\end{gather*}
+Do równania krawędziowego potrzebne są dwie płaszczyzny zawierające w sobie prostą $ l $ oraz mające różne wektory normalne. Z powyższego układu równań łatwo wyodrębnić dwa równania:
+\begin{align*}
+&y+2z=0\\
+&x+z=0
+\end{align*}
+ostateczna postać
+\begin{gather*}
+\lambda_1(y+2z)=\lambda_2(x+z),\qquad\lambda_1,\lambda_2\in \mathbb R 
+\end{gather*}
+
+
+
+\subsection*{Zadanie 57}
+\addcontentsline{toc}{section}{Zadanie 57}
+Wykazać, że składowe normalnego wektora losowego $ X=(X_1,\dots,X_n) $ są niezależne wtedy i tylko wtedy, gdy są nieskorelowane. Podać przykład wektora losowego $ (X,Y) $, którego rozkłady brzegowe są normalneg, $ X,Y $ są nieskorelowane, a rozkład $ (X,Y) $ nie jest normalny.
+
+Rozwiązanie:\\
+Implikacja w jedną stronę jest oczywista, ponieważ niezależne zmienne losowe są ze sobą nieskorelowane. Zajmijmy się drugą stroną równoważności. $ X\sim\mathcal N(m,R) $.
+\begin{gather*}
+\forall_{i,j}\;\cov(X_i,X_j)=0\Rightarrow
+\forall_{i,j}\;\rho(X_i,X_j)=0
+\end{gather*}
+Powyższe zależności implikują fakt, iż macierz $ R $ jest diagonalna, czyli funkcja gęstości zmiennej losowej $ X $ ma postać
+\begin{gather*}
+f_X(t)=
+(2\pi)^{-\frac{n}{2}}|R|^{-\frac{1}{2}}
+\exp\left(-\frac{1}{2}(t-m)^TR^{-1}(t-m)\right)
+=\\=
+(2\pi)^{-\frac{n}{2}}|R|^{-\frac{1}{2}}
+\exp\left(-\frac{1}{2}\sum_{k=1}^{n}\left((t_k-m_k)^2\cdot \frac{1}{\Var(X_k)}\right)\right)
+=\\=
+(2\pi)^{-\frac{n}{2}}|R|^{-\frac{1}{2}}
+\prod_{k=1}^{n}\exp\left(-\frac{1}{2}\left(\frac{(t_k-m_k)^2}{\Var(X_k)}\right)\right)
+=\\=
+\prod_{k=1}^{n}\frac{1}{\sqrt{2\pi\Var(X_k)}}\exp\left(-\frac{(t_k-m_k)^2}{2\Var(X_k)}\right)=\prod_{k=1}^{n}f_{X_k}(x_k)
+\end{gather*}
+Ostatecznie otrzymaliśmy, że jeżeli rozkład spełnia podane warunki to poszczególne jego składowe są niezależne od siebie.

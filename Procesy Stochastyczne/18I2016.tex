@@ -1,0 +1,172 @@
+\chapter{18 stycznia 2016}
+\section{Twirdzenie Kołmogorowa o rozkładach zgodnych}
+\begin{defi}
+Niech $ (S,\mathcal G) $ będzie przestrzenią mierzalną taką, że $ \forall_{s\in S}\;\left\{s\right\}\in \mathcal G $ oraz $ \left(\Omega,\mathcal F,P\right) $ przestrzeń probabilistyczna. Procesem stochastycznym na przestrzeni stanów (fazowej) $ \left(S,\mathcal G\right) $ nazywamy rodzinę elementów losowych $ X_t:\left(\Omega,\mathcal F,P\right) \to \left(S,\mathcal G\right)$ (tzn. $ \forall_{t\in T}\forall_{B\in \mathcal G}\;X_t^{-1}(B)\in \mathcal F $), gdzie $ t\in T $ (zbiór indeksów). Jeżeli $ S=\mathbb R ,\mathcal G=\mathfrak B_\mathbb R  $, wtedy proces $ \left\{X_t\right\} _{t\in T}$ nazywamy procesem stochastycznym rzeczywistym.
+\end{defi}
+\begin{itemize}
+\item $ X $ - zmienna losowa $ \left(T=\left\{t\right\},X=X_t\right) $ - charakteryzowany jest przez $ F_X(\equiv\mu_X,f_X,\varphi_X,M_X) $
+\item $ \vec X=\left(X_1,\dots,X_n\right) $ ($ T=\left\{1,2,\dots,n\right\} $) - charakteryzowany jest przez $ F_{\vec X} (\equiv\mu_{\vec X},f_{\vec X},\varphi_{\vec X},M_{\vec X}) $
+\item $ X_1,X_2,\dots $ ciąg zmiennych losowych - (np. łańcuch Markowa) $ P=\left[p_{ij}\right]$
+\item $ \mathfrak X=\left\{X_t\right\} _{t\in T}$ przez co jest charakteryzowany?
+\end{itemize}
+\begin{defi}
+Niech $ \left\{X_t\right\} _{t\in T}$ będzie procesem stochastycznym Dla ustalonego $ (t_1,\dots,t_n)\in T^n, n\in \mathbb N $
+\begin{gather*}
+\mu_{t_1,\dots,t_n}(A)\stackrel{df}{=}P\left(\left(X_{t_1},\dots,X_{t_n}\right)\in A\right)(=\mu_{(X_{t_1},\dots,X_{t_n})})
+\end{gather*}
+$ A\in\mathcal G\otimes\mathcal G\otimes\dots\otimes\mathcal G $. ($ \mathfrak B_{\mathbb R ^n} $, gdy mamy proces stochastyczny rzeczywisty)\\
+$ \mu_{t_1,\dots,t_n} $ nazywamy rozkładem skończenie wymiarowym odpowiadającym $ \left(t_1,\dots,t_n\right) $.
+\end{defi}
+\begin{defi}
+Niech $ \mathfrak X=\left\{X_t\right\} _{t\in T}$ będzie procesem stochastycznym. Rodzinę rozkładów skończenie wymiarowych procesu $ \mathfrak X $ nazywamy rodzinę (wszystkich) miar na $ S^n=S\times S\times \dots\times S $ $ \mu_{(t_1,\dots,t_n)},t_j\in T,n\in \mathbb N $, tzn.
+\begin{gather*}
+M^\mathfrak X=\left\{\mu_{(t_1,\dots,t_n)}:t_1,t_2,\dots,t_n\in T,n=1,2,\dots \right\}
+\end{gather*}
+\end{defi}
+\textbf{Dygresja 1.} $ \mathcal M^\mathfrak X $ jest charakterystyką procesu $ \mathfrak X $\\
+\textbf{Dygresja 2.} Ewolucja teorii stochastycznej $ F_X\rightsquigarrow F_{\vec X}\rightsquigarrow\mathcal M^\mathfrak X $\\
+\textbf{Uwaga!}\\
+Nie wykluczamy $ t_i=t_j $ dla niektórych $ i\neq j $.
+\begin{defi}
+Przestrzenią kanoniczną dla procesu $ \mathfrak=\left\{X_t\right\} _{t\in T}$ nazywamy $ S^T=\left\{f:T\to S\right\} $. W przypadku procesów rzeczywistych $ S^T=R^T $.
+\end{defi}
+\textbf{Dygresja}
+\begin{gather*}
+card \mathbb R ^{[0,\infty ]}=\mathfrak C^\mathfrak C=2^{\aleph_0\times \mathfrak C}=2^\mathfrak C
+\end{gather*}
+\textbf{Uwaga!}\\
+$ S^T=\left\{\left(f(t)\right)_{t\in T}\right\} \leftrightarrow $  rodzina wszystkich trajektorii i hipotetycznych przekrojów procesu $ \mathfrak X $.
+\begin{align*}
+&\underline t=\left(t_1,\dots,t_n\right), A\in\mathcal G^{\otimes n}\left(\mathfrak B_\mathbb R ^n\right)\\
+&C_{\underline t,A}=\left\{f\in S^T:\left(f(t_1),\dots,f(t_n)\right)\in A\right\}
+\end{align*}
+\begin{defi}
+$ C_{\underline t,A} $ nazywamy cylindrem (skończenie wymiarowym o bazie $ \underline t\in T^n $ i $ A\in \mathcal G^{\otimes n} $)
+\end{defi}
+\textbf{Uwaga!}\\
+Cylindry nie są wyznaczone jednoznacznie.
+\begin{align*}
+&C_{t,A}=\left\{f\in S^T:f(t)\in A\right\}=C_{(t,t),A\times A}\\
+&C_{(t,s),A\times S}=\left\{f\in S^T:\left(f(t),f(s)\right)\in A\times S\right\}
+\end{align*}
+\begin{defi}
+Ciałem cylindrów procesu $ \mathfrak X=\left\{X_t\right\}_{t\in T} $ nazywamy\\$ \mathcal C=\left\{C_{\underline t,A}:\left(t_1,\dots,t_n\right)\in T^n,A\in \mathcal G^{\otimes n},n\in \mathbb N \right\} $
+\end{defi}
+\begin{twr}
+$ \mathcal C $ jest ciałem podzbiorów przestrzeni kanonicznej $ S^T $.
+\begin{proof}
+\begin{enumerate}
+\item 
+\begin{gather*}
+\Phi=C_{t,\Phi}=\left\{f:T\to S:f(t)\in \Phi \right\}=C_{(t,t),A\times A\mathrm c}
+\end{gather*}
+\item $ C\in\mathcal C $; $ C\in C_{\underline t,A} $,
+\begin{gather*}
+C^\mathrm c=C_{\underline t,A^\mathrm c}=\left\{f:T\to S:\left(f(t_1),\dots,f(t_n)\right)\in A^\mathrm c\right\}\\
+C^\mathrm c=C_{\underline t,A^\mathrm c}=\left\{f:T\to S:\left(f(t_1),\dots,f(t_n)\right)\notin A\right\}
+\end{gather*}
+\item 
+\begin{align*}
+&
+C_{\left(t_1,\dots,t_n\right),A_1}\cup C_{\left(t_1,\dots,t_n\right),A_2}
+=\\=&
+\left\{f:T\to S:\left(f(t_1),\dots,f(t_n)\right)\in A_1\vee\left(f(t_1),\dots,f(t_n)\right)\in A_2\right\}
+=\\=&
+\left\{f:T\to S:\left(f(t_1),\dots,f(t_n)\right)\in A_1\cup A_2\right\}
+=\\=&
+C_{\left(t_1,\dots,t_n\right),A_1\cup A_2}\in\mathcal C\\
+&
+C_{\left(t_1,\dots,t_n\right),A_1}=
+C_{\left(t_1,\dots,t_n,s_1,\dots,s_m\right),A_1\times S^m}\\
+&C_{\left(s_1,\dots,s_m\right),A_2}=
+C_{\left(t_1,\dots,t_n,s_1,\dots,s_m\right),S^n\times A_2}\\
+&C_{\underline t,A_1}\cup C_{\underline s,A_2}=
+C_{\left(t_1,\dots,t_n,s_1,\dots,s_m\right),A_1\times S^m\cup S^n\times A_2}\in \mathcal C
+\end{align*}
+\end{enumerate}
+\end{proof}
+\end{twr}
+\begin{defi}
+Niech $ \mathfrak X=\left\{X_t\right\} _{t\in T}$ będzie procesem stochastycznym. $ \sigma $-ciałem cylindrycznym nazywamy $ \mathcal G^T=\sigma(\mathcal C). $ (dla rzeczywistego procesu stochastycznego $ B^T $).
+\end{defi}
+\begin{twr}
+$ A\in\mathcal G $ wtedy i tylko wtedy, gdy istnieje $ \left(t_1,t_2,\dots \right)\in T\times T\times\dots =T^\mathbb N $ i baza $ B\in \mathcal G\otimes\mathcal G\otimes\dots =G^{\otimes \mathbb N }$, $ A=\left\{f\in S^T:\left(f(t_1),f(t_2),\dots \right)\in B\right\} $
+\begin{proof}
+Rozpatrzmy rodzinę\\
+$ \mathcal H=\left\{A\in \mathcal G^T:\exists_{(t_1,t_2,\dots )\in T^\mathbb N }\exists_{B\in \mathcal G^{\otimes \mathbb N }}\;A=D_{\underline t,B}=\left\{f:T\to S:\left(f(t_1),f(t_2),\dots\right)\in B\right\}\right\} $\\
+$ \mathcal C\subseteq \mathcal H $\\
+$ C_{\left(t_1,\dots,t_n\right),E}=C_{\left(t_1,\dots,t_n,s_{n+1},dots\right),E\times S^\infty } $\\
+Sprawdzamy, że $ \mathcal H $ jest $ \sigma $-ciałem podzbiorów $ S^T $.\\
+$ \Phi\in\mathcal H,D_{\underline t,B}=D_{\underline t,B^\mathrm c} $\\
+$ \bigcup_{j=1}^\infty D_{\underline t^{(j)},B^{(j)}}$\\
+$ \mathcal C\subseteq \mathcal H\subseteq \mathcal G^T=\sigma(\mathcal C) $\\
+$ \mathcal G^T=\sigma(\mathcal C)\subseteq \mathcal H\subseteq \mathcal G^T $\\
+Stąd $ \mathcal H=\mathcal G^T $
+\end{proof}
+\end{twr}
+\textbf{Wniosek}\\
+$ T=[0,1],C\left([0,1]\right)\subseteq \mathbb R ^T=\mathbb R ^{[0,1]},C\left([0,1]\right)\notin B^{[0,1]} $ nie jest mierzalna względem $ sig
+$-ciała cylindrycznego.
+\begin{twr}
+Niech $ \mathfrak X=\left\{X_t\right\} _{t\in T}$ będzie procesem stochastycznym na przestrzeni $ \left(S,\mathcal G\right) $. Wówczas
+\begin{gather*}
+\left(\Omega,\mathcal F,P\right)=\omega\longrightarrow \left(X_t(\omega)\right)_{t\in T}\in \left(S^T,\mathcal G^T\right)
+\end{gather*}
+jest odwzorowaniem mierzalnym. Zatem $ \mu_\mathfrak X(A)\stackrel{df}{=}P\left(\left(X_t(\cdot )\right)_{t\in T}\in A\right) $ definiuje miarę $ \sigma $-addytywną na $ \left(S^T,\mathcal G^T\right) $ i w konsekwencji otrzymujemy przestrzeń probabilistyczną $ \left(S^T,\mathcal G^T,\mu_\mathfrak X\right) $.
+\end{twr}
+\begin{defi}
+Niech $ \left\{\nu_{(t_1,\dots,t_n)}:n\in \mathbb N ,t_1,\dots,t_n\in T\right\} $ będzie rodziną miar probabilistycznych\\$ \nu_{t_1,\dots,t_n} $ miara probabilistyczna $ \sigma $-addytywna na $ \left(\mathbb R ^n,\mathfrak B_{\mathbb R ^n}\right) $. Mówimy, że ta rodzina jest zgodna, jeżeli spełnia:
+\begin{itemize}
+\item dla dowolnego $ n,B\in \mathfrak B_{\mathbb R ^n} $, dowolnych $ t_1,\dots,t_n\in T $, dowolnego $ t_{n+1}\in T $
+\begin{gather*}
+\nu_{t_1,\dots,t_n,t_{n+1}}\left(B\times \mathbb R \right)=
+\nu_{t_1,\dots,t_n}(B)
+\end{gather*}
+\item dla dowolnego $ n\in \mathbb N $, dowolnych $ B_1,\dots,B_n\in \mathfrak B_{\mathbb R ^n} $ i dowolnej permutacji $ \gamma:\left\{1,\dots,n\right\}\to \left\{1,\dots,n\right\} $
+\begin{gather*}
+\nu_{t_1,\dots,t_n}\left(A_1\times\dots\times A_n\right)=
+\nu_{t_{\gamma(1)},\dots,t_{\gamma(n)}}\left(A_{\gamma(1)}\times\dots\times A_{\gamma(n)}\right)
+\end{gather*}
+\end{itemize}
+\end{defi}
+Prosty fakt
+\begin{gather*}
+\nu_{t_{n+1},t_1,\dots,t_n}\left(\mathbb R \times B\right)=
+\nu_{t_1,\dots,t_n}\left(B\right)
+\end{gather*}
+\begin{twr}
+Niech $ \mathfrak X=\left\{X_t\right\}_{t\in T} $ będzie procesem stochastycznym. Wówczas rodzina rozkładów skończenie wymiarowych $ \mathcal M^\mathfrak X=\left\{\mu_{t_1,\dots,t_n}:t_j\in T,n\in \mathbb N \right\} $ jest zgodna.
+\begin{proof}
+\begin{enumerate}
+\item
+\begin{align*}
+&\mu_{t_1,\dots,t_n,t_{n+1}}\left(B\times \mathbb R \right)
+=\\=&
+P\left(\left(X_{t_1},\dots,X_{t_n},X_{t_{n+1}}\right)\in B\times \mathbb R \right)
+=\\=&
+P\left(\left(X_{t_1},\dots,X_{t_n}\right)\in B\right)
+=\\=&
+\mu_{t_1,\dots,t_n}\left(B\right)
+\end{align*}
+\item Podobnie
+\end{enumerate}
+\end{proof}
+\end{twr}
+\begin{twr}
+Niech $ \mathcal M $ będzie rodziną rozkłądów skończenie wymiarowych. Wówczas istnieje proces stochastyczny $ \mathfrak X=\left\{X_t\right\}_{t\in T} $ rzeczywisty (ewentualnie $ S $ - przestrzeń metryczna, ośrodkowa, zupełna), taka, że $ \mathcal M^\mathfrak X=\mathcal M $ wtedy i tylko wtedy, gdy $ \mathcal M $ jest zgodna.
+\begin{proof}
+$ \Rightarrow $ z poprzedniego twierdzenia\\
+$ \Leftarrow $ (Znajdź $ \left(\Omega,\mathcal F,P\right) $ oraz $ \left\{X_t\right\}_{t\in T} $)
+\end{proof}
+\end{twr}
+\begin{defi}[Miara ciasna]
+Niech $ (S,d) $ będzie przestrzenią metryczną oraz $ \nu $ będzie miarą probabilistyczną $\sigma $-addytywną na $ (S,\mathfrak B_s) $. Mówimy, że $ \nu jest ciasna $ (\emph{tight}), jeżeli
+\begin{gather*}
+\forall_{\varepsilon>0}\exists_{K_\varepsilon\subseteq S}
+\;
+\nu\left(K_\varepsilon\right)>1-\varepsilon
+\end{gather*}
+\end{defi}
+\begin{twr}[Ulama]
+Jeżeli $ (S,d) $ jest przestrzenią metryczną, zupełną i ośrodkową (przestrzeń polska), to dowolna miara probabilistyczna ($ \sigma $-addytywna) $ \nu $ na $ S $ jest ciasna.
+\end{twr}

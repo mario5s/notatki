@@ -1,0 +1,51 @@
+\chapter*{Lista 8}
+\addcontentsline{toc}{chapter}{Lista 8}
+
+
+\subsection*{Zadanie 93}
+\addcontentsline{toc}{section}{Zadanie 93}
+Sprawdzić, czy
+\begin{enumerate}
+\item Rozkłady beta tworzą dwuparametrową rodzinę wykładniczą;
+\item Rodzina rozkładów Rayleigha z paramterem $ \sigma>0 $ należy do rodziny wykładniczej;
+\item Dwuparametrowe rozkłady normalne tworzą pięcioparametrową rodzinę wykładniczą;
+\item Rodzina rozkładów normlanych $ \mathcal N(m,\sigma^2) $ należy do rodziny wykładniczej;
+\item Rodzina rozkładów o gęstościach
+\begin{gather*}
+f_\theta (x)=\frac{2(x+\theta)}{1+2\theta},\qquad
+x\in(0,1),\qquad\theta \in \Theta=(0,\infty )
+\end{gather*}
+\end{enumerate}
+należy do rodziny wykładniczej.
+
+Rozwiązanie:
+\begin{enumerate}
+\item 
+\begin{align*}
+&f_B(x)=\frac{1}{B (p,q)}x^{p-1}(1-x)^{q-1}
+=\\=&
+\frac{1}{B (p,q)}\exp\bigl(\ln x\cdot (p-1)+\ln (1-x)\cdot (q-1)\bigr)
+=\\=&
+\frac{1}{B (p,q)}\exp\bigl(\ln x\cdot p+\ln (1-x)\cdot q-\ln x-\ln (1-x)\bigr)
+=\\=&
+\frac{1}{B (p,q)}\exp\bigl(\ln x\cdot p+\ln (1-x)\cdot q\bigr)\frac{1}{x(1-x)}
+\end{align*}
+Wypisać funkcje składowe
+\begin{align*}
+&C(\theta)=C(p,q)=\frac{1}{B(p,q)}
+&&
+h(x)=\frac{1}{x(1-x)}\\
+&T_1(x)=\ln x
+&&
+T_2(x)=\ln(1-x)\\
+&Q_1(\theta)=Q_1(p,q)=p
+&&
+Q_2(\theta)=Q_1(p,q)=q
+\end{align*}
+\item Rayleigh...
+\item Dwuwymiarowy rozkład normalny
+\begin{align*}
+&f_N(x,y)=
+\frac{1}{2 \pi  \sqrt{\sigma _{1,1} \sigma_{2,2}-\sigma_{1,2}^2}}
+\end{align*}
+\end{enumerate}

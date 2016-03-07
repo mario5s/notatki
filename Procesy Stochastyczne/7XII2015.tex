@@ -1,0 +1,256 @@
+\chapter{7 grudnia 2015}
+\begin{defi}
+Niech $ \left(X_n\right)_{n\ge 0} $ będzie łańcuchem Markowa (z czasem dyskretnym i skończoną lub przeliczalną przestrzenią stanów $ S $). Mówimy, że łańcuch $ X\left(_n\right)_{n\ge 0} $ jest nieprzewiedlny, gdy
+\begin{gather*}
+\forall_{i,j\in S}\;i\longleftrightarrow j.
+\end{gather*}
+\end{defi}
+\begin{twr}
+Niech $ \left(X_n\right)_{n\ge0} $ będzie jednorodnym łańcuchem Markowa(z czasem dyskretnym i skończoną lub przeliczalną przestrzenią stanów $ S $) o macierzy prawdopodobieństw przejść $ \left[p_{ij}\right]_{S\times S} $. Jeżeli $ i\longleftrightarrow j $, to $ d(i)=d(j) $.\\
+Przypomnienie: $ d(i)=NWD\left\{n\ge0:p_{ii}^{(n)}>0\right\} $
+\end{twr}
+\begin{proof}
+$ i\longleftrightarrow j,P_{ij}^{(n)}>0,p_{ji}^{(m)}>0 $ dla pewnych $ n.m $ (myślimy, że $ i\neq j $)
+\begin{gather*}
+p_{ii}^{(n+m)}=\sum_{k\in S}p_{ik}^{(n)}p_{kj}^{(m)}\ge p_{ij}^{(m)}>0
+\end{gather*}
+$ p_{ii}^{l(n+m)}>0 $
+\begin{gather*}
+\underbrace{p_{ii}^{(n+m)}\cdot p_{ii}^{(n+m)}\dots p_{ii}^{(n+m)}}_{l\text{ razy}}
+\end{gather*}
+$ d(j)=p_{jj}^{(s)}>0 $
+\begin{gather*}
+p_{ii}^{(n+s+m)}\ge p_{ij}^{(n)}p_{jj}^{(s)}p_{ji}^{(m)}
+\end{gather*}
+$ p_{ii}^{(n+m)}>0 \\
+d(i)|n+s+m=n+m+s\\
+d9i)|n+m$\\
+Stąd $ d(i)|s $ każde takie $ s $, ze $ p_{jj}^{(s)}>0 $.\\
+Z teorii podzielności liczb naturalnych $ d(i)|d(j) $.\\
+Z symetrii $ \longleftrightarrow\; d(j)|d(i) $.\\
+Ostatecznie $ d(i)=d(j) $
+\end{proof}
+\textbf{Winosek}\\
+Jeżeli łańcuch Markowa jest nieprzewiedlny, to
+\begin{gather*}
+\forall_{i,j\in S}\; d(i)=d(j)
+\end{gather*}
+Oznaczenia:\\
+$ \left(X_n\right)_{n\ge0} $ - łańcuch Markowa jednorodny o macierzy prawdopodobieństw przejść $ P=\left[p_{ij}\right] _{S\times S}$
+\begin{align*}
+&f_{ij}^{(n)}=P\left(X_1\neq j,\dots,X_{n-1}\neq j,X_n=j\right),\quad n\ge 1\\
+&f_{ij}=\sum_{n=1}^{\infty }f_{ij}^{(n)}=
+\sum_{n=1}^{\infty }P\left(X_1\neq j,\dots,X_{n-1}\neq j,X_n=j\right)
+=\\=
+&P\left(\bigcup_{n=1}^{\infty }\left\{X_1\neq j,\dots,X_{n-1}\neq j,X_n=j\right\}\right)
+=\\=
+&P\left(\exists_{n\ge 1}\;X_n=j|X_0=i\right)
+\end{align*}
+Moment Markowa
+\begin{gather*}
+T_{ij}\stackrel{df}{=}\inf\left\{n\ge1:X_n=j,X_0=i \right\}
+\end{gather*}
+Pierwsza chwila uderzenia w stan $ j $.
+\begin{gather*}
+T_j\stackrel{df}{=}\inf\left\{n\ge1:X_n=j\right\}
+\end{gather*}
+Ogólnie
+\begin{align*}
+&T_D\stackrel{df}{=}\inf \left\{n\ge1:X_n\in D\right\},D\subseteq S\qquad\text{hitting time}\\
+&P\left(T_{ij}<\infty |X_0=i\right)=P_i\left(T_{ij}<\infty \right)=f_{ij}
+\end{align*}
+\begin{defi}
+Niech $ \left(X_n\right)_{n\ge 1} $ będzie łańcuchem Markowa z macierzą prawdopodobieństw przejść $ P\left[p_{ij}\right]_{S\times S} $. Mówimy, że stan $ j\in S $ jest powracający, jeżeli $ f_{jj}=1 $.\\
+Mówimy, że stan $ j\in S $ jest chwilowy, jeżeli $ f_{jj}<1 $.
+\end{defi}
+\begin{twr}[Charakteryzacja stanów powracających]Neich $ \left(X_n\right)_{n\ge0} $ będzie jednorodnym łańcuchem markowa z macierzą prawdopodobieństw przejść $ P=\left[p_{ij}\right] _{S\times S}$. Wówczas następujące warunki są równoważne:
+\begin{enumerate}
+\item stan $ j $ jest powracający
+\item $ P\left(\left\{\omega\in\Omega:X_n(\omega)=j\text{ dla nieskończenie wielu }n\in \mathbb N \right\}|X_0=j\right)=1 $
+\item $ \sum_{n=1}^{}p_{jj}^{(n)}=\infty $
+\end{enumerate}
+\end{twr}
+\begin{align*}
+&L(\omega)=\#\left\{n\ge 1:X_n=j\right\}=\sum_{n=1}^{\infty }\mathbbm1_{\left\{j\right\}}\left(X_n(\omega)\right)\\
+&\left\{L_j\ge1\right\}=\left\{T_j(\omega)<\infty \right\}\\
+&\left\{L_j\ge 2\right\}=\left\{\exists_{n\ge 1}\;X_{t_j+n}=j\right\}\\
+&T_j^{[2]}(\omega)=\inf\left\{n>T_j(\omega):X_n(\omega)=j\right\}&&\text{chwila drugiego trafienia w }j\\
+&T_j^{[k]}(\omega)=\inf\left\{n>T_j^{[k-1]}(\omega):X_n(\omega)=j\right\}&&\text{chwila $ k $-tego trafienia do }j
+\end{align*}
+$ f_{jj}=
+P\left(T_j<\infty \right)=
+P\left(L_j\ge1\right)\\
+P\left(L_j\ge2\right)=P\left(\exists_{n\ge 1}\;X_{t_j^{[1]}=j|X_0=j}\right) $
+\begin{align*}
+T_j^{[1]}=&\sum_{l=1}^{\infty }P\left(\exists_{n\ge 1}\;X_{T_j^{[1]}+n}(\omega)=j|T_j^{[1]}=l\right)P\left(T_j^{[1]}=l|X_0=j\right)
+=\\=&
+\sum_{l=1}^{\infty }f_{jj}\cdot P\left(T_j^{[1]}=l|X_0=j\right)
+=\\=&
+f_{jj}\cdot\sum_{l=1}^{\infty } P\left(T_j^{[1]}=l|X_0=j\right)
+=\\=&
+f_{jj}\cdot P\left(T_j^{[1]}<\infty |X_0=j\right)
+=
+f_{jj}^2
+\end{align*}
+W ten sam sposób
+\begin{gather*}
+P\left(L_j\ge m\right)=f_{jj}^m
+\end{gather*}
+\begin{proof}
+$ (1)\Rightarrow(2) $\\
+Jeżeli $ f_{jj}=1 $, to
+\begin{align*}
+&\forall_{n\in \mathbb N }\;P\left(L_j\ge m\right)=f_{jj}^{m}=1^m=1\\
+&P\left(\left\{\omega\in\Omega:L_j(\omega)=\infty \right\}\right)=P\left(\bigcap_{n=1}{\infty }\left\{L_j\ge m\right\}\right)=\lim\limits_{m\to\infty} P\left(L_j\ge m\right)=1\\
+&P\left(\left\{\omega\in\Omega:\sum_{n=1}^{\infty }\mathbbm1_{\left\{j\right\}}\left(X_n(\omega)=\infty )\right)\right\}\right)=P\left(\left\{\omega\in\Omega:L_j(\omega)=\infty \right\}\right)=1
+\end{align*}
+$ (2)\Rightarrow(3) $
+\begin{align*}
+&\sum_{n=1}^{\infty }p_{jj}^{(n)}
+=\\=&
+\sum_{n=1}^{\infty }\int\limits_{\Omega}\mathbbm1_{\left\{j\right\}}\left(X_n\right)\,dP_j
+=\\=&
+\sum_{n=1}^{\infty }\mathbb E _j\mathbbm1_{\left\{j\right\}}\left(X_n\right)
+=\\=&
+\mathbb E _j\sum_{n=1}^{\infty }\mathbbm1_{\left\{j\right\}}\left(X_n\right)
+=\\=&
+\mathbb E _jL_j(\omega)=\infty 
+\end{align*}
+$ (3)\Rightarrow(1) $\\
+Przypuśćmy, że $ f_{jj}<1  $.\\
+$ P_j\left(L_j\ge m\right)=f_{jj}^m $
+\begin{gather*}
+\sum_{n=1}^{\infty }P_j\left(L_j\ge m\right)=\sum_{n=1}^{\infty }f_{jj}^m=\frac{f_{jj}}{1-f_{jj}}<\infty \\
+\mathbb E _{P_j}\left(L_j\right)=\sum_{n=1}^{\infty }p_{jj}^{(n)}=\infty 
+\end{gather*}
+Sprzeczność.
+\end{proof}
+\begin{lem}
+$ \left(X_n\right)_{n\ge 0} $ jednorodny łańcuch Markowa z macierzą prawdopodobieństw przejść $ P=\left[p_{ij}\right] _{S\times S}$. Jeżeli $ j $ jest stanem powracającym oraz $ j\longleftrightarrow i (f_{ji}>0)$. Wówczas $ f_{ij}=1 $.
+\end{lem}
+\begin{proof}$  $\\
+$ j \longrightarrow i \Rightarrow \exists_{n_0}\;p_{ji}^{(n_0)}>0$\\
+$ P\left(L_j=\infty |X_0=j\right)=1 $. Zatem istnieje $ n>n_0 $ takie, że $ X_n=j $.\\
+$ P\left(\left\{\omega\in\Omega:X_n(\omega)=j\text{ dla pewnego }n>n_0|X_0=j\right\}\right)=1 $
+\begin{align*}
+1=&P_j\left(\exists_{n>n_0}\;X_n=j\right)
+=\\=&
+\sum_{l\in S}P\left(\exists_{n>n_0}\;X_n=j|X_{n_0}=l\right)P_j\left(X_{n_0}=l\right)
+=\\=&
+\sum_{l\in S}P_j\left(\exists_{n\ge 1}\;X_{n+n_0}=j|X_{n_0}=l\right)p_{jl}^{(n_0)}
+=\\=&
+\sum_{l\in S}f_{ij}p_{jl}^{(n_0)}
+\end{align*}
+\begin{align*}
+&1-\sum_{l\in S}f_{ij}p_{jl}^{(n_0)}
+=\\=&
+\sum_{l\in S}p_{jl}^{(n_0)}-\sum_{l\in S}f_{ij}p_{jl}^{(n_0)}
+=\\=&
+\sum_{l\in S}\underbrace{p_{jl}^{(n_0)}}_{\ge 0}(\underbrace{1-f_{lj}}_{\ge 0})
+\end{align*}
+Jeżeli $ p_{jl}^{(n_0)}>0 $, to $ 1-f_{lj}=0 $\\
+Właśnie $ j\longrightarrow i $ spełnia $ p_{ji}^{(n_0)}>0 $ zatem ostatecznie $ f_{ij}=1 $
+\end{proof}
+\begin{lem}
+Niech $ \left(X_n\right)_{n\ge 0} $ będzie jednorodnym łańcuchem Markowa o macierzy prawdopodobieństw przejść $ P=\left[p_{ij}\right] $. Jeżeli $ j\in S $ jest stanem chwilowym to dla dowolnego $ i\in S $
+\begin{gather*}
+\sum_{n=1}^{\infty }p_{ij}^{(n)}<\infty 
+\end{gather*}
+co implikuje
+\begin{gather*}
+\lim\limits_{n\to\infty} p_{ij}^{(n)}=0
+\end{gather*}
+\end{lem}
+\begin{proof}
+Ustalmy $ i\in S $. Jeżeli $ \forall_{n\ge 1}\;p_{ij}^{(n)}=0 $ (tzn. $ \neg\left(i\longleftrightarrow j\right) $), to oczywiście
+\begin{gather*}
+\sum_{n=1}^{\infty }p_{ij}^{(n)}=\sum_{n=1}^{\infty }0=0
+\end{gather*}
+Zatem będziemy rozpatrywali przypadek $ \exists_{n\ge 1}\;p_{ij}^{(n)}>0 $.
+\begin{align*}
+p_{ij}^{(n)}
+=&
+P\left(X_n=j|X_0=i\right)
+=\\=&
+\frac{P\left(X_n=j,X_0=i\right)}{P\left(X_0=i\right)}
+=\\=&
+\frac{P\left(\left\{X_n=j\right\}\cap\left\{T_j\le n\right\}\cap \left\{X_0=i\right\}\right)}{P\left(X_0=i\right)}
+=\\=&
+\frac{P\left(\left\{X_n=j\right\}\cap\bigcup\limits_{k=1}^\infty \left\{T_j=k\right\}\cap \left\{X_0=i\right\}\right)}{P\left(X_0=i\right)}
+=\\=&
+\sum_{k=1}^{n }\frac{P\left(\left\{X_n=j\right\}\cap \left\{X_1\neq j,\dots,X_{k-1}\neq j,X_k=j\right\}\cap \left\{X_0=i\right\}\right)}{P\left(X_0=i\right)}
+=\\=&
+\sum_{k=1}^{n}\frac{P\left(X_n=j|X_k=j,X_{k-1}\neq j,\dots,X_0=i\right)}{P\left(X_0=i\right)}P\left(X_k=j,X_{k-1}\neq j,\dots,X_0=i\right)
+=\\=&
+\sum_{k=1}^{n}p_{jj}^{(n-k)}f_{ij}^{[k]}=p_{ij}^{(n)}
+\end{align*}
+W ostatnim przejściu pamiętamy, że $ \sum_{n=0}^{\infty }p_{jj}^{(n)}<\infty  $
+
+\begin{align*}
+\sum_{n=1}^{\infty }p_{dół}^{(n)}
+=&
+\sum_{n=1}^{\infty }\left(\sum_{k=1}^{n}f_{ij}^{[k]}p_{jj}^{(n-k)}\right)
+=\\=&
+\sum_{k=1}^{\infty }f_{ij}^{[k]}\sum_{n=k}^{n}p_{jj}^{(n-k)}
+=\\=&
+\left(\sum_{n=1}^{n}p_{jj}^{(n)}\right)\sum_{k=1}^{\infty }f_{ij}^{[k]}<\infty 
+\end{align*}
+\begin{gather*}
+\sum_{n=1}^{\infty }p_{ij}^{(n)}<\infty 
+\end{gather*}
+\end{proof}
+\textbf{Wniosek}\\
+Jeżeli przestrzeń stanów $ S $ dla jednorodnego łańcucha Markowa $ \left(X_n\right)_{n\ge 0} $ jest skończona ($ \#S<\infty  $), to istnieje co najmniej jedne stan powracający.
+\begin{proof}
+Przypuśćmy, że wszystkie stany są chwilowe.
+\begin{gather*}
+\forall_{i\in S}\forall_{j\in S}\;\sum_{n=0}^{\infty }p_{dół}^{(n)}=\rho_{ij}<\infty 
+\end{gather*}
+\begin{gather*}
+\sum_{j\in S}\sum_{i\in S}\sum_{n=0}^{\infty }p_{dół}^{(n)}=\sum_{i,j\in S}\rho_{ij}<\infty \\
+\sum_{n=0}^{\infty }\sum_{i\in S}\sum_{j\in S}p_{dół}^{(n)}=\sum_{n=0}^{\infty }\left(\#S\cdot 1\right)=\infty 
+\end{gather*}
+\end{proof}
+\textbf{Uwaga!}\\
+Może się zdarzyć, że dla $ \#S=\infty  $ nie ma w ogóle stanów powracających.
+
+Oznaczenia\\
+Część konserwatywna procesu $ \left(X_n\right)_{n\ge 0} $
+\begin{gather*}
+C=\left\{j\in S:j\text{ jest stanem powracającym}\right\}=\left\{j\in S:\sum_{n=1}^{\infty }p_{jj}^{(n)}=\infty \right\}
+\end{gather*}
+Część dysypatywna procesu $ \left(X_n\right)_{n\ge 0} $
+\begin{gather*}
+D=\left\{j\in S:p_{jj}^{(n)}\infty \right\}
+\end{gather*}
+\begin{defi}
+Niech $ \left(X_n\right)_{n\ge 0} $ będzie jednorodnym łańcuchem Markowa na przestrzeni stanów $ S $ o macierzy prawdopodobieństw przejść $ P=\left[p_{ij}\right] _{S\times S}$. Mówimy, że $ A\subseteq S $ jest zamknięty (niezmienniczy), jeśli spełnia
+\begin{gather*}
+\forall_{i\in A}\forall_{j\notin A}\;p_{ij}=0
+\end{gather*}
+Inaczej
+\begin{gather*}
+P\mathbbm1_{A}(i)=\sum_{j\in A}p_{ij}=\sum_{j\in A}\mathbbm1_{A}(j)p_{ij}
+\end{gather*}
+\end{defi}
+\begin{twr}
+Część konserwatywna procesu jest zbiorem zamkniętym.
+\begin{proof}
+Niech $ i\in C $ oraz $ i\longleftrightarrow j $. Przypuśćmy $ p_{ij}^{(n_0)}>0 $. Wtedy $ f_{ij}=1 $ z lematu.\begin{gather*}
+\exists_{n_0\ge 1}\;p_{ij}^{(n_0)}>0
+\end{gather*}
+\begin{align*}
+\sum_{k=1}^{\infty }p_{jj}^{(k)}
+\ge\\\ge&
+\sum_{k=m_0+n_0+1}^\infty p_{jj}^{(k)}
+\ge\\\ge&
+\sum_{k=m_0+n_0+1}^\infty p_{ji}^{(m_0)}p_{ii}^{(k-n_0-m_0)}p_{ij}^{(n_0)}
+=\\=&
+\underbrace{p_{ji}^{(m_0)}}_{\ge 0}
+\sum_{l=1}^\infty
+\underbrace{p_{ii}^{(l)}}_{\infty }
+\underbrace{p_{ij}^{(n_0)}}_{\ge 0}
+=\infty 
+\end{align*}
+\end{proof}
+\end{twr}
