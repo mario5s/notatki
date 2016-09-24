@@ -1,0 +1,278 @@
+\chapter{8 marca 2016}
+\begin{prz}
+Przykłady funkcjonałów liniowych.
+\begin{enumerate}
+\item $ \mathfrak X = \mathcal Y=\mathbb K \\
+T(x)=a\cdot x$, gdzie $ a\in\mathbb K $ ustalony
+\item $ \mathfrak =\mathbb K^m,\mathcal Y=\mathbb K^n\\
+T:\mathfrak X \to \mathcal Y\\
+T\left(\left(x_1,\dots,x_m\right)\right)=a\circ\left(x_1,\dots,x_m\right) $ dla ustalonej macierzy  $A=[a_{jk}]_{n\times m} \\
+T\longleftrightarrow A $\\
+\begin{gather*}
+T(x)_j=\sum_{k=1}^{m}a_{jk}\cdot x_k,\;j=1,2,\dots,n\\
+A=
+\begin{bmatrix}
+	a_{11} & a_{12} & \ldots & a_{1m} \\
+	a_{21} & a_{22} & \ldots & a_{2m} \\
+	\vdots  & \vdots  & \ddots & \vdots  \\
+	a_{n1} & a_{n2} & \ldots & a_{nm}
+\end{bmatrix}
+\end{gather*}
+\item $ \mathfrak X=W_n(\mathbb R ),Af(t)=f;(t),\mathcal Y=W_{n-1}(\mathbb R ) $
+\item $ \mathfrak X=C[0,1]=\mathcal Y\\
+Tf(x)=\int\limits_{0}^{x}f(u)\,du $
+\item $ K\in C\left([0,1]\times[0,1]\right) \\
+Sg(x)=\int\limits_{0}^{1}K(x,y)g(y)\,dy\\
+Rh(y)=\int\limits_{0}^{1}h(x)K(x,y)\,dx$
+\item $ \mathfrak X=l^p=\mathcal Y\\
+\sigma \left(\left(x_0,x_1,\dots \right)\right) =\left(x_1,x_2,\dots\right)\\
+\sigma^*\left(\left(x_0,x_1,\dots \right)\right)=\left(0,x-1,x_2,\dots \right)$
+\end{enumerate}
+\end{prz}
+\section{Przestrzenie unormowane}
+\begin{defi}[Norma]
+Niech $ \mathfrak X $ będzie przestrzenią wektorową nad ciałem $ \mathbb K $. Funkcjonał $ \left\|\cdot \right\|:\mathfrak X\to \mathbb K $ nazywamy normą, jeżeli spełnia:
+\begin{enumerate}
+\item $ \forall_{x\in\mathfrak X}\; \left\|x\right\|\ge 0 $
+\item $ \left\|x\right\|=0\Leftrightarrow x=0 $
+\item $ \forall_{\lambda\in\mathbb K}\forall_{x\in \mathfrak X}\;\left\|\lambda x\right\|=\left|\lambda\right| \cdot \left\|x\right\|$
+\item $ \forall_{x_1,x_2\in\mathfrak X}\;\left\|x_1+x_2\right\|\le \left\|x_1\right\| +\left\|x_2\right\|$
+\end{enumerate}
+\end{defi}
+\begin{defi}[Przestrzeń unormowana]
+Przestrzenią wektorową unormowaną nazywamy parę $ \left(\mathfrak X,\left\|\cdot \right\|\right) $, gdzie
+\begin{itemize}
+\item $ \mathfrak X $ - przestrzeń wektorowa
+\item $ \left\|\cdot \right\| $ - ustalona norma
+\end{itemize}
+\end{defi}
+\textbf{Uwaga!}\\
+Jeżeli funkcjonał $ \left|\cdot \right| :\mathfrak X\to R_+$ nie spełnia $ \left|x\right| =0\Leftrightarrow x=0$, a spełnia pozostałe warunki normy, to $ \left|\cdot \right| $ nazywamy seminormą.
+\begin{prz}
+Przykłady przestrzeni unormowanych:
+\begin{enumerate}
+\item $ \left(\mathbb K,\left|\cdot \right|\right) $, gdzie $ \left|\cdot \right| $ - wartość bezwzględna
+\item $ \mathfrak X=\left\{0\right\},\left|x\right| =0$ dla $ x=0 $.
+\item $ \mathfrak X=\mathbb K^n, \left\|\left(x_1,\dots,x_n\right)\right\|_p=\left(\sum_{j=1}^{n}\left|x_j\right|\right)^\frac{1}{p} $
+\item $ \mathfrak X=\mathbb K^n,\left\|\left(x_1,\dots,x_n\right)\right\|_\infty =\max\limits_{1\le j\le n}\left|x_j\right| $
+\item $ C[0,1],\left\|f\right\|_{\sup} =\sup\limits_{t\in[0,1]}\left|f(t)\right|$
+\item $ l^p\text{ dla }\left(1\le p<\infty \right)\\
+\left\|\left(x_1,x_2,\dots \right)\right\|_p=\left(\sum_{j=1}^{\infty }\left|x_j\right|^p\right)^\frac{1}{p} $
+\item $ l^\infty ,\left\|\left(x_1,x_2,\dots \right)\right\|_\infty =\sup\limits_{1\le j}\left|x_j\right| $
+\item $ W_n(\mathbb R ),w(t)=a_0+a_1t+\dots+a_nt^n\\
+\left\|w\right\|_{\sup}=\sup\limits_{0\le t\le 1}\left|w(t)\right| $\\
+albo $ \left\|w\right\|=
+\left| a_0\right| + \left| a_1\right| + \dots + \left| a_n\right| $\\
+albo $ \left\|w\right\|=\sqrt{\left| a_0\right|^2 + \left| a_1\right|^2 + \dots + \left| a_n\right|^2} $
+\end{enumerate}
+\end{prz}
+\begin{defi}[Metryka]
+W przestrzeni unormowanej $ (\mathfrak X,\left\|\cdot \right\|) $ funkjca $ d_{\left\|\cdot \right\|}:\mathfrak X\to \mathbb R _+ $ zdefiniowana $ d_{\left\|\cdot \right\|}(x_1,x_2)=\left\|x_1-x_2\right\| $ nazywa się metryką generowaną przez normą $ \left\|\cdot \right\| $.
+\end{defi}
+\begin{twr}
+$ d_{\left\|\cdot \right\|} $ jest metryką, tzn.
+\begin{enumerate}
+\item $ d_{\left\|\cdot \right\|}(x,y)=0\Leftrightarrow x=y $
+\item $ d_{\left\|\cdot \right\|}(x,y)=d_{\left\|\cdot \right\|}(y,x)\le0 $
+\item $ d_{\left\|\cdot \right\|}(x,y)\le d_{\left\|\cdot \right\|}(x,z)+d_{\left\|\cdot \right\|}(z,y) $
+\end{enumerate}
+\end{twr}\noindent
+$ K(x,r)=\left\{y\in \mathfrak X:\left\|x-y\right\|<r\right\} $ - kula otwarta w normie $ \left\|\cdot \right\| $.\\
+$ \overline K(x,r)=\left\{y\in \mathfrak X:\left\|x-y\right\|\le r\right\} $ - kula domknięta w normie $ \left\|\cdot \right\| $.
+\begin{defi}[Zbieżność]
+Niech $ \left(\mathfrak X,\left\|\cdot \right\|\right) $ będzie przestrzenią unormowaną. Mówimy, że ciąg wektorów $ x_n\in\mathfrak X $ jest zbieżny w normie $ \left\|\cdot \right\| $ do wektora $ x\in\mathfrak X $, jeżeli
+\begin{gather*}
+\lim\limits_{n\to\infty} \left\|x_n-x\right\|=0.
+\end{gather*}
+Piszemy wtedy $ x_n\xrightarrow[n\to\infty ]{}x,\lim\limits_{n\to\infty}x_n=x  $ później będzie pojęcie $ \xrightharpoonup[n\to\infty ]{}x$, $x_\alpha\rightharpoonup x $
+\end{defi}
+\begin{twr}
+Jeżeli $ \mathfrak X,\left\|\cdot \right\| $ jest przestrzenią unormowaną i $ \lim\limits_{n\to\infty} x_n=x $ i $ \lim\limits_{n\to\infty} y_n=y $ (w normie $ \left\|\cdot \right\| $) oraz $ \lim\limits_{n\to\infty}\alpha_n=\alpha,\lim\limits_{n\to\infty}\beta_n=\beta $ (w ciele skalarnym $ \mathbb K $) to ciąg $ \alpha_nx_n+\beta_ny_n $ jest zbieżny w normie $ \left\|\cdot \right\| $ oraz
+\begin{gather*}
+\lim\limits_{n\to\infty} \left(\alpha_nx_n+\beta_ny_n\right)=\alpha x+\beta y
+\end{gather*}
+\end{twr}
+Operacje liniowe są ciągłe w normie.
+\begin{defi}
+Niech $ \mathfrak X, \left\|\cdot \right\| $ będzie przestrzenią unormowaną oraz $ x_1,x_2,\dots\in \mathfrak X $. Mówimy, że szereg $ \sum_{n=1}^{\infty }x_n  $ jest zbieżny w normie $ \left\|\cdot \right\| $ do $ x\in \mathfrak X  $, jeżeli
+\begin{gather*}
+\lim\limits_{n\to\infty}\left\|\sum_{j=1}^{n}x_j-x\right\| =0,
+\end{gather*}
+co zapisujemy
+\begin{gather*}
+\sum_{j=1}^{\infty }x_j=x.
+\end{gather*}
+\end{defi}
+\begin{defi}
+Mówimy, że ciąg $ x_n\in\mathfrak X $ w przestrzeni wektorowej $ \left(\mathfrak X,\left\|\cdot \right\|\right) $ jest ciągiem Cauchy'ego, jeżeli
+\begin{gather*}
+\forall_{\varepsilon>0}\exists_{N_\varepsilon}\forall_{n,k\ge N_\varepsilon}\;\left\|x_n-x_k\right\|<\varepsilon
+\end{gather*}
+Inaczej
+\begin{gather*}
+\lim\limits_{\substack{n\to\infty \\k\to\infty }} \left\|x_n-x\right\|=0
+\end{gather*}
+\end{defi}
+\begin{twr}
+Jeżeli ciąg $ x_n\in\mathfrak X  $ jest zbieżny w normie $ \left\|\cdot \right\| $, to jest ciągiem Cauchy'ego.
+\end{twr}
+\begin{prz}
+Niech $ \mathfrak X = W\left([0,1]\right) $ z normą $ \left\|w\right\| _{\sup}=\sup\limits_{t\in[0,1]}\left|w(t)\right|$ \\
+$ w_n(t)=1+t+\frac{t^2}{2}+\dots+\frac{t^n}{n!} \\
+w_n\in\mathfrak X $\\
+Czy $ (w-n)_{n\ge 1} $ jest ciągiem Cauchy'ego?
+\begin{align*}
+&\left\|w_n-w_k\right\|_{\sup}
+=\\=&
+\sup_{t\in[0,1]}\left|w_n(t)-w_k(t)\right|
+=\\=&
+\sup_{t\in [0,1]}\left|1+t+\frac{t^2}{2}+\dots+\frac{t^n}{n!} -e^t-\left(1+t+\frac{t^2}{2}+\dots+\frac{t^k}{k!} \right)+e^t\right|
+\le\\\le&
+\sup_{t\in [0,1]} \left(\left|1+t+\frac{t^2}{2}+\dots+\frac{t^n}{n!} -e^t\right|+\left|1+t+\frac{t^2}{2}+\dots+\frac{t^k}{k!} +e^t\right|\right)
+\le\\\le&
+\sup_{t\in [0,1]} \left(\left|\frac{e^\theta t^{n+1}}{(n+1)!}\right|+\left|\frac{e^{\tilde\theta} t^{k+1}}{(k+1)!}\right|\right)
+\le\\\le&
+\frac{e}{(n+1)!}+\frac{e}{(k+1)!}\xrightarrow[n,k\to\infty ]{}0.
+\end{align*}
+Ale oczywiście $ w_n\nrightarrow w\in W\left([0,1]\right)$, bo $ w_n(t)\xrightarrow[n\to\infty ]{}e^t\notin W\left([0,1]\right) $.
+\end{prz}
+Nie w każdej przestrzeni unormowanej ciąg Cauchy'ego jest zbieżny. $ \mathfrak X=W[0,1] $ z $ \left\|\cdot \right\|_{\sup} $ nie jest zupełna.
+\begin{defi}[Przestrzeń Banacha]
+Mówimy, że przestrzeń unormowana $ \left(\mathfrak X,\left\|\cdot \right\|\right) $ jest przestrzenią Banacha, jeżeli $ \mathfrak X $ z metryka $ d_{\left\|\cdot \right\|} $ jest przestrzenią metryczną zupełna tzn. każdy ciąg Cauchy'ego $ x_n\in\mathfrak X $ jest zbieżny w normie $ \left\|\cdot \right\| $ do $ x\in \mathfrak X $.
+\end{defi}
+\begin{defi}[Szereg bezwzględnie zbieżny]
+Niech $ \left(\mathfrak X,\left\|\cdot \right\|\right) $ będzie przestrzenią Banacha. Mówimy, że szereg $ \sum_{n=1}^{\infty }x_n $ jest zbieżny bezwzględnie, jeżeli
+\begin{gather*}
+\sum_{n=1}^{\infty }\left\|x_n\right\|<\infty 
+\end{gather*}
+\end{defi}
+\begin{twr}
+Jeżeli w przestrzeni Banacha $ \left(\mathfrak X,\left\|\cdot \right\|\right) $ szereg $ \sum_{j=1}^{\infty }x_j  $ jest zbieżny bezwzględnie, to jest zbieżny.
+\end{twr}
+\textbf{Uwaga!}\\
+Zbieżność szeregu $ \sum_{n=1}^{\infty }x_n $  nie pociąga zbieżności bezwzględnej $ \sum_{n=1}^{\infty }\left\|x_n\right\| $.
+\begin{prz}
+$ \sum_{n=1}^{\infty }\frac{(-1)^n}{n} $ zbieżny (anharmoniczny), ale $ \sum_{n=1}^{\infty }\frac{\left|(-1)^n\right|}{n}=\sum_{n=1}^{\infty }\frac{1}{n}=\infty  $ (harmoniczny)
+\end{prz}
+\begin{defi}{Zbieżność bezwarunkowa}
+Niech $ \left(\mathfrak X,\left\|\cdot \right\|\right) $ będzie przestrzenią Banacha oraz $ x-1,x-2,\dots \in\mathfrak X $.Mówimy, że szereg $ \sum_{j=1}^{\infty }x_j $ jest zbieżny bezwarunkowo, jeżeli dla dowolnego ciągu skalarów $ \varepsilon_1,\varepsilon_2,\dots\in\left\{0,1 \right\} $ szereg
+\begin{gather*}
+\sum_{j=1}^{\infty }\varepsilon_jx_j
+\end{gather*}
+jest zbieżny w $ \mathfrak X $ tzn.
+\begin{gather*}
+\lim\limits_{N\to\infty}\left\|\sum_{j=1}^{N}\varepsilon_jx_j-x(\varepsilon_1,\varepsilon_2,\dots )\right\| =0
+\end{gather*}
+\end{defi}
+\textbf{Uwaga!}\\
+\begin{gather*}
+\sum_{j=1}^{\infty }\left\|\varepsilon_jx_j \right\| \le\sum_{=1}^{\infty }\left\|x_j\right\|
+\end{gather*}
+Zbieżność bezwzględna implikuje zbieżność bezwarunkową.\\
+Czy zbieżność bezwarunkowa pociąga zbieżność bezwzględną?\\
+Oczywiście zbieżność bezwarunkowa pociąga zbieżność ($ \varepsilon_1=\varepsilon_2=\dots=1 $). Riemman udowodnił, że dla $ \dim\mathfrak X<\infty  $ zbieżność bezwarunkowa implikuje zbieżność bezwzględną.
+\begin{twr}
+W przestrzeni Banacha $ \left(\mathfrak X, \left\|\cdot \right\|\right) $ szereg $ \sum_{n=1}^{\infty }x_n $ jest zbieżny bezwarunkowo wtedy i tylko wtedy, gdy dla dowolnej permutacji $ \varphi:\mathbb N \xrightarrow[\text{na}]{\text{1-1}}\mathbb N  $ szereg \begin{gather*}
+\sum_{n=1}^{\infty }x_{\varphi(n)}
+\end{gather*}
+jest zbieżny w $ \mathfrak X $.
+\end{twr}
+\textbf{Uwaga!}\\
+W 1958 udowodniono, że w każdej nieskończenie wymiarowej przestrzeni Banacha istnieje szereg  zbieżny bezwarunkowo, który nie jest zbieżny bezwzględnie.
+
+\section{Funkcje (przekształcenia) ciągłe na przestrzeniach unormowanych $ \left(\mathfrak X,\left\|\cdot \right\|\right),\left(\mathcal Y,\left\|\cdot \right\|\right) $ - przestrzenie metryczne}
+Ma sens rozpatrywanie $ f:\mathfrak X\to \mathcal Y $ i pytać o ciągłość.\\
+\textbf{Przypomnienie}\\
+Mówimy, że $ f:\mathfrak X\to \mathcal Y $ jest ciągła wtdy i tylko wtedy, gdy
+\begin{gather*}
+\forall_{x_n\in\mathfrak X}\;
+\left[\lim\limits_{n\to\infty}x_n=x\Rightarrow\lim\limits_{n\to\infty}f(x_n)=f(x)  \right]
+\end{gather*}
+co jest równoważne twierdzenie topologicznemu
+\begin{gather*}
+\forall_{U\mathcal Y\ni\text{ - otwarty zbiór}}\;f^{-1}(U)\text{ otwarty w }\mathfrak X.
+\end{gather*}
+Mówimy, że $ f:Dom(f)\to Range (f) $ jest jednostajnie ciągłe
+\begin{gather*}
+\forall_{\varepsilon>0}\exists_{\delta>0}\forall_{x_1,x_2,\in Dom(f)}\;
+\left\|x_1-x_2\right\|<\delta\Rightarrow\left\|f(x_1)-f(x_2)\right\|<\varepsilon
+\end{gather*}
+Ciągłość jednostajna implikuje ciągłość.\\
+$ f(x)=\alpha x+\beta,f:\mathbb R \to \mathbb R ,f $ - funkcja jednostajnie ciągła\\
+$ h(x)=x^2,h:\mathbb R \to \mathbb R , h $ - funkcja ciągła, ale nie ciągła jednostajnie
+\begin{twr}
+Niech $ \left(\mathfrak X,\left\|\cdot \right\|\right),\left(\mathcal Y,\left\|\cdot \right\|\right) $ będą przestrzeniami unormowanymi nad tym samym ciałem skalarów $ \mathbb K $. Wówczas następujące warunki są równoważne dla odwzorowania liniowego $ T:\mathfrak X\to \mathcal Y $:
+\begin{enumerate}[a)]
+\item $ T $ jest ciągła w pewnym $ x_0\in \mathfrak X $
+\item istnieje stała $ M\ge 0 $ taka, że
+\begin{gather*}
+\forall_{x\in\mathfrak X};\left\|Tx\right\|_\mathcal Y\le M\left\|x_\mathfrak X \right\|
+\end{gather*}
+\item $ T $ jest ciągłe w każdym punkcie $ x\in\mathfrak X $
+\item $ T $ jest ciągłe w $ 0\in \mathfrak X $
+\end{enumerate}
+\end{twr}
+\textbf{Wniosek}\\
+Odwzorowanie liniowe $ T:\left(\mathfrak X,\left\|\right\|\right)\to \left(\mathcal Y,\left\|\cdot \right\|\right) $ jest ciągłe wtedy i tylko wtedy, gdy $ T $ jest ciągłe jednostajnie.
+\begin{proof}
+"$ \Leftarrow $" - oczywiste\\
+"$ \Rightarrow $"\\
+$ T $ jest ciągłe liniowe (zastosujemy (b))
+\begin{gather*}
+\forall_{\varepsilon>0}\exists_{\delta=\frac{\varepsilon}{n}}\forall_{x_1,x_2,\in\mathfrak X}\;\left\|x_1-x_2\right\|<\frac{\varepsilon}{M}\Rightarrow\left\|Tx_1-Tx_2\right\|
+=\\=
+\left\|T\left(x_1-x_2\right)\right\|\le
+M\cdot \left\|x_1-x_2\right\|<M\cdot \frac{\varepsilon}{M}=\varepsilon
+\end{gather*}
+\end{proof}
+Oznaczenie\\
+Niech $ \left(\mathfrak X, \left\|\cdot \right\|\right),\left(\mathcal Y,\left\|\cdot \right\|\right) $ będą przestrzeniami unormowanymi.
+\begin{gather*}
+\mathcal L\left(\mathfrak X,\mathcal Y\right)=\left\{T:\mathfrak X\to \mathcal Y:T\text{ - liniowe, ciągłe}\right\}
+\end{gather*}
+\begin{twr}
+$ \mathcal L\left(\mathfrak X,\mathcal Y\right) $ jest przestrzenią wektorową nad ciałem $ \mathbb K $.
+\begin{gather*}
+\left \{
+\begin{array}{l}
+\left(T_1+T_2\right)(x)\stackrel{df}{=}T_1(x)+T_2(x)\\
+\left(\alpha T\right)(x)=\alpha\cdot \left(T(x)\right)
+\end{array}
+\right .
+\end{gather*}
+\end{twr}
+\begin{twr}
+Dla przestrzeni unormowanych $ \left(\mathfrak X, \left\|\cdot \right\|\right),\left(\mathcal Y,\left\|\cdot \right\|\right) $ funkcjonalny $ \left\|\cdot\right\|:\mathcal L\left(\mathfrak X,\mathcal Y\right)\to \mathbb R _+ $ zdefiniowany
+\begin{gather*}
+\left\|T\right\|=\sup\left\{\left\|Tx\right\|:\left\|x\right\|\le 1\right\}
+\end{gather*}
+jest normą na $ \mathcal L\left(\mathfrak X, \mathcal Y\right) $.
+\end{twr}
+\begin{twr}
+Przy poprzednich oznaczeniach $ \left\|T\right\| =\inf\left\{M>0:\forall_{x\in\mathfrak X}\;\left\|Tx\right\|\le M\left\|x\right\|\right\}$.
+\end{twr}
+\begin{prz}
+\begin{enumerate}
+\item Jeżeli $ \dim(\mathfrak X)<\infty  $, to każde odwzorowanie $ T:\mathfrak X\to \mathcal Y $ jest ciągłe
+\begin{gather*}
+\mathcal L\left(\mathfrak X,\mathcal Y\right)=L\left(\mathfrak X,\mathcal Y\right)
+\end{gather*}
+\item $ \mathfrak X=l^p=\mathcal Y $ z normą $ \left\|\cdot \right\| _p$\\
+Niech $ \alpha_1,\alpha_2,\dots\in\mathbb K,\left(\alpha_1,\alpha_2,\dots \right)\in l^\infty  $\\
+$ T_{\underline \alpha}\left(x_1,x_2,\dots \right)=T_{\underline \alpha}\left(\underline x\right)=\left(\alpha_1x_1,\alpha_2x_2,\dots \right)$
+\begin{align*}
+&\left\|T_{\underline \alpha}\left(\underline x\right)\right\|_p
+=\\=&
+\left\|\left(\alpha_1x_1,\alpha_2x_2,\dots \right)\right\|_p
+=\\=&
+\left(\sum_{j=1}^{\infty }\left|\alpha_j\right|^p\left|x_j\right|^p\right)^\frac{1}{p}
+\le\\\le&
+\left(\sum_{j=1}^{\infty }M^P\left|x_j\right|^p\right)^\frac{1}{p}
+=\\=&
+M\left(\sum_{j=1}^{\infty }\left|x_j\right|^p\right)^\frac{1}{p}
+=\\=&
+M\cdot \left\|\underline x\right\|_p
+\end{align*}
+\end{enumerate}
+$ \left\|T_{\underline \alpha}\right\| =M$
+\end{prz}

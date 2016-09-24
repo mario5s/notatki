@@ -18,8 +18,168 @@ spełniają:
 x,y\in\mathfrak X\to x+y\in \mathfrak X\text{ jest wykonywalne}
 \end{gather*}
 \begin{align*}
-&\forall_{x,y,z\in\mathfrak X}\,(x+y)+z=x+(y+z)\\
-
+&\forall_{x,y,z\in\mathfrak X}\;(x+y)+z=x+(y+z)\\
+&\forall_{x\in \mathfrak X}\exists_{(-x0)}\;x+(-x)=0\\
+&\exists_{0\in \mathfrak X}\forall_{x\in\mathfrak X}\;x+0=0+x=x\\
+&\forall_{x,y\in\mathfrak X}\;x+y=y+x
 \end{align*}
+\item $ \left(\mathbb K,+,\cdot,0,1\right) $ jest ciałem
+\item $ \forall_{x,y\in\mathfrak X}\forall_{\alpha\in\mathbb K}\;\alpha\cdot(x+y)=\alpha x+\alpha y $
+\item $ \forall_{\alpha,\beta\in\mathbb K}\forall_{x\in \mathfrak X}\;(\alpha+\beta)\cdot x=\alpha x+\beta x $
+\item $ \forall_{\alpha,\beta\in\mathbb K}\forall_{x\in \mathfrak X}\;(\alpha\cdot \beta)\cdot x=\alpha\cdot(\beta\cdot x) $
+\item $ \forall_{x\in\mathfrak X}\;1\cdot x=x $
 \end{enumerate}
 \end{defi}
+Jeżeli $ \mathbb K=\mathbb R  $, to mówimy, że $ \mathfrak X $ jest przestrzenią wektorową rzeczywistą (nad ciałem liczb rzeczywistych).\\
+Jeżeli $ \mathbb K=\mathbb R  $, to mówimy, że $ \mathfrak X $ jest przestrzenią wektorową zespoloną (nad ciałem liczb zespolonych).
+\begin{enumerate}[1)]\setcounter{enumi}{-1}
+\item $ \mathfrak X =\left\{0\right\}$ zerowa (trywialna) przestrzeń wektorowa.
+\item $ \mathfrak X =\mathbb K $\\
+$ \mathfrak X =\mathbb R  $ nad $ \mathbb R $, $ \dim(\mathbb R )=1 $\\
+$ \mathbb C $ nad $ \mathbb C $ albo $ \mathbb R $\\
+$ \dim_\mathbb C(\mathbb C)=1 $\\
+$ \dim_\mathbb R(\mathbb C)=2 $
+\item $ \mathfrak X =\mathbb R ^n=\left\{\left(x_1,\dots,x_n\right):x_1,\dots,x_n\in \mathbb R \right\}=\mathbb R \times \mathbb R \times\dots\times \mathbb R  $ nad $ \mathbb K=\mathbb R  $
+\item $ \mathfrak X =\mathbb C^n=\left\{\left(z_1,\dots,z_n\right):z_j\in\mathbb C\right\}=
+\mathbb C\times \mathbb C\times\dots\times\mathbb C $ nad $ \mathbb K=\mathbb C $ albo $ \mathbb K=\mathbb R  $\\
+$ \dim_\mathbb C(\mathbb C^n)=n $\\
+$ \dim_\mathbb R(\mathbb C^n)=2n $\\
+\begin{gather*}
+(x_1,\dots,x_n)+(y_1,\dots,y_n)=(x_1+y_1,\dots,x_n+y_n)\\
+t\cdot(x_1,\dots,x_n)=(tx_1,\dots,tx_n)
+\end{gather*}
+\item $ \mathbb R ^\infty =\left\{(r_1,r_2,\dots)\:r_j\in \mathbb R \right\} $ przestrzeń nieskończonych ciągów rzeczywistych nad ciałem $ \mathbb R  $\\
+$ \mathbb C ^\infty =\left\{(z_1,z_2,\dots)\:r_j\in \mathbb C \right\} $ przestrzeń nieskończonych ciągów zespolonych nad ciałem $ \mathbb C $
+\item $ \Omega $ - dowolny zbiór (niepusty)\\
+$ F(\Omega)=\left\{f:\Omega\to \mathbb R :\text{ wszystkich funkcji rzeczywistych określonych na }\Omega\right\} $\\
+$ \mathbb R ^\infty =F(\mathbb N ) $
+\item $ G(\Omega)=\left\{f:\Omega\to\mathbb C:\text{ wszystkich funckji zespolnych o dziedzinie }\Omega\right\} $\\
+$ (f_1+f_2)(\omega)=f_1(\omega)+f_2(\omega) $\\
+$ (\alpha f)(\omega)=\alpha\cdot f(\omega) $
+\item
+$ M_{m\times n}(\mathbb R )=\left\{[a_{j,k}]_{m\times n}:a_{j,k}\in \mathbb R \right\} $\\
+$ M_{m\times n}(\mathbb C )=\left\{[a_{j,k}]_{m\times n}:a_{j,k}\in \mathbb C \right\} $\\
+$ (A+B)_{ij}=a_{ij}+b_{ij} $\\
+$ (\alpha A)_{jk}=\alpha a_{jk} $
+\item $ C[a,b]=\left\{f:[a,b]\to\mathbb K:f\text{ - funkcja ciągła}\right\} $\\
+$ (f+g)(t)=f(t)+g(t) $\\
+$ (\alpha f)(t)=\alpha f(t) $
+\item $ C^1[a,b]=\left\{f:[a,b]\to\mathbb K:f'\text{ istnieje i jest ciągła}\right\} $
+\item 
+$ W[a,b]=\left\{a_0+a_1x+\dots+a_nx^n:a_j\in \mathbb K,n\in \left\{0,1,\dots \right\}\right\} $\\
+$ W[\mathbb R ]=\left\{a_0+a_1x+\dots+a_nx^n:a_j\in \mathbb K,n\in \left\{0,1,\dots \right\}\right\} $
+\item $ W_n[a,b]=\left\{a_0+a_1x+\dots+a_nx^n:a_j\in \mathbb K\right\} $\\
+$ W_n[\mathbb R ] $ przestrzeń wektorowa wielomianów stopnia $ \le n $
+\item $ l^p=\left\{\left(x_1,x_2,\dots\right):\sum_{j=1}^{\infty }\left|x_j\right|^p<\infty \right\} $\\
+$ 1\le p<\infty  $
+\item $ L^p(\mu)=\left\{f:(\Omega,\mathcal F,P)\to \mathbb K:\int\limits_{\Omega}\left|f\right|^p\,d\mu<\infty \right\} $\qquad$ \mathbb K=\mathbb R \vee\mathbb K=\mathbb C $
+\item $ l^\infty (\mu)=\left\{(x_1,x_2,\dots):x_j\in \mathbb K,\sup\limits_j\left|x_j\right|<\infty \right\} $\\
+$ L^\infty (\mu)=\left\{f:(\Omega,\mathcal F,\mu)\to \mathbb K:\exists_M\;\mu\left\{\omega\in\Omega:\left|f(\omega)\right|>M\right\}=0\right\} $\qquad$ \mathbb K=\mathbb R \vee\mathbb K=\mathbb C $
+\end{enumerate}
+  \begin{defi}
+Niech $ \mathfrak X $ będzie przestrzenią wektorową nad ciałem $ \mathbb K $. Mówimy, że $ \mathcal Y\subseteq \mathfrak X $ jest podprzestrzenią wektorową przestrzeni wektorowej $ \mathfrak X $, jeśli:
+\begin{enumerate}
+\item $ \forall_{y_1,y_2\in\mathcal Y}\;y_1+y_2\in\mathcal Y $
+\item $ \forall_{\alpha\in\mathbb R}\forall_{y\in\mathcal Y}\;\alpha\cdot y\in \mathcal Y $
+\end{enumerate}
+\end{defi}
+\textbf{Wniosek.}
+\begin{gather*}
+\bigl(\mathcal Y,+,\left(\mathbb K,+\cdot,0,1\right),\cdot \bigr)\text{ - przestrzeń wektorowa}
+\end{gather*}
+\begin{prz}\indent
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item $ \mathcal Y=\left\{0\right\} $, $ \mathfrak X $ - dowolne, bo $ 0\in\mathfrak X $\\
+$ \mathcal Y $ jest podprzestrzenią wektorową trywialną.
+\item $ \mathcal Y=\mathfrak X $ jest też podprzestrzenią wektorową
+\item $ \mathfrak X=\mathbb R ^2,\;\mathcal Y=\left\{(t,0):t\in \mathbb R \right\} $
+\item $ \mathfrak X=\mathbb R ^2,\;\mathcal Y=\left\{(2t,3t):t\in \mathbb R \right\} $\\
+$ \dim\mathfrak X=2 $\\
+$ \dim\mathcal Y=1 $
+\item $ \mathfrak X=M_{2\times 2}(\mathbb C),\;\mathcal Y=\left\{\begin{bsmallmatrix}
+y_{11}&0\\
+y_{21}&y_{22}
+\end{bsmallmatrix}
+:y_{ij}\in \mathbb C\right\} $\\
+$ \dim\mathfrak X=4 $\\
+$ \dim\mathcal Y=3 $
+\item $ C^1[a,b]\subseteq C[a,b] $
+\item $ W[a,b]=\mathcal Y\subseteq\mathfrak X=W[a,b] $
+\item $ c_0=\left\{(x_1,x_2,\dots):x_j\in \mathbb R \wedge x_j\in \mathbb C,\lim\limits_{j\to\infty}x_j=0 \right\} $
+\end{enumerate}
+\begin{gather*}
+l^p\subseteq c_0\subseteq \mathcal Y\subseteq \mathfrak X =l^\infty \subseteq \mathcal Z=\mathbb R ^\infty 
+\end{gather*}
+\end{prz}
+Dlaczego $ l^p $ jest przestrzenią wektorową?
+\begin{align*}
+\underline x=\left(x_1,x_2,\dots \right) \in l^p&&
+\underline y=\left(y_1,y_2,\dots \right) \in l^p
+\end{align*}
+Czy $ \left(x_1+yy_1,x_2+y_2,\dots \right)\in l^p $?\\
+$ \underline x + \underline y $ jest wykonalne w $ l^p $
+\begin{gather*}
+\sum_{j=1}^{\infty }\left|x_j\right|^p<\infty \wedge 
+\sum_{j=1}^{\infty }\left|x_j\right|^p<\infty \Rightarrow
+\sum_{j=1}^{\infty }\left|x_j+y_j\right|^p<\infty 
+\end{gather*}
+\begin{align*}
+&\left|X_j+y_j\right|^p
+\le\\\le&
+\left(\left|x_j\right|+\left|y_j\right|\right)^p
+\le\\\le&
+\left(2\max \left\{\left|x_j\right|,\left|y_j\right|\right\}\right)^p
+=\\=&
+2^p\cdot \left(\max \left\{\left|x_j\right|^p,\left|y_j\right|^p\right\}\right)^p
+\le\\\le&
+2^p\left(\left|x_j\right|^p+\left|y_j\right|^p\right)
+\end{align*}
+\begin{gather*}
+\sum_{j=1}^{\infty }\left|x_j+y_j\right|^p\le
+\sum_{j=1}^{\infty }2^p\left(\left\|x_j\right\|^p+\left|y_j\right|^p\right)=
+2^p\sum_{j=1}^{\infty }\left|x_j\right|^p+
+2^p\sum_{j=1}^{\infty }\left|y_j\right|^p<\infty 
+\end{gather*}
+Czyli $ \underline x+\underline y\in l^p $.\\
+$ \alpha \underline x=\left(\alpha x_1,\alpha x_2,\dots \right) $
+\begin{gather*}
+\sum_{j=1}^{\infty }\left|\alpha x_j\right|^p=
+\sum_{j=1}^{\infty }\left|\alpha\right|^p\cdot\left|x_j\right|^p=
+\left|\alpha\right|^p\cdot\sum_{j=1}^{\infty }\left|x_j\right|^p<\infty 
+\end{gather*}
+Czyli $ \alpha \underline x\in l^p $
+\begin{defi}[Odwzorowanie liniowe]
+Niech $ \mathfrak X,\mathcal Y $ będą przestrzeniami wektorowymi nad tym samym ciałem $ \mathbb K $. Mówimy, że odwzorowanie $ T:\mathfrak X\to \mathcal Y $ jest odwzorowaniem liniowym, jeżeli spełnia:
+\begin{enumerate}
+\item Addytywność
+\begin{gather*}
+\forall_{x_1,x_2\in\mathfrak X}\; T(x_1+x_2)=T(x_1)+T(x_2)
+\end{gather*}
+\item Jednorodność
+\begin{gather*}
+\forall_{\alpha\in\mathbb K}\forall_{x\in\mathfrak X}\; T(\alpha\cdot x)=\alpha\cdot T(x)
+\end{gather*}
+\end{enumerate}
+\end{defi}
+Standardowe uproszczenie to zamiast $ T(x) $ możemy pisać $ Tx $.
+\begin{defi}[Funkcjonał liniowy]
+Jeżeli $ \mathcal Y=\mathbb K $, to odwzorowanie liniowe $ T:\mathfrak X\to mathbb K $  nazywamy funkcjonałem liniowym.
+\end{defi}
+Tradycyjnie zamiast $ T $ piszemy $ \lambda,\xi,\tau,\dots  $ (małe literki grackie)
+\begin{defi}[Jądro i obraz odwzorowania]
+Niech $ T:\mathfrak X\to mathcal Y $ będzie odwzorowaniem liniowym. Wówczas:
+\begin{enumerate}
+\item Jądrem odwzorowania $ T $ nazywamy
+\begin{gather*}
+\ker(T)=\left\{x\in\mathfrak X:T(x)=0\right\}=T^{-1}(\left\{0\right\})
+\end{gather*}
+\item Obrazem odwzorowanie $ T $ nazywamy
+\begin{gather*}
+R(T)=\text{Range}(T)=\left\{T(x):x\in\mathfrak X\right\}=T(\mathfrak X)
+\end{gather*}
+\end{enumerate}
+\end{defi}
+\textbf{Fakt}\\
+$ \ker(T) $ jest podprzestrzenią wektorową $ \mathfrak X $\\
+$ R(T) $ jest podprzestrzenią wektorową $ \mathcal Y $
